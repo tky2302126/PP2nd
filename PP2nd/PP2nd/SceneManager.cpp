@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 
-SceneManager* SceneManager::Instance = nullptr;
+unique_ptr<SceneManager> SceneManager::Instance = nullptr;
 
 SceneManager::SceneManager()
 {
@@ -66,16 +66,12 @@ void SceneManager::Update()
 	if (scenePtr != nullptr) { scenePtr->Update(); }
 }
 
-SceneManager* SceneManager::GetInstance()
+SceneManager& SceneManager::GetInstance()
 {
 	if(Instance == nullptr)
 	{
-		CreateInstance();
+		Instance = make_unique<SceneManager>();
 	}
-	return Instance;
+	return *Instance;
 }
 
-void SceneManager::CreateInstance()
-{
-	Instance = new SceneManager();
-}

@@ -18,13 +18,12 @@ public:
 	void Load(SceneName name);
 	void ChangeScene(SceneName name);
 	void Update();
-	static SceneManager* GetInstance();
+	static SceneManager& GetInstance();
 	
 
 private:
-	static SceneManager* Instance;
+	static unique_ptr<SceneManager> Instance;
 	Scene* scenePtr;
 
-	static void CreateInstance();
 };
 

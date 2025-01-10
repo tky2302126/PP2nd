@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <memory>
 
 using namespace std;
 
@@ -29,3 +30,10 @@ enum SceneName
 	Test,
 	ALL
 };
+
+typedef struct
+{
+	int x;
+	int y;
+}Vector2Int;
+

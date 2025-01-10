@@ -5,18 +5,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	if (DxLib_Init() == -1)	{ return -1; }
 
-	SceneManager* sceneMPtr = SceneManager::GetInstance();
-	sceneMPtr->Init();
+	ChangeWindowMode(TRUE);
+	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
+	SetMouseDispFlag(TRUE);
+
+	SceneManager& sceneMPtr = SceneManager::GetInstance();
+	sceneMPtr.Init();
+
+	InputSystem& inputSystemPtr = InputSystem::GetInstance();
+	inputSystemPtr.Init();
 
 #if _DEBUG
-	sceneMPtr->Load(SceneName::Test);
+	sceneMPtr.Load(SceneName::Test);
 #endif
 
 	while (true)
 	{
 		ClearDrawScreen();
 
-		sceneMPtr->Update();
+		sceneMPtr.Update();
 
 		if (ProcessMessage() == -1) break;
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
