@@ -19,6 +19,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	sceneMPtr.Load(SceneName::Test);
 #endif
 
+	
+	
+
+	
+
 	while (true)
 	{
 		ClearDrawScreen();
@@ -29,6 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
 
 		ScreenFlip();
+
 	}
 
 	DxLib_End();

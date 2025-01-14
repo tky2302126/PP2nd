@@ -1,19 +1,6 @@
 #pragma once
 #include "define.h"
 
-enum InputState
-{
-	None,
-	Started,
-	Performed,
-	Canceled
-};
-
-typedef struct
-{
-	InputState left;
-	InputState right;
-}MouseState;
 
 /// <summary>
 /// “ü—Íî•ñ‚ğŠÄ‹
@@ -30,14 +17,18 @@ public:
 	void Update();
 	
 	Vector2Int GetMousePosition();
+	MouseState GetMouseState();
+	MouseInfo GetMouseInfo();
 	static InputSystem& GetInstance();
 	
 private:
-	int mouseX;
-	int mouseY;
-	MouseState mouseState;
+	MouseInfo currentInfo;
 
 	static unique_ptr<InputSystem> Instance;
+
+	bool MouseInputLeft();
+	bool MouseInputRight();
+	
 
 };
 

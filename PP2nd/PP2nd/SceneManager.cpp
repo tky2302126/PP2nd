@@ -63,7 +63,13 @@ void SceneManager::ChangeScene(SceneName name)
 
 void SceneManager::Update()
 {
+	int startTime = GetNowCount();
+	
 	if (scenePtr != nullptr) { scenePtr->Update(); }
+
+	int tookTime = GetNowCount() - startTime;
+	int waitTime = FRAME_TIME_MS - tookTime;
+	if (waitTime > 0) { Sleep(waitTime); }
 }
 
 SceneManager& SceneManager::GetInstance()

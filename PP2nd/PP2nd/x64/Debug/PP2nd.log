@@ -1,4 +1,5 @@
-﻿  InputSystem.cpp
-  SceneManager.cpp
-  コードを生成中...
+﻿  main.cpp
+D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "manager.h"
 
+class Camera;
+
 class TestScene : public Scene
 {
 public:
@@ -12,6 +14,6 @@ public:
 	void Update();
 
 private:
-
+	Camera* cameraPtr;
 };
 
