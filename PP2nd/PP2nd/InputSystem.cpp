@@ -22,48 +22,45 @@ void InputSystem::Update()
 {
     GetMousePoint(&currentInfo.position.x, &currentInfo.position.y);
 
+#pragma region left
     /// None || canceled -> Started
     if ((currentInfo.state.left == None || currentInfo.state.left == Canceled) && MouseInputLeft())
     {
         currentInfo.state.left = Started;
     }
+    else if ((currentInfo.state.left == Started) && MouseInputLeft())
+    {
+        currentInfo.state.left = Performed;
+    }
+    else if ((currentInfo.state.left == Performed || currentInfo.state.left == Started) && !MouseInputLeft())
+    {
+        currentInfo.state.left = Canceled;
+    }
+    else if ((currentInfo.state.left == Canceled) && !MouseInputLeft())
+    {
+        currentInfo.state.left = None;
+    }
+#pragma endregion
 
+#pragma region right
     if ((currentInfo.state.right == None || currentInfo.state.right == Canceled) && MouseInputRight())
     {
         currentInfo.state.right = Started;
     }
-
-    /// Started -> performed
-    if ((currentInfo.state.left == Started) && MouseInputLeft())
-    {
-        currentInfo.state.left = Performed;
-    }
-
-    if ((currentInfo.state.right == Started) && MouseInputRight())
+  
+    else if ((currentInfo.state.right == Started) && MouseInputRight())
     {
         currentInfo.state.right = Performed;
     }
-
-    /// Started || performed ->canceled
-    if ((currentInfo.state.left == Started || currentInfo.state.left == Performed) && !MouseInputLeft())
-    {
-        currentInfo.state.left = Canceled;
-    }
-
-    if ((currentInfo.state.right == Started || currentInfo.state.right == Performed) && !MouseInputRight())
+    else if ((currentInfo.state.right == Performed || currentInfo.state.right == Started) && !MouseInputRight())
     {
         currentInfo.state.right = Canceled;
     }
-    /// canceled -> None
-    if ((currentInfo.state.left == Canceled) && !MouseInputLeft())
-    {
-        currentInfo.state.left = None;
-    }
-
-    if ((currentInfo.state.right == Canceled) && !MouseInputRight())
+    else if ((currentInfo.state.right == Canceled) && !MouseInputRight())
     {
         currentInfo.state.right = None;
     }
+#pragma endregion 
 }
 
 Vector2Int InputSystem::GetMousePosition()

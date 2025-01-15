@@ -1,5 +1,7 @@
-﻿  main.cpp
+﻿  Camera.cpp
 D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
-  (ソース ファイル 'main.cpp' をコンパイルしています)
+  (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
+D:\PP2nd\PP2nd\PP2nd\Camera.cpp(23,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Camera.cpp(24,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

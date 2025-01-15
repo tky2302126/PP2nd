@@ -72,8 +72,7 @@ void Camera::Update()
 	{
 		oldMousePos = currentInput.position;
 	}
-
-	if(leftState == Performed)
+	else if(leftState == Performed)
 	{
 		int durationX = currentInput.position.x - oldMousePos.x;
 		int durationY = currentInput.position.y - oldMousePos.y;
