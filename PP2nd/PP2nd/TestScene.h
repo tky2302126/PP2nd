@@ -4,6 +4,7 @@
 #include "manager.h"
 
 class Camera;
+class HUD;
 
 /// <summary>
 /// 開発用のデバッグシーン
@@ -18,5 +19,6 @@ public:
 
 private:
 	Camera* cameraPtr;
+	UniquePtr<HUD> hudUPtr;
 };
 

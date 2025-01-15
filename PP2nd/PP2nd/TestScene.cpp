@@ -1,10 +1,13 @@
 ﻿#include "TestScene.h"
 #include "Camera.h"
+#include "HUD.h"
 
 TestScene::TestScene()
 {
 	cameraPtr = new Camera();
 	cameraPtr->Init();
+	hudUPtr = make_unique<HUD>();
+	hudUPtr->Init();
 }
 
 TestScene::~TestScene()
@@ -41,6 +44,7 @@ void TestScene::Update()
 		DrawLine3D(VGet(0, 0, i), VGet(fieldwidth, 0, i), ZAxizColor);
 	}
 
+	hudUPtr->Update();
 	VECTOR cameraPos = cameraPtr->GetPosition();
 
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);

@@ -8,9 +8,15 @@
 #include <memory>
 #include <chrono>
 #include <thread>
+#include <Windows.h>
 
 using namespace std;
 
+template <typename T>
+using SharedPtr = shared_ptr<T>;
+
+template <typename T>
+using UniquePtr = unique_ptr<T>;
 
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
@@ -63,5 +69,14 @@ typedef struct MouseInfo
 	MouseState state;
 };
 #pragma endregion
+
+///
+inline string GetExecutablePath()
+{
+	char buffer[MAX_PATH];
+	GetModuleFileNameA(NULL, buffer, MAX_PATH); //絶対パスを取得
+	string path(buffer);
+	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
+}
 
 

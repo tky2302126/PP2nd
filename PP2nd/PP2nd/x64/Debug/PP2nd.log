@@ -1,31 +1,18 @@
-﻿  Camera.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
-  (ソース ファイル 'Camera.cpp' をコンパイルしています)
-  
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(21,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(22,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  HUD.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
+﻿  HUD.cpp
+D:\PP2nd\PP2nd\PP2nd\define.h(70,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
   (ソース ファイル 'HUD.cpp' をコンパイルしています)
   
-  main.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
-  (ソース ファイル 'main.cpp' をコンパイルしています)
-  
-  SceneManager.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
-  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
-  
+D:\PP2nd\PP2nd\PP2nd\HUD.cpp(23,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   TestScene.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(64,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
+D:\PP2nd\PP2nd\PP2nd\define.h(70,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
   (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(33,15): warning C4244: '初期化中': 'const float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(40,19): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(40,40): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(40,34): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(41,25): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(41,49): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(41,34): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(36,15): warning C4244: '初期化中': 'const float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(43,19): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(43,40): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(43,34): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(44,25): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(44,49): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\TestScene.cpp(44,34): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   コードを生成中...
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe
