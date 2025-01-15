@@ -72,13 +72,13 @@ typedef struct MouseInfo
 
 
 #pragma region Map
-enum TerrainList
+enum class TerrainList
 {
-	None,
-	Item1 = 1,
+	None = 100,
+	Item1,
 
-	Invailed,
-	Polluted,
+	Invailed, // 配置不可
+	Polluted, // 汚染エリア
 };
 
 typedef struct

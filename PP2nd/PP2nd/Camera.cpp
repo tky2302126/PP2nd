@@ -13,13 +13,15 @@ void Camera::Init()
     //カメラの初期化
 	position.x = 0.0f;
 	position.y = CAMERA_HEIGHT;
-	position.z = -1000.0f;
+	position.z = 0.0f; 
 	lookPosition.x = 0.0f;
 	lookPosition.y = 0.0f;
 	lookPosition.z = 0.0f;
 	
 	oldMousePos.x = 0.0f;
 	oldMousePos.y = 0.0f;
+
+	SetupCamera_Ortho(200.0f);
 }
 
 void Camera::UnInit()
@@ -85,7 +87,7 @@ void Camera::Update()
 	}
 	
 
-	SetCameraPositionAndTarget_UpVecY(position, lookPosition);
+	SetCameraPositionAndTargetAndUpVec(position, lookPosition,VGet(0,0,1)); ///見下ろし型のカメラ
 }
 
 VECTOR Camera::GetPosition()

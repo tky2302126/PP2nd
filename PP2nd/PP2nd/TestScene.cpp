@@ -36,14 +36,20 @@ void TestScene::Update()
 	int gridSize = MAP_UNIT;
 
 	cameraPtr->Update();
-	
+	/// DrawCapsule3D(VGet(320.0f, 100.0f, 0.0f), VGet(320.0f, 300.0f, 0.0f), 40.0f, 8, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 
-	for (int i = 0; i < fieldwidth; i += gridSize)
-	{
-		DrawLine3D(VGet(i, 0, 0), VGet(i, 0, fieldwidth), XAxizcolor);
-		DrawLine3D(VGet(0, 0, i), VGet(fieldwidth, 0, i), ZAxizColor);
-	}
+	/// for (int i = 0; i < fieldwidth; i += gridSize)
+	/// {
+	/// 	DrawLine3D(VGet(i, 0, 0), VGet(i, 0, fieldwidth), XAxizcolor);
+	/// 	DrawLine3D(VGet(0, 0, i), VGet(fieldwidth, 0, i), ZAxizColor);
+	/// }
 
+	// 原点に球を描画
+	DrawSphere3D(VGet(0, 0, 0), 50, 32, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
+
+	// X軸とZ軸の確認用にラインを描画
+	DrawLine3D(VGet(-1000, 0, 0), VGet(1000, 0, 0), GetColor(0, 255, 0)); // X軸
+	DrawLine3D(VGet(0, 0, -1000), VGet(0, 0, 1000), GetColor(0, 0, 255)); // Z軸
 	hudUPtr->Update();
 	VECTOR cameraPos = cameraPtr->GetPosition();
 

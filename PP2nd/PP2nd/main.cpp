@@ -7,7 +7,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
+	SetDrawScreen(DX_SCREEN_BACK);
 	SetMouseDispFlag(TRUE);
+	SetUseZBufferFlag(TRUE);
+	SetWriteZBufferFlag(TRUE);
 
 	SceneManager& sceneMPtr = SceneManager::GetInstance();
 	sceneMPtr.Init();

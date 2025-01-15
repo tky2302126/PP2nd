@@ -2,13 +2,6 @@
 #include "define.h"
 #include "manager.h"
 
-enum ItemList
-{
-	Item1 =1,
-	Item2,
-
-};
-
 /// <summary>
 /// HUD制御のクラス
 /// !todo
