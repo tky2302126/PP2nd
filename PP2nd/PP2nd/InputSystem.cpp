@@ -1,4 +1,4 @@
-#include "InputSystem.h"
+﻿#include "InputSystem.h"
 
 unique_ptr<InputSystem> InputSystem::Instance = nullptr;
 
@@ -22,8 +22,12 @@ void InputSystem::Update()
 {
     GetMousePoint(&currentInfo.position.x, &currentInfo.position.y);
 
+    /// (None || Canceled) && Input -> Started
+    /// Started && Input -> Performed
+    /// (Started || Performed) && !Input -> Canceled
+    /// Canceled && !Input -> None
+    
 #pragma region left
-    /// None || canceled -> Started
     if ((currentInfo.state.left == None || currentInfo.state.left == Canceled) && MouseInputLeft())
     {
         currentInfo.state.left = Started;
@@ -87,7 +91,7 @@ InputSystem& InputSystem::GetInstance()
 
     return *Instance;
 }
-
+#pragma region ヘルパー関数
 bool InputSystem::MouseInputLeft()
 {
     return GetMouseInput() & MOUSE_INPUT_LEFT;
@@ -97,3 +101,4 @@ bool InputSystem::MouseInputRight()
 {
     return GetMouseInput() & MOUSE_INPUT_RIGHT;
 }
+#pragma endregion

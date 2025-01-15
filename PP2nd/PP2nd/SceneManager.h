@@ -1,11 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
-#include "Scene.h"
-#include "TestScene.h"
+
+class Scene;
 
 /// <summary>
-/// ƒV[ƒ“‚Ì§Œä‚ğs‚¤
-/// ƒVƒ“ƒOƒ‹ƒgƒ“‚ÅİŒv—\’è
+/// ã‚·ãƒ¼ãƒ³ã®åˆ¶å¾¡ã‚’è¡Œã†
+/// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã§è¨­è¨ˆäºˆå®š
+/// ! managerã‚¯ãƒ©ã‚¹ãªã®ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã¯defineã®ã¿
 /// </summary>
 class SceneManager
 {
@@ -24,6 +25,5 @@ public:
 private:
 	static unique_ptr<SceneManager> Instance;
 	Scene* scenePtr;
-
 };
 

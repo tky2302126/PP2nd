@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "DxLib.h"
 #include <vector>
 #include <string>
@@ -15,9 +15,9 @@ using namespace std;
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
 
-constexpr int FRAMERATE = 60;  //ƒQ[ƒ€‘S‘Ì‚ÌƒtƒŒ[ƒ€ƒŒ[ƒg
+constexpr int FRAMERATE = 60;  //ã‚²ãƒ¼ãƒ å…¨ä½“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ
 constexpr auto FRAME_TIME_MS = 1000 / FRAMERATE;
-constexpr auto MAP_UNIT = 200.0f;  //ƒ}ƒbƒv‚Ì1ƒ†ƒjƒbƒg‚Ì’·‚³
+constexpr auto MAP_UNIT = 200.0f;  //ãƒãƒƒãƒ—ã®1ãƒ¦ãƒ‹ãƒƒãƒˆã®é•·ã•
 
 constexpr float CAMERA_HEIGHT = 1800.0f;
 

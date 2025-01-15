@@ -1,4 +1,4 @@
-#include "TestScene.h"
+ï»¿#include "TestScene.h"
 #include "Camera.h"
 
 TestScene::TestScene()
@@ -15,9 +15,9 @@ TestScene::~TestScene()
 
 void TestScene::Update()
 {
-	DrawFormatString(0, 0, 65535, " ƒeƒXƒgƒV[ƒ“");
+	DrawFormatString(0, 0, 65535, " ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³");
 	InputSystem::GetInstance().Update();
-#pragma region ƒ}ƒEƒXŠm”F
+#pragma region ãƒã‚¦ã‚¹ç¢ºèª
 	/// MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
 	/// 
 	/// DrawFormatString(0, 30, GetColor(255, 255, 255), "mouse position( %d, %d)", mouseInfo.position.x, mouseInfo.position.y);
@@ -25,7 +25,7 @@ void TestScene::Update()
 #pragma endregion
 
 
-#pragma region ƒJƒƒ‰Šm”F
+#pragma region ã‚«ãƒ¡ãƒ©ç¢ºèª
 	int XAxizcolor = GetColor(255, 128, 255);
 	int ZAxizColor = GetColor(128, 255, 255);
 

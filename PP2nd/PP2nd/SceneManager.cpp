@@ -1,4 +1,6 @@
 #include "SceneManager.h"
+#include "Scene.h"
+#include "TestScene.h"
 
 unique_ptr<SceneManager> SceneManager::Instance = nullptr;
 

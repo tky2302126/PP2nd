@@ -1,7 +1,10 @@
-#pragma once
+﻿#pragma once
 #include "define.h"
 #include "manager.h"
 
+/// <summary>
+/// カメラの制御
+/// </summary>
 class Camera
 {
 public:
@@ -13,8 +16,6 @@ public:
 
 	VECTOR GetPosition();
 private:
-	float AngleV;
-	float AngleH;
 	VECTOR position;
 	VECTOR lookPosition;
 	Vector2Int oldMousePos;

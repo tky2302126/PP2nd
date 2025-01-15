@@ -1,4 +1,4 @@
-#include "Camera.h"
+ï»¿#include "Camera.h"
 
 Camera::Camera()
 {
@@ -10,11 +10,9 @@ Camera::~Camera()
 
 void Camera::Init()
 {
-    //ƒJƒƒ‰‚Ì‰Šú‰»
-    AngleH = DX_PI_F;
-    AngleV = 0.0f;
+    //ã‚«ãƒ¡ãƒ©ã®åˆæœŸåŒ–
 	position.x = 0.0f;
-	position.y = 1800.0f;
+	position.y = CAMERA_HEIGHT;
 	position.z = -1000.0f;
 	lookPosition.x = 0.0f;
 	lookPosition.y = 0.0f;
@@ -30,7 +28,7 @@ void Camera::UnInit()
 
 void Camera::Update()
 {
-	/// // •ûŒüƒL[‚ÅƒJƒƒ‰‚ÌÀ•W‚ğˆÚ“®
+	/// // æ–¹å‘ã‚­ãƒ¼ã§ã‚«ãƒ¡ãƒ©ã®åº§æ¨™ã‚’ç§»å‹•
 	/// if (CheckHitKey(KEY_INPUT_UP) || CheckHitKey(KEY_INPUT_W))
 	/// {
 	/// 	position.z += 20.0f;
@@ -63,7 +61,7 @@ void Camera::Update()
 	/// 	
 	/// }
 
-	/// ƒ}ƒEƒX‚Ì“ü—Í‚ÅƒJƒƒ‰‚Æ’‹“_‚ÌÀ•W‚ğˆÚ“®‚·‚é
+	/// ãƒã‚¦ã‚¹ã®å…¥åŠ›ã§ã‚«ãƒ¡ãƒ©ã¨æ³¨è¦–ç‚¹ã®åº§æ¨™ã‚’ç§»å‹•ã™ã‚‹
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
 
 	InputState leftState = currentInput.state.left;

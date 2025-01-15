@@ -18,12 +18,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #if _DEBUG
 	sceneMPtr.Load(SceneName::Test);
 #endif
-
-	
-	
-
-	
-
 	while (true)
 	{
 		ClearDrawScreen();

@@ -1,5 +1,6 @@
 #pragma once
 #include "define.h"
+#include "manager.h"
 
 /// <summary>
 /// ゲームのシーン用の基底クラス
@@ -7,9 +8,18 @@
 class Scene
 {
 public:
-	Scene();
+	Scene() {};
 	virtual  ~Scene() = default;
 	virtual void Update() = 0;
-	void SceneChange(SceneName name);
+	
+	/// <summary>
+	/// シーン遷移を実行
+	/// </summary>
+	/// <param name="name">遷移先のシーン名</param>
+	void SceneChange(SceneName name)
+	{
+		SceneManager::GetInstance().ChangeScene(name);
+	}
+
 };
 
