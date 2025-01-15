@@ -70,6 +70,26 @@ typedef struct MouseInfo
 };
 #pragma endregion
 
+
+#pragma region Map
+enum TerrainList
+{
+	None,
+	Item1 = 1,
+
+	Invailed,
+	Polluted,
+};
+
+typedef struct
+{
+	int width;
+	int height;
+	int goalWidth;
+	int goalHeight;
+} _mapInfo;
+#pragma endregion
+
 ///
 inline string GetExecutablePath()
 {

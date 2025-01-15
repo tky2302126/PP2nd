@@ -5,6 +5,7 @@
 
 class Camera;
 class HUD;
+class Map;
 
 /// <summary>
 /// 開発用のデバッグシーン

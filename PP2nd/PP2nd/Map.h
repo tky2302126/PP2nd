@@ -1,5 +1,6 @@
 #pragma once
 #include "define.h"
+
 class Map
 {
 public:
@@ -21,7 +22,7 @@ private:
 	int height;
 	int width;
 	vector<vector<int>> terrainInfo;
-	vector<vector<int>> mapInfo;
+	_mapInfo mapInfo;
 
 
 };
