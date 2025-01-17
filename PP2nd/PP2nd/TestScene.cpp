@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Box.h"
 #include "MyMath.h"
+#include "MainScreen.h"
 
 TestScene::TestScene()
 {
@@ -13,9 +14,10 @@ TestScene::TestScene()
 	hudUPtr->Init();
 	mapUPtr = make_unique<Map>();
 	mapUPtr->Init();
-	goalUPtr = make_unique<Box>();
-	VECTOR pos = VGet(MAP_UNIT , MAP_UNIT/2 , MAP_UNIT );
-	goalUPtr->Init(pos, Tag::Goal);
+
+	mainScreenUPtr = make_unique<MainScreen>();
+	_mapInfo testMap(12,9,5,5);
+	mainScreenUPtr->Init(testMap);
 }
 
 TestScene::~TestScene()
@@ -38,13 +40,12 @@ void TestScene::Update()
 
 #pragma region カメラ確認
 	
-	mapUPtr->Update();
-	cameraPtr->Update();
-	goalUPtr->Draw();
-
-	hudUPtr->Update();
-	VECTOR cameraPos = cameraPtr->GetPosition();
-	
-	DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
+	/// VECTOR cameraPos = cameraPtr->GetPosition();
+	/// 
+	/// DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
 #pragma endregion
+#pragma region メインスクリーンテスト
+	mainScreenUPtr->Update();
+#pragma endregion
+
 }

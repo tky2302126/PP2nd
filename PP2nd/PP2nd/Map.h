@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "define.h"
 
+class Box;
 /// <summary>
 /// MVPに分割したい
 /// </summary>
@@ -11,6 +12,7 @@ public:
 	~Map();
 
 	void Init();
+	void Init(const _mapInfo& mapInfo);
 	void UnInit();
 
 	void Load(int);
@@ -22,10 +24,9 @@ private:
 	void LoadMapInfo(int);
 
 private:
-	int height;
-	int width;
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
 	int margin;
+	UniquePtr<Box> goalUPtr;
 };
 

@@ -1,6 +1,7 @@
 ﻿#include "Camera.h"
 
 Camera::Camera()
+	:lookPosition(VECTOR()),oldMousePos(Vector2Int()),position(VECTOR())
 {
 }
 
@@ -19,9 +20,29 @@ void Camera::Init()
 	lookPosition.y = 0.0f;
 	lookPosition.z = CAMERA_MIN_Z;
 	
-	oldMousePos.x = 0.0f;
-	oldMousePos.y = 0.0f;
+	oldMousePos.x = 0;
+	oldMousePos.y = 0;
 	
+	SetupCamera_Ortho(MAP_HEIGHT);
+}
+
+/// <summary>
+/// マップの大きさに合わせてカメラの位置を初期化する
+/// </summary>
+/// <param name="mapInfo"></param>
+void Camera::Init(const _mapInfo& mapInfo)
+{
+	position.x = CAMERA_MIN_X;
+	position.y = CAMERA_HEIGHT;
+	position.z = CAMERA_MIN_Z + CAMERA_Z_OFFSET;
+	lookPosition.x = CAMERA_MIN_X;
+	lookPosition.y = 0.0f;
+	lookPosition.z = CAMERA_MIN_Z;
+
+
+	oldMousePos.x = 0;
+	oldMousePos.y = 0;
+
 	SetupCamera_Ortho(MAP_HEIGHT);
 }
 

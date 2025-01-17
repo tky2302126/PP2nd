@@ -1,5 +1,16 @@
-﻿  main.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(78,2): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'MouseInfo' の左辺を無視します。
-  (ソース ファイル 'main.cpp' をコンパイルしています)
+﻿  Map.cpp
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(15,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(25,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(26,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
   
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(47,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(47,49): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(52,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(52,35): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(59,25): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(59,68): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(61,25): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(62,48): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(67,37): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

@@ -50,11 +50,11 @@ enum SceneName
 	ALL
 };
 
-typedef struct
+struct Vector2Int
 {
 	int x ;
 	int y ;
-}Vector2Int;
+};
 
 #pragma region InputSystem 
 enum InputState
@@ -71,10 +71,12 @@ struct _mouseState
 	InputState right = None;
 }typedef MouseState;
 
-typedef struct MouseInfo
+struct MouseInfo
 {
 	Vector2Int position;
 	MouseState state;
+
+	MouseInfo() = default;
 };
 #pragma endregion
 
@@ -89,13 +91,18 @@ enum class TerrainList
 	Polluted, // 汚染エリア
 };
 
-typedef struct
+struct _mapInfo
 {
 	int width;
 	int height;
 	int goalWidth;
 	int goalHeight;
-} _mapInfo;
+
+	_mapInfo() = default;
+
+	_mapInfo(int _width, int _height, int _goalWidth, int _goalHeight)
+		:width(_width), height(_height), goalWidth(_goalWidth), goalHeight(_goalHeight) {}
+};
 #pragma endregion
 
 ///
