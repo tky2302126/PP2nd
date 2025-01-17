@@ -23,9 +23,17 @@ constexpr auto WINDOW_HEIGHT = 720;
 
 constexpr int FRAMERATE = 60;  //ゲーム全体のフレームレート
 constexpr auto FRAME_TIME_MS = 1000 / FRAMERATE;
-constexpr auto MAP_UNIT = 200.0f;  //マップの1ユニットの長さ
+constexpr auto MAP_UNIT = 360.0f;  //マップの1ユニットの長さ
+
 
 constexpr float CAMERA_HEIGHT = 1800.0f;
+constexpr float CAMERA_Z_OFFSET = -1000.0f;
+constexpr auto MAP_MARGIN = 0.1f ; //マップの余白
+constexpr float MAP_HEIGHT = 3600.0f; //正射影カメラの縦の幅(マップの縦の長さ)
+constexpr float MAP_WIDTH = MAP_HEIGHT / 9 * 16;
+
+constexpr auto CAMERA_MIN_Z = MAP_HEIGHT / 2;
+constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
@@ -99,4 +107,8 @@ inline string GetExecutablePath()
 	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
 }
 
-
+enum class Tag :int
+{
+	Start,
+	Goal
+};

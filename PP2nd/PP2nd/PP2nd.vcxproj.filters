@@ -39,13 +39,16 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,13 +71,19 @@
     <ClInclude Include="TestScene.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
   </ItemGroup>

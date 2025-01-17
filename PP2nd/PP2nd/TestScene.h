@@ -6,6 +6,7 @@
 class Camera;
 class HUD;
 class Map;
+class Box;
 
 /// <summary>
 /// 開発用のデバッグシーン
@@ -21,5 +22,7 @@ public:
 private:
 	Camera* cameraPtr;
 	UniquePtr<HUD> hudUPtr;
+	UniquePtr<Map> mapUPtr;
+	UniquePtr<Box> goalUPtr;
 };
 

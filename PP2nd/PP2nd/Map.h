@@ -1,6 +1,9 @@
-#pragma once
+﻿#pragma once
 #include "define.h"
 
+/// <summary>
+/// MVPに分割したい
+/// </summary>
 class Map
 {
 public:
@@ -23,7 +26,6 @@ private:
 	int width;
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
-
-
+	int margin;
 };
 

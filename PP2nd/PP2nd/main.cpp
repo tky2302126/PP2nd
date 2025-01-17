@@ -11,6 +11,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetMouseDispFlag(TRUE);
 	SetUseZBufferFlag(TRUE);
 	SetWriteZBufferFlag(TRUE);
+	SetUseBackCulling(TRUE);
+
+	SetTransColor(255, 0, 255);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 	SceneManager& sceneMPtr = SceneManager::GetInstance();
 	sceneMPtr.Init();

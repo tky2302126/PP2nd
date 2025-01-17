@@ -15,9 +15,13 @@ public:
 	void Update();
 
 	VECTOR GetPosition();
+	VECTOR GetRotation();
 private:
 	VECTOR position;
 	VECTOR lookPosition;
+	float VRotate;
+	float HRotate;
+	float TRotate;
 	Vector2Int oldMousePos;
 };
 
