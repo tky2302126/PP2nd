@@ -28,7 +28,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[0].pos = VGet(MinX,MinY,MinZ);
 		Vertex[0].norm = VGet(0,0,-1.0);
-		Vertex[0].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[0].dif = COLOR_LIGHTBLUE;
 		Vertex[0].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[0].u = 0;
 		Vertex[0].v = 0;
@@ -37,7 +37,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[1].pos = VGet(MaxX, MinY, MinZ);
 		Vertex[1].norm = VGet(0, 0, -1.0);
-		Vertex[1].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[1].dif = COLOR_LIGHTBLUE;
 		Vertex[1].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[1].u = 0;
 		Vertex[1].v = 0;
@@ -46,7 +46,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[2].pos = VGet(MaxX,MaxY,MinZ);
 		Vertex[2].norm = VGet(0,0,-1.0);
-		Vertex[2].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[2].dif = COLOR_LIGHTBLUE;
 		Vertex[2].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[2].u = 0;
 		Vertex[2].v = 0;
@@ -55,7 +55,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[3].pos = VGet(MinX,MaxY,MinZ);
 		Vertex[3].norm = VGet(0,0,-1.0);
-		Vertex[3].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[3].dif = COLOR_LIGHTBLUE;
 		Vertex[3].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[3].u = 0;
 		Vertex[3].v = 0;
@@ -64,7 +64,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[4].pos = VGet(MinX,MinY,MaxZ);
 		Vertex[4].norm = VGet(0,0,-1.0);
-		Vertex[4].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[4].dif = COLOR_LIGHTBLUE;
 		Vertex[4].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[4].u = 0;
 		Vertex[4].v = 0;
@@ -73,7 +73,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[5].pos = VGet(MaxX,MinY,MaxZ);
 		Vertex[5].norm = VGet(0,0,-1.0);
-		Vertex[5].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[5].dif = COLOR_LIGHTBLUE;
 		Vertex[5].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[5].u = 0;
 		Vertex[5].v = 0;
@@ -82,7 +82,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[6].pos = VGet(MaxX,MaxY,MaxZ);
 		Vertex[6].norm = VGet(0,0,-1.0);
-		Vertex[6].dif = GetColorU8(255,0, 255, 0);
+		Vertex[6].dif = COLOR_LIGHTBLUE;
 		Vertex[6].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[6].u = 0;
 		Vertex[6].v = 0;
@@ -91,7 +91,7 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 
 		Vertex[7].pos = VGet(MinX,MaxY,MaxZ);
 		Vertex[7].norm = VGet(0, 0, -1.0);
-		Vertex[7].dif = GetColorU8(255, 0, 255, 0);
+		Vertex[7].dif = COLOR_LIGHTBLUE;
 		Vertex[7].spc = GetColorU8(0, 0, 0, 0);
 		Vertex[7].u = 0;
 		Vertex[7].v = 0;
@@ -166,18 +166,18 @@ void Box::Draw()
 	if(tag == Tag::Goal)
 	{
 		int white = GetColor(255, 255, 255);
-		DrawLine3D(Vertex[0].pos,Vertex[1].pos,white);
+		// DrawLine3D(Vertex[0].pos,Vertex[1].pos,white);
 		DrawLine3D(Vertex[1].pos,Vertex[2].pos,white);
 		DrawLine3D(Vertex[2].pos,Vertex[3].pos,white);
 		DrawLine3D(Vertex[3].pos,Vertex[0].pos,white);
 								 		  
-	    DrawLine3D(Vertex[4].pos,Vertex[5].pos,white);
+	    // DrawLine3D(Vertex[4].pos,Vertex[5].pos,white);
 	    DrawLine3D(Vertex[5].pos,Vertex[6].pos,white);
 	    DrawLine3D(Vertex[6].pos,Vertex[7].pos,white);
 	    DrawLine3D(Vertex[7].pos,Vertex[4].pos,white);
 								 		  
-	    DrawLine3D(Vertex[0].pos,Vertex[4].pos,white);
-	    DrawLine3D(Vertex[1].pos,Vertex[5].pos,white);
+	    // DrawLine3D(Vertex[0].pos,Vertex[4].pos,white);
+	    // DrawLine3D(Vertex[1].pos,Vertex[5].pos,white);
 	    DrawLine3D(Vertex[2].pos,Vertex[6].pos,white);
 	    DrawLine3D(Vertex[3].pos,Vertex[7].pos,white);
 	}

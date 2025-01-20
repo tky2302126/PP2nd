@@ -1,4 +1,4 @@
-#include "MainScreen.h"
+﻿#include "MainScreen.h"
 #include "Camera.h"
 #include "HUD.h"
 #include "Map.h"
@@ -27,10 +27,14 @@ void MainScreen::Draw()
 }
 
 /// <summary>
-/// todo map �� hud��out of bounds�̐ݒ�
+/// todo map と hudのout of boundsの設定
 /// </summary>
 void MainScreen::Update()
 {
 	Draw();
 	cameraUPtr->Update();
+#pragma region カメラ確認
+	VECTOR cameraPos = cameraUPtr->GetPosition();
+	DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
+#pragma endregion
 }

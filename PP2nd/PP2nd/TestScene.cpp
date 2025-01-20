@@ -8,6 +8,7 @@
 
 TestScene::TestScene()
 {
+	_mapInfo testMap(12,9,6,5);
 	cameraPtr = new Camera();
 	cameraPtr->Init();
 	hudUPtr = make_unique<HUD>();
@@ -16,7 +17,6 @@ TestScene::TestScene()
 	mapUPtr->Init();
 
 	mainScreenUPtr = make_unique<MainScreen>();
-	_mapInfo testMap(12,9,5,5);
 	mainScreenUPtr->Init(testMap);
 }
 
@@ -37,13 +37,6 @@ void TestScene::Update()
 	/// DrawFormatString(0, 60, GetColor(255, 255, 255), "mouse state( %d , %d)",mouseInfo.state.left,mouseInfo.state.right );
 #pragma endregion
 
-
-#pragma region カメラ確認
-	
-	/// VECTOR cameraPos = cameraPtr->GetPosition();
-	/// 
-	/// DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
-#pragma endregion
 #pragma region メインスクリーンテスト
 	mainScreenUPtr->Update();
 #pragma endregion

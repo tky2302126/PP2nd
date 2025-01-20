@@ -42,7 +42,7 @@ void Camera::Init(const _mapInfo& mapInfo)
 
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
-
+	
 	SetupCamera_Ortho(MAP_HEIGHT);
 }
 
@@ -118,8 +118,11 @@ void Camera::Update()
 		oldMousePos = currentInput.position;
 	}
 	
+	float vRotate = DegtoRad(60.0f);
+	float hRotate = DegtoRad(0.f);
+	SetCameraPositionAndAngle(position, vRotate, hRotate, 0);
+	//SetCameraPositionAndTargetAndUpVec(position, lookPosition,VGet(0,0.5f,1)); ///見下ろし型のカメラ
 
-	SetCameraPositionAndTargetAndUpVec(position, lookPosition,VGet(0,0.5f,1)); ///見下ろし型のカメラ
 }
 
 VECTOR Camera::GetPosition()

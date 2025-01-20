@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "DxLib.h"
+#include "MyMath.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -38,6 +39,8 @@ constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
+const auto COLOR_PURPLE = GetColorU8(255, 0, 255, 0); /// 透過用の色
+const auto COLOR_LIGHTBLUE = GetColorU8(88, 231, 248, 255); /// 透過用の色
 
 enum SceneName
 {
@@ -105,6 +108,12 @@ struct _mapInfo
 };
 #pragma endregion
 
+enum class Tag :int
+{
+	Start,
+	Goal
+};
+
 ///
 inline string GetExecutablePath()
 {
@@ -113,9 +122,3 @@ inline string GetExecutablePath()
 	string path(buffer);
 	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
 }
-
-enum class Tag :int
-{
-	Start,
-	Goal
-};

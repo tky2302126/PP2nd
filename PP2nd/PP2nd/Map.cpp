@@ -23,6 +23,9 @@ void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
 	margin = MAP_HEIGHT * MAP_MARGIN;
+	goalUPtr = make_unique<Box>();
+	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth,margin);
+	goalUPtr->Init(pos, Tag::Goal);
 }
 
 void Map::UnInit()
@@ -56,26 +59,32 @@ void Map::Draw()
 	{
 		int outLineColor = GetColor(255, 255, 255);
 		/// 外枠の描画
-		DrawLine3D(VGet(0, 0, margin), VGet(mapInfo.width * MAP_UNIT, 0, margin), outLineColor);
-		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT+margin), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT+margin), outLineColor);
-		DrawLine3D(VGet(0, 0, margin), VGet(0, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, margin), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
+		DrawLine3D(VGet(margin, 0, margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, margin), outLineColor);
+		DrawLine3D(VGet(margin, 0, mapInfo.height * MAP_UNIT+margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, mapInfo.height * MAP_UNIT+margin), outLineColor);
+		DrawLine3D(VGet(margin, 0, margin), VGet(margin, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT+margin, 0, margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
 
 		//z軸
 		for(int x = 1; x<mapInfo.width;x++)
 		{
-			DrawLine3D(VGet(x * MAP_UNIT, 0, margin), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT + margin), ZAxizColor);
+			DrawLine3D(VGet(x * MAP_UNIT+margin, 0, margin), VGet(x * MAP_UNIT+margin, 0, mapInfo.height * MAP_UNIT + margin), ZAxizColor);
 		}
 
 		//x軸
 		for(int z =1;z<mapInfo.height;z++)
 		{
-			DrawLine3D(VGet(0, 0, z * MAP_UNIT + margin), VGet(mapInfo.width*MAP_UNIT,0,z*MAP_UNIT+margin), XAxizcolor);
+			DrawLine3D(VGet(margin, 0, z * MAP_UNIT + margin), VGet(mapInfo.width*MAP_UNIT+margin,0,z*MAP_UNIT+margin), XAxizcolor);
 		}
 	}
 
 	
 	/// ゴールポイントの描画
+	if(mapInfo.goalHeight !=-1)
+	{
+		goalUPtr->Draw();
+	}
+	
+
 
 #endif
 
