@@ -8,7 +8,7 @@
 
 TestScene::TestScene()
 {
-	_mapInfo testMap(12,9,6,5);
+	_mapInfo testMap(12,9,0,5);
 	cameraPtr = new Camera();
 	cameraPtr->Init();
 	hudUPtr = make_unique<HUD>();
@@ -26,7 +26,7 @@ TestScene::~TestScene()
 	delete cameraPtr;
 }
 
-void TestScene::Update()
+void TestScene::Update() const 
 {
 	DrawFormatString(0, 0, 65535, " テストシーン");
 	InputSystem::GetInstance().Update();

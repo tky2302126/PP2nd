@@ -18,6 +18,7 @@ void HUD::Init()
 	/// フォントデータを一時的に取り込み
 	AddFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
 
+	/// 時間の表示
 	fontHandle = CreateFontToHandle("GAGAGAGA FREE", 48, 3, DX_FONTTYPE_ANTIALIASING);
 	const char* text = "00:00";
 	GetDrawStringSizeToHandle(&textWidth, &textHeight, NULL, text, strlen(text), fontHandle);
@@ -48,4 +49,26 @@ void HUD::Draw()
 void HUD::Update()
 {
 	Draw();
+}
+/// <summary>
+/// 時間の更新を実行するUpdate
+/// </summary>
+/// <param name="remainTime"></param>
+void HUD::Update(int remainTime)
+{
+}
+
+/// <summary>
+/// 
+/// </summary>
+void HUD::RegistItem(int)
+{
+}
+
+void HUD::ExcludeItem(int)
+{
+}
+
+void HUD::UseItem()
+{
 }

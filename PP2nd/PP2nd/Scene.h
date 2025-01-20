@@ -10,7 +10,7 @@ class Scene
 public:
 	Scene() {};
 	virtual  ~Scene() = default;
-	virtual void Update() = 0;
+	virtual void Update() const = 0;
 	
 	/// <summary>
 	/// ƒV[ƒ“‘JˆÚ‚ğÀs

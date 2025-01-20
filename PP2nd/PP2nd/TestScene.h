@@ -18,7 +18,7 @@ public:
 	TestScene();
 	~TestScene();
 
-	void Update();
+	void Update() const override;
 
 private:
 	Camera* cameraPtr;

@@ -19,11 +19,15 @@ public:
 	void Load();
 	void Draw();
 	void Update();
+	void Update(int remainTime);
+	void RegistItem(int gHandle);
+	void ExcludeItem(int gHandle);
+	void UseItem();
+
 
 private:
 	int x;
 	int fontHandle;
-	vector<int> itemGHandles;
 	int textWidth;
 	int	textHeight;
 	int rectLeft;
@@ -31,6 +35,10 @@ private:
 	int rectRight;
 	int rectBottom;
 	int padding = 0;
+	int oldRemainTime;
+
+
+
 
 };
 

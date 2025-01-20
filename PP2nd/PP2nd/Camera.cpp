@@ -23,7 +23,6 @@ void Camera::Init()
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
 	
-	SetupCamera_Ortho(MAP_HEIGHT);
 }
 
 /// <summary>
@@ -43,7 +42,8 @@ void Camera::Init(const _mapInfo& mapInfo)
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
 	
-	SetupCamera_Ortho(MAP_HEIGHT);
+	//SetupCamera_Ortho(MAP_HEIGHT);
+	SetupCamera_Perspective(DX_PI/2);
 }
 
 void Camera::UnInit()
@@ -104,13 +104,13 @@ void Camera::Update()
 		int durationX = currentInput.position.x - oldMousePos.x;
 		int durationY = currentInput.position.y - oldMousePos.y;
 		
-		if((position.x-durationX * 2.0f) >= CAMERA_MIN_X)
+		//if((position.x-durationX * 2.0f) >= CAMERA_MIN_X)
 		{
 			position.x -= durationX * 2.0f;
 			lookPosition.x -= durationX * 2.0f;
 		}
 
-		if((position.z + durationY * 2.0f) >= CAMERA_MIN_Z)
+		//if((position.z + durationY * 2.0f) >= CAMERA_MIN_Z)
 		{
 			position.z += durationY * 2.0f;
 			lookPosition.z += durationY * 2.0f;

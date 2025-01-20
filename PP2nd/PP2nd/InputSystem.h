@@ -15,6 +15,9 @@ public:
 	void UnInit();
 
 	void Update();
+
+	void Enable();
+	void Disable();
 	
 	Vector2Int GetMousePosition();
 	MouseState GetMouseState();
@@ -23,6 +26,7 @@ public:
 	
 private:
 	MouseInfo currentInfo;
+	bool enable = true;
 
 	static unique_ptr<InputSystem> Instance;
 

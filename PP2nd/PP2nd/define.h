@@ -27,7 +27,7 @@ constexpr auto FRAME_TIME_MS = 1000 / FRAMERATE;
 constexpr auto MAP_UNIT = 360.0f;  //マップの1ユニットの長さ
 
 
-constexpr float CAMERA_HEIGHT = 1800.0f;
+constexpr float CAMERA_HEIGHT = 3000.0f;
 constexpr float CAMERA_Z_OFFSET = -1000.0f;
 constexpr auto MAP_MARGIN = 0.1f ; //マップの余白
 constexpr float MAP_HEIGHT = 3600.0f; //正射影カメラの縦の幅(マップの縦の長さ)
@@ -50,7 +50,6 @@ enum SceneName
 	Main,
 	PreLoad,
 	Test,
-	ALL
 };
 
 struct Vector2Int
@@ -90,8 +89,8 @@ enum class TerrainList
 	None = 100,
 	Item1,
 
-	Invailed, // 配置不可
-	Polluted, // 汚染エリア
+	Invailed =66, // 配置不可
+	Polluted =99, // 汚染エリア
 };
 
 struct _mapInfo
@@ -122,3 +121,9 @@ inline string GetExecutablePath()
 	string path(buffer);
 	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
 }
+
+///enum ItemList
+///{
+///	Box,
+///	ALL
+///};
