@@ -20,5 +20,6 @@ private:
 	VECTOR position;
 	VECTOR lookPosition;
 	Vector2Int oldMousePos;
+	bool move = false;
 };
 

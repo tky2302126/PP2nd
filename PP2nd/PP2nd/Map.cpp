@@ -88,11 +88,6 @@ void Map::Draw()
 
 #endif
 
-	
-
-
-	// 原点に球を描画
-	//DrawSphere3D(VGet(0, 0, 0), 50, 32, GetColor(255, 0, 0), GetColor(255, 0, 0), TRUE);
 }
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする

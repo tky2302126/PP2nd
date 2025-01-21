@@ -1,3 +1,34 @@
-﻿  HUD.cpp
+﻿  Camera.cpp
+D:\PP2nd\PP2nd\PP2nd\Camera.cpp(46,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+  GameManager.cpp
+  HUD.cpp
 D:\PP2nd\PP2nd\PP2nd\HUD.cpp(25,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  ItemPanel.cpp
+  main.cpp
+  MainScreen.cpp
+  Map.cpp
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(15,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(25,22): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(35,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(50,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(50,49): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(55,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(55,35): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(62,30): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(62,19): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(62,80): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(63,19): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(64,30): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(64,19): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(64,44): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(65,55): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(70,44): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\Map.cpp(76,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  MapItem.cpp
+  SceneManager.cpp
+  TestScene.cpp
+  コードを生成中...
+D:\PP2nd\PP2nd\PP2nd\GameManager.cpp(85): warning C4172: ローカル変数またはテンポラリのアドレスを返します: null
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

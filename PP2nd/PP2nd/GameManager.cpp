@@ -71,6 +71,11 @@ void GameManager::SetItemInfo(ItemInfo info)
 	itemInfo[info.name] = info.num;
 }
 
+const unordered_map<ItemList,int>& GameManager::GetItemInfo() const
+{
+	return itemInfo;
+}
+
 int& GameManager::GetItemNum(ItemList name)
 {
 	auto it = itemInfo.find(name);

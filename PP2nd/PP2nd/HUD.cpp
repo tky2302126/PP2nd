@@ -30,6 +30,8 @@ void HUD::Init()
 	timerPanelRect.bottom = textHeight;
 	/// UIスプライトの読みこみ
 	Load();
+	/// HUDパネルの準備
+
 }
 
 void HUD::UnInit()
@@ -39,14 +41,23 @@ void HUD::UnInit()
 
 void HUD::Load()
 {
-	/// アイテムパネルデータのロード
-	for(int i=0;i<ItemList::ALL;i++)
+	unordered_map<ItemList,int> ItemInfo = GameManager::GetInstance().GetItemInfo();
+	if(!ItemInfo.empty())
 	{
-		ItemList current = (ItemList)i;
-		HDKey key = (HDKey)((int)HDKey::Cube + i);
-		HandleData data = GameManager::GetInstance().GetHandleData(key);
-		int GH = data.GHandle;
-		itemGH[current] = GH;
+		int index = 0;
+		for(int i=0;i<ItemList::ALL;i++)
+		{
+			auto it = ItemInfo.find((ItemList)i);
+			if(it != ItemInfo.end())
+			{
+				ItemPanel* itemPanelPtr = new ItemPanel();
+				HDKey key = (HDKey)((int)HDKey::Cube + i);
+				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
+				int num = ItemInfo[(ItemList)i];
+				itemPanelPtr->Init(index, GH, num);
+				index++;
+			}
+		}
 	}
 }
 
@@ -63,7 +74,7 @@ void HUD::Draw()
 		// 所持していたら描画
 		if(GameManager::GetInstance().GetItemNum((ItemList)i)>0)
 		{
-			int result = DrawExtendGraph(drawCount*HUD_ITEM_SIZE,WINDOW_HEIGHT- HUD_ITEM_SIZE,(drawCount+1)*HUD_ITEM_SIZE+1,WINDOW_HEIGHT,itemGH[(ItemList)i],false);
+			DrawExtendGraph(drawCount*HUD_ITEM_SIZE,WINDOW_HEIGHT- HUD_ITEM_SIZE,(drawCount+1)*HUD_ITEM_SIZE+1,WINDOW_HEIGHT,itemGH[(ItemList)i],false);
 			drawCount++;
 		}
 	}

@@ -20,6 +20,7 @@ public:
 	HandleData LoadHandleData(HDKey key);
 	HandleData& GetHandleData(HDKey key);
 	void SetItemInfo(ItemInfo info);
+	const unordered_map<ItemList, int>& GetItemInfo() const;
 	int& GetItemNum(ItemList name);
 	static GameManager& GetInstance();
 

@@ -46,6 +46,10 @@ constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
 
+constexpr auto HUD_AREA_TOP = 50;
+constexpr auto HUD_AREA_BOTTOM = WINDOW_HEIGHT- HUD_ITEM_SIZE;
+constexpr auto ITEMPANEL_SELECTED = HUD_ITEM_SIZE / 5;
+
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
@@ -68,6 +72,9 @@ struct Vector2Int
 	int y ;
 };
 
+/// <summary>
+/// 矩形を描画するための構造体
+/// </summary>
 struct RECTInt
 {
 	int top;

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "define.h"
 #include "manager.h"
+#include "ItemPanel.h"
 
 /// <summary>
 /// HUD制御のクラス
@@ -40,5 +41,6 @@ private:
 	int fastGH;
 	int optionGH;
 	unmap<ItemList, int> itemGH;
+	unmap<ItemList, ItemPanel*> itemPanelPtr;
 };
 

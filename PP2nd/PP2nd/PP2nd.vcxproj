@@ -149,9 +149,11 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemPanel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapItem.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
@@ -164,9 +166,11 @@
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemPanel.h" />
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapItem.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

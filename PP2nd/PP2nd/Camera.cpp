@@ -86,20 +86,25 @@ void Camera::Update()
 	/// 	
 	/// }
 #pragma endregion
-
-	
-
 	/// マウスの入力でカメラと注視点の座標を移動する
 	/// ! カメラの移動に下限上限を決める
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+
+	/// マウスがHUDの範囲の時入力を受けない
+	if (currentInput.position.y <= HUD_AREA_TOP || currentInput.position.y>= HUD_AREA_BOTTOM)
+	{
+		move = false;
+		return;
+	}
 
 	InputState leftState = currentInput.state.left;
 
 	if(leftState == Started)
 	{
 		oldMousePos = currentInput.position;
+		move = true;
 	}
-	else if(leftState == Performed)
+	else if(leftState == Performed && move)
 	{
 		int durationX = currentInput.position.x - oldMousePos.x;
 		int durationY = currentInput.position.y - oldMousePos.y;
@@ -116,6 +121,10 @@ void Camera::Update()
 			lookPosition.z += durationY * 2.0f;
 		}
 		oldMousePos = currentInput.position;
+	}
+	else if(leftState == Canceled && move)
+	{
+		move = false;
 	}
 	
 	float vRotate = DegtoRad(60.0f);
