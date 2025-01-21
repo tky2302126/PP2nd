@@ -10,8 +10,16 @@
 #include <chrono>
 #include <thread>
 #include <Windows.h>
+#include <filesystem>
+#include <map>
+#include <unordered_map>
+#include <queue>
 
 using namespace std;
+namespace fs = std::filesystem;
+
+template <typename T1,typename T2>
+using unmap = unordered_map<T1,T2>;
 
 template <typename T>
 using SharedPtr = shared_ptr<T>;
@@ -36,6 +44,8 @@ constexpr float MAP_WIDTH = MAP_HEIGHT / 9 * 16;
 constexpr auto CAMERA_MIN_Z = MAP_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 
+constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
+
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
@@ -56,6 +66,14 @@ struct Vector2Int
 {
 	int x ;
 	int y ;
+};
+
+struct RECTInt
+{
+	int top;
+	int bottom;
+	int left;
+	int right;
 };
 
 #pragma region InputSystem 
@@ -86,7 +104,7 @@ struct MouseInfo
 #pragma region Map
 enum class TerrainList
 {
-	None = 100,
+	None = -1,
 	Item1,
 
 	Invailed =66, // 配置不可
@@ -122,8 +140,36 @@ inline string GetExecutablePath()
 	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
 }
 
-///enum ItemList
-///{
-///	Box,
-///	ALL
-///};
+#pragma region GameManager
+struct HandleData
+{
+	int GHandle;
+	int MHandle;
+};
+
+enum ItemList
+{
+	Cube,
+	ALL
+};
+
+struct ItemInfo
+{
+	ItemList name;
+	int num;
+};
+
+enum class HDKey 
+{
+	Play,
+	Pause,
+	Fast_Forward,
+	Cube =99,
+	Item2,
+	Item3,
+	Enemy1=999,
+	Enemy2,
+};
+
+#pragma endregion
+

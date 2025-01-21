@@ -1,22 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 #include "Item.h"
+
 /// <summary>
-/// ƒƒCƒ“ƒ‹[ƒv‚Ìis‚ğŠÇ—
-/// •K—v‚Èƒf[ƒ^‚ğ•ÛAó‚¯“n‚µ‚Ì–ğŠ„‚ğ‘z’è
+/// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®é€²è¡Œã‚’ç®¡ç†
+/// å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã€å—ã‘æ¸¡ã—ã®å½¹å‰²ã‚’æƒ³å®š
 /// </summary>
 
-enum ItemList
-{
-	Cube,
-	ALL
-};
-
-struct HandleData
-{
-	int GHandle;
-	int MHandle;
-};
 
 class GameManager
 {
@@ -27,13 +17,15 @@ public:
 	void Load();
 	void Init();
 	void UnInit();
-
+	HandleData LoadHandleData(HDKey key);
+	HandleData& GetHandleData(HDKey key);
+	void SetItemInfo(ItemInfo info);
+	int& GetItemNum(ItemList name);
 	static GameManager& GetInstance();
 
 private:
-
-	vector<HandleData> handleInfo;
-
+	unmap<HDKey, HandleData> handleDatas;
+	unmap<ItemList,int> itemInfo;
 	static UniquePtr<GameManager> Instance;
 };
 

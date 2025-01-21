@@ -12,7 +12,7 @@ public:
 	virtual void OnEnter() const =0;
 	virtual void OnExit() const =0;
 
-	virtual int& GetGHandle() const = 0;
+	// virtual int& GetGHandle() const = 0;
 	virtual int& GetMHandle() const = 0;
 
 };

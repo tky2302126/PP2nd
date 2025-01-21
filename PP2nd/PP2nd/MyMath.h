@@ -8,10 +8,10 @@ inline VECTOR GridtoVECTOR()
 
 inline float RadtoDeg(float radian)
 {
-	return radian * 180.0f / DX_PI;
+	return radian * 180.0f / DX_PI_F;
 }
 
 inline float DegtoRad(float degree)
 {
-	return degree* DX_PI / 180.0f;
+	return degree* DX_PI_F / 180.0f;
 }

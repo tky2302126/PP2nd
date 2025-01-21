@@ -26,19 +26,19 @@ public:
 
 
 private:
-	int x;
+#pragma region 上部タイマー
+	int centerPos;
 	int fontHandle;
 	int textWidth;
 	int	textHeight;
-	int rectLeft;
-	int rectTop;
-	int rectRight;
-	int rectBottom;
-	int padding = 0;
-	int oldRemainTime;
-
-
-
-
+	RECTInt timerPanelRect;
+#pragma endregion
+	
+	bool fast;
+	int playGH;
+	int pauseGH;
+	int fastGH;
+	int optionGH;
+	unmap<ItemList, int> itemGH;
 };
 
