@@ -11,6 +11,7 @@ void MainScreen::Init(const _mapInfo& mapInfo)
 	cameraUPtr->Init();
 	hudUPtr->Init();
 	mapUPtr->Init(mapInfo);
+	// hudUPtr->SetCallback([mapUPtr](ItemList name) {mapUPtr->});
 }
 
 void MainScreen::UnInit()

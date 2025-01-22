@@ -34,31 +34,54 @@ void HUD::Init()
 
 }
 
+
+void HUD::SetCallback(function<void(ItemList)> cb)
+{
+	callback = cb;
+}
+
 void HUD::UnInit()
 {
 
 }
 
+/// <summary>
+/// イニシャライズのときに下部パネル情報をロードする
+/// </summary>
 void HUD::Load()
 {
-	unordered_map<ItemList,int> ItemInfo = GameManager::GetInstance().GetItemInfo();
-	if(!ItemInfo.empty())
+	unordered_map<ItemList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	if(!ItemInfoUnMap.empty())
 	{
 		int index = 0;
 		for(int i=0;i<ItemList::ALL;i++)
 		{
-			auto it = ItemInfo.find((ItemList)i);
-			if(it != ItemInfo.end())
+			auto it = ItemInfoUnMap.find((ItemList)i);
+			if(it != ItemInfoUnMap.end())
 			{
 				ItemPanel* itemPanelPtr = new ItemPanel();
 				HDKey key = (HDKey)((int)HDKey::Cube + i);
 				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
-				int num = ItemInfo[(ItemList)i];
+				ItemInfo currentInfo;
+				currentInfo.name = (ItemList)i;
+				currentInfo.num = ItemInfoUnMap[(ItemList)i];
+				int num = ItemInfoUnMap[(ItemList)i];
 				itemPanelPtr->Init(index, GH, num);
+				//itemPanelPtr->Init(index, GH, currentInfo,NotifyMap(currentInfo.name));
 				index++;
+				itemPanelMap[(ItemList)i] = itemPanelPtr;
 			}
 		}
 	}
+}
+
+/// <summary>
+/// アイテムを使用して更新が必要な場合、実行する
+/// 使用した通知はGameManagerから受ける(オブザーバーパターン)
+/// </summary>
+void HUD::ReLoad()
+{
+	/// num==0の場合、破棄
 }
 
 void HUD::Draw()
@@ -68,14 +91,28 @@ void HUD::Draw()
 	DrawStringToHandle(centerPos, 0, "00:00", GetColor(255, 255, 255), fontHandle);
 
 	/// アイテムの表示
-	int drawCount = 0;
-	for(int i=0;i<ItemList::ALL;i++)
+	//int drawCount = 0;
+	//for(int i=0;i<ItemList::ALL;i++)
+	//{
+	//	// 所持していたら描画
+	//	if(GameManager::GetInstance().GetItemNum((ItemList)i)>0)
+	//	{
+	//		DrawExtendGraph(drawCount*HUD_ITEM_SIZE,WINDOW_HEIGHT- HUD_ITEM_SIZE,(drawCount+1)*HUD_ITEM_SIZE+1,WINDOW_HEIGHT,itemGH[(ItemList)i],false);
+	//		drawCount++;
+	//	}
+	//}
+	if(!itemPanelMap.empty())
 	{
-		// 所持していたら描画
-		if(GameManager::GetInstance().GetItemNum((ItemList)i)>0)
+		ItemList current = Cube;
+		while (true)
 		{
-			DrawExtendGraph(drawCount*HUD_ITEM_SIZE,WINDOW_HEIGHT- HUD_ITEM_SIZE,(drawCount+1)*HUD_ITEM_SIZE+1,WINDOW_HEIGHT,itemGH[(ItemList)i],false);
-			drawCount++;
+			if (current == ALL) { break; }
+			if(itemPanelMap[current] != nullptr)
+			{
+				auto it = itemPanelMap[current];
+				it->Update();
+			}
+			current = (ItemList)((int)current+ 1);
 		}
 	}
 }
@@ -105,4 +142,10 @@ void HUD::ExcludeItem(int)
 
 void HUD::UseItem()
 {
+}
+
+void HUD::NotifyMap(ItemList name)
+{
+	if(callback!= nullptr)
+	callback(name);
 }

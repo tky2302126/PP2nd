@@ -71,7 +71,7 @@ void GameManager::SetItemInfo(ItemInfo info)
 	itemInfo[info.name] = info.num;
 }
 
-const unordered_map<ItemList,int>& GameManager::GetItemInfo() const
+const unordered_map<ItemList,int>& GameManager::GetItemInfoUnMap() const
 {
 	return itemInfo;
 }
@@ -94,4 +94,9 @@ GameManager& GameManager::GetInstance()
 		Instance = make_unique<GameManager>();
 	}
 	return *Instance;
+}
+
+void GameManager::RegistHoldItem(ItemList name)
+{
+
 }

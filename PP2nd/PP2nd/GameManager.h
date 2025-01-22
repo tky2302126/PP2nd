@@ -20,13 +20,15 @@ public:
 	HandleData LoadHandleData(HDKey key);
 	HandleData& GetHandleData(HDKey key);
 	void SetItemInfo(ItemInfo info);
-	const unordered_map<ItemList, int>& GetItemInfo() const;
+	const unordered_map<ItemList, int>& GetItemInfoUnMap() const;
 	int& GetItemNum(ItemList name);
 	static GameManager& GetInstance();
+	void RegistHoldItem(ItemList name);
 
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<ItemList,int> itemInfo;
 	static UniquePtr<GameManager> Instance;
+	bool holdItem= false;
 };
 

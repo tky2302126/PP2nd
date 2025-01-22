@@ -16,6 +16,7 @@ public:
 	void UnInit();
 
 	void Load(int);
+	void RegistHoldItem(ItemList name);
 	void Draw();
 	void Update();
 

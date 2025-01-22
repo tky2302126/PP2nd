@@ -15,15 +15,18 @@ public:
 	HUD();
 	~HUD();
 	void Init();
+	void SetCallback(function<void(ItemList)>);
 	void UnInit();
 
 	void Load();
+	void ReLoad();
 	void Draw();
 	void Update();
 	void Update(int remainTime);
 	void RegistItem(int gHandle);
 	void ExcludeItem(int gHandle);
 	void UseItem();
+	void NotifyMap(ItemList name);
 
 
 private:
@@ -40,7 +43,7 @@ private:
 	int pauseGH;
 	int fastGH;
 	int optionGH;
-	unmap<ItemList, int> itemGH;
-	unmap<ItemList, ItemPanel*> itemPanelPtr;
+	unmap<ItemList, ItemPanel*> itemPanelMap;
+	function<void(ItemList)> callback; //コールバック用の関数
 };
 
