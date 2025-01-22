@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 
 /// <summary>
-/// ƒ}ƒbƒv‚É•`‰æ‚·‚éƒAƒCƒeƒ€‚ÌƒNƒ‰ƒX
+/// ãƒãƒƒãƒ—ã«æç”»ã™ã‚‹ç®±ã®ã‚¯ãƒ©ã‚¹
 /// </summary>
 class Box
 {

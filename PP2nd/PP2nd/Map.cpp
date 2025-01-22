@@ -12,7 +12,7 @@ Map::~Map()
 
 void Map::Init()
 {
-	margin = MAP_HEIGHT * MAP_MARGIN;
+	margin = MAP_UNIT;
 }
 
 /// <summary>
@@ -22,7 +22,7 @@ void Map::Init()
 void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
-	margin = MAP_HEIGHT * MAP_MARGIN;
+	margin = MAP_UNIT;
 	goalUPtr = make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth,margin);
 	goalUPtr->Init(pos, Tag::Goal);
@@ -48,16 +48,17 @@ void Map::Draw()
 #if _DEBUG
 	int XAxizcolor = GetColor(255, 128, 255);
 	int ZAxizColor = GetColor(128, 255, 255);
+	/// デバッグ
 	if(mapInfo.height == -1)
 	{
-		for (int z = margin; z <= MAP_HEIGHT - margin; z += MAP_UNIT)
+		for (int z = margin; z <= MAP_UNIT*10 - margin; z += MAP_UNIT)
 		{
-			DrawLine3D(VGet(0, 0, z), VGet(MAP_WIDTH, 0, z), XAxizcolor);
+			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT*10, 0, z), XAxizcolor);
 		}
 
-		for (int x = 0; x <= MAP_WIDTH; x += MAP_UNIT)
+		for (int x = 0; x <= MAP_UNIT*10; x += MAP_UNIT)
 		{
-			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_HEIGHT), ZAxizColor);
+			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT*10), ZAxizColor);
 		}
 	}
 	else

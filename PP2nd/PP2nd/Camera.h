@@ -18,7 +18,7 @@ public:
 	VECTOR GetPosition();
 private:
 	VECTOR position;
-	VECTOR lookPosition;
+	VECTOR initPos;
 	Vector2Int oldMousePos;
 	bool move = false;
 };

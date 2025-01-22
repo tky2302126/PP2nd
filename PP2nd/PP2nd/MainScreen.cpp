@@ -8,7 +8,7 @@ void MainScreen::Init(const _mapInfo& mapInfo)
 	cameraUPtr = make_unique<Camera>();
 	hudUPtr = make_unique<HUD>();
 	mapUPtr = make_unique<Map>();
-	cameraUPtr->Init();
+	cameraUPtr->Init(mapInfo);
 	hudUPtr->Init();
 	mapUPtr->Init(mapInfo);
 	// hudUPtr->SetCallback([mapUPtr](ItemList name) {mapUPtr->});

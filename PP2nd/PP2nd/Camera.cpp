@@ -1,7 +1,7 @@
 ﻿#include "Camera.h"
 
 Camera::Camera()
-	:lookPosition(VECTOR()),oldMousePos(Vector2Int()),position(VECTOR())
+	:oldMousePos(Vector2Int()),position(VECTOR()),initPos(VECTOR())
 {
 }
 
@@ -15,10 +15,7 @@ void Camera::Init()
 	//マップ中央にしたい
 	position.x = CAMERA_MIN_X;
 	position.y = CAMERA_HEIGHT;
-	position.z = CAMERA_MIN_Z+CAMERA_Z_OFFSET; 
-	lookPosition.x = CAMERA_MIN_X;
-	lookPosition.y = 0.0f;
-	lookPosition.z = CAMERA_MIN_Z;
+	position.z = CAMERA_MIN_Z-CAMERA_Z_OFFSET; 
 	
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
@@ -31,18 +28,15 @@ void Camera::Init()
 /// <param name="mapInfo"></param>
 void Camera::Init(const _mapInfo& mapInfo)
 {
-	position.x = CAMERA_MIN_X;
+	position.x = mapInfo.width*MAP_UNIT/2;
 	position.y = CAMERA_HEIGHT;
-	position.z = CAMERA_MIN_Z + CAMERA_Z_OFFSET;
-	lookPosition.x = CAMERA_MIN_X;
-	lookPosition.y = 0.0f;
-	lookPosition.z = CAMERA_MIN_Z;
+	position.z = mapInfo.height*MAP_UNIT/2 - CAMERA_Z_OFFSET;
 
+	initPos = position;
 
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
 	
-	//SetupCamera_Ortho(MAP_HEIGHT);
 	SetupCamera_Perspective(DX_PI/2);
 }
 
@@ -97,6 +91,8 @@ void Camera::Update()
 		return;
 	}
 
+	///
+
 	InputState leftState = currentInput.state.left;
 
 	if(leftState == Started)
@@ -112,13 +108,11 @@ void Camera::Update()
 		//if((position.x-durationX * 2.0f) >= CAMERA_MIN_X)
 		{
 			position.x -= durationX * 2.0f;
-			lookPosition.x -= durationX * 2.0f;
 		}
 
 		//if((position.z + durationY * 2.0f) >= CAMERA_MIN_Z)
 		{
 			position.z += durationY * 2.0f;
-			lookPosition.z += durationY * 2.0f;
 		}
 		oldMousePos = currentInput.position;
 	}
@@ -127,10 +121,16 @@ void Camera::Update()
 		move = false;
 	}
 	
+	/// マップ中央にカメラを戻す
+	if(CheckHitKey(KEY_INPUT_R))
+	{
+		position = initPos;
+	}
+
 	float vRotate = DegtoRad(60.0f);
 	float hRotate = DegtoRad(0.f);
 	SetCameraPositionAndAngle(position, vRotate, hRotate, 0);
-	//SetCameraPositionAndTargetAndUpVec(position, lookPosition,VGet(0,0.5f,1)); ///見下ろし型のカメラ
+
 
 }
 
