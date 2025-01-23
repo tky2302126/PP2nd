@@ -96,6 +96,10 @@ void Map::Draw()
 	
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
+	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%f, %f, %f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+
+	///マウスの座標がグリッド内なら強調する
+
 
 }
 /// <summary>
@@ -122,12 +126,13 @@ void Map::LoadMapInfo(int)
 VECTOR Map::GetMouseWorldPos()
 {
 	MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
-	VECTOR mouseWorldPos = ConvScreenPosToWorldPos_ZLinear(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.0f));
+	VECTOR mouseWorldPos = ConvScreenPosToWorldPos(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.0f));
 	mouseWorldPos = Round(mouseWorldPos);
 	VECTOR cameraDir = GameManager::GetInstance().GetCameraDirection();
 	cameraDir = Round(cameraDir, 2);
-
-	
-
-	return VECTOR();
+	while(mouseWorldPos.y >=0)
+	{
+		mouseWorldPos = VAdd(mouseWorldPos, cameraDir);
+	}
+	return mouseWorldPos;
 }
