@@ -26,7 +26,6 @@ public:
 	void RegistItem(int gHandle);
 	void ExcludeItem(int gHandle);
 	void UseItem();
-	void NotifyMap(ItemList name);
 
 
 private:
@@ -44,6 +43,6 @@ private:
 	int fastGH;
 	int optionGH;
 	unmap<ItemList, ItemPanel*> itemPanelMap;
-	function<void(ItemList)> callback; //コールバック用の関数
+	function<void(ItemList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
 };
 

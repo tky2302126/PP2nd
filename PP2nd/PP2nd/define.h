@@ -38,7 +38,8 @@ constexpr auto MAP_UNIT = 360.0f;  //マップの1ユニットの長さ
 
 constexpr float CAMERA_HEIGHT = 2000.0f;
 constexpr float CAMERA_Z_OFFSET = CAMERA_HEIGHT/2; // 60度の仰角
-constexpr auto MAP_MARGIN = 0.1f ; //マップの余白
+constexpr auto MAP_MARGIN = 0.1f ; //マップの余白(割合)
+constexpr auto CAMERA_VROTATE = 60.0f;
 
 constexpr auto CAMERA_MIN_Z = CAMERA_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
@@ -144,6 +145,28 @@ inline string GetExecutablePath()
 	GetModuleFileNameA(NULL, buffer, MAX_PATH); //絶対パスを取得
 	string path(buffer);
 	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
+}
+
+/// <summary>
+/// VECTORを指定のけたで四捨五入する
+/// </summary>
+/// <param name="vec"></param>
+/// <param name="decimal"></param>
+/// <returns></returns>
+inline VECTOR Round(VECTOR vec, int decimal=0)
+{
+	VECTOR result = VScale(vec, pow(10.0,decimal));
+
+	result = VGet
+	(
+		round(result.x),
+		round(result.y),
+		round(result.z)
+	);
+
+	result = VScale(result, pow(0.1, decimal));
+
+	return result;
 }
 
 #pragma region GameManager

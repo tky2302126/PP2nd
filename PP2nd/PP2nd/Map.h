@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "define.h"
-
+#include "manager.h"
 class Box;
 /// <summary>
 /// MVPに分割したい
@@ -23,7 +23,7 @@ public:
 private:
 	void LoadTerrainInfo(int);
 	void LoadMapInfo(int);
-
+	VECTOR GetMouseWorldPos();
 private:
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;

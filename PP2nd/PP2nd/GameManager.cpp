@@ -100,3 +100,13 @@ void GameManager::RegistHoldItem(ItemList name)
 {
 
 }
+
+void GameManager::SetCameraDirection(VECTOR direction)
+{
+	cameraDirection = direction;
+}
+
+VECTOR GameManager::GetCameraDirection()
+{
+	return cameraDirection;
+}

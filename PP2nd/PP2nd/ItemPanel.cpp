@@ -1,4 +1,4 @@
-#include "ItemPanel.h"
+ï»¿#include "ItemPanel.h"
 
 /// <summary>
 /// 
@@ -37,7 +37,7 @@ void ItemPanel::Init(int index, int& _GH, ItemInfo& _info, function<void(ItemLis
 
 	GH = _GH;
 	info = _info;
-	hudFunction = function;
+	cbFunction = function;
 }
 
 void ItemPanel::UnInit()
@@ -55,40 +55,40 @@ void ItemPanel::Update()
 		DrawExtendGraph(start.x, start.y, end.x, end.y, GH, false);
 	}
 
-	/// InputSystem‚ÌŠÄŽ‹
+	/// InputSystemã®ç›£è¦–
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
-	/// ƒz[ƒ‹ƒh‚µ‚½ƒAƒCƒeƒ€‚ªHUD‚Ì”ÍˆÍ‚ð”²‚¯‚½‚Æ‚«AHUD‚É’Ê’m
+	/// ãƒ›ãƒ¼ãƒ«ãƒ‰ã—ãŸã‚¢ã‚¤ãƒ†ãƒ ãŒHUDã®ç¯„å›²ã‚’æŠœã‘ãŸã¨ãã€Mapã«é€šçŸ¥
 	if(selected && currentInput.state.left ==Performed &&currentInput.position.y<start.y)
 	{
-		if(hudFunction)
+		if(cbFunction)
 		{
-			hudFunction(info.name);
+			cbFunction(info.name);
 		}
 		selected = false;
 	}
 
 	if (currentInput.state.left != Started) { return; }
-	/// rect“à‚ÅƒNƒŠƒbƒN&&!selected -> selected
+	/// rectå†…ã§ã‚¯ãƒªãƒƒã‚¯&&!selected -> selected
 	if(ClickInRect(currentInput) && !selected)
 	{
 		selected = true;
-		/// GameManager‚ÉHoldItem‚Ìî•ñ‚ð’Ê’m
+		/// GameManagerã«HoldItemã®æƒ…å ±ã‚’é€šçŸ¥
 	}
 
-	/// rect“à‚ÅƒNƒŠƒbƒN&& selected -> !selected
+	/// rectå†…ã§ã‚¯ãƒªãƒƒã‚¯&& selected -> !selected
 	else if (ClickInRect(currentInput) && selected)
 	{
 		selected = false;
-		/// GameManager‚ÉHoldItem‚Ìî•ñ‚ð’Ê’m
+		/// GameManagerã«HoldItemã®æƒ…å ±ã‚’é€šçŸ¥
 	}
-	/// rectŠO‚ÅƒNƒŠƒbƒN&& selected -> !selected
+	/// rectå¤–ã§ã‚¯ãƒªãƒƒã‚¯&& selected -> !selected
 	else if (!ClickInRect(currentInput) && selected)
 	{
 		selected = false;
-		/// GameManager‚ÉHoldItem‚Ìî•ñ‚ð’Ê’m
+		/// GameManagerã«HoldItemã®æƒ…å ±ã‚’é€šçŸ¥
 	}
 
-	/// Ý’uŽž‚ÌƒCƒxƒ“ƒg‚Åselected -> !selected <-•s—v‚©‚àH
+	/// è¨­ç½®æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆã§selected -> !selected <-ä¸è¦ã‹ã‚‚ï¼Ÿ
 	
 }
 

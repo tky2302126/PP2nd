@@ -35,10 +35,13 @@ void Map::UnInit()
 void Map::Load(int day)
 {
 }
-
+/// <summary>
+/// ItemPanelから通知を受けるコールバック関数
+/// </summary>
+/// <param name="name"></param>
 void Map::RegistHoldItem(ItemList name)
 {
-
+	int result = (int)name;
 }
 
 void Map::Draw()
@@ -82,6 +85,7 @@ void Map::Draw()
 			DrawLine3D(VGet(margin, 0, z * MAP_UNIT + margin), VGet(mapInfo.width*MAP_UNIT+margin,0,z*MAP_UNIT+margin), XAxizcolor);
 		}
 	}
+#endif
 
 	
 	/// ゴールポイントの描画
@@ -90,9 +94,8 @@ void Map::Draw()
 		goalUPtr->Draw();
 	}
 	
-
-
-#endif
+	/// InputSystem監視
+	VECTOR mouseWorldPos = GetMouseWorldPos();
 
 }
 /// <summary>
@@ -110,4 +113,21 @@ void Map::LoadTerrainInfo(int)
 
 void Map::LoadMapInfo(int)
 {
+}
+/// マウスのワールド座標取得
+/// ワールド座標のyは0とする
+///VECTOR ConvScreenPosToWorldPos_ZLinear()
+/// マウスからレイを飛ばして0になるまで調べる
+
+VECTOR Map::GetMouseWorldPos()
+{
+	MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
+	VECTOR mouseWorldPos = ConvScreenPosToWorldPos_ZLinear(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.0f));
+	mouseWorldPos = Round(mouseWorldPos);
+	VECTOR cameraDir = GameManager::GetInstance().GetCameraDirection();
+	cameraDir = Round(cameraDir, 2);
+
+	
+
+	return VECTOR();
 }

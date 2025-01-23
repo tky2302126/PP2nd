@@ -1,2 +1,9 @@
-﻿  LINK : 前回のインクリメンタル リンクで D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+﻿  HUD.cpp
+D:\PP2nd\PP2nd\PP2nd\define.h(158,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\define.h(167,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\HUD.cpp(25,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

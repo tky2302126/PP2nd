@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 #include "manager.h"
 
 /// <summary>
-/// HUD‚É•\¦‚·‚éƒAƒCƒeƒ€ƒpƒlƒ‹
+/// HUDã«è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‘ãƒãƒ«
 /// </summary>
 class ItemPanel
 {
 public:
 	void Init(int index,int& GH, int& num);
 	void Init(int _index,int& _GH, ItemInfo& _info);
-	void Init(int _index,int& _GH, ItemInfo& _info, function<void(ItemList name)>& function);
+	void Init(int _index,int& _GH, ItemInfo& _info, function<void(ItemList name)>& cbfunction);
 	void UnInit();
 	void Update();
 	void Decrease();
@@ -19,11 +19,11 @@ private:
 	int GH;
 	ItemInfo info;
 	int num;
-	bool selected = false; // ‘I‘ğƒtƒ‰ƒO
-	bool placed = false;   // İ’uƒtƒ‰ƒO
+	bool selected = false; // é¸æŠãƒ•ãƒ©ã‚°
+	bool placed = false;   // è¨­ç½®ãƒ•ãƒ©ã‚°
 	Vector2Int start;
 	Vector2Int end;
-	function<void(ItemList name)> hudFunction;
+	function<void(ItemList name)> cbFunction;
 
 	bool ClickInRect(MouseInfo& input);
 };

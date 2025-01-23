@@ -21,9 +21,6 @@ public:
 	void Update() const override;
 
 private:
-	Camera* cameraPtr;
-	UniquePtr<HUD> hudUPtr;
-	UniquePtr<Map> mapUPtr;
 	UniquePtr<MainScreen> mainScreenUPtr;
 };
 

@@ -21,5 +21,7 @@ private:
 	VECTOR initPos;
 	Vector2Int oldMousePos;
 	bool move = false;
+	
+	VECTOR GetDirection(float vRotate, float hRotate);
 };
 

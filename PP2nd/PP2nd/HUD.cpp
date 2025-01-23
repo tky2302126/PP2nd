@@ -28,8 +28,7 @@ void HUD::Init()
 	timerPanelRect.top = 0;
 	timerPanelRect.right = centerPos + textWidth;
 	timerPanelRect.bottom = textHeight;
-	/// UIスプライトの読みこみ
-	Load();
+	
 	/// HUDパネルの準備
 
 }
@@ -38,6 +37,8 @@ void HUD::Init()
 void HUD::SetCallback(function<void(ItemList)> cb)
 {
 	callback = cb;
+	/// UIスプライトの読みこみ
+	Load();
 }
 
 void HUD::UnInit()
@@ -66,8 +67,8 @@ void HUD::Load()
 				currentInfo.name = (ItemList)i;
 				currentInfo.num = ItemInfoUnMap[(ItemList)i];
 				int num = ItemInfoUnMap[(ItemList)i];
-				itemPanelPtr->Init(index, GH, num);
-				//itemPanelPtr->Init(index, GH, currentInfo,NotifyMap(currentInfo.name));
+				// itemPanelPtr->Init(index, GH, num);
+				itemPanelPtr->Init(index, GH, currentInfo,callback);
 				index++;
 				itemPanelMap[(ItemList)i] = itemPanelPtr;
 			}
@@ -144,8 +145,3 @@ void HUD::UseItem()
 {
 }
 
-void HUD::NotifyMap(ItemList name)
-{
-	if(callback!= nullptr)
-	callback(name);
-}

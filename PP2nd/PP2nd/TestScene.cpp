@@ -9,12 +9,6 @@
 TestScene::TestScene()
 {
 	_mapInfo testMap(12,9,0,5);
-	cameraPtr = new Camera();
-	cameraPtr->Init();
-	hudUPtr = make_unique<HUD>();
-	hudUPtr->Init();
-	mapUPtr = make_unique<Map>();
-	mapUPtr->Init();
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(testMap);
@@ -22,8 +16,6 @@ TestScene::TestScene()
 
 TestScene::~TestScene()
 {
-	cameraPtr->UnInit();
-	delete cameraPtr;
 }
 
 void TestScene::Update() const 
@@ -39,8 +31,6 @@ void TestScene::Update() const
 
 #pragma region メインスクリーンテスト
 	mainScreenUPtr->Update();
-	VECTOR ConvScreenPosToWorldPos_ZLinear;
-		/// マウスからレイを飛ばして0になるまで調べる
 #pragma endregion
 
 }
