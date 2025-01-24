@@ -28,5 +28,7 @@ private:
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;
+	bool holdItem= false;
+	int MHandle = -1;
 };
 

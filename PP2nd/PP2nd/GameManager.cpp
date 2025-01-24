@@ -20,8 +20,10 @@ void GameManager::Load()
 	HandleData buff;
 	fs::path GHandlePath = "./Resource/cube.png";
 	string GHandlePathString = GHandlePath.string();
+	fs::path MHandlePath = "./Resource/stone.mv1";
+	string MHandlePathString = MHandlePath.string();
 	buff.GHandle = LoadGraph(GHandlePathString.c_str());
-	buff.MHandle = -1;
+	buff.MHandle = MV1LoadModel(MHandlePathString.c_str());
 	handleDatas[HDKey::Cube] = buff ;
 
 #pragma endregion
@@ -94,11 +96,6 @@ GameManager& GameManager::GetInstance()
 		Instance = make_unique<GameManager>();
 	}
 	return *Instance;
-}
-
-void GameManager::RegistHoldItem(ItemList name)
-{
-
 }
 
 void GameManager::SetCameraPosition(VECTOR pos)

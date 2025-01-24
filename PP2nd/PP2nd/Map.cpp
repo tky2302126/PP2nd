@@ -12,7 +12,7 @@ Map::~Map()
 
 void Map::Init()
 {
-	
+	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
 }
 
 /// <summary>
@@ -22,6 +22,7 @@ void Map::Init()
 void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
+	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
 	goalUPtr = make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
@@ -41,6 +42,7 @@ void Map::Load(int day)
 void Map::RegistHoldItem(ItemList name)
 {
 	int result = (int)name;
+	holdItem = true;
 }
 
 void Map::Draw()
@@ -95,13 +97,22 @@ void Map::Draw()
 	
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
-	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%f, %f, %f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
 
 	float offset = 60.0f;
-
+	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+	if(holdItem)
+	{
+		VECTOR pos1 = VGet(mouseWorldPos.x - MAP_UNIT / 2, MAP_UNIT, mouseWorldPos.z - MAP_UNIT / 2);
+		VECTOR pos2 = VGet(mouseWorldPos.x + MAP_UNIT / 2, 0, mouseWorldPos.z + MAP_UNIT / 2);
+		/// DrawCube3D(pos1, pos2, GetColor(0, 0, 0), GetColor(255, 255, 255), TRUE);
+		MV1SetPosition(MHandle, mouseWorldPos);
+		MV1SetScale(MHandle, VGet(100, 100, 100));
+		MV1DrawModel(MHandle);
+	}
 
 
 }

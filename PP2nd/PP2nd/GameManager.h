@@ -23,7 +23,6 @@ public:
 	const unordered_map<ItemList, int>& GetItemInfoUnMap() const;
 	int& GetItemNum(ItemList name);
 	static GameManager& GetInstance();
-	void RegistHoldItem(ItemList name);
 	void SetCameraPosition(VECTOR pos);
 	VECTOR GetCameraPosition();
 private:
