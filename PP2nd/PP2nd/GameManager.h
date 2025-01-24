@@ -24,13 +24,13 @@ public:
 	int& GetItemNum(ItemList name);
 	static GameManager& GetInstance();
 	void RegistHoldItem(ItemList name);
-	void SetCameraDirection(VECTOR direction);
-	VECTOR GetCameraDirection();
+	void SetCameraPosition(VECTOR pos);
+	VECTOR GetCameraPosition();
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<ItemList,int> itemInfo;
 	static UniquePtr<GameManager> Instance;
 	bool holdItem= false;
-	VECTOR cameraDirection= VECTOR();
+	VECTOR cameraPos = VECTOR();
 };
 

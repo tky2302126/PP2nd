@@ -27,7 +27,6 @@ private:
 private:
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
-	int margin;
 	UniquePtr<Box> goalUPtr;
 };
 

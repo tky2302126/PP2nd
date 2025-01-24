@@ -11,10 +11,10 @@ public:
 	void Init(const VECTOR& pos,const Tag& tag);
 	void UnInit();
 	void Draw();
-	VECTOR GetBoxCenterPos(int height, int width, int margin)
+	VECTOR GetBoxCenterPos(int height, int width)
 	{
 		VECTOR pos;
-		pos = VGet( width*MAP_UNIT+margin/2, MAP_UNIT/2, height*MAP_UNIT+margin/2);
+		pos = VGet( width*MAP_UNIT-MAP_UNIT/2, MAP_UNIT/2, height*MAP_UNIT-MAP_UNIT/2);
 		return pos;
 	}
 private:

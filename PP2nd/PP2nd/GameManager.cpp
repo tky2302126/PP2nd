@@ -101,12 +101,12 @@ void GameManager::RegistHoldItem(ItemList name)
 
 }
 
-void GameManager::SetCameraDirection(VECTOR direction)
+void GameManager::SetCameraPosition(VECTOR pos)
 {
-	cameraDirection = direction;
+	cameraPos = pos;
 }
 
-VECTOR GameManager::GetCameraDirection()
+VECTOR GameManager::GetCameraPosition()
 {
-	return cameraDirection;
+	return cameraPos;
 }

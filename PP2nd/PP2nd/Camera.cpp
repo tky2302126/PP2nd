@@ -40,7 +40,6 @@ void Camera::Init(const _mapInfo& mapInfo)
 	SetupCamera_Perspective(DX_PI/2);
 	/// カメラの方向ベクトルをGameManagerに格納
 	VECTOR cameraDirection = GetDirection(CAMERA_VROTATE, 0);
-	GameManager::GetInstance().SetCameraDirection(cameraDirection);
 }
 
 void Camera::UnInit()
@@ -133,6 +132,7 @@ void Camera::Update()
 	float vRotate = DegtoRad(CAMERA_VROTATE);
 	 //float hRotate = DegtoRad(0.f);
 	SetCameraPositionAndAngle(position, vRotate, 0, 0);
+	GameManager::GetInstance().SetCameraPosition(position);
 
 
 }

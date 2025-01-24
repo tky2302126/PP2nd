@@ -2,7 +2,7 @@
 #include "Box.h"
 
 Map::Map()
-	:mapInfo(-1, -1, -1, -1),margin(0)
+	:mapInfo(-1, -1, -1, -1)
 {
 }
 
@@ -12,7 +12,7 @@ Map::~Map()
 
 void Map::Init()
 {
-	margin = MAP_UNIT;
+	
 }
 
 /// <summary>
@@ -22,9 +22,8 @@ void Map::Init()
 void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
-	margin = MAP_UNIT;
 	goalUPtr = make_unique<Box>();
-	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth,margin);
+	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
 }
 
@@ -54,7 +53,7 @@ void Map::Draw()
 	/// デバッグ
 	if(mapInfo.height == -1)
 	{
-		for (int z = margin; z <= MAP_UNIT*10 - margin; z += MAP_UNIT)
+		for (int z = 0; z <= MAP_UNIT*10 ; z += MAP_UNIT)
 		{
 			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT*10, 0, z), XAxizcolor);
 		}
@@ -68,21 +67,21 @@ void Map::Draw()
 	{
 		int outLineColor = GetColor(255, 255, 255);
 		/// 外枠の描画
-		DrawLine3D(VGet(margin, 0, margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, margin), outLineColor);
-		DrawLine3D(VGet(margin, 0, mapInfo.height * MAP_UNIT+margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, mapInfo.height * MAP_UNIT+margin), outLineColor);
-		DrawLine3D(VGet(margin, 0, margin), VGet(margin, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT+margin, 0, margin), VGet(mapInfo.width * MAP_UNIT+margin, 0, mapInfo.height*MAP_UNIT+margin), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT+0, 0, 0), outLineColor);
+		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height*MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height*MAP_UNIT), outLineColor);
 
 		//z軸
 		for(int x = 1; x<mapInfo.width;x++)
 		{
-			DrawLine3D(VGet(x * MAP_UNIT+margin, 0, margin), VGet(x * MAP_UNIT+margin, 0, mapInfo.height * MAP_UNIT + margin), ZAxizColor);
+			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
 		}
 
 		//x軸
 		for(int z =1;z<mapInfo.height;z++)
 		{
-			DrawLine3D(VGet(margin, 0, z * MAP_UNIT + margin), VGet(mapInfo.width*MAP_UNIT+margin,0,z*MAP_UNIT+margin), XAxizcolor);
+			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width*MAP_UNIT,0,z*MAP_UNIT), XAxizcolor);
 		}
 	}
 #endif
@@ -99,6 +98,10 @@ void Map::Draw()
 	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%f, %f, %f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
+	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
+
+	float offset = 60.0f;
+
 
 
 }
@@ -126,13 +129,15 @@ void Map::LoadMapInfo(int)
 VECTOR Map::GetMouseWorldPos()
 {
 	MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
-	VECTOR mouseWorldPos = ConvScreenPosToWorldPos(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.0f));
+	VECTOR mouseWorldPos = ConvScreenPosToWorldPos(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.5f));
 	mouseWorldPos = Round(mouseWorldPos);
-	VECTOR cameraDir = GameManager::GetInstance().GetCameraDirection();
-	cameraDir = Round(cameraDir, 2);
+	VECTOR rayDir = VNorm(VSub(mouseWorldPos, GameManager::GetInstance().GetCameraPosition()));
+	rayDir = Round(rayDir, 2);
+	if (rayDir.y < 0) { rayDir = VScale(rayDir, -1.0); }
 	while(mouseWorldPos.y >=0)
 	{
-		mouseWorldPos = VAdd(mouseWorldPos, cameraDir);
+		mouseWorldPos = VSub(mouseWorldPos, rayDir);
 	}
+	mouseWorldPos.y = 0;
 	return mouseWorldPos;
 }
