@@ -109,8 +109,8 @@ void Map::Draw()
 		VECTOR pos1 = VGet(mouseWorldPos.x - MAP_UNIT / 2, MAP_UNIT, mouseWorldPos.z - MAP_UNIT / 2);
 		VECTOR pos2 = VGet(mouseWorldPos.x + MAP_UNIT / 2, 0, mouseWorldPos.z + MAP_UNIT / 2);
 		/// DrawCube3D(pos1, pos2, GetColor(0, 0, 0), GetColor(255, 255, 255), TRUE);
+		MV1SetScale(MHandle, VGet(1, 1, 1));
 		MV1SetPosition(MHandle, mouseWorldPos);
-		MV1SetScale(MHandle, VGet(100, 100, 100));
 		MV1DrawModel(MHandle);
 	}
 

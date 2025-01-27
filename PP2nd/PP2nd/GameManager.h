@@ -25,6 +25,7 @@ public:
 	static GameManager& GetInstance();
 	void SetCameraPosition(VECTOR pos);
 	VECTOR GetCameraPosition();
+
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<ItemList,int> itemInfo;
