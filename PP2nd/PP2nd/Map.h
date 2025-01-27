@@ -24,11 +24,13 @@ private:
 	void LoadTerrainInfo(int);
 	void LoadMapInfo(int);
 	VECTOR GetMouseWorldPos();
+	void CHeckInGrid(VECTOR& mousePos);
 private:
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;
 	bool holdItem= false;
+	bool inGrid = false;
 	int MHandle = -1;
 };
 

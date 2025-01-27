@@ -16,7 +16,6 @@ public:
 	void OnEnter();
 	void OnExit();
 
-	int& GetGHandle();
 	int& GetMHandle();
 private:
 	int GHandle;

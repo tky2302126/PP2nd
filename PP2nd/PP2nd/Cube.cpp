@@ -25,11 +25,6 @@ void Cube::OnExit()
 {
 }
 
-int& Cube::GetGHandle()
-{
-    return GHandle;
-}
-
 int& Cube::GetMHandle()
 {
     int MHandle = -1;

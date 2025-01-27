@@ -22,6 +22,7 @@ void Map::Init()
 void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
+	/// !後で変える
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
 	goalUPtr = make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
@@ -104,13 +105,32 @@ void Map::Draw()
 
 	float offset = 60.0f;
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+
+	/// 保持している場合
 	if(holdItem)
 	{
-		VECTOR pos1 = VGet(mouseWorldPos.x - MAP_UNIT / 2, MAP_UNIT, mouseWorldPos.z - MAP_UNIT / 2);
-		VECTOR pos2 = VGet(mouseWorldPos.x + MAP_UNIT / 2, 0, mouseWorldPos.z + MAP_UNIT / 2);
-		/// DrawCube3D(pos1, pos2, GetColor(0, 0, 0), GetColor(255, 255, 255), TRUE);
+		/// マスに置こうとしているか調べる
+		CHeckInGrid(mouseWorldPos);
+
+		/// canceled ->モデルの描画を終了
+
+		/// canceled && inGrid-> フィールド描画用のクラスを作成
+		/// 配置確認を実行
+		 
+
+		/// モデルの描画
+		/// inGrid-> 座標を補正する
+		VECTOR drawPos = mouseWorldPos;
+		if(inGrid)
+		{
+			drawPos = VGet(
+				floor(mouseWorldPos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
+				0,
+				floor(mouseWorldPos.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2
+			);
+		}
 		MV1SetScale(MHandle, VGet(1, 1, 1));
-		MV1SetPosition(MHandle, mouseWorldPos);
+		MV1SetPosition(MHandle, drawPos);
 		MV1DrawModel(MHandle);
 	}
 
@@ -151,4 +171,32 @@ VECTOR Map::GetMouseWorldPos()
 	}
 	mouseWorldPos.y = 0;
 	return mouseWorldPos;
+}
+
+/// <summary>
+/// マウスの座標がマスの中央付近に入っているか調べる
+/// </summary>
+void Map::CHeckInGrid(VECTOR& mousePos)
+{
+	if (mousePos.x < 0 || mousePos.z < 0 || mousePos.x > MAP_UNIT*mapInfo.width ||mousePos.z > mapInfo.height*MAP_UNIT) 
+	{
+		inGrid = false;
+		return; 
+	}
+	
+	float gridX = floor(mousePos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2;
+	float gridZ = floor(mousePos.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2;
+
+	float threshold = MAP_UNIT / 5;
+
+	/// 中央の座標からthreshold以内ならtrue
+	if(abs(mousePos.x-gridX)<threshold && abs(mousePos.z -gridZ) < threshold)
+	{
+		inGrid = true;
+	}
+	else
+	{
+		false;
+	}
+
 }
