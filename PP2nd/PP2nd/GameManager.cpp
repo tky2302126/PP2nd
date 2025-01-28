@@ -28,7 +28,7 @@ void GameManager::Load()
 
 #pragma endregion
 
-	for(int i=0;i<ItemList::ALL;i++)
+	for(int i=0;i<(int)TerrainList::ItemAll;i++)
 	{
 		
 	}
@@ -73,12 +73,12 @@ void GameManager::SetItemInfo(ItemInfo info)
 	itemInfo[info.name] = info.num;
 }
 
-const unordered_map<ItemList,int>& GameManager::GetItemInfoUnMap() const
+const unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
 {
 	return itemInfo;
 }
 
-int& GameManager::GetItemNum(ItemList name)
+int& GameManager::GetItemNum(TerrainList name)
 {
 	auto it = itemInfo.find(name);
 	if(it == itemInfo.end())

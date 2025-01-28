@@ -13,8 +13,13 @@ public:
 	void Init();
 	void UnInit();
 
-	void OnEnter();
-	void OnExit();
+	void OnEnter() const override;
+	void OnExit() const override;
+
+	void Draw() const override;
+	void Update() const override;
+
+	void Confirm() const override;
 
 	int& GetMHandle();
 private:

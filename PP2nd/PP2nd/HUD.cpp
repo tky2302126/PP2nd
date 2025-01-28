@@ -34,7 +34,7 @@ void HUD::Init()
 }
 
 
-void HUD::SetCallback(function<void(ItemList)> cb)
+void HUD::SetCallback(function<void(TerrainList)> cb)
 {
 	callback = cb;
 	/// UIスプライトの読みこみ
@@ -51,26 +51,26 @@ void HUD::UnInit()
 /// </summary>
 void HUD::Load()
 {
-	unordered_map<ItemList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	unordered_map<TerrainList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
 	if(!ItemInfoUnMap.empty())
 	{
 		int index = 0;
-		for(int i=0;i<ItemList::ALL;i++)
+		for(int i=0;i<(int)TerrainList::ItemAll;i++)
 		{
-			auto it = ItemInfoUnMap.find((ItemList)i);
+			auto it = ItemInfoUnMap.find((TerrainList)i);
 			if(it != ItemInfoUnMap.end())
 			{
 				ItemPanel* itemPanelPtr = new ItemPanel();
 				HDKey key = (HDKey)((int)HDKey::Cube + i);
 				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;
-				currentInfo.name = (ItemList)i;
-				currentInfo.num = ItemInfoUnMap[(ItemList)i];
-				int num = ItemInfoUnMap[(ItemList)i];
+				currentInfo.name = (TerrainList)i;
+				currentInfo.num = ItemInfoUnMap[(TerrainList)i];
+				int num = ItemInfoUnMap[(TerrainList)i];
 				// itemPanelPtr->Init(index, GH, num);
 				itemPanelPtr->Init(index, GH, currentInfo,callback);
 				index++;
-				itemPanelMap[(ItemList)i] = itemPanelPtr;
+				itemPanelMap[(TerrainList)i] = itemPanelPtr;
 			}
 		}
 	}
@@ -104,16 +104,16 @@ void HUD::Draw()
 	//}
 	if(!itemPanelMap.empty())
 	{
-		ItemList current = Cube;
+		TerrainList current = TerrainList::Item1;
 		while (true)
 		{
-			if (current == ALL) { break; }
+			if (current == TerrainList::ItemAll) { break; }
 			if(itemPanelMap[current] != nullptr)
 			{
 				auto it = itemPanelMap[current];
 				it->Update();
 			}
-			current = (ItemList)((int)current+ 1);
+			current = (TerrainList)((int)current+ 1);
 		}
 	}
 }

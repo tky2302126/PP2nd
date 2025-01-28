@@ -11,7 +11,7 @@ void MainScreen::Init(const _mapInfo& mapInfo)
 	cameraUPtr->Init(mapInfo);
 	hudUPtr->Init();
 	mapUPtr->Init(mapInfo);
-	hudUPtr->SetCallback([&](ItemList name) {mapUPtr->RegistHoldItem(name); });
+	hudUPtr->SetCallback([&](TerrainList name) {mapUPtr->RegistHoldItem(name); });
 }
 
 void MainScreen::UnInit()

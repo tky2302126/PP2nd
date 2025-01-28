@@ -114,9 +114,10 @@ enum class TerrainList
 {
 	None = -1,
 	Item1,
+	ItemAll,
 
-	Invailed =66, // 配置不可
-	Polluted =99, // 汚染エリア
+	Invailed =666, // 配置不可
+	Polluted =999, // 汚染エリア
 };
 
 struct _mapInfo
@@ -177,15 +178,9 @@ struct HandleData
 	int MHandle;
 };
 
-enum ItemList
-{
-	Cube,
-	ALL
-};
-
 struct ItemInfo
 {
-	ItemList name;
+	TerrainList name;
 	int num;
 };
 

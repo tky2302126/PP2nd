@@ -20,15 +20,15 @@ public:
 	HandleData LoadHandleData(HDKey key);
 	HandleData& GetHandleData(HDKey key);
 	void SetItemInfo(ItemInfo info);
-	const unordered_map<ItemList, int>& GetItemInfoUnMap() const;
-	int& GetItemNum(ItemList name);
+	const unordered_map<TerrainList, int>& GetItemInfoUnMap() const;
+	int& GetItemNum(TerrainList name);
 	static GameManager& GetInstance();
 	void SetCameraPosition(VECTOR pos);
 	VECTOR GetCameraPosition();
 
 private:
 	unmap<HDKey, HandleData> handleDatas;
-	unmap<ItemList,int> itemInfo;
+	unmap<TerrainList,int> itemInfo;
 	static UniquePtr<GameManager> Instance;
 	bool holdItem= false;
 	VECTOR cameraPos = VECTOR();

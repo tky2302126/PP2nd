@@ -17,11 +17,23 @@ void Cube::UnInit()
 {
 }
 
-void Cube::OnEnter()
+void Cube::OnEnter() const 
 {
 }
 
-void Cube::OnExit()
+void Cube::OnExit() const
+{
+}
+
+void Cube::Draw() const
+{
+}
+
+void Cube::Update() const
+{
+}
+
+void Cube::Confirm() const
 {
 }
 

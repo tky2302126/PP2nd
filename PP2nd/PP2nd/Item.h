@@ -11,6 +11,9 @@ public:
 	virtual ~Item() = default;
 	virtual void OnEnter() const =0;
 	virtual void OnExit() const =0;
+	virtual void Draw() const = 0;
+	virtual void Update() const = 0;
+	virtual void Confirm() const = 0;
 
 	// virtual int& GetGHandle() const = 0;
 	virtual int& GetMHandle() const = 0;

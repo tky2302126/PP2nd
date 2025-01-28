@@ -16,7 +16,7 @@ public:
 	void UnInit();
 
 	void Load(int);
-	void RegistHoldItem(ItemList name);
+	void RegistHoldItem(TerrainList name);
 	void Draw();
 	void Update();
 
@@ -26,6 +26,7 @@ private:
 	VECTOR GetMouseWorldPos();
 	void CHeckInGrid(VECTOR& mousePos);
 private:
+	TerrainList holdItemTag = TerrainList::None;
 	vector<vector<int>> terrainInfo;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;

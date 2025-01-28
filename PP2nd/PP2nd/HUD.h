@@ -15,7 +15,7 @@ public:
 	HUD();
 	~HUD();
 	void Init();
-	void SetCallback(function<void(ItemList)>);
+	void SetCallback(function<void(TerrainList)>);
 	void UnInit();
 
 	void Load();
@@ -42,7 +42,7 @@ private:
 	int pauseGH;
 	int fastGH;
 	int optionGH;
-	unmap<ItemList, ItemPanel*> itemPanelMap;
-	function<void(ItemList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
+	unmap<TerrainList, ItemPanel*> itemPanelMap;
+	function<void(TerrainList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
 };
 

@@ -40,7 +40,7 @@ void Map::Load(int day)
 /// ItemPanelから通知を受けるコールバック関数
 /// </summary>
 /// <param name="name"></param>
-void Map::RegistHoldItem(ItemList name)
+void Map::RegistHoldItem(TerrainList name)
 {
 	int result = (int)name;
 	holdItem = true;
@@ -105,6 +105,21 @@ void Map::Draw()
 
 	float offset = 60.0f;
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+	
+	/// canceled ->モデルの描画を終了
+	if(currentInput.state.left == Canceled)
+	{
+		holdItem = false;
+		/// canceled && inGrid-> フィールド描画用のクラスを作成
+		if(inGrid)
+		{
+
+
+			/// 配置確認を実行
+			
+		}
+
+	}
 
 	/// 保持している場合
 	if(holdItem)
@@ -112,10 +127,7 @@ void Map::Draw()
 		/// マスに置こうとしているか調べる
 		CHeckInGrid(mouseWorldPos);
 
-		/// canceled ->モデルの描画を終了
 
-		/// canceled && inGrid-> フィールド描画用のクラスを作成
-		/// 配置確認を実行
 		 
 
 		/// モデルの描画

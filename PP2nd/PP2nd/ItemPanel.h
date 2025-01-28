@@ -10,7 +10,7 @@ class ItemPanel
 public:
 	void Init(int index,int& GH, int& num);
 	void Init(int _index,int& _GH, ItemInfo& _info);
-	void Init(int _index,int& _GH, ItemInfo& _info, function<void(ItemList name)>& cbfunction);
+	void Init(int _index,int& _GH, ItemInfo& _info, function<void(TerrainList name)>& cbfunction);
 	void UnInit();
 	void Update();
 	void Decrease();
@@ -23,7 +23,7 @@ private:
 	bool placed = false;   // 設置フラグ
 	Vector2Int start;
 	Vector2Int end;
-	function<void(ItemList name)> cbFunction;
+	function<void(TerrainList name)> cbFunction;
 
 	bool ClickInRect(MouseInfo& input);
 };

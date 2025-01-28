@@ -28,7 +28,7 @@ void ItemPanel::Init(int index, int& _GH, ItemInfo& _info)
 	info = _info;
 }
 
-void ItemPanel::Init(int index, int& _GH, ItemInfo& _info, function<void(ItemList name)>& function)
+void ItemPanel::Init(int index, int& _GH, ItemInfo& _info, function<void(TerrainList name)>& function)
 {
 	start.x = index * HUD_ITEM_SIZE;
 	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
