@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "define.h"
 #include "manager.h"
+#include "Item.h"
 class Box;
 /// <summary>
 /// MVPに分割したい
@@ -20,6 +21,9 @@ public:
 	void Draw();
 	void Update();
 
+	void AddStart(Vector2Int pos);
+	void AddGoal(Vector2Int pos);
+
 private:
 	void LoadTerrainInfo(int);
 	void LoadMapInfo(int);
@@ -27,7 +31,7 @@ private:
 	void CHeckInGrid(VECTOR& mousePos);
 private:
 	TerrainList holdItemTag = TerrainList::None;
-	vector<vector<int>> terrainInfo;
+	vector<Item*> itemPtrVec;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;
 	bool holdItem= false;

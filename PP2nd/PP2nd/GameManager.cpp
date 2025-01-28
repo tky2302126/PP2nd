@@ -50,9 +50,7 @@ void GameManager::UnInit()
 /// <returns></returns>
 HandleData GameManager::LoadHandleData(HDKey key)
 {
-
-
-	return HandleData();
+	return handleDatas[key];
 }
 
 HandleData& GameManager::GetHandleData(HDKey key)
@@ -106,4 +104,32 @@ void GameManager::SetCameraPosition(VECTOR pos)
 VECTOR GameManager::GetCameraPosition()
 {
 	return cameraPos;
+}
+
+vector<vector<TerrainList>> GameManager::GetTerrainInfo() const
+{
+	return terrainInfo ;
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="name"></param>
+/// <param name="pos"></param>
+void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
+{
+	int row = floor(pos.z / MAP_UNIT);
+	int col = floor(pos.x / MAP_UNIT);
+
+	terrainInfo[row][col] = name;
+}
+
+void GameManager::LoadTerrainInfo(int day)
+{
+
+}
+
+void GameManager::InitTerrainInfo(int width, int height)
+{
+	terrainInfo.resize(height, vector<TerrainList>(width, TerrainList::None));
 }

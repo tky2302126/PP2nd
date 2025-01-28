@@ -1,5 +1,6 @@
 ﻿#include "Map.h"
 #include "Box.h"
+#include "Cube.h"
 
 Map::Map()
 	:mapInfo(-1, -1, -1, -1)
@@ -27,6 +28,8 @@ void Map::Init(const _mapInfo& mapInfo)
 	goalUPtr = make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
+	GameManager::GetInstance().InitTerrainInfo(mapInfo.width, mapInfo.height);
+	/// terrainListからitemPtrVecをセットアップ
 }
 
 void Map::UnInit()
@@ -42,7 +45,7 @@ void Map::Load(int day)
 /// <param name="name"></param>
 void Map::RegistHoldItem(TerrainList name)
 {
-	int result = (int)name;
+	holdItemTag = name;
 	holdItem = true;
 }
 
@@ -107,18 +110,48 @@ void Map::Draw()
 	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
 	
 	/// canceled ->モデルの描画を終了
-	if(currentInput.state.left == Canceled)
+	if(currentInput.state.left == Canceled && holdItem)
 	{
 		holdItem = false;
 		/// canceled && inGrid-> フィールド描画用のクラスを作成
 		if(inGrid)
 		{
+			Item* itemPtr = nullptr;
+			/// すでに配置済みならおけないようにする
+			/// terrainInfoで調べる
 
+			VECTOR pos = VGet(
+				floor(mouseWorldPos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
+				0,
+				floor(mouseWorldPos.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2
+			);
+			switch (holdItemTag)
+			{
+			
+			
+			case TerrainList::CUBE:
+				itemPtr = new Cube();
+				itemPtr->Init(MHandle,pos);
+				break;
+			case TerrainList::ItemAll:
+				break;
+			
+			
+			
+			
+			default:
+				break;
+			}
 
 			/// 配置確認を実行
-			
+			if(itemPtr != nullptr)
+			{
+				itemPtr->Confirm();
+				itemPtrVec.push_back(itemPtr);
+			}
 		}
-
+		/// 後でアクティブに
+	 	/// MHandle = -1;
 	}
 
 	/// 保持している場合
@@ -146,6 +179,14 @@ void Map::Draw()
 		MV1DrawModel(MHandle);
 	}
 
+	if(!itemPtrVec.empty())
+	{
+		for(int i=0;i<itemPtrVec.size();i++)
+		{
+			itemPtrVec[i]->Update();
+		}
+	}
+
 
 }
 /// <summary>
@@ -154,6 +195,14 @@ void Map::Draw()
 void Map::Update()
 {
 	Draw();
+}
+
+void Map::AddStart(Vector2Int pos)
+{
+}
+
+void Map::AddGoal(Vector2Int pos)
+{
 }
 
 void Map::LoadTerrainInfo(int)

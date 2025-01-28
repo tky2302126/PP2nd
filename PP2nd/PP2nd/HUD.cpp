@@ -62,6 +62,7 @@ void HUD::Load()
 			{
 				ItemPanel* itemPanelPtr = new ItemPanel();
 				HDKey key = (HDKey)((int)HDKey::Cube + i);
+				///! ここ直す
 				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;
 				currentInfo.name = (TerrainList)i;
@@ -104,7 +105,7 @@ void HUD::Draw()
 	//}
 	if(!itemPanelMap.empty())
 	{
-		TerrainList current = TerrainList::Item1;
+		TerrainList current = TerrainList::CUBE;
 		while (true)
 		{
 			if (current == TerrainList::ItemAll) { break; }

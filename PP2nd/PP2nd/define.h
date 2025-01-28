@@ -112,8 +112,8 @@ struct MouseInfo
 #pragma region Map
 enum class TerrainList
 {
-	None = -1,
-	Item1,
+	None = 0,
+	CUBE,
 	ItemAll,
 
 	Invailed =666, // 配置不可

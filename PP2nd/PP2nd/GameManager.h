@@ -25,12 +25,16 @@ public:
 	static GameManager& GetInstance();
 	void SetCameraPosition(VECTOR pos);
 	VECTOR GetCameraPosition();
-
+	vector<vector<TerrainList>> GetTerrainInfo() const;
+	void AddTerrainInfo(TerrainList name, VECTOR pos);
+	void LoadTerrainInfo(int day);
+	void InitTerrainInfo(int width, int height);
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo;
 	static UniquePtr<GameManager> Instance;
 	bool holdItem= false;
 	VECTOR cameraPos = VECTOR();
+	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
 };
 
