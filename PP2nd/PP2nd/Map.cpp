@@ -30,6 +30,8 @@ void Map::Init(const _mapInfo& mapInfo)
 	goalUPtr->Init(pos, Tag::Goal);
 	GameManager::GetInstance().InitTerrainInfo(mapInfo.width, mapInfo.height);
 	/// terrainListからitemPtrVecをセットアップ
+
+	/// EnemyManagerからスタート位置を受け取る
 }
 
 void Map::UnInit()
@@ -97,6 +99,15 @@ void Map::Draw()
 	if(mapInfo.goalHeight !=-1)
 	{
 		goalUPtr->Draw();
+	}
+
+	///スタートポイントの描画
+	if(!startPtrVec.empty())
+	{
+		for(int i=0;i<startPtrVec.size();i++)
+		{
+			startPtrVec[i]->Draw();
+		}
 	}
 	
 	/// InputSystem監視
@@ -199,10 +210,15 @@ void Map::Update()
 
 void Map::AddStart(Vector2Int pos)
 {
+	Box* startPtr = new Box();
+	VECTOR VecPos = startPtr->GetBoxCenterPos(pos.y, pos.x);
+	startPtr->Init(VecPos, Tag::Start);
+	startPtrVec.push_back(startPtr); //! スマートポインタの場合は所有権を移動させる
 }
 
 void Map::AddGoal(Vector2Int pos)
 {
+
 }
 
 void Map::LoadTerrainInfo(int)

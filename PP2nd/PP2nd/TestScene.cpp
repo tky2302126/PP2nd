@@ -13,6 +13,8 @@ TestScene::TestScene()
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(testMap);
+	Vector2Int startPos = {13,5};
+	mainScreenUPtr->AddPoint(startPos, Tag::Start);
 }
 
 TestScene::~TestScene()

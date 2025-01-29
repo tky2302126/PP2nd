@@ -55,7 +55,8 @@ const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
 const auto COLOR_PURPLE = GetColorU8(255, 0, 255, 0); /// 透過用の色
-const auto COLOR_LIGHTBLUE = GetColorU8(88, 231, 248, 255); /// 透過用の色
+const auto COLOR_LIGHTBLUE = GetColorU8(88, 231, 248, 255); /// ゴールの色
+const auto COLOR_RED = GetColorU8(255, 0, 0, 255); /// スタートの色
 
 enum SceneName
 {
@@ -112,7 +113,7 @@ struct MouseInfo
 #pragma region Map
 enum class TerrainList
 {
-	None = 0,
+	None = -1,
 	CUBE,
 	ItemAll,
 
@@ -189,7 +190,7 @@ enum class HDKey
 	Play,
 	Pause,
 	Fast_Forward,
-	Cube =99,
+	Cube =0,
 	Item2,
 	Item3,
 	Enemy1=999,

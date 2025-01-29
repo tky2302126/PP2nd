@@ -31,9 +31,8 @@ public:
 	void InitTerrainInfo(int width, int height);
 private:
 	unmap<HDKey, HandleData> handleDatas;
-	unmap<TerrainList,int> itemInfo;
+	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
 	static UniquePtr<GameManager> Instance;
-	bool holdItem= false;
 	VECTOR cameraPos = VECTOR();
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
 };

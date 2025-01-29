@@ -65,17 +65,30 @@ HandleData& GameManager::GetHandleData(HDKey key)
 	}
 		return it->second;
 }
-
+/// <summary>
+/// アイテムの生産・消費が行われたときに増減させる
+/// 
+/// </summary>
+/// <param name="info"></param>
 void GameManager::SetItemInfo(ItemInfo info)
 {
 	itemInfo[info.name] = info.num;
 }
-
+/// <summary>
+/// アイテム所持情報を参照
+/// </summary>
+/// <returns></returns>
 const unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
 {
 	return itemInfo;
 }
 
+/// <summary>
+/// アイテム所持数を参照
+/// いらなそう
+/// </summary>
+/// <param name="name"></param>
+/// <returns></returns>
 int& GameManager::GetItemNum(TerrainList name)
 {
 	auto it = itemInfo.find(name);
@@ -96,11 +109,18 @@ GameManager& GameManager::GetInstance()
 	return *Instance;
 }
 
+/// <summary>
+/// アプリケーション実行中のカメラの位置を保持する
+/// </summary>
+/// <param name="pos"></param>
 void GameManager::SetCameraPosition(VECTOR pos)
 {
 	cameraPos = pos;
 }
-
+/// <summary>
+/// カメラの位置を参照
+/// </summary>
+/// <returns></returns>
 VECTOR GameManager::GetCameraPosition()
 {
 	return cameraPos;
@@ -112,7 +132,7 @@ vector<vector<TerrainList>> GameManager::GetTerrainInfo() const
 }
 
 /// <summary>
-/// 
+/// 地形情報を更新する
 /// </summary>
 /// <param name="name"></param>
 /// <param name="pos"></param>
@@ -124,11 +144,20 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 	terrainInfo[row][col] = name;
 }
 
+/// <summary>
+/// csvファイル等から地形情報を取得する
+/// </summary>
+/// <param name="day"></param>
 void GameManager::LoadTerrainInfo(int day)
 {
 
 }
 
+/// <summary>
+/// 地形情報を初期化する
+/// </summary>
+/// <param name="width"></param>
+/// <param name="height"></param>
 void GameManager::InitTerrainInfo(int width, int height)
 {
 	terrainInfo.resize(height, vector<TerrainList>(width, TerrainList::None));

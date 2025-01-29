@@ -34,6 +34,7 @@ private:
 	vector<Item*> itemPtrVec;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;
+	vector<Box*> startPtrVec;
 	bool holdItem= false;
 	bool inGrid = false;
 	int MHandle = -1;

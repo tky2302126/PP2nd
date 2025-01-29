@@ -25,6 +25,9 @@
     <Filter Include="ソース ファイル\Items">
       <UniqueIdentifier>{075d7b09-a2e8-43bc-82b9-72e802bea0a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Manager">
+      <UniqueIdentifier>{59c53bd3-9819-46b1-9866-396148451855}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawPixel.cpp">
@@ -32,12 +35,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="InputSystem.cpp">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
@@ -54,12 +51,6 @@
     <ClCompile Include="Map.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
-    <ClCompile Include="MainScreen.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
@@ -69,8 +60,23 @@
     <ClCompile Include="ItemPanel.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
-    <ClCompile Include="MapItem.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScreen.cpp">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,12 +88,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>ソース ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSystem.h">
-      <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>ソース ファイル\Scenes</Filter>
@@ -107,12 +107,6 @@
     <ClInclude Include="Map.h">
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
-    <ClInclude Include="MainScreen.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>ソース ファイル\Module</Filter>
-    </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>ソース ファイル\Base</Filter>
     </ClInclude>
@@ -122,8 +116,23 @@
     <ClInclude Include="ItemPanel.h">
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
-    <ClInclude Include="MapItem.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScreen.h">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

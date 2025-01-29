@@ -145,6 +145,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DrawPixel.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputSystem.cpp" />
@@ -153,7 +155,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MapItem.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
@@ -162,6 +163,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputSystem.h" />
@@ -170,7 +173,6 @@
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MapItem.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
