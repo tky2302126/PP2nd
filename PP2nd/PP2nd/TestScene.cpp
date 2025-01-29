@@ -9,12 +9,11 @@
 TestScene::TestScene()
 {
 	/// 
+	EnemyManager::GetInstance().LoadTest();
 	_mapInfo testMap(12,9,0,5);
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(testMap);
-	Vector2Int startPos = {13,5};
-	mainScreenUPtr->AddPoint(startPos, Tag::Start);
 }
 
 TestScene::~TestScene()

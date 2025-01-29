@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 #include "Enemy.h"
 #include "Start.h"
 /// <summary>
-/// “G‚Ì¶¬Aƒ‹[ƒgİ’èAƒXƒe[ƒW‘S‘Ì‚Ì“Gó‹µ‚ÌŠÇ—
-/// ƒXƒ^[ƒg’n“_‚©‚çƒS[ƒ‹‚ÉŒü‚©‚Á‚Äƒ‹[ƒg‚ğ‹‚ß‚é(ƒ}ƒbƒv‚Éü‚ğˆø‚­)
+/// æ•µã®ç”Ÿæˆã€ãƒ«ãƒ¼ãƒˆè¨­å®šã€ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã®æ•µçŠ¶æ³ã®ç®¡ç†
+/// ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã‹ã‚‰ã‚´ãƒ¼ãƒ«ã«å‘ã‹ã£ã¦ãƒ«ãƒ¼ãƒˆã‚’æ±‚ã‚ã‚‹(ãƒãƒƒãƒ—ã«ç·šã‚’å¼•ã)
 /// </summary>
 class EnemyManager
 {
@@ -15,10 +15,15 @@ public:
 	void Init();
 	void UnInit();
 	void InitStart();
+	void Load(int day);
+	void InitTest();
+	void LoadTest();
+	vector<Vector2Int> GetStartPos();
+	void DrawRouteTest();
 private:
 	
-	/// ƒS[ƒ‹‚Ü‚Å‚Ìƒ‹[ƒg
-	/// ƒXƒ^[ƒg‚ÆƒS[ƒ‹A‚»‚ê‚Ü‚Å‚ÉŒo—R‚·‚é“_‚ğ•Û—L
+	/// ã‚´ãƒ¼ãƒ«ã¾ã§ã®ãƒ«ãƒ¼ãƒˆ
+	/// ã‚¹ã‚¿ãƒ¼ãƒˆã¨ã‚´ãƒ¼ãƒ«ã€ãã‚Œã¾ã§ã«çµŒç”±ã™ã‚‹ç‚¹ã‚’ä¿æœ‰
 	vector<Start*> startPtrVec;
 
 	static UniquePtr<EnemyManager> Instance;

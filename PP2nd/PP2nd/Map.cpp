@@ -32,6 +32,13 @@ void Map::Init(const _mapInfo& mapInfo)
 	/// terrainListからitemPtrVecをセットアップ
 
 	/// EnemyManagerからスタート位置を受け取る
+	vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
+
+	for(int i=0;i<startPos.size();i++)
+	{
+		AddStart(startPos[i]);
+	}
+
 }
 
 void Map::UnInit()

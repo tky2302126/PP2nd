@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"define.h"
 class Start
 {
@@ -8,6 +8,7 @@ public:
 	void UnInit();
 	void SearchRoute();
 	bool ReachGoal();
+	Vector2Int& GetStartPos() { return pos; }
 private:
 	Vector2Int pos;
 	vector<Vector2Int> route;
