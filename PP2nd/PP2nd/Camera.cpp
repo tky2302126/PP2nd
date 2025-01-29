@@ -38,8 +38,6 @@ void Camera::Init(const _mapInfo& mapInfo)
 	oldMousePos.y = 0;
 	
 	SetupCamera_Perspective(DX_PI/2);
-	/// カメラの方向ベクトルをGameManagerに格納
-	VECTOR cameraDirection = GetDirection(CAMERA_VROTATE, 0);
 }
 
 void Camera::UnInit()
@@ -93,8 +91,6 @@ void Camera::Update()
 		return;
 	}
 
-	///
-
 	InputState leftState = currentInput.state.left;
 
 	if(leftState == Started)
@@ -134,25 +130,5 @@ void Camera::Update()
 	SetCameraPositionAndAngle(position, vRotate, 0, 0);
 	GameManager::GetInstance().SetCameraPosition(position);
 
-
-}
-
-VECTOR Camera::GetPosition()
-{
-	return position;
-}
-
-VECTOR Camera::GetDirection(float vRotate, float hRotate)
-{
-	float vRotateRad = DegtoRad(vRotate);
-	float hRotateRad = DegtoRad(hRotate);
-
-	VECTOR direction = VGet
-	(
-		cosf(vRotateRad)*sinf(hRotateRad),
-		-sinf(vRotateRad),
-		cosf(vRotateRad) * cosf(hRotateRad)
-	);
-	return direction;
 }
 

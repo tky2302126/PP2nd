@@ -9,11 +9,11 @@
 TestScene::TestScene()
 {
 	/// 
+	GameManager::GetInstance().LoadTest();
 	EnemyManager::GetInstance().LoadTest();
-	_mapInfo testMap(12,9,0,5);
 
 	mainScreenUPtr = make_unique<MainScreen>();
-	mainScreenUPtr->Init(testMap);
+	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
 }
 
 TestScene::~TestScene()

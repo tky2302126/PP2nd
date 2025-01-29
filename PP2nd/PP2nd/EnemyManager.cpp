@@ -70,6 +70,10 @@ void EnemyManager::InitStart()
 {
 }
 
+/// <summary>
+/// csvなどから地形情報を読み取る
+/// </summary>
+/// <param name="day"></param>
 void EnemyManager::Load(int day)
 {
 

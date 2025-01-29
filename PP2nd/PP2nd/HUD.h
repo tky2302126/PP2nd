@@ -36,7 +36,11 @@ private:
 	int	textHeight;
 	RECTInt timerPanelRect;
 #pragma endregion
-	
+#pragma region 残敵数
+
+#pragma endregion
+
+
 	bool fast;
 	int playGH;
 	int pauseGH;

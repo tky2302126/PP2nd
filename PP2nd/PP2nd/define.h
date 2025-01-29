@@ -16,6 +16,7 @@
 #include <queue>
 #include <functional>
 #include <cmath>
+#include <unordered_set>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -72,6 +73,9 @@ struct Vector2Int
 {
 	int x ;
 	int y ;
+
+	bool operator== (const Vector2Int& other) const { return x == other.x && y == other.y; }
+	bool operator!=(const Vector2Int& other) const { return !(*this == other); }
 };
 
 /// <summary>
@@ -113,12 +117,15 @@ struct MouseInfo
 #pragma region Map
 enum class TerrainList
 {
-	None = -1,
+	Goal,
+	base,
+	None = 0,
 	CUBE,
 	ItemAll,
 
 	Invailed =666, // 配置不可
 	Polluted =999, // 汚染エリア
+	Start,
 };
 
 struct _mapInfo
@@ -197,5 +204,46 @@ enum class HDKey
 	Enemy2,
 };
 
+#pragma endregion
+
+#pragma region 経路探索
+/// <summary>
+/// 経路探索用のノード
+/// </summary>
+struct Node
+{
+	Vector2Int pos;
+	int cost;
+	int heuristicValue;
+	Node* parent;
+
+	Node(Vector2Int _pos, int _cost, int hValue, Node* _parent = nullptr)
+		: pos(_pos), cost(_cost), heuristicValue(hValue), parent(_parent){}
+
+	int Evaluate() const { return cost + heuristicValue; }
+};
+
+/// <summary>
+/// ハッシュ値
+/// </summary>
+struct Hash
+{
+	size_t operator()(const Vector2Int& v)const { return v.x * 97 + v.y; }
+};
+
+struct Compare
+{
+	bool operator()(const Node* a, const Node* b) { return a->Evaluate() > b->Evaluate(); }
+};
+
+inline int GetHeuristic(const Vector2Int& a, const Vector2Int& b)
+{
+	return abs(a.x - b.x) + abs(a.y - b.y);
+}
+
+inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
+{
+	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width && pos.y <= mapInfo.height;
+}
 #pragma endregion
 

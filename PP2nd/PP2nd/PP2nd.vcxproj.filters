@@ -51,9 +51,6 @@
     <ClCompile Include="Map.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>ソース ファイル\Items</Filter>
     </ClCompile>
@@ -71,9 +68,6 @@
     </ClCompile>
     <ClCompile Include="MainScreen.cpp">
       <Filter>ソース ファイル\Module</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>

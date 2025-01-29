@@ -145,12 +145,10 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DrawPixel.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputSystem.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemPanel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />

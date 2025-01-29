@@ -131,6 +131,11 @@ vector<vector<TerrainList>> GameManager::GetTerrainInfo() const
 	return terrainInfo ;
 }
 
+_mapInfo GameManager::GetMapInfo() const
+{
+	return mapInfo;
+}
+
 /// <summary>
 /// 地形情報を更新する
 /// </summary>
@@ -161,4 +166,10 @@ void GameManager::LoadTerrainInfo(int day)
 void GameManager::InitTerrainInfo(int width, int height)
 {
 	terrainInfo.resize(height, vector<TerrainList>(width, TerrainList::None));
+}
+
+void GameManager::LoadTest()
+{
+	_mapInfo testMap(12, 9, 0, 5);
+	mapInfo = testMap;
 }
