@@ -1,8 +1,8 @@
 ﻿  Start.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(168,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(170,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Start.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(177,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(179,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Start.cpp' をコンパイルしています)
   
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

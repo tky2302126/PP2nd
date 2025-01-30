@@ -151,6 +151,8 @@ void Map::Draw()
 				itemPtr = new Cube();
 				itemPtr->Init(MHandle,pos);
 				break;
+
+				/// アイテムを追加したら更新
 			case TerrainList::ItemAll:
 				break;
 			

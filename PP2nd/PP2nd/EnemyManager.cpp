@@ -62,6 +62,17 @@ void EnemyManager::DrawRouteTest()
 {
 }
 
+void EnemyManager::ReCalculateRoute()
+{
+	if(!startPtrVec.empty())
+	{
+		for(int i=0;i<startPtrVec.size();i++)
+		{
+			startPtrVec[i]->SearchRoute();
+		}
+	}
+}
+
 void EnemyManager::UnInit()
 {
 }

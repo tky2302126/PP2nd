@@ -21,8 +21,10 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-template <typename T1,typename T2>
-using unmap = unordered_map<T1,T2>;
+//template <typename T1,typename T2>
+//using unmap = unordered_map<T1,T2>;
+template<typename T1,typename T2,typename T3 = hash<T1>>
+using unmap = unordered_map<T1, T2, T3>;
 
 template <typename T>
 using SharedPtr = shared_ptr<T>;
@@ -117,9 +119,9 @@ struct MouseInfo
 #pragma region Map
 enum class TerrainList
 {
-	Goal,
-	base,
-	None = 0,
+	Goal=0,
+	Base,
+	None,
 	CUBE,
 	ItemAll,
 

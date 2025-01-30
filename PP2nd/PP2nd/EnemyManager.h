@@ -20,6 +20,7 @@ public:
 	void LoadTest();
 	vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
+	void ReCalculateRoute();
 private:
 	
 	/// ゴールまでのルート

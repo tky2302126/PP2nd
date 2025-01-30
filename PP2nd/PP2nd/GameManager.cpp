@@ -1,4 +1,5 @@
 ﻿#include "GameManager.h"
+#include "EnemyManager.h"
 
 UniquePtr<GameManager> GameManager::Instance = nullptr;
 
@@ -147,6 +148,9 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 	int col = floor(pos.x / MAP_UNIT);
 
 	terrainInfo[row][col] = name;
+
+	///更新したら通知する
+	// EnemyManager::GetInstance().
 }
 
 /// <summary>
@@ -171,5 +175,6 @@ void GameManager::InitTerrainInfo(int width, int height)
 void GameManager::LoadTest()
 {
 	_mapInfo testMap(12, 9, 0, 5);
+	InitTerrainInfo(testMap.width, testMap.height);
 	mapInfo = testMap;
 }
