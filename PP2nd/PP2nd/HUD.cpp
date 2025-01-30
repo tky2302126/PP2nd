@@ -61,7 +61,16 @@ void HUD::Load()
 			if(it != ItemInfoUnMap.end())
 			{
 				ItemPanel* itemPanelPtr = new ItemPanel();
-				HDKey key = (HDKey)((int)HDKey::Cube + i);
+				HDKey key = (HDKey) - 1;
+				switch ((TerrainList)i)
+				{
+				case TerrainList::CUBE:
+					key = HDKey::Cube;
+						break;
+				default:
+					
+					break;
+				}
 				///! ここ直す
 				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;

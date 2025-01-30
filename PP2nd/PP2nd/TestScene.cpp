@@ -33,6 +33,7 @@ void TestScene::Update() const
 
 #pragma region メインスクリーンテスト
 	mainScreenUPtr->Update();
+	EnemyManager::GetInstance().DrawRouteTest();
 #pragma endregion
 
 }

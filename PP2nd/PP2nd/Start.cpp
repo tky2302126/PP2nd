@@ -25,10 +25,11 @@ void Start::SearchRoute()
     /// 障害物が除かれた場合は再計算の必要がある
 
     const vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
+    /// 配列座標へ変換
     Vector2Int goal =
     {
-        GameManager::GetInstance().GetMapInfo().goalWidth,
-        GameManager::GetInstance().GetMapInfo().goalHeight
+        GameManager::GetInstance().GetMapInfo().goalWidth-1,
+        GameManager::GetInstance().GetMapInfo().goalHeight-1
     };
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
@@ -36,11 +37,11 @@ void Start::SearchRoute()
     priority_queue<Node*, vector<Node*>, Compare> openList; /// 探索予定エリア
     unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
-
-    Node* start = new Node(pos, 0, GetHeuristic(pos, goal));
+    Vector2Int startPos = { pos.x - 1,pos.y - 1 };
+    Node* start = new Node(startPos, 0, GetHeuristic(pos, goal));
 
     openList.push(start);
-    nodeMap[pos] = start;
+    nodeMap[startPos] = start;
 
     while (!openList.empty())
     {
@@ -75,7 +76,7 @@ void Start::SearchRoute()
             ///! 領域外を検索するリスクを回避
             auto terrain = TerrainList::None;
             if(neighborPos.x>=0 && neighborPos.y >= 0
-               && neighborPos.x<terrainInfo[neighborPos.y].size()&& neighborPos.y <terrainInfo.size())
+               && neighborPos.x<terrainInfo[0].size()&& neighborPos.y <terrainInfo.size())
             {
                 terrain = terrainInfo[neighborPos.y][neighborPos.x];
             }
@@ -97,7 +98,11 @@ void Start::SearchRoute()
                 break;
             }
 
-            if (nodeMap.count(neighborPos) && nodeMap[neighborPos]->cost <= cost) { continue; }
+            /// より優れた経路があるときスキップ
+            if (nodeMap.count(neighborPos)&& nodeMap[neighborPos]->cost <= cost)
+            {
+                continue;
+            }
 
             Node* neighbor = new Node(neighborPos, cost, GetHeuristic(neighborPos, goal), current);
             openList.push(neighbor);
@@ -111,6 +116,15 @@ void Start::SearchRoute()
 bool Start::ReachGoal()
 {
     return false;
+}
+
+void Start::DrawRouteTest()
+{
+    if (route.empty()) return;
+    for(int i=0;i<route.size()-1;i++)
+    {
+        DrawLine3D(VGet(route[i].x*MAP_UNIT+MAP_UNIT/2,0,route[i].y*MAP_UNIT+MAP_UNIT/2), VGet(route[i+1].x * MAP_UNIT + MAP_UNIT / 2, 0, route[i+1].y * MAP_UNIT + MAP_UNIT / 2), GetColor(255, 64, 64));
+    }
 }
 
 

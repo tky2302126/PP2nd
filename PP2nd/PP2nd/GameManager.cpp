@@ -150,7 +150,7 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 	terrainInfo[row][col] = name;
 
 	///更新したら通知する
-	// EnemyManager::GetInstance().
+	EnemyManager::GetInstance().ReCalculateRoute();
 }
 
 /// <summary>

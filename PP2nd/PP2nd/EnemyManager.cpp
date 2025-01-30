@@ -60,6 +60,13 @@ vector<Vector2Int> EnemyManager::GetStartPos()
 
 void EnemyManager::DrawRouteTest()
 {
+	if (!startPtrVec.empty())
+	{
+		for (int i = 0; i < startPtrVec.size(); i++)
+		{
+			startPtrVec[i]->DrawRouteTest();
+		}
+	}
 }
 
 void EnemyManager::ReCalculateRoute()
