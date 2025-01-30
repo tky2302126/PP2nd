@@ -71,13 +71,11 @@ void HUD::Load()
 					
 					break;
 				}
-				///! ここ直す
 				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;
 				currentInfo.name = (TerrainList)i;
 				currentInfo.num = ItemInfoUnMap[(TerrainList)i];
 				int num = ItemInfoUnMap[(TerrainList)i];
-				// itemPanelPtr->Init(index, GH, num);
 				itemPanelPtr->Init(index, GH, currentInfo,callback);
 				index++;
 				itemPanelMap[(TerrainList)i] = itemPanelPtr;

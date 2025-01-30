@@ -156,9 +156,6 @@ void Map::Draw()
 			case TerrainList::ItemAll:
 				break;
 			
-			
-			
-			
 			default:
 				break;
 			}
