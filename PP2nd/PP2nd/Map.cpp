@@ -9,6 +9,7 @@ Map::Map()
 
 Map::~Map()
 {
+	itemPtrVec.clear();
 }
 
 void Map::Init()
@@ -149,7 +150,7 @@ void Map::Draw()
 			
 			case TerrainList::CUBE:
 				itemPtr = new Cube();
-				itemPtr->Init(MHandle,pos);
+				itemPtr->Init(MHandle,pos,this);
 				break;
 
 				/// アイテムを追加したら更新
@@ -163,8 +164,8 @@ void Map::Draw()
 			/// 配置確認を実行
 			if(itemPtr != nullptr)
 			{
-				itemPtr->Confirm();
 				itemPtrVec.push_back(itemPtr);
+				itemPtr->Confirm();
 			}
 		}
 		/// 後でアクティブに
@@ -225,6 +226,16 @@ void Map::AddStart(Vector2Int pos)
 void Map::AddGoal(Vector2Int pos)
 {
 
+}
+
+void Map::RemoveItemPtr(Item* target)
+{
+	auto it = find(itemPtrVec.begin(), itemPtrVec.end(), target);
+	if(it != itemPtrVec.end())
+	{
+		delete *it;
+		itemPtrVec.erase(it);
+	}
 }
 
 void Map::LoadTerrainInfo(int)

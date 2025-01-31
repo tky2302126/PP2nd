@@ -156,7 +156,7 @@ _mapInfo GameManager::GetMapInfo() const
 }
 
 /// <summary>
-/// 地形情報を更新する
+/// 追加地形情報を更新する
 /// </summary>
 /// <param name="name"></param>
 /// <param name="pos"></param>
@@ -166,6 +166,21 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 	int col = floor(pos.x / MAP_UNIT);
 
 	terrainInfo[row][col] = name;
+
+	///更新したら通知する
+	EnemyManager::GetInstance().ReCalculateRoute();
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="pos"></param>
+void GameManager::RemoveTerrainInfo(VECTOR pos)
+{
+	int row = floor(pos.z / MAP_UNIT);
+	int col = floor(pos.x / MAP_UNIT);
+
+	terrainInfo[row][col] = TerrainList::None;
 
 	///更新したら通知する
 	EnemyManager::GetInstance().ReCalculateRoute();

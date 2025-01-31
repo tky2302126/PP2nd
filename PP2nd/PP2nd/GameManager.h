@@ -29,6 +29,7 @@ public:
 	vector<vector<TerrainList>> GetTerrainInfo() const;
 	_mapInfo GetMapInfo() const;
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
+	void RemoveTerrainInfo(VECTOR pos);
 	void LoadTerrainInfo(int day);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
