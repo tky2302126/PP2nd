@@ -35,5 +35,9 @@ void TestScene::Update() const
 	mainScreenUPtr->Update();
 	EnemyManager::GetInstance().DrawRouteTest();
 #pragma endregion
+	if(CheckHitKey(KEY_INPUT_E))
+	{
+		EnemyManager::GetInstance().SpawnEnemyTest();
+	}
 
 }

@@ -9,6 +9,7 @@ public:
 	void SearchRoute();
 	bool ReachGoal();
 	Vector2Int& GetStartPos() { return pos; }
+	vector<Vector2Int> GetRoute() const { return route; }
 	void DrawRouteTest();
 private:
 	Vector2Int pos;

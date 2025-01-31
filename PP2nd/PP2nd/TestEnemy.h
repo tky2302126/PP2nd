@@ -11,6 +11,7 @@ public:
 	void Update() const override;
 	void SetRoute(vector<Vector2Int> _route) override;
 private:
+	VECTOR position;
 	vector<Vector2Int> myRoute;
 };
 

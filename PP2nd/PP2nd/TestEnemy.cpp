@@ -1,6 +1,7 @@
 #include "TestEnemy.h"
 
 TestEnemy::TestEnemy()
+	:myRoute(vector<Vector2Int>())
 {
 }
 
@@ -26,4 +27,5 @@ void TestEnemy::Update() const
 
 void TestEnemy::SetRoute(vector<Vector2Int> _route)
 {
+	myRoute = _route;
 }

@@ -1,4 +1,5 @@
 ﻿#include "EnemyManager.h"
+#include "TestEnemy.h"
 
 UniquePtr<EnemyManager> EnemyManager::Instance = nullptr;
 
@@ -82,6 +83,15 @@ void EnemyManager::ReCalculateRoute()
 
 void EnemyManager::SpawnEnemyTest()
 {
+	if(!startPtrVec.empty())
+	{
+		for (int i = 0; i < startPtrVec.size(); i++)
+		{
+			Enemy* testEnemyPtr = new TestEnemy();
+			testEnemyPtr->Init(-1);
+			testEnemyPtr->SetRoute(startPtrVec[i]->GetRoute());
+		}
+	}
 }
 
 void EnemyManager::UnInit()
