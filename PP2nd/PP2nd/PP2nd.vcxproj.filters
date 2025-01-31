@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\Manager">
       <UniqueIdentifier>{59c53bd3-9819-46b1-9866-396148451855}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Enemys">
+      <UniqueIdentifier>{d2f56153-ab43-4459-b198-d4b46fc131bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DrawPixel.cpp">
@@ -74,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="Start.cpp">
       <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="TestEnemy.cpp">
+      <Filter>ソース ファイル\Enemys</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="Start.h">
       <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEnemy.h">
+      <Filter>ソース ファイル\Enemys</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

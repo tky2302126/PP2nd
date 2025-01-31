@@ -21,12 +21,13 @@ public:
 	void OnExit() const override;
 	void Draw() const override;
 	void Update() const override;
-	void Confirm() const override;
+	void Confirm() override;
 
 	int& GetMHandle() const override;
 private:
 	int MHandle;
 	VECTOR pos;
 	bool isConfirm = false;
+	
 };
 

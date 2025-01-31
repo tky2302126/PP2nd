@@ -54,6 +54,10 @@ constexpr auto HUD_AREA_TOP = 50;
 constexpr auto HUD_AREA_BOTTOM = WINDOW_HEIGHT- HUD_ITEM_SIZE;
 constexpr auto ITEMPANEL_SELECTED = HUD_ITEM_SIZE / 5;
 
+constexpr auto CONFIRM_PANEL_OFFSET = 25;
+constexpr auto CONFIRM_PANEL_SIZE = 40;
+//constexpr auto CONFIRM_PANEL_OFFSET_Y = 25;
+
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
@@ -199,6 +203,8 @@ enum class HDKey
 	Play,
 	Pause,
 	Fast_Forward,
+	Check,
+	Cross,
 	Cube =0,
 	Item2,
 	Item3,

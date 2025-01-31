@@ -1,5 +1,6 @@
 ﻿#include "GameManager.h"
 #include "EnemyManager.h"
+#include "Item.h"
 
 UniquePtr<GameManager> GameManager::Instance = nullptr;
 
@@ -18,14 +19,31 @@ GameManager::~GameManager()
 void GameManager::Load()
 {
 #pragma region デバッグ用
-	HandleData buff;
+	HandleData Cube;
 	fs::path GHandlePath = "./Resource/cube.png";
 	string GHandlePathString = GHandlePath.string();
 	fs::path MHandlePath = "./Resource/stone.mv1";
 	string MHandlePathString = MHandlePath.string();
-	buff.GHandle = LoadGraph(GHandlePathString.c_str());
-	buff.MHandle = MV1LoadModel(MHandlePathString.c_str());
-	handleDatas[HDKey::Cube] = buff ;
+	Cube.GHandle = LoadGraph(GHandlePathString.c_str());
+	Cube.MHandle = MV1LoadModel(MHandlePathString.c_str());
+	handleDatas[HDKey::Cube] = Cube ;
+
+	HandleData check{};
+	GHandlePath = "./Resource/check-mark.png";
+	GHandlePathString = GHandlePath.string();
+	check.GHandle = LoadGraph(GHandlePathString.c_str());
+	check.MHandle = -1;
+	handleDatas[HDKey::Check] = check;
+	
+	HandleData cross{};
+	GHandlePath = "./Resource/cancel.png";
+	GHandlePathString = GHandlePath.string();
+	cross.GHandle = LoadGraph(GHandlePathString.c_str());
+	cross.MHandle = -1;
+	handleDatas[HDKey::Cross] = cross;
+
+	Item::gHandleCheck = handleDatas[HDKey::Check].GHandle;
+	Item::gHandleCross = handleDatas[HDKey::Cross].GHandle;
 
 #pragma endregion
 
