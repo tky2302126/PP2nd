@@ -80,6 +80,10 @@ void EnemyManager::ReCalculateRoute()
 	}
 }
 
+void EnemyManager::SpawnEnemyTest()
+{
+}
+
 void EnemyManager::UnInit()
 {
 }

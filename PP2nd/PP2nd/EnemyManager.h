@@ -21,11 +21,17 @@ public:
 	vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
 	void ReCalculateRoute();
+	void SpawnEnemyTest();
 private:
 	
 	/// ゴールまでのルート
 	/// スタートとゴール、それまでに経由する点を保有
 	vector<Start*> startPtrVec;
+
+	/// <summary>
+	/// ゴールに向かう敵
+	/// </summary>
+	vector<Enemy*> enemyPtrVec;
 
 	static UniquePtr<EnemyManager> Instance;
 };

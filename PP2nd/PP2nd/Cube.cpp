@@ -1,7 +1,8 @@
-#include "Cube.h"
+ï»¿#include "Cube.h"
 
 Cube::Cube()
-    :MHandle(-1)
+    :MHandle(-1),
+    pos(VECTOR())
 {
 }
 
@@ -22,7 +23,7 @@ void Cube::Init(int _Ghandle, VECTOR _pos)
 {
     MHandle = _Ghandle;
     pos = _pos;
-    /// –„‚Ü‚ç‚È‚¢‚æ‚¤‚É‚ ‚°‚é
+    /// åŸ‹ã¾ã‚‰ãªã„ã‚ˆã†ã«ã‚ã’ã‚‹
     pos.y += MAP_UNIT / 2;
 }
 
@@ -46,17 +47,23 @@ void Cube::Draw() const
 
 void Cube::Update() const
 {
-    /// ƒJƒƒ‰‚Ì•`‰æ”ÍˆÍ‚È‚çÀs
+    /// ã‚«ãƒ¡ãƒ©ã®æç”»ç¯„å›²ãªã‚‰å®Ÿè¡Œ
     Draw();
+
+    /// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‚‰ç¢ºèªUIã‚’è¡¨ç¤º
 }
 
 /// <summary>
-/// Šm”FUI‚ğ•\¦‚·‚é
-/// ƒQ[ƒ€ƒXƒs[ƒh‚ğ’x‚­‚·‚é
+/// è¨­ç½®ã®ç¢ºèª
+/// ã‚²ãƒ¼ãƒ ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’é…ãã™ã‚‹
 /// </summary>
 void Cube::Confirm() const
 {
-    /// ‚¢‚Á‚½‚ñ“o˜^‚Ì‚İ
+    /// ç¢ºèªUIã‚’è¡¨ç¤ºã™ã‚‹
+
+    /// ã„ã£ãŸã‚“ç™»éŒ²ã®ã¿
+    /// è©¦ã—ã«ç½®ã„ã¦é€²è¡Œãƒ«ãƒ¼ãƒˆãŒé–‰é–ã•ã‚Œãªã„ã‹ç¢ºèª
+
     GameManager::GetInstance().AddTerrainInfo(TerrainList::CUBE, pos);
 }
 
