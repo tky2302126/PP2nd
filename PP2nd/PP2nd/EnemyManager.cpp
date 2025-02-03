@@ -95,10 +95,12 @@ void EnemyManager::SpawnEnemyTest()
 	{
 		for (int i = 0; i < startPtrVec.size(); i++)
 		{
+			if (enemyCountTest > 1) { continue; }
 			Enemy* testEnemyPtr = new TestEnemy();
 			testEnemyPtr->Init(-1,startPtrVec[i]);
 			testEnemyPtr->SetRoute(startPtrVec[i]->GetRoute());
 			enemyPtrVec.push_back(testEnemyPtr);
+			enemyCountTest++;
 		}
 	}
 }

@@ -44,7 +44,7 @@ void MainScreen::UnInit()
 void MainScreen::Draw()
 {
 	mapUPtr->Update();
-	hudUPtr->Update();
+	hudUPtr->Update(135);
 }
 
 /// <summary>
@@ -58,6 +58,10 @@ void MainScreen::Update()
 	// VECTOR cameraPos = cameraUPtr->GetPosition();
 	// DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
 #pragma endregion
+}
+
+void MainScreen::TimerUpdate(int remainTime)
+{
 }
 
 /// <summary>

@@ -21,6 +21,7 @@ public:
 	void Load();
 	void ReLoad();
 	void Draw();
+	void Draw(int);
 	void Update();
 	void Update(int remainTime);
 	void RegistItem(int gHandle);

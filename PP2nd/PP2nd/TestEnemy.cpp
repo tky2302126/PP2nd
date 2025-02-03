@@ -47,7 +47,7 @@ void TestEnemy::Move()
 		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
 		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
-		if(distance <= DBL_EPSILON)
+		if(distance <= ENEMY_MOVE_SPEED)
 		{
 			myRoute.erase(myRoute.begin());
 		}

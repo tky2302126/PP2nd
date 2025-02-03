@@ -38,5 +38,7 @@ private:
 	vector<Enemy*> enemyPtrVec;
 	int trialCount = 0; // 経路探索の試行回数
 	static UniquePtr<EnemyManager> Instance;
+
+	int enemyCountTest = 0;
 };
 

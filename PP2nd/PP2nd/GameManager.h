@@ -40,5 +40,6 @@ private:
 	VECTOR cameraPos = VECTOR();
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
+	bool isSlow = false;
 };
 
