@@ -66,7 +66,11 @@ void SceneManager::ChangeScene(SceneName name)
 void SceneManager::Update()
 {
 	int startTime = GetNowCount();
-	
+
+	/// マネージャークラスのアップデート
+	InputSystem::GetInstance().Update();
+	EnemyManager::GetInstance().Update();
+
 	if (scenePtr != nullptr) { scenePtr->Update(); }
 
 	int tookTime = GetNowCount() - startTime;

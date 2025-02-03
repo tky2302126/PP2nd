@@ -21,8 +21,6 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-//template <typename T1,typename T2>
-//using unmap = unordered_map<T1,T2>;
 template<typename T1,typename T2,typename T3 = hash<T1>>
 using unmap = unordered_map<T1, T2, T3>;
 
@@ -57,6 +55,8 @@ constexpr auto ITEMPANEL_SELECTED = HUD_ITEM_SIZE / 5;
 constexpr auto CONFIRM_PANEL_OFFSET = 25;
 constexpr auto CONFIRM_PANEL_SIZE = 40;
 //constexpr auto CONFIRM_PANEL_OFFSET_Y = 25;
+
+constexpr auto ENEMY_MOVE_SPEED = 6.0f;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
@@ -252,6 +252,22 @@ inline int GetHeuristic(const Vector2Int& a, const Vector2Int& b)
 inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
 {
 	return pos.x >= -1 && pos.y >= -1 && pos.x <= mapInfo.width && pos.y <= mapInfo.height;
+}
+
+/// 配列座標をワールド座標(グリッドフィールド中央)に変換
+inline VECTOR ArrayPos2WorldPosCenter(const int x, const int y)
+{
+	VECTOR result = VGet(x * MAP_UNIT + MAP_UNIT / 2, 0, y * MAP_UNIT + MAP_UNIT / 2);
+		return result;
+}
+
+/// <summary>
+/// 配列座標をワールド座標に変換
+/// </summary>
+inline VECTOR ArrayPos2WorldPos(const int x, const int y)
+{
+	VECTOR result = VGet(x * MAP_UNIT, 0, y * MAP_UNIT);
+	return result;
 }
 #pragma endregion
 

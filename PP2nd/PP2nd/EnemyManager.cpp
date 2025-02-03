@@ -79,6 +79,14 @@ void EnemyManager::ReCalculateRoute()
 			startPtrVec[i]->SearchRoute();
 		}
 	}
+
+	if(!enemyPtrVec.empty())
+	{
+		for(int i=0; i<enemyPtrVec.size();i++)
+		{
+			enemyPtrVec[i]->CompareRoute(enemyPtrVec[i]->GetMyStart()->GetRoute());
+		}
+	}
 }
 
 void EnemyManager::SpawnEnemyTest()
@@ -88,10 +96,21 @@ void EnemyManager::SpawnEnemyTest()
 		for (int i = 0; i < startPtrVec.size(); i++)
 		{
 			Enemy* testEnemyPtr = new TestEnemy();
-			testEnemyPtr->Init(-1);
+			testEnemyPtr->Init(-1,startPtrVec[i]);
 			testEnemyPtr->SetRoute(startPtrVec[i]->GetRoute());
+			enemyPtrVec.push_back(testEnemyPtr);
 		}
 	}
+}
+
+void EnemyManager::IncreaseTrialCount()
+{
+	trialCount++;
+}
+
+void EnemyManager::ResetTrialCount()
+{
+	trialCount = 0;
 }
 
 void EnemyManager::UnInit()
@@ -109,4 +128,15 @@ void EnemyManager::InitStart()
 void EnemyManager::Load(int day)
 {
 
+}
+
+void EnemyManager::Update()
+{
+	if(!enemyPtrVec.empty())
+	{
+		for(int i=0; i<enemyPtrVec.size();i++)
+		{
+			enemyPtrVec[i]->Update();
+		}
+	}
 }

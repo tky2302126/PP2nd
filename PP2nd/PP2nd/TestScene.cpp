@@ -23,7 +23,6 @@ TestScene::~TestScene()
 void TestScene::Update() const 
 {
 	DrawFormatString(0, 0, 65535, " テストシーン");
-	InputSystem::GetInstance().Update();
 #pragma region マウス確認
 	/// MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
 	/// 

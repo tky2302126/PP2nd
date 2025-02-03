@@ -16,12 +16,16 @@ public:
 	void UnInit();
 	void InitStart();
 	void Load(int day);
+	void Update();
 	void InitTest();
 	void LoadTest();
 	vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
 	void ReCalculateRoute();
 	void SpawnEnemyTest();
+	void IncreaseTrialCount();
+	void ResetTrialCount();
+	int GetTrialCount() { return trialCount; }
 private:
 	
 	/// ゴールまでのルート
@@ -32,7 +36,7 @@ private:
 	/// ゴールに向かう敵
 	/// </summary>
 	vector<Enemy*> enemyPtrVec;
-
+	int trialCount = 0; // 経路探索の試行回数
 	static UniquePtr<EnemyManager> Instance;
 };
 
