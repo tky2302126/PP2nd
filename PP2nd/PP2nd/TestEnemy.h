@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Enemy.h"
 
 class Start;
@@ -20,8 +20,8 @@ public:
 private:
 	VECTOR position;
 	vector<Vector2Int> myRoute;
-	vector<Vector2Int> tempRoute; /// ˆê“I‚ÈŒo˜H
+	vector<Vector2Int> tempRoute; /// ä¸€æ™‚çš„ãªçµŒè·¯
 	Start* myStart;
-	bool pathFound = true; /// ƒ‹[ƒg’TõÏ‚İ‚Å‚ ‚é‚±‚Æ‚ğ¦‚·
+	bool pathFound = true; /// ãƒ«ãƒ¼ãƒˆæ¢ç´¢æ¸ˆã¿ã§ã‚ã‚‹ã“ã¨ã‚’ç¤ºã™
 };
 

@@ -1,4 +1,4 @@
-#include "SceneManager.h"
+ï»¿#include "SceneManager.h"
 #include "Scene.h"
 #include "TestScene.h"
 
@@ -54,9 +54,9 @@ void SceneManager::Load(SceneName name)
 }
 
 /// <summary>
-/// ƒV[ƒ“‘JˆÚ‚ğÀs‚·‚é
-/// ƒ[ƒhƒV[ƒ“‚ğ‚Í‚³‚ñ‚Å‚©‚ç‘JˆÚ‚·‚é‚½‚ß
-/// preLoad -> name ‚Ì‡‚ğ‘z’è
+/// ã‚·ãƒ¼ãƒ³é·ç§»ã‚’å®Ÿè¡Œã™ã‚‹
+/// ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ãƒ³ã‚’ã¯ã•ã‚“ã§ã‹ã‚‰é·ç§»ã™ã‚‹ãŸã‚
+/// preLoad -> name ã®é †ã‚’æƒ³å®š
 /// </summary>
 /// <param name="name"></param>
 void SceneManager::ChangeScene(SceneName name)
@@ -67,7 +67,7 @@ void SceneManager::Update()
 {
 	int startTime = GetNowCount();
 
-	/// ƒ}ƒl[ƒWƒƒ[ƒNƒ‰ƒX‚ÌƒAƒbƒvƒf[ƒg
+	/// ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¯ãƒ©ã‚¹ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	InputSystem::GetInstance().Update();
 	EnemyManager::GetInstance().Update();
 

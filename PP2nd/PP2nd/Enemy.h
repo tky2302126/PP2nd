@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 
 class Start;
 
 /// <summary>
-/// ƒGƒlƒ~[‚ÌŠî’êƒNƒ‰ƒX
+/// ã‚¨ãƒãƒŸãƒ¼ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 /// </summary>
 class Enemy
 {

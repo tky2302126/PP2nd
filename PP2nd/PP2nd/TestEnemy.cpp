@@ -1,4 +1,4 @@
-#include "TestEnemy.h"
+ï»¿#include "TestEnemy.h"
 #include "Start.h"
 #include "manager.h"
 
@@ -35,9 +35,9 @@ void TestEnemy::Draw() const
 
 void TestEnemy::Move()
 {
-	/// ©g‚Ìpos‚ğroute‚ğQl‚É“®‚©‚·
-	/// !pathFound‚ªtrue‚Å‚È‚¢‚ÍtempRoute‚ÅŒvZ
-	/// myroute[0]->[1]‚ÖˆÚ“®‚·‚é
+	/// è‡ªèº«ã®posã‚’routeã‚’å‚è€ƒã«å‹•ã‹ã™
+	/// !pathFoundãŒtrueã§ãªã„æ™‚ã¯tempRouteã§è¨ˆç®—
+	/// myroute[0]->[1]ã¸ç§»å‹•ã™ã‚‹
 	if(myRoute.size()>=2)
 	{
 		VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
@@ -76,18 +76,18 @@ void TestEnemy::CompareRoute(vector<Vector2Int> _route)
 	auto route = _route;
 	while (true)
 	{
-		/// ‚È‚©‚Á‚½ê‡Aƒ‹[ƒg‚ğÄİ’è‚·‚é
+		/// ãªã‹ã£ãŸå ´åˆã€ãƒ«ãƒ¼ãƒˆã‚’å†è¨­å®šã™ã‚‹
 		if(route.empty())
 		{
 			RecalculateRoute();
 			break;
 		}
-		/// ƒXƒ|[ƒ“’n“_‚©‚ç‚Ìisƒ‹[ƒg‚Æ©•ª‚Ìƒ‹[ƒg‚ğ”äŠr‚·‚é
+		/// ã‚¹ãƒãƒ¼ãƒ³åœ°ç‚¹ã‹ã‚‰ã®é€²è¡Œãƒ«ãƒ¼ãƒˆã¨è‡ªåˆ†ã®ãƒ«ãƒ¼ãƒˆã‚’æ¯”è¼ƒã™ã‚‹
 		if(route.front() == myRoute.front())
 		{
-			/// V‚µ‚¢isƒ‹[ƒg‚É©•ª‚Ìƒ‹[ƒg“à‚ÌÀ•W‚ª‚ ‚Á‚½ê‡A
+			/// æ–°ã—ã„é€²è¡Œãƒ«ãƒ¼ãƒˆã«è‡ªåˆ†ã®ãƒ«ãƒ¼ãƒˆå†…ã®åº§æ¨™ãŒã‚ã£ãŸå ´åˆã€
 			myRoute.clear();
-			myRoute = route; /// ‚»‚Ì’n“_‚©‚ç’u‚«Š·‚¦‚é
+			myRoute = route; /// ãã®åœ°ç‚¹ã‹ã‚‰ç½®ãæ›ãˆã‚‹
 			break;
 		}
 		else
@@ -98,17 +98,17 @@ void TestEnemy::CompareRoute(vector<Vector2Int> _route)
 }
 
 /// <summary>
-/// ƒ‹[ƒg‚ÌÄİ’è
+/// ãƒ«ãƒ¼ãƒˆã®å†è¨­å®š
 /// </summary>
 /// <param name="_route"></param>
 void TestEnemy::RecalculateRoute()
 {
-    /// ƒ‹[ƒg‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡AÄŒvZ‚ª•K—v‚©ŒvZ‚·‚é
-    /// •ÏX‰ÓŠ‚Ì‚İÄŒvZ‚·‚é Œ»s1ƒ}ƒX‚¸‚Â•ÏX‚ªs‚í‚ê‚é‚½‚ßA
-    /// áŠQ•¨‚ªœ‚©‚ê‚½ê‡‚ÍÄŒvZ‚Ì•K—v‚ª‚ ‚é
+    /// ãƒ«ãƒ¼ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã€å†è¨ˆç®—ãŒå¿…è¦ã‹è¨ˆç®—ã™ã‚‹
+    /// å¤‰æ›´ç®‡æ‰€ã®ã¿å†è¨ˆç®—ã™ã‚‹ ç¾è¡Œ1ãƒã‚¹ãšã¤å¤‰æ›´ãŒè¡Œã‚ã‚Œã‚‹ãŸã‚ã€
+    /// éšœå®³ç‰©ãŒé™¤ã‹ã‚ŒãŸå ´åˆã¯å†è¨ˆç®—ã®å¿…è¦ãŒã‚ã‚‹
 
     const vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
-    /// ”z—ñÀ•W‚Ö•ÏŠ·
+    /// é…åˆ—åº§æ¨™ã¸å¤‰æ›
     Vector2Int goal =
     {
         GameManager::GetInstance().GetMapInfo().goalWidth - 1,
@@ -117,9 +117,9 @@ void TestEnemy::RecalculateRoute()
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
     auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-    priority_queue<Node*, vector<Node*>, Compare> openList; /// ’Tõ—\’èƒGƒŠƒA
-    unordered_set<Vector2Int, Hash> closedSet; ///’TõÏ‚İƒGƒŠƒA
-    unmap<Vector2Int, Node*, Hash> nodeMap; // ƒm[ƒhŠÇ—
+    priority_queue<Node*, vector<Node*>, Compare> openList; /// æ¢ç´¢äºˆå®šã‚¨ãƒªã‚¢
+    unordered_set<Vector2Int, Hash> closedSet; ///æ¢ç´¢æ¸ˆã¿ã‚¨ãƒªã‚¢
+    unmap<Vector2Int, Node*, Hash> nodeMap; // ãƒãƒ¼ãƒ‰ç®¡ç†
     Vector2Int startPos = { myRoute.front().x -1, myRoute.front().y -1};
     Node* start = new Node(startPos, 0, GetHeuristic(startPos, goal));
 
@@ -155,8 +155,8 @@ void TestEnemy::RecalculateRoute()
                 continue;
             }
             int cost = current->cost + 1;
-            /// ’nŒ`î•ñ‚Ì’l‚ğQÆ
-            ///! —ÌˆæŠO‚ğŒŸõ‚·‚éƒŠƒXƒN‚ğ‰ñ”ğ
+            /// åœ°å½¢æƒ…å ±ã®å€¤ã‚’å‚ç…§
+            ///! é ˜åŸŸå¤–ã‚’æ¤œç´¢ã™ã‚‹ãƒªã‚¹ã‚¯ã‚’å›é¿
             auto terrain = TerrainList::None;
             if (neighborPos.x >= 0 && neighborPos.y >= 0
                 && neighborPos.x < terrainInfo[0].size() && neighborPos.y < terrainInfo.size())
@@ -176,12 +176,12 @@ void TestEnemy::RecalculateRoute()
                 cost += 99;
                 break;
 
-                /// ’nŒ`‚ğ‘‚â‚µ‚½‚Æ‚«‚Éˆ—‚ğ’Ç‰Á
+                /// åœ°å½¢ã‚’å¢—ã‚„ã—ãŸã¨ãã«å‡¦ç†ã‚’è¿½åŠ 
             default:
                 break;
             }
 
-            /// ‚æ‚è—D‚ê‚½Œo˜H‚ª‚ ‚é‚Æ‚«ƒXƒLƒbƒv
+            /// ã‚ˆã‚Šå„ªã‚ŒãŸçµŒè·¯ãŒã‚ã‚‹ã¨ãã‚¹ã‚­ãƒƒãƒ—
             if (nodeMap.count(neighborPos) && nodeMap[neighborPos]->cost <= cost)
             {
                 continue;
@@ -193,5 +193,5 @@ void TestEnemy::RecalculateRoute()
         }
     }
     for (auto& [_, node] : nodeMap) { delete node; }
-    /// Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Ìˆ—
+    /// è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã®å‡¦ç†
 }
