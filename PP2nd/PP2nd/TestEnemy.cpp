@@ -42,7 +42,7 @@ void TestEnemy::Move()
 	{
 		VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
 		VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
-		VECTOR moveVec = VSub(end, start);
+		VECTOR moveVec = VSub(end, position);
 		moveVec = VNorm(moveVec);
 		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
