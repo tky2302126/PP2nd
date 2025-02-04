@@ -1,8 +1,14 @@
-﻿  InputSystem.cpp
+﻿  TestScene.cpp
 D:\PP2nd\PP2nd\PP2nd\define.h(177,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(186,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe

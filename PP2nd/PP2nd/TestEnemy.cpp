@@ -44,6 +44,8 @@ void TestEnemy::Move()
 		VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
 		VECTOR moveVec = VSub(end, position);
 		moveVec = VNorm(moveVec);
+        if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
+        if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
 		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
 		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));

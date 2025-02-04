@@ -18,7 +18,6 @@ public:
 	void Load();
 	void Init();
 	void UnInit();
-	void Update(int deltaTime);
 	HandleData LoadHandleData(HDKey key);
 	HandleData& GetHandleData(HDKey key);
 	void SetItemInfo(ItemInfo info);
@@ -34,12 +33,6 @@ public:
 	void LoadTerrainInfo(int day);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
-	void ChangeGameSpeedFaster(bool);
-	void ChangeGameSpeedSlower(bool);
-	bool IsFast() const { return isFast; }
-	bool IsSlow() const { return isSlow; }
-	void SetRemainTime(float);
-	float RemainTime() const { return remainTime /1000; }
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
@@ -47,8 +40,5 @@ private:
 	VECTOR cameraPos = VECTOR();
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
-	bool isSlow = false;
-	bool isFast = false;
-	int remainTime = 0; /// メインループの制限時間ミリ秒単位で管理 
 };
 

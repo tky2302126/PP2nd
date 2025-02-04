@@ -134,7 +134,7 @@ void HUD::Draw()
 
 void HUD::Draw(int _remainTime)
 {
-	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(128, 128, 128), TRUE);
+	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(64, 64, 64), TRUE);
 
 	/// int minute = floor(_remainTime / 60);
 	/// 

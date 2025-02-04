@@ -11,6 +11,7 @@ TestScene::TestScene()
 	/// 
 	GameManager::GetInstance().LoadTest();
 	EnemyManager::GetInstance().LoadTest();
+	TimeManager::GetInstance().SetTimer(1000);
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
@@ -42,20 +43,18 @@ void TestScene::Update() const
 	/// ゲームスピードテスト
 	if(CheckHitKey(KEY_INPUT_1))
 	{
-		GameManager::GetInstance().ChangeGameSpeedSlower(true);
+		TimeManager::GetInstance().ChangeGameSpeedSlower(true);
 	}
 
 	if(CheckHitKey(KEY_INPUT_2))
 	{
-		GameManager::GetInstance().ChangeGameSpeedSlower(false);
-		GameManager::GetInstance().ChangeGameSpeedFaster(false);
+		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+		TimeManager::GetInstance().ChangeGameSpeedFaster(false);
 	}
 
 	if(CheckHitKey(KEY_INPUT_3))
 	{
-		GameManager::GetInstance().ChangeGameSpeedFaster(true);
+		TimeManager::GetInstance().ChangeGameSpeedFaster(true);
 	}
-
-
 
 }

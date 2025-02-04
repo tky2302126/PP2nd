@@ -58,8 +58,8 @@ constexpr auto CONFIRM_PANEL_OFFSET = 25;
 constexpr auto CONFIRM_PANEL_SIZE = 40;
 
 constexpr auto ENEMY_MOVE_SPEED = 6.0f;
-constexpr auto GAMESPEED_SLOW = 0.5f;
-constexpr auto GAMESPEED_FAST = 2.0f;
+constexpr auto GAMESPEED_SLOWRATE = 0.5f;
+constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);

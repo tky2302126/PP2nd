@@ -44,7 +44,8 @@ void MainScreen::UnInit()
 void MainScreen::Draw()
 {
 	mapUPtr->Update();
-	hudUPtr->Update(GameManager::GetInstance().RemainTime());
+	int time = TimeManager::GetInstance().RemainTime();
+	hudUPtr->Update(time);
 }
 
 /// <summary>
@@ -75,5 +76,10 @@ void MainScreen::AddPoint(Vector2Int pos, Tag tag)
 	{
 		mapUPtr->AddGoal(pos);
 	}
+}
+
+void MainScreen::SetTimer(int _remainTime)
+{
+	remainTime = _remainTime;
 }
 

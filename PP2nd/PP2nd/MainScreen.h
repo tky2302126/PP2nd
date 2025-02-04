@@ -18,9 +18,11 @@ public:
 	void Draw();
 	void Update();
 	void AddPoint(Vector2Int pos , Tag tag );
+	void SetTimer(int);
 private:
 	UniquePtr<HUD> hudUPtr;
 	UniquePtr<Map> mapUPtr;
 	UniquePtr<Camera> cameraUPtr;
+	int remainTime =0;
 };
 

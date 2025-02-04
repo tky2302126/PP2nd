@@ -65,6 +65,7 @@ void SceneManager::ChangeScene(SceneName name)
 
 void SceneManager::Update()
 {
+	/// ウィンドウアクティブを検知してカウントする
 	int startTime = GetNowCount();
 
 
@@ -75,20 +76,9 @@ void SceneManager::Update()
 	if (scenePtr != nullptr) { scenePtr->Update(); }
 
 	int tookTime = GetNowCount() - startTime;
-	GameManager::GetInstance().Update(tookTime);
-
 	int waitTime = FRAME_TIME_MS - tookTime;
-	/// プリミティブなゲーム内時間スケーリング
-	if(GameManager::GetInstance().IsFast())
-	{
-		waitTime = FRAME_TIME_MS / 2 - tookTime;
-	}
-
-	if(GameManager::GetInstance().IsSlow())
-	{
-		waitTime = FRAME_TIME_MS * 2 - tookTime;
-	}
 	if (waitTime > 0) { Sleep(waitTime); }
+	TimeManager::GetInstance().Update(FRAME_TIME_MS);
 }
 
 SceneManager& SceneManager::GetInstance()
