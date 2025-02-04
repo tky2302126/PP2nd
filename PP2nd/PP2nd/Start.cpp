@@ -28,8 +28,8 @@ void Start::SearchRoute()
     /// 配列座標へ変換
     Vector2Int goal =
     {
-        GameManager::GetInstance().GetMapInfo().goalWidth-1,
-        GameManager::GetInstance().GetMapInfo().goalHeight-1
+        GameManager::GetInstance().GetMapInfo().goalWidth,
+        GameManager::GetInstance().GetMapInfo().goalHeight
     };
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
@@ -37,7 +37,7 @@ void Start::SearchRoute()
     priority_queue<Node*, vector<Node*>, Compare> openList; /// 探索予定エリア
     unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
-    Vector2Int startPos = { pos.x - 1,pos.y - 1 };
+    Vector2Int startPos = { pos.x ,pos.y };
     Node* start = new Node(startPos, 0, GetHeuristic(pos, goal));
 
     openList.push(start);

@@ -8,6 +8,12 @@ HUD::HUD()
 HUD::~HUD()
 {
 	DeleteFontToHandle(fontHandle);
+	fs::path basePath = fs::current_path();
+	/// OSによって読み込まない？　未検証
+	fs::path relativePath = "Resource/GAGAGAGA-FREE.otf";
+	fs::path fullPath = basePath / relativePath;
+	string fontPath = fullPath.string();
+	RemoveFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
 }
 
 void HUD::Init()
@@ -15,8 +21,12 @@ void HUD::Init()
 	SetFontCacheToTextureFlag(TRUE);
 
 	/// パスを作成
-	string executablePath = GetExecutablePath();
-	string fontPath = executablePath + "\\Resource\\GAGAGAGA-FREE.otf";
+
+	fs::path basePath = fs::current_path();
+	/// OSによって読み込まない？　未検証
+	fs::path relativePath = "Resource/GAGAGAGA-FREE.otf";
+	fs::path fullPath = basePath / relativePath;
+	string fontPath = fullPath.string();
 
 	/// フォントデータを一時的に取り込み
 	int result = AddFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
@@ -32,6 +42,9 @@ void HUD::Init()
 	timerPanelRect.right = centerPos + textWidth;
 	timerPanelRect.bottom = textHeight;
 	
+
+
+
 	/// HUDパネルの準備
 
 }
@@ -127,7 +140,8 @@ void HUD::Draw(int _remainTime)
 	
 	int second = _remainTime % 60;
 
-	string remainTime = to_string(minute) + ":" + to_string(second);
+	/// !コロンが出ないのでカウントのみにする フォントアセット側の不具合？
+	string remainTime = to_string(_remainTime);
 
 	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);
 

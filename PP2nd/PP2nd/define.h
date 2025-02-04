@@ -54,9 +54,10 @@ constexpr auto ITEMPANEL_SELECTED = HUD_ITEM_SIZE / 5;
 
 constexpr auto CONFIRM_PANEL_OFFSET = 25;
 constexpr auto CONFIRM_PANEL_SIZE = 40;
-//constexpr auto CONFIRM_PANEL_OFFSET_Y = 25;
 
 constexpr auto ENEMY_MOVE_SPEED = 6.0f;
+constexpr auto GAMESPEED_SLOW = 0.5f;
+constexpr auto GAMESPEED_FAST = 2.0f;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
@@ -154,7 +155,7 @@ enum class Tag :int
 	Goal
 };
 
-///
+/// 絶対パスを取得
 inline string GetExecutablePath()
 {
 	char buffer[MAX_PATH];
@@ -251,7 +252,7 @@ inline int GetHeuristic(const Vector2Int& a, const Vector2Int& b)
 
 inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
 {
-	return pos.x >= -1 && pos.y >= -1 && pos.x <= mapInfo.width && pos.y <= mapInfo.height;
+	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width && pos.y <= mapInfo.height;
 }
 
 /// 配列座標をワールド座標(グリッドフィールド中央)に変換

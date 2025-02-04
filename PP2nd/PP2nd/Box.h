@@ -20,7 +20,7 @@ public:
 	VECTOR GetBoxCenterPos(int height, int width)
 	{
 		VECTOR pos;
-		pos = VGet( width*MAP_UNIT-MAP_UNIT/2, MAP_UNIT/2, height*MAP_UNIT-MAP_UNIT/2);
+		pos = VGet( width*MAP_UNIT+MAP_UNIT/2, MAP_UNIT/2, height*MAP_UNIT+MAP_UNIT/2);
 		return pos;
 	}
 private:

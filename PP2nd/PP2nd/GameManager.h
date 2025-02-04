@@ -33,6 +33,9 @@ public:
 	void LoadTerrainInfo(int day);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
+	void ChangeGameSpeedFaster(bool);
+	void ChangeGameSpeedSlower(bool);
+
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
@@ -41,5 +44,6 @@ private:
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
 	bool isSlow = false;
+	bool isFast = false;
 };
 

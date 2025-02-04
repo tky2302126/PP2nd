@@ -207,7 +207,17 @@ void GameManager::InitTerrainInfo(int width, int height)
 
 void GameManager::LoadTest()
 {
-	_mapInfo testMap(12, 9, 0, 5);
+	_mapInfo testMap(12, 9, 0, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
 	mapInfo = testMap;
+}
+
+void GameManager::ChangeGameSpeedFaster(bool _isfast)
+{
+	isFast = _isfast;
+}
+
+void GameManager::ChangeGameSpeedSlower(bool _isslow)
+{
+	isSlow = _isslow;
 }
