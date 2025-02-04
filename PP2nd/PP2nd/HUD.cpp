@@ -136,9 +136,9 @@ void HUD::Draw(int _remainTime)
 {
 	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(128, 128, 128), TRUE);
 
-	int minute = floor(_remainTime / 60);
-	
-	int second = _remainTime % 60;
+	/// int minute = floor(_remainTime / 60);
+	/// 
+	/// int second = _remainTime % 60;
 
 	/// !コロンが出ないのでカウントのみにする フォントアセット側の不具合？
 	string remainTime = to_string(_remainTime);

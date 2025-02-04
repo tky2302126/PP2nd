@@ -12,6 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetUseZBufferFlag(TRUE);
 	SetWriteZBufferFlag(TRUE);
 	SetUseBackCulling(TRUE);
+	SetAlwaysRunFlag(TRUE);
 	SetBackgroundColor(128, 128, 128, 128);
 
 	SetTransColor(255, 0, 255);

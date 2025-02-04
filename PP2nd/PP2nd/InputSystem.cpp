@@ -21,6 +21,10 @@ void InputSystem::UnInit()
 void InputSystem::Update()
 {
     GetMousePoint(&currentInfo.position.x, &currentInfo.position.y);
+    if (currentInfo.position.x <= 0) { currentInfo.position.x = 0; }
+    if (currentInfo.position.y <= 0) { currentInfo.position.y = 0; }
+    if (currentInfo.position.x >= WINDOW_WIDTH) { currentInfo.position.x = WINDOW_WIDTH; }
+    if (currentInfo.position.y >= WINDOW_HEIGHT) { currentInfo.position.x = WINDOW_HEIGHT; }
 
     /// (None || Canceled) && Input -> Started
     /// Started && Input -> Performed

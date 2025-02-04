@@ -61,6 +61,14 @@ void GameManager::Init()
 void GameManager::UnInit()
 {
 }
+/// <summary>
+/// 経過時間をゲームに反映
+/// </summary>
+/// <param name="deltaTime"> 経過時間(ミリ秒)</param>
+void GameManager::Update(int deltaTime)
+{
+	remainTime -= deltaTime;
+}
 
 /// <summary>
 /// 必要に応じて読み込む
@@ -210,6 +218,7 @@ void GameManager::LoadTest()
 	_mapInfo testMap(12, 9, 0, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
 	mapInfo = testMap;
+	SetRemainTime(135.0f);
 }
 
 void GameManager::ChangeGameSpeedFaster(bool _isfast)
@@ -222,4 +231,9 @@ void GameManager::ChangeGameSpeedSlower(bool _isslow)
 {
 	isSlow = _isslow;
 	if (isSlow) { isFast = false; }
+}
+
+void GameManager::SetRemainTime(float _remainTime)
+{
+	remainTime = _remainTime * 1000;
 }

@@ -17,7 +17,6 @@ public:
 	void UnInit();
 	void Draw();
 	void Update();
-	void TimerUpdate(int remainTime);
 	void AddPoint(Vector2Int pos , Tag tag );
 private:
 	UniquePtr<HUD> hudUPtr;

@@ -67,6 +67,7 @@ void SceneManager::Update()
 {
 	int startTime = GetNowCount();
 
+
 	/// マネージャークラスのアップデート
 	InputSystem::GetInstance().Update();
 	EnemyManager::GetInstance().Update();
@@ -74,6 +75,8 @@ void SceneManager::Update()
 	if (scenePtr != nullptr) { scenePtr->Update(); }
 
 	int tookTime = GetNowCount() - startTime;
+	GameManager::GetInstance().Update(tookTime);
+
 	int waitTime = FRAME_TIME_MS - tookTime;
 	/// プリミティブなゲーム内時間スケーリング
 	if(GameManager::GetInstance().IsFast())

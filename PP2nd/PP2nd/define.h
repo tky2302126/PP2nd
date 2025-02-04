@@ -30,6 +30,8 @@ using SharedPtr = shared_ptr<T>;
 template <typename T>
 using UniquePtr = unique_ptr<T>;
 
+using Clock = chrono::high_resolution_clock;
+
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
 
