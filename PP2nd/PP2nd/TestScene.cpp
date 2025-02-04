@@ -39,4 +39,20 @@ void TestScene::Update() const
 		EnemyManager::GetInstance().SpawnEnemyTest();
 	}
 
+	if(CheckHitKey(KEY_INPUT_1))
+	{
+		GameManager::GetInstance().ChangeGameSpeedSlower(true);
+	}
+
+	if(CheckHitKey(KEY_INPUT_2))
+	{
+		GameManager::GetInstance().ChangeGameSpeedSlower(false);
+		GameManager::GetInstance().ChangeGameSpeedFaster(false);
+	}
+
+	if(CheckHitKey(KEY_INPUT_3))
+	{
+		GameManager::GetInstance().ChangeGameSpeedFaster(true);
+	}
+
 }

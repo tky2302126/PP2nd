@@ -158,6 +158,7 @@
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Start.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TimeManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

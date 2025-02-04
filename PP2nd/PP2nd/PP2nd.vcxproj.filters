@@ -84,6 +84,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="TestEnemy.h">
       <Filter>ソース ファイル\Enemys</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -215,9 +215,11 @@ void GameManager::LoadTest()
 void GameManager::ChangeGameSpeedFaster(bool _isfast)
 {
 	isFast = _isfast;
+	if (isFast) { isSlow = false; }
 }
 
 void GameManager::ChangeGameSpeedSlower(bool _isslow)
 {
 	isSlow = _isslow;
+	if (isSlow) { isFast = false; }
 }

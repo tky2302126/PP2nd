@@ -75,6 +75,16 @@ void SceneManager::Update()
 
 	int tookTime = GetNowCount() - startTime;
 	int waitTime = FRAME_TIME_MS - tookTime;
+	/// プリミティブなゲーム内時間スケーリング
+	if(GameManager::GetInstance().IsFast())
+	{
+		waitTime = FRAME_TIME_MS / 2 - tookTime;
+	}
+
+	if(GameManager::GetInstance().IsSlow())
+	{
+		waitTime = FRAME_TIME_MS * 2 - tookTime;
+	}
 	if (waitTime > 0) { Sleep(waitTime); }
 }
 

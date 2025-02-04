@@ -252,7 +252,7 @@ inline int GetHeuristic(const Vector2Int& a, const Vector2Int& b)
 
 inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
 {
-	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width && pos.y <= mapInfo.height;
+	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width-1 && pos.y <= mapInfo.height-1;
 }
 
 /// 配列座標をワールド座標(グリッドフィールド中央)に変換

@@ -35,7 +35,8 @@ public:
 	void LoadTest();
 	void ChangeGameSpeedFaster(bool);
 	void ChangeGameSpeedSlower(bool);
-
+	bool IsFast() { return isFast; }
+	bool IsSlow() { return isSlow; }
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム

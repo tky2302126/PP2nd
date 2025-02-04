@@ -1,17 +1,15 @@
 ﻿  Box.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Box.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Box.cpp' をコンパイルしています)
   
   Camera.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -22,11 +20,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   
 D:\PP2nd\PP2nd\PP2nd\Camera.cpp(40,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
   Cube.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Cube.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Cube.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -36,19 +33,17 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'Cube.cpp' をコンパイルしています)
   
   EnemyManager.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
   
   GameManager.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'GameManager.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'GameManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -62,11 +57,10 @@ D:\PP2nd\PP2nd\PP2nd\GameManager.cpp(166,10): warning C4244: '初期化中': 'fl
 D:\PP2nd\PP2nd\PP2nd\GameManager.cpp(180,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
 D:\PP2nd\PP2nd\PP2nd\GameManager.cpp(181,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   HUD.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'HUD.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'HUD.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -78,19 +72,17 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
 D:\PP2nd\PP2nd\PP2nd\HUD.cpp(38,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
 D:\PP2nd\PP2nd\PP2nd\HUD.cpp(139,13): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
   InputSystem.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
   
   Item.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Item.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Item.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -100,11 +92,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'Item.cpp' をコンパイルしています)
   
   ItemPanel.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -114,11 +105,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
   
   MainScreen.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -128,11 +118,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
   
   Map.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Map.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Map.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -141,7 +130,7 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' へ
 D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Map.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(39,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(38,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Map.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Map.cpp(74,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
@@ -151,11 +140,10 @@ D:\PP2nd\PP2nd\PP2nd\Map.cpp(79,35): warning C4244: '引数': 'int' から 'floa
 D:\PP2nd\PP2nd\PP2nd\Map.cpp(257,94): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
 D:\PP2nd\PP2nd\PP2nd\Map.cpp(257,72): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   SceneManager.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -165,11 +153,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
   
   Start.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Start.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Start.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -179,11 +166,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   (ソース ファイル 'Start.cpp' をコンパイルしています)
   
   TestEnemy.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -194,11 +180,10 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' へ
   
 D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(49,18): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   TestScene.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -207,12 +192,18 @@ D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' へ
 D:\PP2nd\PP2nd\PP2nd\Item.h(30,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'TestScene.cpp' をコンパイルしています)
   
+  TimeManager.cpp
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
   main.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
-D:\PP2nd\PP2nd\PP2nd\define.h(176,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(175,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'main.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(185,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(184,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'main.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Item.h(29,18): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
