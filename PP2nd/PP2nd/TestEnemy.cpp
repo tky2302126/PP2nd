@@ -19,6 +19,7 @@ void TestEnemy::Init(int _Mhandle =-1)
 void TestEnemy::Init(int, Start* _start)
 {
 	myStart = _start;
+    health = 600;
 }
 
 void TestEnemy::Draw() const
@@ -49,6 +50,8 @@ void TestEnemy::Move()
 		moveVec = VNorm(moveVec);
         if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
         if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
+        auto moveDuration = VSize(moveVec);
+        health -= moveDuration;
 		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
 		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
@@ -64,6 +67,8 @@ void TestEnemy::Move()
     {
         /// OnEnterEventの実行
         auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+        auto mapInfo = GameManager::GetInstance().GetMapInfo();
+        if (!IsValidPosition(currentArrayPos, mapInfo)) return;
         switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
         {
         case TerrainList::Goal:
@@ -85,19 +90,17 @@ void TestEnemy::Move()
 
 
         /// OnExitEventの実行
-        auto mapInfo = GameManager::GetInstance().GetMapInfo();
-        if(IsValidPosition(oldPos,mapInfo))
+        
+        if (!IsValidPosition(oldPos, mapInfo)) return;
+        switch (terrainInfo[oldPos.y][oldPos.x])
         {
-            auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-            switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
-            {
-                /// ここに処理を追加
+            /// ここに処理を追加
 
 
-            default:
-                break;
-            }
+        default:
+            break;
         }
+        
 
         oldPos = currentArrayPos;
     }
@@ -105,6 +108,12 @@ void TestEnemy::Move()
 
 void TestEnemy::Update()
 {
+    if(health <=0)
+    {
+        /// 死亡処理
+        EnemyManager::GetInstance().RemoveEnemy(this);
+        return;
+    }
 	Move();
 	Draw();
 }

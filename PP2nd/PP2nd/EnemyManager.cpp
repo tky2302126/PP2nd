@@ -115,6 +115,21 @@ void EnemyManager::ResetTrialCount()
 	trialCount = 0;
 }
 
+void EnemyManager::RemoveEnemy(Enemy* enemy)
+{
+	int index = 0;
+	while (true)
+	{
+		if(enemyPtrVec[index] == enemy)
+		{
+			delete enemyPtrVec[index];
+			enemyPtrVec.erase(enemyPtrVec.begin() + index);
+			break;
+		}
+		index++;
+	}
+}
+
 void EnemyManager::UnInit()
 {
 }

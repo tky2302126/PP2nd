@@ -27,5 +27,6 @@ private:
 	Start* myStart;
 	Vector2Int oldPos = { -1,-1 };
 	bool pathFound = true; /// ルート探索済みであることを示す
+	int health;
 };
 

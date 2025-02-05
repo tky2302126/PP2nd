@@ -27,6 +27,7 @@ public:
 	void IncreaseTrialCount();
 	void ResetTrialCount();
 	int GetTrialCount() { return trialCount; }
+	void RemoveEnemy(Enemy* enemy);
 private:
 	
 	/// ゴールまでのルート
