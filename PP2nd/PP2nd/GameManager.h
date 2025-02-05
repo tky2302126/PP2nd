@@ -29,6 +29,7 @@ public:
 	vector<vector<TerrainList>> GetTerrainInfo() const;
 	_mapInfo GetMapInfo() const;
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
+	void AddTerrainInfo(TerrainList name, Vector2Int pos);
 	void RemoveTerrainInfo(VECTOR pos);
 	void LoadTerrainInfo(int day);
 	void InitTerrainInfo(int width, int height);
@@ -36,6 +37,8 @@ public:
 	void UseItem(TerrainList name);
 	bool ItemInfoChanged() { return itemInfoChanged; }
 	void CheckedItemInfo() { itemInfoChanged = false; }
+	void GameOver();
+	void GameClear();
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム

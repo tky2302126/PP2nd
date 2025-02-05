@@ -18,10 +18,14 @@ public:
 	void RecalculateRoute() override;
 	Start* GetMyStart() const override { return myStart; }
 private:
+	/// <summary>
+	///  protetedで基底クラスで実装する
+	/// </summary>
 	VECTOR position;
-	vector<Vector2Int> myRoute;
+	vector<Vector2Int> myRoute;   /// 
 	vector<Vector2Int> tempRoute; /// 一時的な経路
 	Start* myStart;
+	Vector2Int oldPos = { -1,-1 };
 	bool pathFound = true; /// ルート探索済みであることを示す
 };
 

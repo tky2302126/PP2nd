@@ -46,6 +46,7 @@ void Cube::UnInit()
 
 void Cube::OnEnter() const 
 {
+
 }
 
 void Cube::OnExit() const

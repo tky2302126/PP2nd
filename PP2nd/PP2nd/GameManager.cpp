@@ -171,6 +171,16 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 }
 
 /// <summary>
+/// 地形情報を追加する
+/// </summary>
+/// <param name="name"></param>
+/// <param name="pos"></param>
+void GameManager::AddTerrainInfo(TerrainList name, Vector2Int pos)
+{
+	terrainInfo[pos.y][pos.x] = name;
+}
+
+/// <summary>
 /// 
 /// </summary>
 /// <param name="pos"></param>
@@ -208,6 +218,8 @@ void GameManager::LoadTest()
 {
 	_mapInfo testMap(12, 9, 0, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
+	Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
+	AddTerrainInfo(TerrainList::Goal, goalPoint);
 	mapInfo = testMap;
 }
 
@@ -215,4 +227,20 @@ void GameManager::UseItem(TerrainList name)
 {
 	itemInfo[name]--;
 	itemInfoChanged = true;
+}
+
+/// <summary>
+/// ゲームオーバー処理
+/// </summary>
+void GameManager::GameOver()
+{
+	printfDx("Gameover");
+}
+
+/// <summary>
+/// クリア処理
+/// </summary>
+void GameManager::GameClear()
+{
+	printfDx("GameClear");
 }

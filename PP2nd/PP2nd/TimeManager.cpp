@@ -1,4 +1,5 @@
 #include "TimeManager.h"
+#include "GameManager.h"
 
 UniquePtr<TimeManager> TimeManager::Instance = nullptr;
 
@@ -30,6 +31,11 @@ void TimeManager::ChangeGameSpeedSlower(bool _isSlow)
 /// <param name="deltaTime"></param>
 void TimeManager::Update(int deltaTime)
 {
+	if(remainTime <=0)
+	{
+		GameManager::GetInstance().GameClear();
+		return;
+	}
 	int elapsedTime = deltaTime;
 	if (isFast) { elapsedTime *= 2; }
 	if (isSlow) { elapsedTime /= 2; }

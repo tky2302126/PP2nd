@@ -272,5 +272,16 @@ inline VECTOR ArrayPos2WorldPos(const int x, const int y)
 	VECTOR result = VGet(x * MAP_UNIT, 0, y * MAP_UNIT);
 	return result;
 }
+
+inline Vector2Int WorldPos2ArrayPos(VECTOR pos)
+{
+	Vector2Int result =
+	{
+		floor(pos.x / MAP_UNIT),
+		floor(pos.z / MAP_UNIT)
+	};
+
+	return result;
+}
 #pragma endregion
 

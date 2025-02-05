@@ -1,6 +1,7 @@
 ﻿#include "TestEnemy.h"
 #include "Start.h"
 #include "manager.h"
+#include "Cube.h"
 
 TestEnemy::TestEnemy()
 	:myRoute(vector<Vector2Int>()),position(VECTOR())
@@ -35,6 +36,8 @@ void TestEnemy::Draw() const
 
 void TestEnemy::Move()
 {
+    /// 基底クラスで定義する
+    
 	/// 自身のposをrouteを参考に動かす
 	/// !pathFoundがtrueでない時はtempRouteで計算
 	/// myroute[0]->[1]へ移動する
@@ -53,8 +56,51 @@ void TestEnemy::Move()
 		{
 			myRoute.erase(myRoute.begin());
 		}
-	
 	}
+
+    Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
+    /// マスの位置が更新されたとき、イベントを実行する (基底クラスで実装)
+    if(oldPos != currentArrayPos)
+    {
+        /// OnEnterEventの実行
+        auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+        switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
+        {
+        case TerrainList::Goal:
+            GameManager::GetInstance().GameOver();
+            /// 自身を破棄
+            break;
+        case TerrainList::Base:
+            /// 破壊する
+
+        case TerrainList::CUBE:
+            /// 破壊する
+            
+            /// ここに処理を追加
+
+
+        default:
+            break;
+        }
+
+
+        /// OnExitEventの実行
+        auto mapInfo = GameManager::GetInstance().GetMapInfo();
+        if(IsValidPosition(oldPos,mapInfo))
+        {
+            auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+            switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
+            {
+                /// ここに処理を追加
+
+
+            default:
+                break;
+            }
+        }
+
+        oldPos = currentArrayPos;
+    }
 }
 
 void TestEnemy::Update()
