@@ -58,6 +58,10 @@ constexpr auto CONFIRM_PANEL_OFFSET = 25;
 constexpr auto CONFIRM_PANEL_SIZE = 40;
 
 constexpr auto ENEMY_MOVE_SPEED = 6.0f;
+constexpr auto ENEMY_GAUGE_WIDTH = 50;
+constexpr auto ENEMY_GAUGE_HEIGHT = 10;
+constexpr auto ENEMY_GAUGE_OFFSET_Y = 25;
+
 constexpr auto GAMESPEED_SLOWRATE = 0.5f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
@@ -256,6 +260,17 @@ inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
 {
 	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width-1 && pos.y <= mapInfo.height-1;
 }
+
+/// ワールド座標からスクリーン座標へ変換
+inline Vector2Int GetScreenPos(VECTOR pos) 
+{
+	Vector2Int result = Vector2Int();
+
+	VECTOR buff = ConvWorldPosToScreenPos(pos);
+	result.x = buff.x;
+	result.y = buff.y;
+	return result;
+};
 
 /// 配列座標をワールド座標(グリッドフィールド中央)に変換
 inline VECTOR ArrayPos2WorldPosCenter(const int x, const int y)

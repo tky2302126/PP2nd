@@ -19,7 +19,9 @@ void TestEnemy::Init(int _Mhandle =-1)
 void TestEnemy::Init(int, Start* _start)
 {
 	myStart = _start;
-    health = 600;
+    health = currentHealth = 600;
+    InGaugeGH = LoadGraph("./Resource/GaugeIn306x27_HP.png");
+    OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
 }
 
 void TestEnemy::Draw() const
@@ -33,6 +35,16 @@ void TestEnemy::Draw() const
 		GetColor(255, 255, 255),
 		TRUE);
 
+    auto screenPos = GetScreenPos(position);
+
+    float healthRate = (float)currentHealth / health;
+
+    Vector2Int start = { screenPos.x - ENEMY_GAUGE_WIDTH/2, screenPos.y - ENEMY_GAUGE_HEIGHT - ENEMY_GAUGE_OFFSET_Y };
+    Vector2Int end = { start.x + ENEMY_GAUGE_WIDTH, start.y + ENEMY_GAUGE_HEIGHT };
+    Vector2Int inEnd = { start.x + (ENEMY_GAUGE_WIDTH * healthRate) , start.y + ENEMY_GAUGE_HEIGHT };
+
+    DrawExtendGraph(start.x, start.y, end.x,end.y, OutGaugeGH,FALSE);
+    DrawExtendGraph(start.x, start.y, inEnd.x,inEnd.y,InGaugeGH,FALSE);
 }
 
 void TestEnemy::Move()
@@ -51,7 +63,7 @@ void TestEnemy::Move()
         if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
         if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
         auto moveDuration = VSize(moveVec);
-        health -= moveDuration;
+        currentHealth -= moveDuration;
 		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
 		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
@@ -108,7 +120,7 @@ void TestEnemy::Move()
 
 void TestEnemy::Update()
 {
-    if(health <=0)
+    if(currentHealth <=0)
     {
         /// 死亡処理
         EnemyManager::GetInstance().RemoveEnemy(this);
