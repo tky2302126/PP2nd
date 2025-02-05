@@ -49,10 +49,12 @@ void ItemPanel::Update()
 	if(selected)
 	{
 		DrawExtendGraph(start.x, start.y-ITEMPANEL_SELECTED, end.x, end.y-ITEMPANEL_SELECTED, GH, false);
+		DrawFormatString(start.x, start.y - ITEMPANEL_SELECTED, GetColor(255, 255, 255), "×%d", info.num);
 	}
 	else
 	{
 		DrawExtendGraph(start.x, start.y, end.x, end.y, GH, false);
+		DrawFormatString(start.x,start.y,GetColor(255,255,255),"×%d",info.num);
 	}
 
 	/// InputSystemの監視
@@ -94,10 +96,15 @@ void ItemPanel::Update()
 
 void ItemPanel::Decrease()
 {
+	info.num--;
 }
 
 void ItemPanel::SetIndex(int index)
 {
+	start.x = index * HUD_ITEM_SIZE;
+	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
+	end.x = start.x + HUD_ITEM_SIZE + 1;
+	end.y = WINDOW_HEIGHT;
 }
 
 bool ItemPanel::ClickInRect(MouseInfo& input)

@@ -33,6 +33,9 @@ public:
 	void LoadTerrainInfo(int day);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
+	void UseItem(TerrainList name);
+	bool ItemInfoChanged() { return itemInfoChanged; }
+	void CheckedItemInfo() { itemInfoChanged = false; }
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
@@ -40,5 +43,6 @@ private:
 	VECTOR cameraPos = VECTOR();
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
+	bool itemInfoChanged = false;
 };
 

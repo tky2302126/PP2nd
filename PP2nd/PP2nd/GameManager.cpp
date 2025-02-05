@@ -166,7 +166,6 @@ void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 	int col = floor(pos.x / MAP_UNIT);
 
 	terrainInfo[row][col] = name;
-
 	///更新したら通知する
 	EnemyManager::GetInstance().ReCalculateRoute();
 }
@@ -210,4 +209,10 @@ void GameManager::LoadTest()
 	_mapInfo testMap(12, 9, 0, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
 	mapInfo = testMap;
+}
+
+void GameManager::UseItem(TerrainList name)
+{
+	itemInfo[name]--;
+	itemInfoChanged = true;
 }

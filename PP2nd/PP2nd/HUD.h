@@ -24,9 +24,6 @@ public:
 	void Draw(int);
 	void Update();
 	void Update(int remainTime);
-	void RegistItem(int gHandle);
-	void ExcludeItem(int gHandle);
-	void UseItem();
 
 
 private:

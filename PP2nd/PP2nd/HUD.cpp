@@ -107,6 +107,59 @@ void HUD::Load()
 void HUD::ReLoad()
 {
 	/// num==0の場合、破棄
+	unordered_map<TerrainList, int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	if (!ItemInfoUnMap.empty())
+	{
+		int index = 0;
+		for (int i = 0; i < (int)TerrainList::ItemAll; i++)
+		{
+			auto it = ItemInfoUnMap.find((TerrainList)i);
+			if (it != ItemInfoUnMap.end())
+			{
+				ItemPanel* itemPanelPtr = new ItemPanel();
+				HDKey key = (HDKey)-1;
+				switch ((TerrainList)i)
+				{
+				case TerrainList::CUBE:
+					key = HDKey::Cube;
+					break;
+				default:
+
+					break;
+				}
+				/// ここから変更
+				/// 0になったとき 
+				if(ItemInfoUnMap[(TerrainList)i] ==0)
+				{
+					delete itemPanelMap[(TerrainList)i];
+					continue;
+				}
+
+				/// 追加
+				if(itemPanelMap[(TerrainList)i] == nullptr)
+				{
+					int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
+					ItemInfo currentInfo;
+					currentInfo.name = (TerrainList)i;
+					currentInfo.num = ItemInfoUnMap[(TerrainList)i];
+					itemPanelPtr->Init(index, GH, currentInfo, callback);
+					index++;
+					itemPanelMap[(TerrainList)i] = itemPanelPtr;
+				}
+				/// 更新
+				else
+				{
+					/// 場所を更新
+					itemPanelMap[(TerrainList)i]->SetIndex(index);
+					/// 使用した場合
+					if (itemPanelMap[(TerrainList)i]->GetNum() > ItemInfoUnMap[(TerrainList)i])
+					{
+						itemPanelMap[(TerrainList)i]->Decrease();
+					}
+				}
+			}
+		}
+	}
 }
 
 void HUD::Draw()
@@ -165,6 +218,11 @@ void HUD::Draw(int _remainTime)
 void HUD::Update()
 {
 	Draw();
+	if (GameManager::GetInstance().ItemInfoChanged()) 
+	{
+		ReLoad();
+		GameManager::GetInstance().CheckedItemInfo();
+	}
 }
 /// <summary>
 /// 時間の更新を実行するUpdate
@@ -173,20 +231,11 @@ void HUD::Update()
 void HUD::Update(int remainTime)
 {
 	Draw(remainTime);
+	if (GameManager::GetInstance().ItemInfoChanged())
+	{
+		ReLoad();
+		GameManager::GetInstance().CheckedItemInfo();
+	}
 }
 
-/// <summary>
-/// 
-/// </summary>
-void HUD::RegistItem(int)
-{
-}
-
-void HUD::ExcludeItem(int)
-{
-}
-
-void HUD::UseItem()
-{
-}
 

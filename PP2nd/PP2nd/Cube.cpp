@@ -110,6 +110,7 @@ void Cube::Update()
                 {
                     isPlaced = true;
                     isConfirm = false;
+                    GameManager::GetInstance().UseItem(TerrainList::CUBE);
                 }
                 else
                 {
