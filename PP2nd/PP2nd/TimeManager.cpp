@@ -1,5 +1,6 @@
 #include "TimeManager.h"
-#include "GameManager.h"
+#include "manager.h"
+
 
 UniquePtr<TimeManager> TimeManager::Instance = nullptr;
 
@@ -41,11 +42,34 @@ void TimeManager::Update(int deltaTime)
 	if (isSlow) { elapsedTime /= 2; }
 
 	remainTime -= elapsedTime;
+	/// 敵の出現
+	if(!timeLine.empty())
+	{
+		while (timeLine.top().Time >= remainTime/1000)
+		{
+			auto tl = timeLine.top();
+			timeLine.pop();
+			/// ここに敵の出現 switch文
+			/// 今はデバッグ対応
+
+			EnemyManager::GetInstance().SpawnEnemyTest();
+			if (timeLine.empty()) break;
+		}
+	}
 }
 
 void TimeManager::SetTimer(int _remainTime)
 {
 	remainTime = _remainTime * 1000;
+}
+
+void TimeManager::LoadTest()
+{
+	SetTimer(100);
+	timeLine.push({ 75,{0,0},{EnemyList::Enemy1},99 });
+	timeLine.push({ 88,{0,0},{EnemyList::Enemy1},99 });
+	timeLine.push({ 54,{0,0},{EnemyList::Enemy1},99 });
+	timeLine.push({ 95,{0,0},{EnemyList::Enemy1},99 });
 }
 
 TimeManager& TimeManager::GetInstance()

@@ -10,6 +10,7 @@ public:
 	void ChangeGameSpeedSlower(bool);
 	void Update(int deltaTime);
 	void SetTimer(int _remainTime);
+	void LoadTest();
 	static TimeManager& GetInstance();
 	
 	int  RemainTime() const { return remainTime / 1000; }
@@ -19,6 +20,7 @@ private:
 	bool isFast = false;
 	bool isSlow = false;
 	int remainTime = 0; /// メインループの制限時間ミリ秒単位で管理
+	priority_queue<TimeLine, vector<TimeLine>, TimeLineCompare> timeLine;
 	static UniquePtr<TimeManager> Instance;
 };
 

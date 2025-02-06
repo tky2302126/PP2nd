@@ -11,7 +11,7 @@ TestScene::TestScene()
 	/// 
 	GameManager::GetInstance().LoadTest();
 	EnemyManager::GetInstance().LoadTest();
-	TimeManager::GetInstance().SetTimer(1000);
+	TimeManager::GetInstance().LoadTest();
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());

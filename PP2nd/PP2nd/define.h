@@ -161,36 +161,32 @@ enum class Tag :int
 	Goal
 };
 
-/// 絶対パスを取得
-inline string GetExecutablePath()
+enum EnemyList
 {
-	char buffer[MAX_PATH];
-	GetModuleFileNameA(NULL, buffer, MAX_PATH); //絶対パスを取得
-	string path(buffer);
-	return path.substr(0,path.find_last_of("\\/")); //ディレクトリ部分を抽出
-}
+	Enemy1,
+	ALL
+};
 
 /// <summary>
-/// VECTORを指定のけたで四捨五入する
+/// 敵の出現パターンを定義する構造体
 /// </summary>
-/// <param name="vec"></param>
-/// <param name="decimal"></param>
-/// <returns></returns>
-inline VECTOR Round(VECTOR vec, int decimal=0)
+struct TimeLine
 {
-	VECTOR result = VScale(vec, pow(10.0,decimal));
-
-	result = VGet
-	(
-		round(result.x),
-		round(result.y),
-		round(result.z)
-	);
-
-	result = VScale(result, pow(0.1, decimal));
-
-	return result;
-}
+	int Time;
+	Vector2Int startPos;
+	EnemyList enemy;
+	int num;
+};
+/// <summary>
+/// TimeLineソート用の比較関数
+/// </summary>
+struct TimeLineCompare
+{
+	bool operator()(const TimeLine& a, const TimeLine& b)
+	{
+		return a.Time < b.Time;
+	}
+};
 
 #pragma region GameManager
 struct HandleData
@@ -260,6 +256,10 @@ inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )
 {
 	return pos.x >= 0 && pos.y >= 0 && pos.x <= mapInfo.width-1 && pos.y <= mapInfo.height-1;
 }
+#pragma endregion
+
+#pragma region ヘルパー関数
+
 
 /// ワールド座標からスクリーン座標へ変換
 inline Vector2Int GetScreenPos(VECTOR pos) 
@@ -298,5 +298,35 @@ inline Vector2Int WorldPos2ArrayPos(VECTOR pos)
 
 	return result;
 }
-#pragma endregion
 
+/// 絶対パスを取得
+inline string GetExecutablePath()
+{
+	char buffer[MAX_PATH];
+	GetModuleFileNameA(NULL, buffer, MAX_PATH); //絶対パスを取得
+	string path(buffer);
+	return path.substr(0, path.find_last_of("\\/")); //ディレクトリ部分を抽出
+}
+
+/// <summary>
+/// VECTORを指定のけたで四捨五入する
+/// </summary>
+/// <param name="vec"></param>
+/// <param name="decimal"></param>
+/// <returns></returns>
+inline VECTOR Round(VECTOR vec, int decimal = 0)
+{
+	VECTOR result = VScale(vec, pow(10.0, decimal));
+
+	result = VGet
+	(
+		round(result.x),
+		round(result.y),
+		round(result.z)
+	);
+
+	result = VScale(result, pow(0.1, decimal));
+
+	return result;
+}
+#pragma endregion
