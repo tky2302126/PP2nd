@@ -216,11 +216,15 @@ void GameManager::InitTerrainInfo(int width, int height)
 
 void GameManager::LoadTest()
 {
-	_mapInfo testMap(12, 9, 0, 0);
+	_mapInfo testMap(21, 9, 10, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
 	Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
 	AddTerrainInfo(TerrainList::Goal, goalPoint);
 	mapInfo = testMap;
+	ItemInfo buff;
+	buff.name = TerrainList::CUBE;
+	buff.num = 20;
+	SetItemInfo(buff);
 }
 
 void GameManager::UseItem(TerrainList name)

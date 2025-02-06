@@ -27,16 +27,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	GameManager& gameMPtr = GameManager::GetInstance();
 	gameMPtr.Init();
-	ItemInfo buff;
-
+	
 	TimeManager& timeMPtr = TimeManager::GetInstance();
-
-
-#ifdef _DEBUG
-	buff.name = TerrainList::CUBE;
-	buff.num = 99;
-	gameMPtr.SetItemInfo(buff);
-#endif // _DEBUG
 
 	EnemyManager& enemyMPtr = EnemyManager::GetInstance();
 	enemyMPtr.Init();

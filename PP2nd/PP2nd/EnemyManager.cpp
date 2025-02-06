@@ -37,7 +37,7 @@ void EnemyManager::InitTest()
 void EnemyManager::LoadTest()
 {
 	Start* startPtr = new Start();
-	Vector2Int startPos = { 11,4 };
+	Vector2Int startPos = { 20,4 };
 	startPtr->Init(startPos);
 	startPtrVec.push_back(startPtr);
 }
