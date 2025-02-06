@@ -39,6 +39,8 @@ public:
 	void CheckedItemInfo() { itemInfoChanged = false; }
 	void GameOver();
 	void GameClear();
+	bool IsGameOver() const { return isGameOver; }
+	bool IsGameClear() const { return isGameClear; }
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
@@ -47,5 +49,7 @@ private:
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
 	bool itemInfoChanged = false;
+	bool isGameOver = false;
+	bool isGameClear = false;
 };
 

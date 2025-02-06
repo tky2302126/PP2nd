@@ -16,6 +16,8 @@ void MainScreen::Init(const _mapInfo& mapInfo)
 	hudUPtr->Init();
 	mapUPtr->Init(mapInfo);
 	hudUPtr->SetCallback([&](TerrainList name) {mapUPtr->RegistHoldItem(name); });
+	stageClearGH = LoadGraph("./Resource/stageclear.png");
+	gameOverGH = LoadGraph("./Resource/gameover.jpg");
 }
 
 /// <summary>
@@ -43,6 +45,10 @@ void MainScreen::UnInit()
 
 void MainScreen::Draw()
 {
+	if (GameManager::GetInstance().IsGameClear()) 
+	{ DrawExtendGraph(20, WINDOW_HEIGHT / 4, WINDOW_WIDTH - 20, WINDOW_HEIGHT/4*3, stageClearGH, FALSE);}
+	if(GameManager::GetInstance().IsGameOver())
+	{DrawExtendGraph(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, gameOverGH, FALSE);}
 	mapUPtr->Update();
 	int time = TimeManager::GetInstance().RemainTime();
 	hudUPtr->Update(time);
@@ -77,9 +83,3 @@ void MainScreen::AddPoint(Vector2Int pos, Tag tag)
 		mapUPtr->AddGoal(pos);
 	}
 }
-
-void MainScreen::SetTimer(int _remainTime)
-{
-	remainTime = _remainTime;
-}
-

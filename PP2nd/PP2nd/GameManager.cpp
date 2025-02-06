@@ -216,7 +216,7 @@ void GameManager::InitTerrainInfo(int width, int height)
 
 void GameManager::LoadTest()
 {
-	_mapInfo testMap(12, 9, 0, 4);
+	_mapInfo testMap(12, 9, 0, 0);
 	InitTerrainInfo(testMap.width, testMap.height);
 	Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
 	AddTerrainInfo(TerrainList::Goal, goalPoint);
@@ -234,7 +234,7 @@ void GameManager::UseItem(TerrainList name)
 /// </summary>
 void GameManager::GameOver()
 {
-	printfDx("Gameover");
+	isGameOver = true;
 }
 
 /// <summary>
@@ -242,5 +242,5 @@ void GameManager::GameOver()
 /// </summary>
 void GameManager::GameClear()
 {
-	printfDx("GameClear");
+	isGameClear = true;
 }
