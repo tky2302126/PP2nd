@@ -2,12 +2,16 @@
 #include "GameManager.h"
 void Start::Init()
 {
+    baseHealth = 600;
 }
 
 void Start::Init(Vector2Int _pos)
 {
     pos = _pos;
     SearchRoute();
+    auto mapInfo = GameManager::GetInstance().GetMapInfo();
+    Vector2Int goalPos = { mapInfo.goalWidth,mapInfo.goalHeight };
+    baseHealth = GetHeuristic(pos, goalPos) * MAP_UNIT;
 }
 
 void Start::UnInit()

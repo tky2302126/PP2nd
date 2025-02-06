@@ -67,11 +67,7 @@ void Cube::Update()
     /// クリックされたら確認UIを表示
     auto currentInput = InputSystem::GetInstance().GetMouseInfo();
 
-    Vector2Int screenPos = GetScreenPos(pos);
-    DrawFormatString(0, 180, GetColor(255, 255, 255), "mousePos: %d , %d", currentInput.position.x, currentInput.position.y);
-    DrawFormatString(0, 200, GetColor(255, 255, 255), "ItemScreenPos: %d, %d", screenPos.x, screenPos.y);
-    
-    
+    Vector2Int screenPos = GetScreenPos(pos); 
 
     /// カメラの位置によってクリックの猶予値を変えたい
     if(currentInput.state.left == Started 

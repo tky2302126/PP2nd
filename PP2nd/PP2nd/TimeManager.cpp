@@ -65,7 +65,7 @@ void TimeManager::SetTimer(int _remainTime)
 
 void TimeManager::LoadTest()
 {
-	SetTimer(1);
+	SetTimer(10000);
 	timeLine.push({ 75,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 88,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 54,{0,0},{EnemyList::Enemy1},99 });

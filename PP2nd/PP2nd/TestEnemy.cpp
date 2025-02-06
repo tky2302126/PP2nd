@@ -16,10 +16,20 @@ void TestEnemy::Init(int _Mhandle =-1)
 {
 }
 
-void TestEnemy::Init(int, Start* _start)
+void TestEnemy::Init(int, Start* _start = nullptr)
 {
 	myStart = _start;
-    health = currentHealth = 600;
+    auto mapInfo = GameManager::GetInstance().GetMapInfo();
+    /// ヒューリスティック値から体力を設定する
+    /// ->Startで計算した方がよさそう
+    if(myStart!=nullptr)
+    {
+        health = currentHealth = myStart->BaseHealth();
+    }
+    else
+    {
+        health = currentHealth = 600;
+    }
     InGaugeGH = LoadGraph("./Resource/GaugeIn306x27_HP.png");
     OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
 }
@@ -62,9 +72,9 @@ void TestEnemy::Move()
 		moveVec = VNorm(moveVec);
         if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
         if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
+		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
         auto moveDuration = VSize(moveVec);
         currentHealth -= moveDuration;
-		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
 		position = VAdd(position, moveVec);
 		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
 		if(distance <= ENEMY_MOVE_SPEED)

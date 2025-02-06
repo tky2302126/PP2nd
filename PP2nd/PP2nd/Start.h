@@ -11,8 +11,10 @@ public:
 	Vector2Int& GetStartPos() { return pos; }
 	vector<Vector2Int> GetRoute() const { return route; }
 	void DrawRouteTest();
+	int BaseHealth() const { return baseHealth; }
 private:
 	Vector2Int pos;
 	vector<Vector2Int> route;
+	int baseHealth;
 };
 
