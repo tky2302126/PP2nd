@@ -43,7 +43,31 @@ private:
 	int playGH;
 	int pauseGH;
 	int fastGH;
+	int slowGH;
 	int optionGH;
+	int skipGH;
+	RECTInt optionPos =
+	{
+		HUD_UI_MARGIN,
+		HUD_UI_MARGIN + HUD_UI_SIZE,
+		HUD_UI_MARGIN,
+		HUD_UI_MARGIN + HUD_UI_SIZE
+	};
+	RECTInt playPos = 
+	{
+		HUD_UI_MARGIN,
+		HUD_UI_MARGIN + HUD_UI_SIZE,
+		WINDOW_WIDTH - (HUD_UI_SIZE + HUD_UI_MARGIN) * 2,
+		WINDOW_WIDTH - HUD_UI_SIZE - HUD_UI_MARGIN * 2
+	};
+	RECTInt skipPos =
+	{
+		HUD_UI_MARGIN,
+		HUD_UI_MARGIN + HUD_UI_SIZE,
+		WINDOW_WIDTH - HUD_UI_SIZE - HUD_UI_MARGIN,
+		WINDOW_WIDTH - HUD_UI_MARGIN
+	};
+
 	unmap<TerrainList, ItemPanel*> itemPanelMap;
 	function<void(TerrainList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
 };

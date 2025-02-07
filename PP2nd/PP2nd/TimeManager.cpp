@@ -17,13 +17,23 @@ void TimeManager::UnInit()
 void TimeManager::ChangeGameSpeedFaster(bool _isFast)
 {
 	isFast = _isFast;
-	if (isFast) { isSlow = false; }
+	isSlow = false; 
 }
 
 void TimeManager::ChangeGameSpeedSlower(bool _isSlow)
 {
 	isSlow = _isSlow;
-	if (isSlow) { isFast = false; }
+	isFast = false; 
+}
+
+void TimeManager::Pause()
+{
+	isPause = true;
+}
+
+void TimeManager::UnPause()
+{
+	isPause = false;
 }
 
 /// <summary>
@@ -65,7 +75,7 @@ void TimeManager::SetTimer(int _remainTime)
 
 void TimeManager::LoadTest()
 {
-	SetTimer(10000);
+	SetTimer(999);
 	timeLine.push({ 75,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 88,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 54,{0,0},{EnemyList::Enemy1},99 });

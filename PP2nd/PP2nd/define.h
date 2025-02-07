@@ -49,6 +49,8 @@ constexpr auto CAMERA_MIN_Z = CAMERA_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
+constexpr auto HUD_UI_SIZE = WINDOW_WIDTH / 20;
+constexpr auto HUD_UI_MARGIN = 20;
 
 constexpr auto HUD_AREA_TOP = 50;
 constexpr auto HUD_AREA_BOTTOM = WINDOW_HEIGHT- HUD_ITEM_SIZE;
@@ -215,6 +217,13 @@ enum class HDKey
 	Enemy2,
 };
 
+enum Sequence
+{
+	SetUp,
+	Battle,
+	Result
+};
+
 #pragma endregion
 
 #pragma region 経路探索
@@ -328,5 +337,27 @@ inline VECTOR Round(VECTOR vec, int decimal = 0)
 	result = VScale(result, pow(0.1, decimal));
 
 	return result;
+}
+/// <summary>
+/// ターゲット座標が指定した矩形の領域内か判定
+/// </summary>
+/// <param name="targetPos"> ターゲット座標</param>
+/// <param name="vertex1"> 矩形の左上座標</param>
+/// <param name="vertex2"> 矩形の右下</param>
+inline bool CheckInRect(Vector2Int& targetPos, Vector2Int& vertex1, Vector2Int& vertex2)
+{
+	return targetPos.x >= vertex1.x && targetPos.x <= vertex2.x
+		&& targetPos.y >= vertex1.y && targetPos.y <= vertex2.y;
+}
+/// <summary>
+/// ターゲット座標が指定した矩形の領域内か判定
+/// </summary>
+/// <param name="targetPos">ターゲット座標</param>
+/// <param name="rect">矩形の構造体</param>
+/// <returns></returns>
+inline bool CheckInRect(Vector2Int& targetPos, RECTInt rect)
+{
+	return targetPos.x >= rect.left && targetPos.x <= rect.right
+		&& targetPos.y >= rect.top && targetPos.y <= rect.bottom;
 }
 #pragma endregion

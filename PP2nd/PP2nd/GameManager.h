@@ -41,6 +41,7 @@ public:
 	void GameClear();
 	bool IsGameOver() const { return isGameOver; }
 	bool IsGameClear() const { return isGameClear; }
+	Sequence CurrentSequence() const { return currentSequence; }
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム
@@ -51,5 +52,6 @@ private:
 	bool itemInfoChanged = false;
 	bool isGameOver = false;
 	bool isGameClear = false;
+	Sequence currentSequence = SetUp;
 };
 

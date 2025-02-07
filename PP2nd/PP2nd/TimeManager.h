@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 
 class TimeManager
@@ -8,6 +8,8 @@ public:
 	void UnInit();
 	void ChangeGameSpeedFaster(bool);
 	void ChangeGameSpeedSlower(bool);
+	void Pause();
+	void UnPause();
 	void Update(int deltaTime);
 	void SetTimer(int _remainTime);
 	void LoadTest();
@@ -16,10 +18,12 @@ public:
 	int  RemainTime() const { return remainTime / 1000; }
 	bool IsFast() const { return isFast; }
 	bool IsSlow() const { return isSlow; }
+	bool IsPause() const { return isPause; }
 private:
 	bool isFast = false;
 	bool isSlow = false;
-	int remainTime = 0; /// ƒƒCƒ“ƒ‹[ƒv‚Ì§ŒÀŠÔƒ~ƒŠ•b’PˆÊ‚ÅŠÇ—
+	bool isPause = false;
+	int remainTime = 0; /// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®åˆ¶é™æ™‚é–“ãƒŸãƒªç§’å˜ä½ã§ç®¡ç†
 	priority_queue<TimeLine, vector<TimeLine>, TimeLineCompare> timeLine;
 	static UniquePtr<TimeManager> Instance;
 };

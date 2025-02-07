@@ -102,8 +102,7 @@ void Cube::Update()
             /// 設置するとき
             if(!isPlaced)
             {
-                if(currentInput.position.x >= checkMinPos.x && currentInput.position.x <= checkMaxPos.x 
-                    && currentInput.position.y >= checkMinPos.y && currentInput.position.y <= checkMaxPos.y)
+                if(CheckInRect(currentInput.position, checkMinPos, checkMaxPos))
                 {
                     isPlaced = true;
                     isConfirm = false;
@@ -121,8 +120,7 @@ void Cube::Update()
             else if(oldIsConfirm)
             {
                 /// 削除
-                if (currentInput.position.x >= crossMinPos.x && currentInput.position.x <= crossMaxPos.x
-                    && currentInput.position.y >= crossMinPos.y && currentInput.position.y <= crossMaxPos.y)
+                if (CheckInRect(currentInput.position, crossMinPos, crossMaxPos))
                 {
                     GameManager::GetInstance().RemoveTerrainInfo(pos);
                     mapPtr->RemoveItemPtr(this);

@@ -1,7 +1,9 @@
 ﻿#include "HUD.h"
 
 HUD::HUD()
-	:centerPos(0),fontHandle(-1),timerPanelRect(),playGH(-1),pauseGH(-1),fastGH(-1),optionGH(-1),textHeight(0),textWidth(0),fast(false)
+	:centerPos(0),fontHandle(-1),timerPanelRect(),playGH(-1),pauseGH(-1)
+	,fastGH(-1),optionGH(-1),textHeight(0),textWidth(0),fast(false),skipGH(-1)
+	,slowGH(-1)
 {
 }
 
@@ -14,6 +16,11 @@ HUD::~HUD()
 	fs::path fullPath = basePath / relativePath;
 	string fontPath = fullPath.string();
 	RemoveFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
+	DeleteGraph(playGH);
+	DeleteGraph(pauseGH);
+	DeleteGraph(fastGH);
+	DeleteGraph(optionGH);
+	DeleteGraph(skipGH);
 }
 
 void HUD::Init()
@@ -34,19 +41,24 @@ void HUD::Init()
 
 	/// 時間の表示
 	fontHandle = CreateFontToHandle("GAGAGAGA FREE", 48, 3, DX_FONTTYPE_ANTIALIASING);
-	const char* text = "00：00";
+	const char* text = "000";
 	GetDrawStringSizeToHandle(&textWidth, &textHeight, NULL, text, strlen(text), fontHandle);
 	centerPos = (WINDOW_WIDTH - textWidth) / 2;
 	timerPanelRect.left = centerPos;
 	timerPanelRect.top = 0;
-	timerPanelRect.right = centerPos + textWidth;
+	timerPanelRect.right = centerPos + textWidth+5;
 	timerPanelRect.bottom = textHeight;
 	
 
 
 
 	/// HUDパネルの準備
-
+	playGH = LoadGraph("./Resource/play-button.png");
+	pauseGH = LoadGraph("./Resource/pause-button.png");
+	fastGH = LoadGraph("./Resource/fast-forward-button.png");
+	slowGH = LoadGraph("./Resource/hourglass.png");
+	optionGH = LoadGraph("./Resource/gears.png");
+	skipGH = LoadGraph("./Resource/next-button.png");
 }
 
 
@@ -162,6 +174,9 @@ void HUD::ReLoad()
 	}
 }
 
+/// <summary>
+/// 未使用
+/// </summary>
 void HUD::Draw()
 {
 	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(128, 128, 128), TRUE);
@@ -185,19 +200,19 @@ void HUD::Draw()
 	}
 }
 
+
 void HUD::Draw(int _remainTime)
 {
+#pragma region 上部タイマー
 	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(64, 64, 64), TRUE);
-
-	/// int minute = floor(_remainTime / 60);
-	/// 
-	/// int second = _remainTime % 60;
 
 	/// !コロンが出ないのでカウントのみにする フォントアセット側の不具合？
 	string remainTime = to_string(_remainTime);
 
 	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);
+#pragma endregion
 
+#pragma region 下部アイテムパネル
 	/// アイテムの表示
 	if (!itemPanelMap.empty())
 	{
@@ -213,8 +228,45 @@ void HUD::Draw(int _remainTime)
 			current = (TerrainList)((int)current + 1);
 		}
 	}
+#pragma endregion
+
+
+
+#pragma region 上部UI
+	/// 設定ボタン(左上)
+	DxLib::DrawExtendGraph(optionPos.left,optionPos.top,optionPos.right, optionPos.bottom,optionGH,FALSE);
+
+	/// 再生速度ボタン
+	if(TimeManager::GetInstance().IsSlow())
+	{
+		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right , playPos.bottom, slowGH, FALSE);
+	}
+	else if(TimeManager::GetInstance().IsFast())
+	{
+		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, fastGH, FALSE);
+	}
+	else
+	{
+		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, playGH, FALSE);
+	}
+	/// 一時停止、スキップボタン
+	if(GameManager::GetInstance().CurrentSequence() == Sequence::Battle)
+	{
+		DxLib::DrawExtendGraph(skipPos.left, skipPos.top, skipPos.right, skipPos.bottom, pauseGH, FALSE);
+	}
+	else
+	{
+		DxLib::DrawExtendGraph(skipPos.left, skipPos.top, skipPos.right, skipPos.bottom, skipGH, FALSE);
+	}
+
+
+#pragma endregion
+
 }
 
+/// <summary>
+/// 未使用
+/// </summary>
 void HUD::Update()
 {
 	Draw();
@@ -236,6 +288,45 @@ void HUD::Update(int remainTime)
 		ReLoad();
 		GameManager::GetInstance().CheckedItemInfo();
 	}
+
+#pragma region 入力
+	auto mouseInfo = InputSystem::GetInstance().GetMouseInfo();
+	if (mouseInfo.state.left != Started) return;
+	/// オプション 
+	if(CheckInRect(mouseInfo.position, optionPos))
+	{
+		/// オプションウィンドウを表示
+	}
+	/// 再生ボタン
+	if(CheckInRect(mouseInfo.position, playPos))
+	{
+		/// 再生速度の変更
+		if(TimeManager::GetInstance().IsFast())
+		{
+			TimeManager::GetInstance().ChangeGameSpeedFaster(false);
+		}
+		else
+		{
+			TimeManager::GetInstance().ChangeGameSpeedFaster(true);
+		}
+	}
+	/// 一時停止ボタン
+	if(CheckInRect(mouseInfo.position, skipPos))
+	{
+		/// シーケンスで分岐
+		/// スキップボタン->シーケンスをスキップ
+		if(GameManager::GetInstance().CurrentSequence() == SetUp)
+		{
+			
+		}
+		/// 停止ボタン->ゲーム内時間を一時停止
+		else if(GameManager::GetInstance().CurrentSequence() == Battle)
+		{
+			TimeManager::GetInstance().Pause();
+		}
+	}
+#pragma endregion
+
 }
 
 
