@@ -18,7 +18,9 @@ private:
 	VECTOR position;
 	VECTOR initPos;
 	Vector2Int oldMousePos;
+	float vRotate = DegtoRad(CAMERA_VROTATE);
 	bool move = false;
+	bool rotate = false;
 
 };
 

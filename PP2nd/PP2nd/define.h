@@ -46,6 +46,7 @@ constexpr auto CAMERA_VROTATE = 60.0f;
 
 constexpr auto CAMERA_MIN_Z = CAMERA_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
+constexpr auto CAMERA_RADIUS = 1000.f;
 
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
 constexpr auto HUD_UI_SIZE = WINDOW_WIDTH / 20;
@@ -63,7 +64,7 @@ constexpr auto ENEMY_GAUGE_WIDTH = 50;
 constexpr auto ENEMY_GAUGE_HEIGHT = 10;
 constexpr auto ENEMY_GAUGE_OFFSET_Y = 25;
 
-constexpr auto GAMESPEED_SLOWRATE = 0.5f;
+constexpr auto GAMESPEED_SLOWRATE = 0.25f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);

@@ -90,7 +90,7 @@ void Camera::Update()
 		move = false;
 		return;
 	}
-
+#pragma region カメラの移動
 	InputState leftState = currentInput.state.left;
 
 	if(leftState == Started)
@@ -118,15 +118,37 @@ void Camera::Update()
 	{
 		move = false;
 	}
+#pragma endregion
 	
+#pragma region カメラの回転
+//	InputState rightState = currentInput.state.right;
+//
+//	if (rightState == Started)
+//	{
+//		oldMousePos = currentInput.position;
+//		rotate = true;
+//	}
+//	else if (rightState == Performed && rotate)
+//	{
+//		int durationX = currentInput.position.x - oldMousePos.x;
+//		{
+//			position.x = position.x + cosf(durationX);
+//			position.z = position.z + sinf(durationX);
+//		}
+//		oldMousePos = currentInput.position;
+//	}
+//	else if (rightState == Canceled && rotate)
+//	{
+//		rotate = false;
+//	}
+#pragma endregion
+
 	/// マップ中央にカメラを戻す
 	if(CheckHitKey(KEY_INPUT_R))
 	{
 		position = initPos;
 	}
 
-	float vRotate = DegtoRad(CAMERA_VROTATE);
-	 //float hRotate = DegtoRad(0.f);
 	SetCameraPositionAndAngle(position, vRotate, 0, 0);
 	GameManager::GetInstance().SetCameraPosition(position);
 
