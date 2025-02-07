@@ -49,7 +49,7 @@ void TimeManager::Update(int deltaTime)
 	{
 		if(GameManager::GetInstance().CurrentSequence() == SetUp)
 		{
-			SetTimer(999);
+			SetTimer(100);
 			GameManager::GetInstance().SequenceProceed();
 		}
 		else if(GameManager::GetInstance().CurrentSequence() == Battle)

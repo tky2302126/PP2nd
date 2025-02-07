@@ -175,7 +175,6 @@
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MyMath.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Start.h" />

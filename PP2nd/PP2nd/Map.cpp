@@ -168,6 +168,10 @@ void Map::Draw()
 				itemPtr->Confirm();
 			}
 		}
+		else
+		{
+			TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+		}
 		/// 後でアクティブに
 	 	/// MHandle = -1;
 	}
@@ -177,10 +181,6 @@ void Map::Draw()
 	{
 		/// マスに置こうとしているか調べる
 		CHeckInGrid(mouseWorldPos);
-
-
-		 
-
 		/// モデルの描画
 		/// inGrid-> 座標を補正する
 		VECTOR drawPos = mouseWorldPos;

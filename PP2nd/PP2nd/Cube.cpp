@@ -107,12 +107,14 @@ void Cube::Update()
                     isPlaced = true;
                     isConfirm = false;
                     GameManager::GetInstance().UseItem(TerrainList::CUBE);
+                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
                 }
                 else
                 {
                     /// 設置をキャンセル
                     GameManager::GetInstance().RemoveTerrainInfo(pos);
                     mapPtr->RemoveItemPtr(this);
+                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
                 }
             }
 
@@ -123,11 +125,13 @@ void Cube::Update()
                 if (CheckInRect(currentInput.position, crossMinPos, crossMaxPos))
                 {
                     GameManager::GetInstance().RemoveTerrainInfo(pos);
+                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
                     mapPtr->RemoveItemPtr(this);
                 }
                 /// 削除キャンセル
                 else
                 {
+                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
                     isConfirm = false;
                 }
             }
@@ -149,10 +153,12 @@ void Cube::Confirm()
     /// 自分のPosを渡し、ｘを一致、ｚをCameraOFFSET分離す
         
     isConfirm = true;
+    TimeManager::GetInstance().ChangeGameSpeedSlower(true);
 
     /// 試しに置いて進行ルートが閉鎖されないか確認
 
     /// いったん登録のみ
+    if(!isPlaced)
     GameManager::GetInstance().AddTerrainInfo(TerrainList::CUBE, pos);
 }
 

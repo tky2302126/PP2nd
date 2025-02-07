@@ -25,7 +25,5 @@ private:
 	Vector2Int start; // 左上
 	Vector2Int end;	  // 右下
 	function<void(TerrainList name)> cbFunction; // コールバック関数
-
-	bool ClickInRect(MouseInfo& input);
 };
 

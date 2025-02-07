@@ -71,26 +71,24 @@ void ItemPanel::Update()
 
 	if (currentInput.state.left != Started) { return; }
 	/// rect内でクリック&&!selected -> selected
-	if(ClickInRect(currentInput) && !selected)
+	if(CheckInRect(currentInput.position,start,end) && !selected)
 	{
 		selected = true;
-		/// GameManagerにHoldItemの情報を通知
+		TimeManager::GetInstance().ChangeGameSpeedSlower(true);
 	}
 
 	/// rect内でクリック&& selected -> !selected
-	else if (ClickInRect(currentInput) && selected)
+	else if (CheckInRect(currentInput.position, start, end) && selected)
 	{
 		selected = false;
-		/// GameManagerにHoldItemの情報を通知
+		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
 	}
 	/// rect外でクリック&& selected -> !selected
-	else if (!ClickInRect(currentInput) && selected)
+	else if (!CheckInRect(currentInput.position, start, end) && selected)
 	{
 		selected = false;
-		/// GameManagerにHoldItemの情報を通知
+		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
 	}
-
-	/// 設置時のイベントでselected -> !selected <-不要かも？
 	
 }
 
@@ -105,9 +103,4 @@ void ItemPanel::SetIndex(int index)
 	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
 	end.x = start.x + HUD_ITEM_SIZE + 1;
 	end.y = WINDOW_HEIGHT;
-}
-
-bool ItemPanel::ClickInRect(MouseInfo& input)
-{
-	return input.position.y >= start.y && input.position.x >= start.x && input.position.x <= end.x && input.state.left == Started;
 }

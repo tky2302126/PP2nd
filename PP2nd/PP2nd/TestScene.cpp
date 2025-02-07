@@ -3,7 +3,6 @@
 #include "HUD.h"
 #include "Map.h"
 #include "Box.h"
-#include "MyMath.h"
 #include "MainScreen.h"
 
 TestScene::TestScene()
@@ -38,23 +37,6 @@ void TestScene::Update() const
 	if(CheckHitKey(KEY_INPUT_E))
 	{
 		EnemyManager::GetInstance().SpawnEnemyTest();
-	}
-
-	/// ゲームスピードテスト
-	if(CheckHitKey(KEY_INPUT_1))
-	{
-		TimeManager::GetInstance().ChangeGameSpeedSlower(true);
-	}
-
-	if(CheckHitKey(KEY_INPUT_2))
-	{
-		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
-		TimeManager::GetInstance().ChangeGameSpeedFaster(false);
-	}
-
-	if(CheckHitKey(KEY_INPUT_3))
-	{
-		TimeManager::GetInstance().ChangeGameSpeedFaster(true);
 	}
 
 }
