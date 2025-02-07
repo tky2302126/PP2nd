@@ -208,6 +208,7 @@ void HUD::Draw(int _remainTime)
 
 	/// !コロンが出ないのでカウントのみにする フォントアセット側の不具合？
 	string remainTime = to_string(_remainTime);
+	if (_remainTime < 100) { remainTime = '0' + remainTime; }
 
 	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);
 #pragma endregion
@@ -317,7 +318,7 @@ void HUD::Update(int remainTime)
 		/// スキップボタン->シーケンスをスキップ
 		if(GameManager::GetInstance().CurrentSequence() == SetUp)
 		{
-			
+			TimeManager::GetInstance().SetTimer(0);
 		}
 		/// 停止ボタン->ゲーム内時間を一時停止
 		else if(GameManager::GetInstance().CurrentSequence() == Battle)

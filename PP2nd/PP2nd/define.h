@@ -360,4 +360,14 @@ inline bool CheckInRect(Vector2Int& targetPos, RECTInt rect)
 	return targetPos.x >= rect.left && targetPos.x <= rect.right
 		&& targetPos.y >= rect.top && targetPos.y <= rect.bottom;
 }
+
+inline float RadtoDeg(float radian)
+{
+	return radian * 180.0f / DX_PI_F;
+}
+
+inline float DegtoRad(float degree)
+{
+	return degree * DX_PI_F / 180.0f;
+}
 #pragma endregion

@@ -37,6 +37,7 @@ public:
 	void UseItem(TerrainList name);
 	bool ItemInfoChanged() { return itemInfoChanged; }
 	void CheckedItemInfo() { itemInfoChanged = false; }
+	void SequenceProceed() { currentSequence = Battle; }
 	void GameOver();
 	void GameClear();
 	bool IsGameOver() const { return isGameOver; }

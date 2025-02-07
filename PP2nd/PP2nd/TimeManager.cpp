@@ -1,4 +1,4 @@
-#include "TimeManager.h"
+ï»¿#include "TimeManager.h"
 #include "manager.h"
 
 
@@ -42,25 +42,37 @@ void TimeManager::UnPause()
 /// <param name="deltaTime"></param>
 void TimeManager::Update(int deltaTime)
 {
+	// ãƒªã‚¶ãƒ«ãƒˆæ™‚ã¯æ›´æ–°ã—ãªã„
+	if (GameManager::GetInstance().CurrentSequence() == Result) return;
+
 	if(remainTime <=0)
 	{
-		GameManager::GetInstance().GameClear();
-		return;
+		if(GameManager::GetInstance().CurrentSequence() == SetUp)
+		{
+			SetTimer(999);
+			GameManager::GetInstance().SequenceProceed();
+		}
+		else if(GameManager::GetInstance().CurrentSequence() == Battle)
+		{
+			GameManager::GetInstance().GameClear();
+			return;
+		}
 	}
 	int elapsedTime = deltaTime;
 	if (isFast) { elapsedTime *= 2; }
 	if (isSlow) { elapsedTime /= 2; }
 
 	remainTime -= elapsedTime;
-	/// “G‚ÌoŒ»
+	/// æ•µã®å‡ºç¾
+	if (GameManager::GetInstance().CurrentSequence() != Battle) return;
 	if(!timeLine.empty())
 	{
 		while (timeLine.top().Time >= remainTime/1000)
 		{
 			auto tl = timeLine.top();
 			timeLine.pop();
-			/// ‚±‚±‚É“G‚ÌoŒ» switch•¶
-			/// ¡‚ÍƒfƒoƒbƒO‘Î‰
+			/// ã“ã“ã«æ•µã®å‡ºç¾ switchæ–‡
+			/// ä»Šã¯ãƒ‡ãƒãƒƒã‚°å¯¾å¿œ
 
 			EnemyManager::GetInstance().SpawnEnemyTest();
 			if (timeLine.empty()) break;
@@ -75,7 +87,7 @@ void TimeManager::SetTimer(int _remainTime)
 
 void TimeManager::LoadTest()
 {
-	SetTimer(999);
+	SetTimer(30);
 	timeLine.push({ 75,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 88,{0,0},{EnemyList::Enemy1},99 });
 	timeLine.push({ 54,{0,0},{EnemyList::Enemy1},99 });

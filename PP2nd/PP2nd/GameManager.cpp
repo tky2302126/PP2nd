@@ -239,6 +239,7 @@ void GameManager::UseItem(TerrainList name)
 void GameManager::GameOver()
 {
 	isGameOver = true;
+	currentSequence = Result;
 }
 
 /// <summary>
@@ -247,4 +248,5 @@ void GameManager::GameOver()
 void GameManager::GameClear()
 {
 	isGameClear = true;
+	currentSequence = Result;
 }
