@@ -17,10 +17,14 @@ public:
 private:
 	VECTOR position;
 	VECTOR initPos;
+	VECTOR targetPos;
+	VECTOR initTargetPos;
 	Vector2Int oldMousePos;
-	float vRotate = DegtoRad(CAMERA_VROTATE);
+	float elevationAngle = DegtoRad(CAMERA_VROTATE);
+	float azimuthAngle;
 	bool move = false;
 	bool rotate = false;
-
+	float moveSpeed = 2.0f;
+	float rotateSpeed = 1.0f;
 };
 

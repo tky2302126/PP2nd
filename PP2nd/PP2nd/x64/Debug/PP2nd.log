@@ -1,27 +1,27 @@
 ﻿  Camera.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(279,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(279,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(280,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(280,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(304,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(304,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(304,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(304,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(305,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(305,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(305,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(305,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(328,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(328,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\define.h(337,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\.git\PP2nd\PP2nd\define.h(337,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(40,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-  PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Debug\PP2nd.exe
+C:\PP2nd\.git\PP2nd\PP2nd\Camera.cpp(45,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+  PP2nd.vcxproj -> C:\PP2nd\.git\PP2nd\x64\Debug\PP2nd.exe

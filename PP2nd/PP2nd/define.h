@@ -42,11 +42,11 @@ constexpr auto MAP_UNIT = 360.0f;  //マップの1ユニットの長さ
 constexpr float CAMERA_HEIGHT = 2000.0f;
 constexpr float CAMERA_Z_OFFSET = CAMERA_HEIGHT/2; // 60度の仰角
 constexpr auto MAP_MARGIN = 0.1f ; //マップの余白(割合)
-constexpr auto CAMERA_VROTATE = 60.0f;
 
+constexpr auto CAMERA_VROTATE = 60.0f; //カメラの水平角
 constexpr auto CAMERA_MIN_Z = CAMERA_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
-constexpr auto CAMERA_RADIUS = 1000.f;
+constexpr auto CAMERA_RADIUS = 2000.f;
 
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
 constexpr auto HUD_UI_SIZE = WINDOW_WIDTH / 20;

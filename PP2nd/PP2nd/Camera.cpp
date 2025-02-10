@@ -34,9 +34,14 @@ void Camera::Init(const _mapInfo& mapInfo)
 
 	initPos = position;
 
+	targetPos = VGet(mapInfo.width * MAP_UNIT / 2,
+					 0,
+					 mapInfo.height * MAP_UNIT / 2);
+	initTargetPos = targetPos;
+
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
-	
+	azimuthAngle = DegtoRad(90.f);
 	SetupCamera_Perspective(DX_PI/2);
 }
 
@@ -88,6 +93,7 @@ void Camera::Update()
 	if (currentInput.position.y <= HUD_AREA_TOP || currentInput.position.y>= HUD_AREA_BOTTOM)
 	{
 		move = false;
+		rotate = false;
 		return;
 	}
 #pragma region カメラの移動
@@ -103,15 +109,12 @@ void Camera::Update()
 		int durationX = currentInput.position.x - oldMousePos.x;
 		int durationY = currentInput.position.y - oldMousePos.y;
 		
-		//if((position.x-durationX * 2.0f) >= CAMERA_MIN_X)
-		{
-			position.x -= durationX * 2.0f;
-		}
+		VECTOR forward = { cosf(azimuthAngle), 0, sinf(azimuthAngle) };
+		VECTOR right = { -sinf(azimuthAngle), 0, cosf(azimuthAngle) };
 
-		//if((position.z + durationY * 2.0f) >= CAMERA_MIN_Z)
-		{
-			position.z += durationY * 2.0f;
-		}
+		targetPos.x -= (right.x * durationX + forward.x * durationY) * moveSpeed;
+		targetPos.z -= (right.z * durationX + forward.z * durationY) * moveSpeed;
+
 		oldMousePos = currentInput.position;
 	}
 	else if(leftState == Canceled && move)
@@ -121,35 +124,47 @@ void Camera::Update()
 #pragma endregion
 	
 #pragma region カメラの回転
-//	InputState rightState = currentInput.state.right;
-//
-//	if (rightState == Started)
-//	{
-//		oldMousePos = currentInput.position;
-//		rotate = true;
-//	}
-//	else if (rightState == Performed && rotate)
-//	{
-//		int durationX = currentInput.position.x - oldMousePos.x;
-//		{
-//			position.x = position.x + cosf(durationX);
-//			position.z = position.z + sinf(durationX);
-//		}
-//		oldMousePos = currentInput.position;
-//	}
-//	else if (rightState == Canceled && rotate)
-//	{
-//		rotate = false;
-//	}
+	InputState rightState = currentInput.state.right;
+
+	if (rightState == Started)
+	{
+		oldMousePos = currentInput.position;
+		rotate = true;
+	}
+	else if (rightState == Performed && rotate)
+	{
+		int durationX = currentInput.position.x - oldMousePos.x;
+		{
+			azimuthAngle += DegtoRad(durationX * 1.0f);
+		}
+		oldMousePos = currentInput.position;
+	}
+	else if (rightState == Canceled && rotate)
+	{
+		rotate = false;
+	}
+
+
+	// 球面座標をデカルト座標に変換
+	float x = CAMERA_RADIUS * cosf(elevationAngle) * cosf(azimuthAngle);
+	float y = CAMERA_RADIUS * sinf(elevationAngle);
+	float z = CAMERA_RADIUS * cosf(elevationAngle) * sinf(azimuthAngle);
+
+	position = { x, y, z };
+	position = VAdd(position, targetPos);
 #pragma endregion
 
 	/// マップ中央にカメラを戻す
 	if(CheckHitKey(KEY_INPUT_R))
 	{
 		position = initPos;
+		targetPos = initTargetPos;
+		azimuthAngle = 0.0f;
 	}
 
-	SetCameraPositionAndAngle(position, vRotate, 0, 0);
+	// SetCameraPositionAndAngle(position, elevationAngle, 0, 0);
+	SetCameraPositionAndTarget_UpVecY(position, targetPos);
+	
 	GameManager::GetInstance().SetCameraPosition(position);
 
 }
