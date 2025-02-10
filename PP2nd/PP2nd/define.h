@@ -226,6 +226,20 @@ enum Sequence
 
 #pragma endregion
 
+#pragma region AudioManager
+enum SEList
+{
+	SE1,
+	SE_ALL
+};
+
+enum BGMList
+{
+	BGM1,
+	BGM_ALL
+};
+#pragma endregion
+
 #pragma region 経路探索
 /// <summary>
 /// 経路探索用のノード

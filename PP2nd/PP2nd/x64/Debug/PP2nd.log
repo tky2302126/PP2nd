@@ -1,27 +1,475 @@
-﻿  Camera.cpp
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(279,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+﻿  AudioManager.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
+  
+  Box.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Box.cpp' をコンパイルしています)
+  
+  Camera.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(280,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(304,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(304,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(305,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(305,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(328,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\define.h(337,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Camera.cpp' をコンパイルしています)
   
-C:\PP2nd\.git\PP2nd\PP2nd\Camera.cpp(45,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-  PP2nd.vcxproj -> C:\PP2nd\.git\PP2nd\x64\Debug\PP2nd.exe
+C:\PP2nd\PP2nd\PP2nd\Camera.cpp(45,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+  Cube.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Cube.cpp' をコンパイルしています)
+  
+  EnemyManager.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'EnemyManager.cpp' をコンパイルしています)
+  
+  GameManager.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'GameManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\GameManager.cpp(165,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\GameManager.cpp(166,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\GameManager.cpp(189,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\GameManager.cpp(190,10): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  HUD.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'HUD.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\HUD.cpp(45,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  InputSystem.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'InputSystem.cpp' をコンパイルしています)
+  
+  Item.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Item.cpp' をコンパイルしています)
+  
+  ItemPanel.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'ItemPanel.cpp' をコンパイルしています)
+  
+  main.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+  MainScreen.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'MainScreen.cpp' をコンパイルしています)
+  
+  Map.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Map.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(72,43): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(74,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(74,51): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(77,42): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(79,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(79,35): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(257,94): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\Map.cpp(257,72): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  SceneManager.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'SceneManager.cpp' をコンパイルしています)
+  
+  Start.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Start.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\Start.cpp(14,45): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  TestEnemy.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestEnemy.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(54,34): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+C:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(54,34): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(77,26): warning C4244: '-=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(79,18): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(124,9): warning C4065: switch 文に 'default' はありますが 'case' ラベルがありません。
+  TestScene.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TestScene.cpp' をコンパイルしています)
+  
+  TimeManager.cpp
+C:\PP2nd\PP2nd\PP2nd\define.h(287,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(288,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(312,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(313,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(336,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+C:\PP2nd\PP2nd\PP2nd\define.h(345,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  
+  コードを生成中...
+C:\PP2nd\PP2nd\PP2nd\GameManager.cpp(117,1): warning C4172: ローカル変数またはテンポラリ : null のアドレスを返します
+C:\PP2nd\PP2nd\PP2nd\Cube.cpp(168,1): warning C4172: ローカル変数またはテンポラリ : MHandle のアドレスを返します
+  LINK : 前回のインクリメンタル リンクで C:\PP2nd\PP2nd\x64\Debug\PP2nd.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+  PP2nd.vcxproj -> C:\PP2nd\PP2nd\x64\Debug\PP2nd.exe
