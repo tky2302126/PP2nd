@@ -32,6 +32,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	EnemyManager& enemyMPtr = EnemyManager::GetInstance();
 	enemyMPtr.Init();
+
+	AudioManager& audioMPtr = AudioManager::GetInstance();
+	audioMPtr.Init();
 #ifdef _DEBUG
 	enemyMPtr.InitTest();
 
@@ -58,6 +61,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	}
 
+#pragma region Manager‚Ì‰ð•ú
+
+#pragma endregion
 	DxLib_End();
 
 	return 0;

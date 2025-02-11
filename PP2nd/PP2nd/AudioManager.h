@@ -14,21 +14,24 @@ public:
 	~AudioManager();
 
 	static AudioManager& GetInstance();
+	void Init();
+	void UnInit();
 	void Load();
 	void Load(SceneName);
+	void LoadTest();
 	void Release(SEList);
 	void Release(BGMList);
 	void Release(SceneName);
 	void PlayBGM();
 	void PlaySE();
 	void SetLoop(bool);
-	void Init();
-	void UnInit();
 
 private:
 	static UniquePtr<AudioManager> Instance;
 	unmap<SEList, int> SETrack;
 	unmap<BGMList, int> BGMTrack;
 	bool loop = false;
+	int BGMVolume;
+	int SEVolume;
 };
 

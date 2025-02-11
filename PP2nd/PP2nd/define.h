@@ -67,6 +67,9 @@ constexpr auto ENEMY_GAUGE_OFFSET_Y = 25;
 constexpr auto GAMESPEED_SLOWRATE = 0.25f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
+constexpr auto BGM_VOLUME = 50;
+constexpr auto SE_VOLUME = 50;
+
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
 const auto COLOR_NONE = GetColorU8(0, 0, 0, 0);
@@ -229,13 +232,18 @@ enum Sequence
 #pragma region AudioManager
 enum SEList
 {
-	SE1,
+	ALARM, // 敵の接近を通知
+	ALERT, // 戦闘移行を通知
+	LOWBON,// アイテム設置
 	SE_ALL
 };
 
 enum BGMList
 {
-	BGM1,
+	SETUP, // 準備
+	BATTLE1, //戦闘
+	GAMEOVER,
+	GAMECLEAR,
 	BGM_ALL
 };
 #pragma endregion
