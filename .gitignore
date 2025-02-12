@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+*.pdb
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
