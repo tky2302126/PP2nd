@@ -9,6 +9,10 @@ AudioManager::AudioManager()
 
 AudioManager::~AudioManager()
 {
+	if(asyncThread.joinable())
+	{
+		asyncThread.join();
+	}
 }
 
 void AudioManager::Init()
@@ -114,6 +118,42 @@ void AudioManager::PlaySE(SEList name)
 	PlaySoundMem(SETrack[name], DX_PLAYTYPE_BACK);
 }
 
+void AudioManager::PlaySECustom(SEList seName, BGMList bgmName, bool loop)
+{
+	for (int i = 0; i < BGMList::BGM_ALL; i++)
+	{
+		auto it = BGMTrack.find((BGMList)i);
+		// 見つからなかった場合
+		if (it == BGMTrack.end() || it->second == -1)
+		{
+			continue;
+		}
+		int handle = it->second;
+		auto result = StopSoundMem(handle);
+	}
+	asyncThread = thread(&AudioManager::SurveySEAsync, this, seName);
+	asyncThread.join();
+	PlayBGM(bgmName, loop);
+}
+
 void AudioManager::SetLoop(bool)
+{
+}
+
+void AudioManager::SurveySEAsync(SEList name)
+{
+	PlaySE(name);
+	while (true)
+	{
+		if( CheckSoundMem(SETrack[name]) == 0)
+		{
+			break;
+		}
+		this_thread::sleep_for(chrono::milliseconds(16));
+	}
+	
+}
+
+void AudioManager::SurveySoundAsync(BGMList)
 {
 }

@@ -1,31 +1,31 @@
-﻿  TimeManager.cpp
+﻿  AudioManager.cpp
 D:\PP2nd\PP2nd\PP2nd\define.h(301,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(302,17): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(326,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(326,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(327,8): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(327,8): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(350,33): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\define.h(359,29): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'TimeManager.cpp' をコンパイルしています)
+  (ソース ファイル 'AudioManager.cpp' をコンパイルしています)
   
   コード生成しています。
-  4 of 2667 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+  15 of 2748 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    10 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Release\PP2nd.exe

@@ -24,6 +24,7 @@ public:
 	void Release(SceneName);
 	void PlayBGM(BGMList name, bool loop = true);
 	void PlaySE(SEList);
+	void PlaySECustom(SEList, BGMList, bool loop = true);
 	void SetLoop(bool);
 
 private:
@@ -36,5 +37,9 @@ private:
 	int surveyHandle = -1;
 	int surveyConunt = -1;
 	int oldVolume = -1;
+	thread asyncThread;
+
+	void SurveySEAsync(SEList);
+	void SurveySoundAsync(BGMList);
 };
 

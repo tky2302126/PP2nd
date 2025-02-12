@@ -68,7 +68,7 @@ constexpr auto GAMESPEED_SLOWRATE = 0.25f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
 constexpr auto BGM_VOLUME = 50;
-constexpr auto SE_VOLUME = 50;
+constexpr auto SE_VOLUME = 30;
 
 const auto COLOR_AMBER = GetColorU8(185, 126, 84, 255);
 const auto COLOR_WHITE = GetColorU8(255, 255, 255, 255);
