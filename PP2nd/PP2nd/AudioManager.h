@@ -22,8 +22,8 @@ public:
 	void Release(SEList);
 	void Release(BGMList);
 	void Release(SceneName);
-	void PlayBGM();
-	void PlaySE();
+	void PlayBGM(BGMList name, bool loop = true);
+	void PlaySE(SEList);
 	void SetLoop(bool);
 
 private:
@@ -33,5 +33,8 @@ private:
 	bool loop = false;
 	int BGMVolume;
 	int SEVolume;
+	int surveyHandle = -1;
+	int surveyConunt = -1;
+	int oldVolume = -1;
 };
 

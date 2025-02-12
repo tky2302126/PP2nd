@@ -64,6 +64,7 @@ void Map::Draw()
 	/// DrawCapsule3D(VGet(320.0f, 100.0f, 0.0f), VGet(320.0f, 300.0f, 0.0f), 40.0f, 8, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
 
 #if _DEBUG
+	/// マップのグリッド線を表示
 	int XAxizcolor = GetColor(255, 128, 255);
 	int ZAxizColor = GetColor(128, 255, 255);
 	/// デバッグ

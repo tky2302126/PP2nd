@@ -15,6 +15,8 @@ TestScene::TestScene()
 
 	mainScreenUPtr = make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
+
+	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);
 }
 
 TestScene::~TestScene()

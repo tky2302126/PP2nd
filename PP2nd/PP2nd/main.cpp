@@ -1,4 +1,4 @@
-#include "DxLib.h"
+﻿#include "DxLib.h"
 #include "manager.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -18,7 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetTransColor(255, 0, 255);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
-#pragma region Manager�̏���
+#pragma region Managerの準備
 	SceneManager& sceneMPtr = SceneManager::GetInstance();
 	sceneMPtr.Init();
 
@@ -44,10 +44,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 
-
-#if _DEBUG
+	// 提出用にコメントアウト
+// #if _DEBUG
 	sceneMPtr.Load(SceneName::Test);
-#endif
+// #endif
 	while (true)
 	{
 		ClearDrawScreen();
@@ -60,10 +60,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ScreenFlip();
 
 	}
-
-#pragma region Manager�̉��
+#pragma region Managerの解放
+	/// スマートポインタの解放がDxlib_endよりも遅いので
+	/// ここで実行
+	
+	audioMPtr.UnInit();
+	enemyMPtr.UnInit();
+	gameMPtr.UnInit();
+	inputSystemPtr.UnInit();
+	sceneMPtr.UnInit();
+	timeMPtr.UnInit();
 
 #pragma endregion
+
+
 	DxLib_End();
 
 	return 0;

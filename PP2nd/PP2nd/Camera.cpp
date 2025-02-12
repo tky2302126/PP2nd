@@ -41,7 +41,7 @@ void Camera::Init(const _mapInfo& mapInfo)
 
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
-	azimuthAngle = DegtoRad(90.f);
+	azimuthAngle = DegtoRad(-90.f);
 	SetupCamera_Perspective(DX_PI/2);
 }
 

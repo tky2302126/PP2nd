@@ -51,6 +51,8 @@ void TimeManager::Update(int deltaTime)
 		{
 			SetTimer(100);
 			GameManager::GetInstance().SequenceProceed();
+			AudioManager::GetInstance().PlaySE(SEList::ALERT);
+			AudioManager::GetInstance().PlayBGM(BGMList::BATTLE1);
 		}
 		else if(GameManager::GetInstance().CurrentSequence() == Battle)
 		{

@@ -108,6 +108,7 @@ void Cube::Update()
                     isConfirm = false;
                     GameManager::GetInstance().UseItem(TerrainList::CUBE);
                     TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    AudioManager::GetInstance().PlaySE(SEList::LOWBON);
                 }
                 else
                 {

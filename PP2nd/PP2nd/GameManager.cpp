@@ -1,5 +1,6 @@
 ﻿#include "GameManager.h"
 #include "EnemyManager.h"
+#include "AudioManager.h"
 #include "Item.h"
 
 UniquePtr<GameManager> GameManager::Instance = nullptr;
@@ -240,6 +241,7 @@ void GameManager::GameOver()
 {
 	isGameOver = true;
 	currentSequence = Result;
+	AudioManager::GetInstance().PlayBGM(BGMList::GAMEOVER, false);
 }
 
 /// <summary>
@@ -249,4 +251,5 @@ void GameManager::GameClear()
 {
 	isGameClear = true;
 	currentSequence = Result;
+	AudioManager::GetInstance().PlayBGM(BGMList::GAMECLEAR, false);
 }
