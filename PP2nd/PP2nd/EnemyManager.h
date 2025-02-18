@@ -18,16 +18,17 @@ public:
 	void InitStart();
 	void Load(int day);
 	void Update();
-	void InitTest();
-	void LoadTest();
 	vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
 	void ReCalculateRoute();
-	void SpawnEnemyTest();
 	void IncreaseTrialCount();
 	void ResetTrialCount();
-	int GetTrialCount() { return trialCount; }
+	int  GetTrialCount() { return trialCount; }
 	void RemoveEnemy(Enemy* enemy);
+	bool CanPlace(TerrainList name, Vector2Int pos);
+	void SpawnEnemyTest();
+	void InitTest();
+	void LoadTest();
 private:
 	
 	/// ゴールまでのルート

@@ -139,6 +139,10 @@ void Map::Draw()
 			Item* itemPtr = nullptr;
 			/// すでに配置済みならおけないようにする
 			/// terrainInfoで調べる
+			Vector2Int terrainPos = { floor(mouseWorldPos.x / MAP_UNIT), floor(mouseWorldPos.z / MAP_UNIT) };
+			auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+			if (terrainInfo[terrainPos.y][terrainPos.x] != TerrainList::None) return;
+
 
 			VECTOR pos = VGet(
 				floor(mouseWorldPos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
@@ -150,6 +154,13 @@ void Map::Draw()
 			
 			
 			case TerrainList::CUBE:
+				/// 配置した時にルートが消えないか調査
+				if (!EnemyManager::GetInstance().CanPlace(TerrainList::CUBE, terrainPos))
+				{
+					/// 配置不可なダイアログを表示
+
+					break;
+				}
 				itemPtr = new Cube();
 				itemPtr->Init(MHandle,pos,this);
 				break;
