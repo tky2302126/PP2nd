@@ -155,7 +155,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="PreLoad.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
@@ -179,7 +178,6 @@
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="PreLoad.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Start.h" />
