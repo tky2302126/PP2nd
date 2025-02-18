@@ -1,7 +1,6 @@
 ﻿#include "SceneManager.h"
 #include "Scene.h"
 #include "TestScene.h"
-#include "TitleScene.h"
 
 unique_ptr<SceneManager> SceneManager::Instance = nullptr;
 
@@ -30,7 +29,7 @@ void SceneManager::Load(SceneName name)
 	switch (name)
 	{
 	case Title:
-		scenePtr = new TitleScene();
+
 		break;
 
 	case Menu:

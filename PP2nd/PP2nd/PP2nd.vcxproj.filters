@@ -93,7 +93,7 @@
     <ClCompile Include="Trial_Easy.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
+    <ClCompile Include="Title.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="TitleScreen.cpp">
@@ -170,7 +170,7 @@
     <ClInclude Include="Trial_Easy.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
+    <ClInclude Include="Title.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="TitleScreen.h">
