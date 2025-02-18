@@ -1,6 +1,5 @@
 ﻿#include "EnemyManager.h"
 #include "TestEnemy.h"
-
 UniquePtr<EnemyManager> EnemyManager::Instance = nullptr;
 
 EnemyManager::EnemyManager()
@@ -128,6 +127,20 @@ void EnemyManager::RemoveEnemy(Enemy* enemy)
 		}
 		index++;
 	}
+}
+
+bool EnemyManager::CanPlace(TerrainList name, Vector2Int pos)
+{
+    for(int i=0;i<startPtrVec.size();i++)
+	{
+		if(startPtrVec[i]->ReachGoal(name, pos) == false)
+		{
+			return false;
+			break;
+		}
+	}
+
+	return true;
 }
 
 void EnemyManager::UnInit()

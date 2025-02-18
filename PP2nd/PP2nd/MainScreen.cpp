@@ -67,19 +67,3 @@ void MainScreen::Update()
 #pragma endregion
 }
 
-/// <summary>
-/// スタートかゴールを追加する
-/// </summary>
-/// <param name="pos"></param>
-/// <param name="tag"></param>
-void MainScreen::AddPoint(Vector2Int pos, Tag tag)
-{
-	if(tag == Tag::Start)
-	{
-		mapUPtr->AddStart(pos);
-	}
-	if(tag == Tag::Goal)
-	{
-		mapUPtr->AddGoal(pos);
-	}
-}
