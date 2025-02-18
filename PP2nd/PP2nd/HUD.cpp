@@ -175,7 +175,7 @@ void HUD::ReLoad()
 }
 
 /// <summary>
-/// 未使用
+/// タイトル用の描画
 /// </summary>
 void HUD::Draw()
 {

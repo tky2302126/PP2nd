@@ -161,7 +161,7 @@
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
-    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Trial_Easy.cpp" />
   </ItemGroup>
@@ -188,7 +188,7 @@
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Trial_Easy.h" />
   </ItemGroup>

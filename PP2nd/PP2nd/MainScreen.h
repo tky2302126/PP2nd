@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "define.h"
+#include "Camera.h"
 
 class HUD;
 class Map;

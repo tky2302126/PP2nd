@@ -12,6 +12,9 @@ Map::~Map()
 	itemPtrVec.clear();
 }
 
+/// <summary>
+///  タイトル画面用のイニシャライズ
+/// </summary>
 void Map::Init()
 {
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;

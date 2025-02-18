@@ -9,6 +9,9 @@ Camera::~Camera()
 {
 }
 
+/// <summary>
+/// タイトル用のイニシャライズ
+/// </summary>
 void Camera::Init()
 {
     //カメラの初期化
@@ -19,7 +22,17 @@ void Camera::Init()
 	
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
-	
+	initPos = position;
+
+	targetPos = VGet(CAMERA_MIN_X,
+		0,
+		CAMERA_MIN_Z);
+	initTargetPos = targetPos;
+
+	oldMousePos.x = 0;
+	oldMousePos.y = 0;
+	azimuthAngle = DegtoRad(-90.f);
+	SetupCamera_Perspective(DX_PI / 2);
 }
 
 /// <summary>
