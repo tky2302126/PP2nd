@@ -90,9 +90,12 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Trial_Easy.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
+=======
+>>>>>>> parent of 7eedf32 (add : ロードシーンを作成)
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -158,8 +161,11 @@
     <ClInclude Include="AudioManager.h">
       <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Trial_Easy.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of 7eedf32 (add : ロードシーンを作成)
   </ItemGroup>
 </Project>
