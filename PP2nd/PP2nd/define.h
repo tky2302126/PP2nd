@@ -64,7 +64,7 @@ constexpr auto ENEMY_GAUGE_WIDTH = 50;
 constexpr auto ENEMY_GAUGE_HEIGHT = 10;
 constexpr auto ENEMY_GAUGE_OFFSET_Y = 25;
 
-constexpr auto GAMESPEED_SLOWRATE = 0.25f;
+constexpr auto GAMESPEED_SLOWRATE = 0.1f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
 
 constexpr auto BGM_VOLUME = 50;

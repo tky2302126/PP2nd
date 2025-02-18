@@ -12,6 +12,7 @@ void Start::Init(Vector2Int _pos)
     auto mapInfo = GameManager::GetInstance().GetMapInfo();
     Vector2Int goalPos = { mapInfo.goalWidth,mapInfo.goalHeight };
     baseHealth = GetHeuristic(pos, goalPos) * MAP_UNIT;
+    GameManager::GetInstance().AddTerrainInfo(TerrainList::Start, pos);
 }
 
 void Start::UnInit()
@@ -71,13 +72,13 @@ void Start::SearchRoute()
         for (const auto& dir : directions)
         {
             Vector2Int neighborPos = { current->pos.x + dir.x, current->pos.y + dir.y };
+            // 侵入不可のエリアか、探索済みの場合はスキップする
             if (!IsValidPosition(neighborPos, map) || closedSet.count(neighborPos))
             {
                 continue;
             }
             int cost = current->cost + 1;
             /// 地形情報の値を参照
-            ///! 領域外を検索するリスクを回避
             auto terrain = TerrainList::None;
             if(neighborPos.x>=0 && neighborPos.y >= 0
                && neighborPos.x<terrainInfo[0].size()&& neighborPos.y <terrainInfo.size())
@@ -117,9 +118,89 @@ void Start::SearchRoute()
     /// 見つからなかった場合の処理
 }
 
-bool Start::ReachGoal()
+bool Start::ReachGoal(TerrainList name, Vector2Int pos)
 {
-    return false;
+    const vector<Vector2Int> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    Vector2Int goal = {
+        GameManager::GetInstance().GetMapInfo().goalWidth,
+        GameManager::GetInstance().GetMapInfo().goalHeight
+    };
+    auto map = GameManager::GetInstance().GetMapInfo();
+    auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+    terrainInfo[pos.y][pos.x] = name;
+    priority_queue<Node*, vector<Node*>, Compare> openList;
+    unordered_set<Vector2Int, Hash> closedSet;
+    unordered_map<Vector2Int, Node*, Hash> nodeMap; // 修正: "unmap" を "unordered_map" に修正
+
+    Vector2Int startPos = { pos.x , pos.y };
+    Node* start = new Node(startPos, 0, GetHeuristic(pos, goal));
+    openList.push(start);
+    nodeMap[startPos] = start;
+
+    while (!openList.empty())
+    {
+        Node* current = openList.top();
+        openList.pop();
+
+        if (current->pos == goal)
+        {
+            route.clear();
+            while (current)
+            {
+                route.push_back(current->pos);
+                current = current->parent;
+            }
+            reverse(route.begin(), route.end());
+
+            for (auto& [_, node] : nodeMap) { delete node; }
+            return true;
+        }
+
+        closedSet.insert(current->pos);
+
+        for (const auto& dir : directions)
+        {
+            Vector2Int neighborPos = { current->pos.x + dir.x, current->pos.y + dir.y };
+            if (!IsValidPosition(neighborPos, map) || closedSet.count(neighborPos))
+            {
+                continue;
+            }
+
+            auto terrain = TerrainList::None;
+            if (neighborPos.x >= 0 && neighborPos.y >= 0 &&
+                neighborPos.x < terrainInfo[0].size() && neighborPos.y < terrainInfo.size())
+            {
+                terrain = terrainInfo[neighborPos.y][neighborPos.x];
+            }
+
+            if (terrain == TerrainList::CUBE)
+            {
+                continue; // CUBE は通れないようにする
+            }
+
+            int cost = current->cost + 1;
+            switch (terrain)
+            {
+            case TerrainList::Polluted:
+                cost += 99;
+                break;
+            default:
+                break;
+            }
+
+            if (nodeMap.count(neighborPos) && nodeMap[neighborPos]->cost <= cost)
+            {
+                continue;
+            }
+
+            Node* neighbor = new Node(neighborPos, cost, GetHeuristic(neighborPos, goal), current);
+            openList.push(neighbor);
+            nodeMap[neighborPos] = neighbor;
+        }
+    }
+
+    for (auto& [_, node] : nodeMap) { delete node; }
+    return false; // ルートが見つからなかった場合
 }
 
 void Start::DrawRouteTest()

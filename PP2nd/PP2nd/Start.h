@@ -7,7 +7,7 @@ public:
 	void Init(Vector2Int pos);
 	void UnInit();
 	void SearchRoute();
-	bool ReachGoal();
+	bool ReachGoal(TerrainList name, Vector2Int pos);
 	Vector2Int& GetStartPos() { return pos; }
 	vector<Vector2Int> GetRoute() const { return route; }
 	void DrawRouteTest();
