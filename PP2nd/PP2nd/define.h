@@ -223,6 +223,7 @@ enum class HDKey
 
 enum Sequence
 {
+	Debug = -1,
 	SetUp,
 	Battle,
 	Result

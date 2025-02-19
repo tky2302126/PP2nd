@@ -45,6 +45,9 @@ public:
 	bool IsGameOver() const { return isGameOver; }
 	bool IsGameClear() const { return isGameClear; }
 	Sequence CurrentSequence() const { return currentSequence; }
+	/// todo マップ情報をエクスポートする関数の実装
+
+
 private:
 	unmap<HDKey, HandleData> handleDatas;
 	unmap<TerrainList,int> itemInfo; /// 所有しているアイテム

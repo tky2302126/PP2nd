@@ -204,7 +204,13 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 /// <param name="day"></param>
 void GameManager::LoadTerrainInfo(int day)
 {
+	/// mapInfoの取得
 
+	/// terrainInfoの取得
+
+	/// StartをenemyManagerに通知する
+
+	/// ItemInfoの取得
 }
 
 /// <summary>

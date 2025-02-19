@@ -157,7 +157,7 @@ void EnemyManager::InitStart()
 /// <param name="day"></param>
 void EnemyManager::Load(int day)
 {
-
+	/// startPos
 }
 
 void EnemyManager::Update()
