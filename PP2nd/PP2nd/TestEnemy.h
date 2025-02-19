@@ -12,6 +12,7 @@ public:
 	void Init(int,Start*) override;
 	void Draw() const override;
 	void Move() override;
+	void Attack();
 	void Update() override;
 	void SetRoute(vector<Vector2Int> _route) override;
 	void CompareRoute(vector<Vector2Int> _route) override;
@@ -27,9 +28,12 @@ private:
 	Start* myStart;
 	Vector2Int oldPos = { -1,-1 };
 	bool pathFound = true; /// ルート探索済みであることを示す
+	bool move = true;
+	bool attack = false;
 	int health;
 	int currentHealth;
 	int InGaugeGH;
 	int OutGaugeGH;
+	int attackBeginTime = -1;
 };
 

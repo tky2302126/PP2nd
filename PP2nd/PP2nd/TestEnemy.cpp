@@ -37,12 +37,14 @@ void TestEnemy::Init(int, Start* _start = nullptr)
 void TestEnemy::Draw() const
 {
 	float height = 50.0f;
+    int color = GetColor(255, 255, 255);
+    if (attack) { color = GetColor(255, 128, 128); }
 	DrawCapsule3D(VGet(position.x, position.y + height, position.z), 
 		VGet(position.x, position.y, position.z), 
 		50.0f, 
 		32,
-		GetColor(255, 255, 255),
-		GetColor(255, 255, 255),
+		color,
+		color,
 		TRUE);
 
     auto screenPos = GetScreenPos(position);
@@ -64,29 +66,28 @@ void TestEnemy::Move()
 	/// 自身のposをrouteを参考に動かす
 	/// !pathFoundがtrueでない時はtempRouteで計算
 	/// myroute[0]->[1]へ移動する
-	if(myRoute.size()>=2)
-	{
-		VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
-		VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
-		VECTOR moveVec = VSub(end, position);
-		moveVec = VNorm(moveVec);
-        if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
-        if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
-		moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
-        auto moveDuration = VSize(moveVec);
-        currentHealth -= moveDuration;
-		position = VAdd(position, moveVec);
-		float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
-		if(distance <= ENEMY_MOVE_SPEED)
-		{
-			myRoute.erase(myRoute.begin());
-		}
-	}
-
-    Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
-    /// マスの位置が更新されたとき、イベントを実行する (基底クラスで実装)
-    if(oldPos != currentArrayPos)
+    if(move)
     {
+	    if(myRoute.size()>=2)
+	    {
+	    	VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
+	    	VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
+	    	VECTOR moveVec = VSub(end, position);
+	    	moveVec = VNorm(moveVec);
+            if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
+            if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
+	    	moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
+            auto moveDuration = VSize(moveVec);
+            currentHealth -= moveDuration;
+	    	position = VAdd(position, moveVec);
+	    	float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
+	    	if(distance <= ENEMY_MOVE_SPEED)
+	    	{
+	    		myRoute.erase(myRoute.begin());
+	    	}
+	    }
+
+        Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
         /// OnEnterEventの実行
         auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
         auto mapInfo = GameManager::GetInstance().GetMapInfo();
@@ -102,7 +103,9 @@ void TestEnemy::Move()
 
         case TerrainList::CUBE:
             /// 破壊する
-            
+            move = false;
+            attack = true;
+            attackBeginTime = GetNowCount();
             /// ここに処理を追加
 
 
@@ -110,21 +113,45 @@ void TestEnemy::Move()
             break;
         }
 
+    }
 
+    Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
+    /// マスの位置が更新されたとき、イベントを実行する (基底クラスで実装)
+    if(oldPos != currentArrayPos)
+    {
+        auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+        auto mapInfo = GameManager::GetInstance().GetMapInfo();
         /// OnExitEventの実行
         
-        if (!IsValidPosition(oldPos, mapInfo)) return;
-        switch (terrainInfo[oldPos.y][oldPos.x])
+        if (IsValidPosition(oldPos, mapInfo)) 
         {
-            /// ここに処理を追加
+            switch (terrainInfo[oldPos.y][oldPos.x])
+            {
+                /// ここに処理を追加
 
 
-        default:
-            break;
+            default:
+                break;
+            }
         }
         
-
+        
         oldPos = currentArrayPos;
+    }
+}
+
+/// <summary>
+/// 攻撃のアニメーションを実行する
+/// 終了したらmoveに戻る
+/// </summary>
+void TestEnemy::Attack()
+{
+    int currentTime = GetNowCount();
+    if(currentTime - attackBeginTime >= ENEMY_ATTACK_TIME * 1000)
+    {
+        attack = false;
+        move = true;
+        GameManager::GetInstance().RemoveTerrainInfo(this->position);
     }
 }
 
@@ -138,6 +165,7 @@ void TestEnemy::Update()
     }
 	Move();
 	Draw();
+    if (attack) { Attack(); }
 }
 
 void TestEnemy::SetRoute(vector<Vector2Int> _route)

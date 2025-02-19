@@ -54,6 +54,26 @@ void Map::UnInit()
 void Map::Load(int day)
 {
 }
+
+/// <summary>
+/// 地形情報が変更されたとき反映する
+/// </summary>
+void Map::Reload()
+{
+	auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+
+	for(int i=0;i<itemPtrVec.size();i++)
+	{
+		auto itemPos = itemPtrVec[i]->GetPosition();
+		auto arrayPos = WorldPos2ArrayPos(itemPos);
+		if(terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
+		{
+			RemoveItemPtr(itemPtrVec[i]);
+		}
+	}
+	GameManager::GetInstance().CheckedTerrainInfo();
+
+}
 /// <summary>
 /// ItemPanelから通知を受けるコールバック関数
 /// </summary>
@@ -64,6 +84,10 @@ void Map::RegistHoldItem(TerrainList name)
 	holdItem = true;
 }
 
+/// <summary>
+/// todo : マップの描画
+/// 板ポリゴンにスプライトを貼る形で実装する
+/// </summary>
 void Map::Draw()
 {
 	/// DrawCapsule3D(VGet(320.0f, 100.0f, 0.0f), VGet(320.0f, 300.0f, 0.0f), 40.0f, 8, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
@@ -238,6 +262,10 @@ void Map::Draw(SceneName)
 void Map::Update()
 {
 	Draw();
+	if(GameManager::GetInstance().TerrainInfoChanged())
+	{
+		Reload();
+	}
 }
 
 void Map::Update(SceneName sequence)

@@ -194,6 +194,8 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 
 	///更新したら通知する
 	EnemyManager::GetInstance().ReCalculateRoute();
+	terrainInfoChanged = true;
+
 }
 
 /// <summary>

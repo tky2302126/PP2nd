@@ -37,6 +37,8 @@ public:
 	void UseItem(TerrainList name);
 	bool ItemInfoChanged() { return itemInfoChanged; }
 	void CheckedItemInfo() { itemInfoChanged = false; }
+	bool TerrainInfoChanged() { return terrainInfoChanged; }
+	void CheckedTerrainInfo() { terrainInfoChanged = false; }
 	void SequenceProceed() { currentSequence = Battle; }
 	void GameOver();
 	void GameClear();
@@ -50,7 +52,8 @@ private:
 	VECTOR cameraPos = VECTOR();
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
 	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
-	bool itemInfoChanged = false;
+	bool itemInfoChanged = false; /// 所持アイテムの更新を管理
+	bool terrainInfoChanged = false; /// 地形情報の更新を管理
 	bool isGameOver = false;
 	bool isGameClear = false;
 	Sequence currentSequence = SetUp;

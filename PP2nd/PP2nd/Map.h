@@ -17,6 +17,7 @@ public:
 	void UnInit();
 
 	void Load(int);
+	void Reload();
 	void RegistHoldItem(TerrainList name);
 	void Draw();
 	void Draw(SceneName);

@@ -63,6 +63,7 @@ constexpr auto ENEMY_MOVE_SPEED = 6.0f;
 constexpr auto ENEMY_GAUGE_WIDTH = 50;
 constexpr auto ENEMY_GAUGE_HEIGHT = 10;
 constexpr auto ENEMY_GAUGE_OFFSET_Y = 25;
+constexpr auto ENEMY_ATTACK_TIME = 2.5f;
 
 constexpr auto GAMESPEED_SLOWRATE = 0.1f;
 constexpr auto GAMESPEED_FASTRATE = 2.0f;
