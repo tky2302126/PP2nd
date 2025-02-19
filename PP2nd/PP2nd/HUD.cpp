@@ -175,14 +175,10 @@ void HUD::ReLoad()
 }
 
 /// <summary>
-/// 未使用
+/// タイトルシーン用
 /// </summary>
 void HUD::Draw()
 {
-	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(128, 128, 128), TRUE);
-
-	DrawStringToHandle(centerPos, 0, "00：00", GetColor(255, 255, 255), fontHandle);
-
 	/// アイテムの表示
 	if(!itemPanelMap.empty())
 	{
@@ -198,6 +194,7 @@ void HUD::Draw()
 			current = (TerrainList)((int)current+ 1);
 		}
 	}
+
 }
 
 

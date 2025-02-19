@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 #include "manager.h"
 #include "Camera.h"
@@ -6,22 +6,23 @@
 #include "Map.h"
 
 /// <summary>
-/// ƒ^ƒCƒgƒ‹‰æ–Ê‚Ì•`‰æ
+/// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®æç”»
 /// </summary>
 class TitleScreen 
 {
 public:
 	void Init();
 	void UnInit();
+	void Draw();
 	void Update();
 private:
-	/// •K—v‚ÈƒŠƒ\[ƒX
+	/// å¿…è¦ãªãƒªã‚½ãƒ¼ã‚¹
 	UniquePtr<Camera> cameraUPtr;
 	UniquePtr<HUD> hudUPtr;
 	UniquePtr<Map> mapUPtr;
-	SceneName currentSequence = Title; /// ƒV[ƒPƒ“ƒX
-	int buttonGH; /// ƒ{ƒ^ƒ“—p‚ÌƒCƒ[ƒWƒ\[ƒX
-	int confirmGH; /// Šm”FUI—p‚ÌƒCƒ[ƒWƒ\[ƒX
-	int arrowImageGH; /// ”z’u‚ğ‘£‚·–îˆó‚ÌƒCƒ[ƒWƒ\[ƒX
+	SceneName currentSequence = Title; /// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int buttonGH; /// ãƒœã‚¿ãƒ³ç”¨ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚½ãƒ¼ã‚¹
+	int confirmGH; /// ç¢ºèªUIç”¨ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚½ãƒ¼ã‚¹
+	int arrowImageGH; /// é…ç½®ã‚’ä¿ƒã™çŸ¢å°ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚½ãƒ¼ã‚¹
 };
 

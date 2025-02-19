@@ -19,7 +19,9 @@ public:
 	void Load(int);
 	void RegistHoldItem(TerrainList name);
 	void Draw();
+	void Draw(SceneName);
 	void Update();
+	void Update(SceneName);
 
 	void AddStart(Vector2Int pos);
 	void AddGoal(Vector2Int pos);
@@ -28,7 +30,7 @@ private:
 	void LoadTerrainInfo(int);
 	void LoadMapInfo(int);
 	VECTOR GetMouseWorldPos();
-	void CHeckInGrid(VECTOR& mousePos);
+	void CheckInGrid(VECTOR& mousePos);
 private:
 	TerrainList holdItemTag = TerrainList::None;
 	vector<Item*> itemPtrVec;

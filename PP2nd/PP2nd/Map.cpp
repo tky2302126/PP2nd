@@ -12,9 +12,14 @@ Map::~Map()
 	itemPtrVec.clear();
 }
 
+/// <summary>
+/// タイトルシーン用のイニシャライズ
+/// </summary>
 void Map::Init()
 {
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
+	mapInfo = {25, 25, 0, 0};
+
 }
 
 /// <summary>
@@ -192,7 +197,7 @@ void Map::Draw()
 	if(holdItem)
 	{
 		/// マスに置こうとしているか調べる
-		CHeckInGrid(mouseWorldPos);
+		CheckInGrid(mouseWorldPos);
 		/// モデルの描画
 		/// inGrid-> 座標を補正する
 		VECTOR drawPos = mouseWorldPos;
@@ -219,12 +224,25 @@ void Map::Draw()
 
 
 }
+
+/// <summary>
+/// タイトルシーン用の描画
+/// </summary>
+/// <param name=""></param>
+void Map::Draw(SceneName)
+{
+}
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする
 /// </summary>
 void Map::Update()
 {
 	Draw();
+}
+
+void Map::Update(SceneName sequence)
+{
+	Draw(sequence);
 }
 
 void Map::AddStart(Vector2Int pos)
@@ -282,7 +300,7 @@ VECTOR Map::GetMouseWorldPos()
 /// <summary>
 /// マウスの座標がマスの中央付近に入っているか調べる
 /// </summary>
-void Map::CHeckInGrid(VECTOR& mousePos)
+void Map::CheckInGrid(VECTOR& mousePos)
 {
 	if (mousePos.x < 0 || mousePos.z < 0 || mousePos.x > MAP_UNIT*mapInfo.width ||mousePos.z > mapInfo.height*MAP_UNIT) 
 	{
