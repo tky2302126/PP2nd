@@ -155,11 +155,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="PreLoad.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleScreen.cpp" />
+    <ClCompile Include="Trial_Easy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
@@ -177,12 +181,16 @@
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="PreLoad.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleScreen.h" />
+    <ClInclude Include="Trial_Easy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

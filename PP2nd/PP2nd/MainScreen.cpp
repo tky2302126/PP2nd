@@ -1,7 +1,4 @@
 ﻿#include "MainScreen.h"
-#include "Camera.h"
-#include "HUD.h"
-#include "Map.h"
 
 /// <summary>
 /// 適当なマップサイズを指定して描画する

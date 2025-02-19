@@ -16,11 +16,11 @@ void PreLoad::UnInit()
 {
 }
 
-void PreLoad::Load(SceneName)
+void PreLoad::Load(SceneName nextScene, SceneName crrScene)
 {
 }
 
-void PreLoad::Release(SceneName)
+void PreLoad::Release(SceneName name)
 {
 }
 
