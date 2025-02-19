@@ -37,9 +37,9 @@ void TestScene::Update() const
 	mainScreenUPtr->Update();
 	EnemyManager::GetInstance().DrawRouteTest();
 #pragma endregion
-	if(CheckHitKey(KEY_INPUT_E))
+	if(CheckHitKey(KEY_INPUT_E)&& GameManager::GetInstance().CurrentSequence() == Debug)
 	{
-		EnemyManager::GetInstance().SpawnEnemyTest();
+		GameManager::GetInstance().ExportStageInfo("Test.txt");
 	}
 
 }

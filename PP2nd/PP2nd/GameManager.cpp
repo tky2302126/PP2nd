@@ -202,7 +202,7 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 /// csvファイル等から地形情報を取得する
 /// </summary>
 /// <param name="day"></param>
-void GameManager::LoadTerrainInfo(int day)
+void GameManager::LoadStageInfo(int day)
 {
 	/// mapInfoの取得
 
@@ -260,4 +260,55 @@ void GameManager::GameClear()
 	isGameClear = true;
 	currentSequence = Result;
 	AudioManager::GetInstance().PlayBGM(BGMList::GAMECLEAR, false);
+}
+
+void GameManager::ExportStageInfo(const std::string& fileName)
+{
+	std::ofstream outFile(fileName, std::ios::out);
+
+	if(!outFile)
+	{
+		printfDx("ファイルの作成に失敗");
+		return;
+	}
+
+	/// mapInfoの出力
+	outFile << "mapInfo :\n";
+	outFile << mapInfo.height << ",";
+	outFile << mapInfo.width << ",";
+	outFile << mapInfo.goalHeight << ",";
+	outFile << mapInfo.goalWidth ;
+	outFile << "\n";
+	/// terrainInfoの取得
+	outFile << "terrainInfo :\n";
+	for(int y =0;y<terrainInfo.size();y++)
+	{
+		for(int x=0;x<terrainInfo[y].size();x++)
+		{
+			if(terrainInfo[y][x] != TerrainList::None)
+			{
+				outFile << y << "," << x << ",";
+				outFile << (int)terrainInfo[y][x] << "\n";
+			}
+		}
+	}
+	/// StartをenemyManagerから受け取る
+
+	auto startVec = EnemyManager::GetInstance().GetStartPos();
+
+	outFile << "startPos :\n";
+	for(int i=0;i<startVec.size();i++)
+	{
+		outFile << startVec[i].y << "," << startVec[i].x << "\n";
+	}
+
+	/// ItemInfoの取得
+	outFile << "ItemInfo :\n";
+	for(const auto&[key, value] : itemInfo)
+	{
+		outFile << static_cast<int>(key) << "," << value << "\n";
+	}
+	/// ファイルで書き出す
+	outFile.close();
+	printfDx("ファイルの書き出し完了");
 }

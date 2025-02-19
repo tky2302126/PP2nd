@@ -31,7 +31,7 @@ public:
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
 	void AddTerrainInfo(TerrainList name, Vector2Int pos);
 	void RemoveTerrainInfo(VECTOR pos);
-	void LoadTerrainInfo(int day);
+	void LoadStageInfo(int day);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
 	void UseItem(TerrainList name);
@@ -46,7 +46,7 @@ public:
 	bool IsGameClear() const { return isGameClear; }
 	Sequence CurrentSequence() const { return currentSequence; }
 	/// todo マップ情報をエクスポートする関数の実装
-
+	void ExportStageInfo(const std::string& fileName);
 
 private:
 	unmap<HDKey, HandleData> handleDatas;
@@ -59,6 +59,6 @@ private:
 	bool terrainInfoChanged = false; /// 地形情報の更新を管理
 	bool isGameOver = false;
 	bool isGameClear = false;
-	Sequence currentSequence = SetUp;
+	Sequence currentSequence = Debug; /// シーケンス デバッグは製品では使わない
 };
 

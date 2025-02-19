@@ -42,8 +42,9 @@ void TimeManager::UnPause()
 /// <param name="deltaTime"></param>
 void TimeManager::Update(int deltaTime)
 {
-	// リザルト時は更新しない
+	// リザルト,デバッグ時は更新しない
 	if (GameManager::GetInstance().CurrentSequence() == Result) return;
+	if (GameManager::GetInstance().CurrentSequence() == Debug) return;
 
 	if(remainTime <=0)
 	{
