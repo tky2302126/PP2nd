@@ -8,7 +8,10 @@ terrainInfo :
 4,13,3
 4,20,1000
 5,12,3
+
 startPos :
 4,20
+
 ItemInfo :
-3,15
+3,20
+

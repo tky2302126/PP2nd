@@ -31,7 +31,7 @@ public:
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
 	void AddTerrainInfo(TerrainList name, Vector2Int pos);
 	void RemoveTerrainInfo(VECTOR pos);
-	void LoadStageInfo(int day);
+	void LoadStageInfo(const std::string& fileName);
 	void InitTerrainInfo(int width, int height);
 	void LoadTest();
 	void UseItem(TerrainList name);
