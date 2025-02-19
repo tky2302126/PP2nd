@@ -3,7 +3,7 @@
 
 Trial_Easy::Trial_Easy()
 {
-	mainScreenUPtr = make_unique<MainScreen>();
+	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
 
 	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);

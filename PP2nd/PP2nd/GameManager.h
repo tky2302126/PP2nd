@@ -21,12 +21,12 @@ public:
 	HandleData LoadHandleData(HDKey key);
 	HandleData& GetHandleData(HDKey key);
 	void SetItemInfo(ItemInfo info);
-	const unordered_map<TerrainList, int>& GetItemInfoUnMap() const;
+	const std::unordered_map<TerrainList, int>& GetItemInfoUnMap() const;
 	int& GetItemNum(TerrainList name);
 	static GameManager& GetInstance();
 	void SetCameraPosition(VECTOR pos);
 	VECTOR GetCameraPosition();
-	vector<vector<TerrainList>> GetTerrainInfo() const;
+	std::vector<std::vector<TerrainList>> GetTerrainInfo() const;
 	_mapInfo GetMapInfo() const;
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
 	void AddTerrainInfo(TerrainList name, Vector2Int pos);
@@ -54,7 +54,7 @@ private:
 	static UniquePtr<GameManager> Instance;
 	VECTOR cameraPos = VECTOR();
 	_mapInfo mapInfo = _mapInfo(); /// メインループのマップ情報
-	vector<vector<TerrainList>> terrainInfo = vector<vector<TerrainList>>();
+	std::vector<std::vector<TerrainList>> terrainInfo = std::vector<std::vector<TerrainList>>();
 	bool itemInfoChanged = false; /// 所持アイテムの更新を管理
 	bool terrainInfoChanged = false; /// 地形情報の更新を管理
 	bool isGameOver = false;

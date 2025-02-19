@@ -15,7 +15,7 @@ public:
 	HUD();
 	~HUD();
 	void Init();
-	void SetCallback(function<void(TerrainList)>);
+	void SetCallback(std::function<void(TerrainList)>);
 	void UnInit();
 
 	void Load();
@@ -69,6 +69,6 @@ private:
 	};
 
 	unmap<TerrainList, ItemPanel*> itemPanelMap;
-	function<void(TerrainList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
+	std::function<void(TerrainList)> callback; //アイテムパネルクラスに登録する用のコールバック関数
 };
 

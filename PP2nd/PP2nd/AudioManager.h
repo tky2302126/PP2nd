@@ -37,7 +37,7 @@ private:
 	int surveyHandle = -1;
 	int surveyConunt = -1;
 	int oldVolume = -1;
-	thread asyncThread;
+	std::thread asyncThread;
 
 	void SurveySEAsync(SEList);
 	void SurveySoundAsync(BGMList);

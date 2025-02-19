@@ -12,8 +12,8 @@ public:
 	void Release(SceneName);
 	void Update() const override;
 private:
-	thread model;
-	thread sound;
-	thread image;
+	std::thread model;
+	std::thread sound;
+	std::thread image;
 };
 

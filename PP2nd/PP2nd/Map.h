@@ -34,10 +34,10 @@ private:
 	void CheckInGrid(VECTOR& mousePos);
 private:
 	TerrainList holdItemTag = TerrainList::None;
-	vector<Item*> itemPtrVec;
+	std::vector<Item*> itemPtrVec;
 	_mapInfo mapInfo;
 	UniquePtr<Box> goalUPtr;
-	vector<Box*> startPtrVec;
+	std::vector<Box*> startPtrVec;
 	bool holdItem= false;
 	bool inGrid = false;
 	int MHandle = -1;

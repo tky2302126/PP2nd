@@ -24,7 +24,7 @@ private:
 	bool isSlow = false;
 	bool isPause = false;
 	int remainTime = 0; /// メインループの制限時間ミリ秒単位で管理
-	priority_queue<TimeLine, vector<TimeLine>, TimeLineCompare> timeLine;
+	std::priority_queue<TimeLine, std::vector<TimeLine>, TimeLineCompare> timeLine;
 	static UniquePtr<TimeManager> Instance;
 };
 

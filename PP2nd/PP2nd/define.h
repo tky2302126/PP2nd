@@ -17,19 +17,19 @@
 #include <cmath>
 #include <unordered_set>
 
-using namespace std;
+
 namespace fs = std::filesystem;
 
-template<typename T1,typename T2,typename T3 = hash<T1>>
-using unmap = unordered_map<T1, T2, T3>;
+template<typename T1,typename T2,typename T3 = std::hash<T1>>
+using unmap = std::unordered_map<T1, T2, T3>;
 
 template <typename T>
-using SharedPtr = shared_ptr<T>;
+using SharedPtr = std::shared_ptr<T>;
 
 template <typename T>
-using UniquePtr = unique_ptr<T>;
+using UniquePtr = std::unique_ptr<T>;
 
-using Clock = chrono::high_resolution_clock;
+using Clock = std::chrono::high_resolution_clock;
 
 constexpr auto WINDOW_WIDTH = 1280;
 constexpr auto WINDOW_HEIGHT = 720;
@@ -333,11 +333,11 @@ inline Vector2Int WorldPos2ArrayPos(VECTOR pos)
 }
 
 /// 絶対パスを取得
-inline string GetExecutablePath()
+inline std::string GetExecutablePath()
 {
 	char buffer[MAX_PATH];
 	GetModuleFileNameA(NULL, buffer, MAX_PATH); //絶対パスを取得
-	string path(buffer);
+	std::string path(buffer);
 	return path.substr(0, path.find_last_of("\\/")); //ディレクトリ部分を抽出
 }
 

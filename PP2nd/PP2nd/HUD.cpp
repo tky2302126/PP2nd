@@ -14,7 +14,7 @@ HUD::~HUD()
 	/// OSによって読み込まない？　未検証
 	fs::path relativePath = "Resource/GAGAGAGA-FREE.otf";
 	fs::path fullPath = basePath / relativePath;
-	string fontPath = fullPath.string();
+	std::string fontPath = fullPath.string();
 	RemoveFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
 	DeleteGraph(playGH);
 	DeleteGraph(pauseGH);
@@ -33,7 +33,7 @@ void HUD::Init()
 	/// OSによって読み込まない？　未検証
 	fs::path relativePath = "Resource/GAGAGAGA-FREE.otf";
 	fs::path fullPath = basePath / relativePath;
-	string fontPath = fullPath.string();
+	std::string fontPath = fullPath.string();
 
 	/// フォントデータを一時的に取り込み
 	int result = AddFontResourceExA(fontPath.c_str(), FR_PRIVATE, NULL);
@@ -62,7 +62,7 @@ void HUD::Init()
 }
 
 
-void HUD::SetCallback(function<void(TerrainList)> cb)
+void HUD::SetCallback(std::function<void(TerrainList)> cb)
 {
 	callback = cb;
 	/// UIスプライトの読みこみ
@@ -79,7 +79,7 @@ void HUD::UnInit()
 /// </summary>
 void HUD::Load()
 {
-	unordered_map<TerrainList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	std::unordered_map<TerrainList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
 	if(!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -119,7 +119,7 @@ void HUD::Load()
 void HUD::ReLoad()
 {
 	/// num==0の場合、破棄
-	unordered_map<TerrainList, int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	std::unordered_map<TerrainList, int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
 	if (!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -204,7 +204,7 @@ void HUD::Draw(int _remainTime)
 	DrawBox(timerPanelRect.left, timerPanelRect.top, timerPanelRect.right, timerPanelRect.bottom, GetColor(64, 64, 64), TRUE);
 
 	/// !コロンが出ないのでカウントのみにする フォントアセット側の不具合？
-	string remainTime = to_string(_remainTime);
+	std::string remainTime = std::to_string(_remainTime);
 	if (_remainTime < 100) { remainTime = '0' + remainTime; }
 
 	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);

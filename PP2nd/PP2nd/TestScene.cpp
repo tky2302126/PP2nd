@@ -13,7 +13,7 @@ TestScene::TestScene()
 	TimeManager::GetInstance().LoadTest();
 	AudioManager::GetInstance().LoadTest();
 
-	mainScreenUPtr = make_unique<MainScreen>();
+	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
 
 	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);

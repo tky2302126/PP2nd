@@ -29,7 +29,7 @@ void Start::SearchRoute()
     /// 変更箇所のみ再計算する 現行1マスずつ変更が行われるため、
     /// 障害物が除かれた場合は再計算の必要がある
 
-    const vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
+    const std::vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
     /// 配列座標へ変換
     Vector2Int goal =
     {
@@ -39,8 +39,8 @@ void Start::SearchRoute()
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
     auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-    priority_queue<Node*, vector<Node*>, Compare> openList; /// 探索予定エリア
-    unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
+    std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
+    std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
     Vector2Int startPos = { pos.x ,pos.y };
     Node* start = new Node(startPos, 0, GetHeuristic(pos, goal));
@@ -120,7 +120,7 @@ void Start::SearchRoute()
 
 bool Start::ReachGoal(TerrainList name, Vector2Int pos)
 {
-    const vector<Vector2Int> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+    const std::vector<Vector2Int> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
     Vector2Int goal = {
         GameManager::GetInstance().GetMapInfo().goalWidth,
         GameManager::GetInstance().GetMapInfo().goalHeight
@@ -128,9 +128,9 @@ bool Start::ReachGoal(TerrainList name, Vector2Int pos)
     auto map = GameManager::GetInstance().GetMapInfo();
     auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
     terrainInfo[pos.y][pos.x] = name;
-    priority_queue<Node*, vector<Node*>, Compare> openList;
-    unordered_set<Vector2Int, Hash> closedSet;
-    unordered_map<Vector2Int, Node*, Hash> nodeMap; // 修正: "unmap" を "unordered_map" に修正
+    std::priority_queue<Node*, std::vector<Node*>, Compare> openList;
+    std::unordered_set<Vector2Int, Hash> closedSet;
+    std::unordered_map<Vector2Int, Node*, Hash> nodeMap; // 修正: "unmap" を "unordered_map" に修正
 
     Vector2Int startPos = { pos.x , pos.y };
     Node* start = new Node(startPos, 0, GetHeuristic(pos, goal));

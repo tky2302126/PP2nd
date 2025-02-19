@@ -8,7 +8,7 @@
 
 Title::Title()
 {
-	titleScreenUPtr = make_unique<TitleScreen>();
+	titleScreenUPtr = std::make_unique<TitleScreen>();
 	titleScreenUPtr->Init();
 
 }

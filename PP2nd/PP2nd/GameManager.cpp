@@ -22,9 +22,9 @@ void GameManager::Load()
 #pragma region デバッグ用
 	HandleData Cube;
 	fs::path GHandlePath = "./Resource/cube.png";
-	string GHandlePathString = GHandlePath.string();
+	std::string GHandlePathString = GHandlePath.string();
 	fs::path MHandlePath = "./Resource/stone.mv1";
-	string MHandlePathString = MHandlePath.string();
+	std::string MHandlePathString = MHandlePath.string();
 	Cube.GHandle = LoadGraph(GHandlePathString.c_str());
 	Cube.MHandle = MV1LoadModel(MHandlePathString.c_str());
 	handleDatas[HDKey::Cube] = Cube ;
@@ -98,7 +98,7 @@ void GameManager::SetItemInfo(ItemInfo info)
 /// アイテム所持情報を参照
 /// </summary>
 /// <returns></returns>
-const unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
+const std::unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
 {
 	return itemInfo;
 }
@@ -124,7 +124,7 @@ GameManager& GameManager::GetInstance()
 {
 	if(Instance == nullptr)
 	{
-		Instance = make_unique<GameManager>();
+		Instance = std::make_unique<GameManager>();
 	}
 	return *Instance;
 }
@@ -146,7 +146,7 @@ VECTOR GameManager::GetCameraPosition()
 	return cameraPos;
 }
 
-vector<vector<TerrainList>> GameManager::GetTerrainInfo() const
+std::vector<std::vector<TerrainList>> GameManager::GetTerrainInfo() const
 {
 	return terrainInfo ;
 }
@@ -220,7 +220,7 @@ void GameManager::LoadTerrainInfo(int day)
 /// <param name="height"></param>
 void GameManager::InitTerrainInfo(int width, int height)
 {
-	terrainInfo.resize(height, vector<TerrainList>(width, TerrainList::None));
+	terrainInfo.resize(height, std::vector<TerrainList>(width, TerrainList::None));
 }
 
 void GameManager::LoadTest()

@@ -14,7 +14,7 @@ EnemyManager& EnemyManager::GetInstance()
 {
 	if (Instance == nullptr)
 	{
-		Instance = make_unique<EnemyManager>();
+		Instance = std::make_unique<EnemyManager>();
 	}
 	return *Instance;
 }
@@ -45,9 +45,9 @@ void EnemyManager::LoadTest()
 /// マップに描画するスタート位置を取得する
 /// </summary>
 /// <returns></returns>
-vector<Vector2Int> EnemyManager::GetStartPos()
+std::vector<Vector2Int> EnemyManager::GetStartPos()
 {
-	vector<Vector2Int> startPosVec = vector<Vector2Int>();
+	std::vector<Vector2Int> startPosVec = std::vector<Vector2Int>();
 	if(!startPtrVec.empty())
 	{
 		for(int i=0;i<startPtrVec.size();i++)

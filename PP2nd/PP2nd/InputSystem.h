@@ -28,7 +28,7 @@ private:
 	MouseInfo currentInfo;
 	bool enable = true;
 
-	static unique_ptr<InputSystem> Instance;
+	static std::unique_ptr<InputSystem> Instance;
 
 	bool MouseInputLeft();
 	bool MouseInputRight();

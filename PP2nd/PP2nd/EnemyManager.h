@@ -18,7 +18,7 @@ public:
 	void InitStart();
 	void Load(int day);
 	void Update();
-	vector<Vector2Int> GetStartPos();
+	std::vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
 	void ReCalculateRoute();
 	void IncreaseTrialCount();
@@ -33,12 +33,12 @@ private:
 	
 	/// ゴールまでのルート
 	/// スタートとゴール、それまでに経由する点を保有
-	vector<Start*> startPtrVec;
+	std::vector<Start*> startPtrVec;
 
 	/// <summary>
 	/// ゴールに向かう敵
 	/// </summary>
-	vector<Enemy*> enemyPtrVec;
+	std::vector<Enemy*> enemyPtrVec;
 	int trialCount = 0; // 経路探索の試行回数
 	static UniquePtr<EnemyManager> Instance;
 

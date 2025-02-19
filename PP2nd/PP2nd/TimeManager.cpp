@@ -101,7 +101,7 @@ TimeManager& TimeManager::GetInstance()
 {
 	if (Instance == nullptr)
 	{
-		Instance = make_unique<TimeManager>();
+		Instance = std::make_unique<TimeManager>();
 	}
 	return *Instance;
 }

@@ -31,14 +31,14 @@ void Map::Init(const _mapInfo& mapInfo)
 	this->mapInfo = mapInfo;
 	/// !後で変える
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
-	goalUPtr = make_unique<Box>();
+	goalUPtr = std::make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
 	GameManager::GetInstance().InitTerrainInfo(mapInfo.width, mapInfo.height);
 	/// terrainListからitemPtrVecをセットアップ
 
 	/// EnemyManagerからスタート位置を受け取る
-	vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
+	std::vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
 
 	for(int i=0;i<startPos.size();i++)
 	{

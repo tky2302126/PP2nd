@@ -15,8 +15,8 @@ public:
 	virtual void Draw() const = 0;
 	virtual void Move() = 0;
 	virtual void Update() = 0;
-	virtual void SetRoute(vector<Vector2Int>) = 0;
-	virtual void CompareRoute(vector<Vector2Int>) = 0;
+	virtual void SetRoute(std::vector<Vector2Int>) = 0;
+	virtual void CompareRoute(std::vector<Vector2Int>) = 0;
 	virtual void RecalculateRoute() = 0;
 	virtual Start* GetMyStart() const =0;
 };

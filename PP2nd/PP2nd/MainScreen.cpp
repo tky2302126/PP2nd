@@ -6,9 +6,9 @@
 /// <param name="mapInfo"></param>
 void MainScreen::Init(const _mapInfo& mapInfo)
 {
-	cameraUPtr = make_unique<Camera>();
-	hudUPtr = make_unique<HUD>();
-	mapUPtr = make_unique<Map>();
+	cameraUPtr = std::make_unique<Camera>();
+	hudUPtr = std::make_unique<HUD>();
+	mapUPtr = std::make_unique<Map>();
 	cameraUPtr->Init(mapInfo);
 	hudUPtr->Init();
 	mapUPtr->Init(mapInfo);
@@ -23,9 +23,9 @@ void MainScreen::Init(const _mapInfo& mapInfo)
 /// <param name="day"></param>
 void MainScreen::Init(const int day)
 {
-	cameraUPtr = make_unique<Camera>();
-	hudUPtr = make_unique<HUD>();
-	mapUPtr = make_unique<Map>();
+	cameraUPtr = std::make_unique<Camera>();
+	hudUPtr = std::make_unique<HUD>();
+	mapUPtr = std::make_unique<Map>();
 	_mapInfo mapInfo = _mapInfo() /*GetMapInfo(day)*/;
 	cameraUPtr->Init(mapInfo);
 	hudUPtr->Init();

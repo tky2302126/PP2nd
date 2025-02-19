@@ -4,7 +4,7 @@
 #include "Cube.h"
 
 TestEnemy::TestEnemy()
-	:myRoute(vector<Vector2Int>()),position(VECTOR())
+	:myRoute(std::vector<Vector2Int>()),position(VECTOR())
 {
 }
 
@@ -168,7 +168,7 @@ void TestEnemy::Update()
     if (attack) { Attack(); }
 }
 
-void TestEnemy::SetRoute(vector<Vector2Int> _route)
+void TestEnemy::SetRoute(std::vector<Vector2Int> _route)
 {
 	myRoute = _route;
 	position = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
@@ -178,7 +178,7 @@ void TestEnemy::SetRoute(vector<Vector2Int> _route)
 
 /// </summary>
 /// <param name="_route"></param>
-void TestEnemy::CompareRoute(vector<Vector2Int> _route)
+void TestEnemy::CompareRoute(std::vector<Vector2Int> _route)
 {
 	auto route = _route;
 	while (true)
@@ -214,7 +214,7 @@ void TestEnemy::RecalculateRoute()
     /// 変更箇所のみ再計算する 現行1マスずつ変更が行われるため、
     /// 障害物が除かれた場合は再計算の必要がある
 
-    const vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
+    const std::vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
     /// 配列座標へ変換
     Vector2Int goal =
     {
@@ -224,8 +224,8 @@ void TestEnemy::RecalculateRoute()
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
     auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-    priority_queue<Node*, vector<Node*>, Compare> openList; /// 探索予定エリア
-    unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
+    std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
+    std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
     Vector2Int startPos = { myRoute.front().x -1, myRoute.front().y -1};
     Node* start = new Node(startPos, 0, GetHeuristic(startPos, goal));
