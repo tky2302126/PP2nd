@@ -42,8 +42,9 @@ void TimeManager::UnPause()
 /// <param name="deltaTime"></param>
 void TimeManager::Update(int deltaTime)
 {
-	// リザルト時は更新しない
+	// リザルト,デバッグ時は更新しない
 	if (GameManager::GetInstance().CurrentSequence() == Result) return;
+	if (GameManager::GetInstance().CurrentSequence() == Debug) return;
 
 	if(remainTime <=0)
 	{
@@ -91,17 +92,17 @@ void TimeManager::SetTimer(int _remainTime)
 void TimeManager::LoadTest()
 {
 	SetTimer(30);
-	timeLine.push({ 75,{0,0},{EnemyList::Enemy1},99 });
-	timeLine.push({ 88,{0,0},{EnemyList::Enemy1},99 });
-	timeLine.push({ 54,{0,0},{EnemyList::Enemy1},99 });
-	timeLine.push({ 95,{0,0},{EnemyList::Enemy1},99 });
+	timeLine.push({ 75,{0,0},{EnemyList::leela},99 });
+	timeLine.push({ 88,{0,0},{EnemyList::leela},99 });
+	timeLine.push({ 54,{0,0},{EnemyList::leela},99 });
+	timeLine.push({ 95,{0,0},{EnemyList::leela},99 });
 }
 
 TimeManager& TimeManager::GetInstance()
 {
 	if (Instance == nullptr)
 	{
-		Instance = make_unique<TimeManager>();
+		Instance = std::make_unique<TimeManager>();
 	}
 	return *Instance;
 }

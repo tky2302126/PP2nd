@@ -22,9 +22,9 @@ void GameManager::Load()
 #pragma region デバッグ用
 	HandleData Cube;
 	fs::path GHandlePath = "./Resource/cube.png";
-	string GHandlePathString = GHandlePath.string();
+	std::string GHandlePathString = GHandlePath.string();
 	fs::path MHandlePath = "./Resource/stone.mv1";
-	string MHandlePathString = MHandlePath.string();
+	std::string MHandlePathString = MHandlePath.string();
 	Cube.GHandle = LoadGraph(GHandlePathString.c_str());
 	Cube.MHandle = MV1LoadModel(MHandlePathString.c_str());
 	handleDatas[HDKey::Cube] = Cube ;
@@ -98,7 +98,7 @@ void GameManager::SetItemInfo(ItemInfo info)
 /// アイテム所持情報を参照
 /// </summary>
 /// <returns></returns>
-const unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
+const std::unordered_map<TerrainList,int>& GameManager::GetItemInfoUnMap() const
 {
 	return itemInfo;
 }
@@ -124,7 +124,7 @@ GameManager& GameManager::GetInstance()
 {
 	if(Instance == nullptr)
 	{
-		Instance = make_unique<GameManager>();
+		Instance = std::make_unique<GameManager>();
 	}
 	return *Instance;
 }
@@ -146,7 +146,7 @@ VECTOR GameManager::GetCameraPosition()
 	return cameraPos;
 }
 
-vector<vector<TerrainList>> GameManager::GetTerrainInfo() const
+std::vector<std::vector<TerrainList>> GameManager::GetTerrainInfo() const
 {
 	return terrainInfo ;
 }
@@ -194,15 +194,93 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 
 	///更新したら通知する
 	EnemyManager::GetInstance().ReCalculateRoute();
+	terrainInfoChanged = true;
+
 }
 
 /// <summary>
 /// csvファイル等から地形情報を取得する
 /// </summary>
 /// <param name="day"></param>
-void GameManager::LoadTerrainInfo(int day)
+void GameManager::LoadStageInfo(const std::string& fileName)
 {
+	std::ifstream inFile(fileName, std::ios::in);
 
+	if (!inFile)
+	{
+		printfDx("ファイルの読み込みに失敗");
+		return;
+	}
+
+	std::string line;
+	char comma = ','; // コンマを無視するための変数
+
+	// mapInfoの読み込み
+	if (std::getline(inFile, line) && line == "mapInfo :")
+	{
+		std::getline(inFile, line); // mapInfoの値を読み込む
+		std::istringstream mapStream(line); 
+		mapStream >> mapInfo.height >> comma >> mapInfo.width >> comma >> mapInfo.goalHeight >> comma >> mapInfo.goalWidth;
+	}
+
+	// terrainInfoの読み込み
+	if (std::getline(inFile, line) && line == "terrainInfo :")
+	{
+		InitTerrainInfo(mapInfo.width, mapInfo.height);  // 既存のterrain情報をクリア
+		while (std::getline(inFile, line))
+		{
+			if (line.empty()) break;
+			std::istringstream terrainStream(line);
+			int y, x;
+			int terrainType;
+			terrainStream >> y >> comma >> x >> comma >> terrainType;
+			if (terrainStream)
+			{
+				if (y >= 0 && y < terrainInfo.size() && x >= 0 && x < terrainInfo[y].size())
+				{
+					terrainInfo[y][x] = static_cast<TerrainList>(terrainType);
+				}
+			}
+		}
+	}
+
+	// startPosの読み込み
+	if (std::getline(inFile, line) && line == "startPos :")
+	{
+		std::vector<Vector2Int> startVec;
+		while (std::getline(inFile, line))
+		{
+			if (line.empty()) break;
+			std::istringstream startStream(line);
+			int y, x;
+			startStream >> y >> comma >> x;
+			if (startStream)
+			{
+				startVec.push_back({ y, x });
+			}
+		}
+	}
+
+	// ItemInfoの読み込み
+	if (std::getline(inFile, line) && line == "ItemInfo :")
+	{
+		itemInfo.clear();  // 既存のitemInfo情報をクリア
+		while (std::getline(inFile, line))
+		{
+			if (line.empty()) break;
+			std::istringstream itemStream(line);
+			int key, value;
+			itemStream >> key >> comma >> value;
+			if (itemStream)
+			{
+				itemInfo[static_cast<TerrainList>(key)] = value;
+			}
+		}
+	}
+
+	// ファイルを閉じる
+	inFile.close();
+	printfDx("ファイルの読み込み完了");
 }
 
 /// <summary>
@@ -212,11 +290,13 @@ void GameManager::LoadTerrainInfo(int day)
 /// <param name="height"></param>
 void GameManager::InitTerrainInfo(int width, int height)
 {
-	terrainInfo.resize(height, vector<TerrainList>(width, TerrainList::None));
+	terrainInfo.resize(height, std::vector<TerrainList>(width, TerrainList::None));
 }
 
 void GameManager::LoadTest()
 {
+	LoadStageInfo("Test.txt");
+
 	_mapInfo testMap(21, 9, 10, 4);
 	InitTerrainInfo(testMap.width, testMap.height);
 	Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
@@ -252,4 +332,57 @@ void GameManager::GameClear()
 	isGameClear = true;
 	currentSequence = Result;
 	AudioManager::GetInstance().PlayBGM(BGMList::GAMECLEAR, false);
+}
+
+void GameManager::ExportStageInfo(const std::string& fileName)
+{
+	std::ofstream outFile(fileName, std::ios::out);
+
+	if(!outFile)
+	{
+		printfDx("ファイルの作成に失敗");
+		return;
+	}
+
+	/// mapInfoの出力
+	outFile << "mapInfo :\n";
+	outFile << mapInfo.height << ",";
+	outFile << mapInfo.width << ",";
+	outFile << mapInfo.goalHeight << ",";
+	outFile << mapInfo.goalWidth ;
+	outFile << "\n";
+	/// terrainInfoの取得
+	outFile << "terrainInfo :\n";
+	for(int y =0;y<terrainInfo.size();y++)
+	{
+		for(int x=0;x<terrainInfo[y].size();x++)
+		{
+			if(terrainInfo[y][x] != TerrainList::None)
+			{
+				outFile << y << "," << x << ",";
+				outFile << (int)terrainInfo[y][x] << "\n";
+			}
+		}
+	}
+	outFile << "\n";
+	/// StartをenemyManagerから受け取る
+
+	auto startVec = EnemyManager::GetInstance().GetStartPos();
+
+	outFile << "startPos :\n";
+	for(int i=0;i<startVec.size();i++)
+	{
+		outFile << startVec[i].y << "," << startVec[i].x << "\n";
+	}
+	outFile << "\n";
+	/// ItemInfoの取得
+	outFile << "ItemInfo :\n";
+	for(const auto&[key, value] : itemInfo)
+	{
+		outFile << static_cast<int>(key) << "," << value << "\n";
+	}
+	outFile << "\n";
+	/// ファイルで書き出す
+	outFile.close();
+	printfDx("ファイルの書き出し完了");
 }

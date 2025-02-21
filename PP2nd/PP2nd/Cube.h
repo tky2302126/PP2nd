@@ -28,6 +28,7 @@ public:
 	void Confirm() override;
 
 	int& GetMHandle() const override;
+	VECTOR GetPosition() const override { return pos; };
 private:
 	int MHandle;
 	VECTOR pos;

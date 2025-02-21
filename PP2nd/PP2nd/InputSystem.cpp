@@ -1,6 +1,6 @@
 ﻿#include "InputSystem.h"
 
-unique_ptr<InputSystem> InputSystem::Instance = nullptr;
+std::unique_ptr<InputSystem> InputSystem::Instance = nullptr;
 
 InputSystem::InputSystem()
 {
@@ -90,7 +90,7 @@ InputSystem& InputSystem::GetInstance()
 {
     if (Instance == nullptr) 
     {
-        Instance = make_unique<InputSystem>();
+        Instance = std::make_unique<InputSystem>();
     }
 
     return *Instance;

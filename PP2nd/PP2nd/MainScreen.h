@@ -1,9 +1,8 @@
 ﻿#pragma once
 #include "define.h"
-
-class HUD;
-class Map;
-class Camera;
+#include "Camera.h"
+#include "HUD.h"
+#include "Map.h"
 
 /// <summary>
 /// ゲームメインの画面の描画を管理する

@@ -9,12 +9,12 @@ public:
 	void SearchRoute();
 	bool ReachGoal(TerrainList name, Vector2Int pos);
 	Vector2Int& GetStartPos() { return pos; }
-	vector<Vector2Int> GetRoute() const { return route; }
+	std::vector<Vector2Int> GetRoute() const { return route; }
 	void DrawRouteTest();
 	int BaseHealth() const { return baseHealth; }
 private:
 	Vector2Int pos;
-	vector<Vector2Int> route;
+	std::vector<Vector2Int> route;
 	int baseHealth;
 };
 

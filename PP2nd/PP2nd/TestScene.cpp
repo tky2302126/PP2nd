@@ -13,7 +13,7 @@ TestScene::TestScene()
 	TimeManager::GetInstance().LoadTest();
 	AudioManager::GetInstance().LoadTest();
 
-	mainScreenUPtr = make_unique<MainScreen>();
+	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
 
 	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);
@@ -37,8 +37,9 @@ void TestScene::Update() const
 	mainScreenUPtr->Update();
 	EnemyManager::GetInstance().DrawRouteTest();
 #pragma endregion
-	if(CheckHitKey(KEY_INPUT_E))
+	if(CheckHitKey(KEY_INPUT_E)&& GameManager::GetInstance().CurrentSequence() == Debug)
 	{
+		//GameManager::GetInstance().ExportStageInfo("Test.txt");
 		EnemyManager::GetInstance().SpawnEnemyTest();
 	}
 

@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "TestScene.h"
 
-unique_ptr<SceneManager> SceneManager::Instance = nullptr;
+std::unique_ptr<SceneManager> SceneManager::Instance = nullptr;
 
 SceneManager::SceneManager()
 {
@@ -85,7 +85,7 @@ SceneManager& SceneManager::GetInstance()
 {
 	if(Instance == nullptr)
 	{
-		Instance = make_unique<SceneManager>();
+		Instance = std::make_unique<SceneManager>();
 	}
 	return *Instance;
 }

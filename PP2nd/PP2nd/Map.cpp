@@ -12,9 +12,14 @@ Map::~Map()
 	itemPtrVec.clear();
 }
 
+/// <summary>
+/// タイトルシーン用のイニシャライズ
+/// </summary>
 void Map::Init()
 {
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
+	mapInfo = {25, 25, 0, 0};
+
 }
 
 /// <summary>
@@ -26,14 +31,14 @@ void Map::Init(const _mapInfo& mapInfo)
 	this->mapInfo = mapInfo;
 	/// !後で変える
 	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
-	goalUPtr = make_unique<Box>();
+	goalUPtr = std::make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
 	GameManager::GetInstance().InitTerrainInfo(mapInfo.width, mapInfo.height);
 	/// terrainListからitemPtrVecをセットアップ
 
 	/// EnemyManagerからスタート位置を受け取る
-	vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
+	std::vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
 
 	for(int i=0;i<startPos.size();i++)
 	{
@@ -49,6 +54,26 @@ void Map::UnInit()
 void Map::Load(int day)
 {
 }
+
+/// <summary>
+/// 地形情報が変更されたとき反映する
+/// </summary>
+void Map::Reload()
+{
+	auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+
+	for(int i=0;i<itemPtrVec.size();i++)
+	{
+		auto itemPos = itemPtrVec[i]->GetPosition();
+		auto arrayPos = WorldPos2ArrayPos(itemPos);
+		if(terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
+		{
+			RemoveItemPtr(itemPtrVec[i]);
+		}
+	}
+	GameManager::GetInstance().CheckedTerrainInfo();
+
+}
 /// <summary>
 /// ItemPanelから通知を受けるコールバック関数
 /// </summary>
@@ -59,6 +84,10 @@ void Map::RegistHoldItem(TerrainList name)
 	holdItem = true;
 }
 
+/// <summary>
+/// todo : マップの描画
+/// 板ポリゴンにスプライトを貼る形で実装する
+/// </summary>
 void Map::Draw()
 {
 	/// DrawCapsule3D(VGet(320.0f, 100.0f, 0.0f), VGet(320.0f, 300.0f, 0.0f), 40.0f, 8, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
@@ -192,7 +221,7 @@ void Map::Draw()
 	if(holdItem)
 	{
 		/// マスに置こうとしているか調べる
-		CHeckInGrid(mouseWorldPos);
+		CheckInGrid(mouseWorldPos);
 		/// モデルの描画
 		/// inGrid-> 座標を補正する
 		VECTOR drawPos = mouseWorldPos;
@@ -219,12 +248,29 @@ void Map::Draw()
 
 
 }
+
+/// <summary>
+/// タイトルシーン用の描画
+/// </summary>
+/// <param name=""></param>
+void Map::Draw(SceneName)
+{
+}
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする
 /// </summary>
 void Map::Update()
 {
 	Draw();
+	if(GameManager::GetInstance().TerrainInfoChanged())
+	{
+		Reload();
+	}
+}
+
+void Map::Update(SceneName sequence)
+{
+	Draw(sequence);
 }
 
 void Map::AddStart(Vector2Int pos)
@@ -282,7 +328,7 @@ VECTOR Map::GetMouseWorldPos()
 /// <summary>
 /// マウスの座標がマスの中央付近に入っているか調べる
 /// </summary>
-void Map::CHeckInGrid(VECTOR& mousePos)
+void Map::CheckInGrid(VECTOR& mousePos)
 {
 	if (mousePos.x < 0 || mousePos.z < 0 || mousePos.x > MAP_UNIT*mapInfo.width ||mousePos.z > mapInfo.height*MAP_UNIT) 
 	{

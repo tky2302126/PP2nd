@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -152,22 +153,31 @@
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemPanel.cpp" />
+    <ClCompile Include="Leela.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="PreLoad.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleScreen.cpp" />
+>>>>>>> newmaster
     <ClCompile Include="Trial_Easy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="Enemies.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameManager.h" />
@@ -175,15 +185,22 @@
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemPanel.h" />
+    <ClInclude Include="Leela.h" />
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="PreLoad.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleScreen.h" />
+>>>>>>> newmaster
     <ClInclude Include="Trial_Easy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

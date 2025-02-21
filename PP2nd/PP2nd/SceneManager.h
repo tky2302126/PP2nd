@@ -23,7 +23,7 @@ public:
 	
 
 private:
-	static unique_ptr<SceneManager> Instance;
+	static std::unique_ptr<SceneManager> Instance;
 	Scene* scenePtr;
 };
 

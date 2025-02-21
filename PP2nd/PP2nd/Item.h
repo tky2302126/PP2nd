@@ -20,6 +20,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Confirm() = 0;
 	virtual int& GetMHandle() const = 0;
+	virtual VECTOR GetPosition() const = 0;
 	static int gHandleCheck;
 	static int gHandleCross;
 };

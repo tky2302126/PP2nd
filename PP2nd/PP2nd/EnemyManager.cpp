@@ -1,5 +1,5 @@
 ﻿#include "EnemyManager.h"
-#include "TestEnemy.h"
+#include "Enemies.h"
 UniquePtr<EnemyManager> EnemyManager::Instance = nullptr;
 
 EnemyManager::EnemyManager()
@@ -14,7 +14,7 @@ EnemyManager& EnemyManager::GetInstance()
 {
 	if (Instance == nullptr)
 	{
-		Instance = make_unique<EnemyManager>();
+		Instance = std::make_unique<EnemyManager>();
 	}
 	return *Instance;
 }
@@ -39,15 +39,16 @@ void EnemyManager::LoadTest()
 	Vector2Int startPos = { 20,4 };
 	startPtr->Init(startPos);
 	startPtrVec.push_back(startPtr);
+	Load(leela);
 }
 
 /// <summary>
 /// マップに描画するスタート位置を取得する
 /// </summary>
 /// <returns></returns>
-vector<Vector2Int> EnemyManager::GetStartPos()
+std::vector<Vector2Int> EnemyManager::GetStartPos()
 {
-	vector<Vector2Int> startPosVec = vector<Vector2Int>();
+	std::vector<Vector2Int> startPosVec = std::vector<Vector2Int>();
 	if(!startPtrVec.empty())
 	{
 		for(int i=0;i<startPtrVec.size();i++)
@@ -95,8 +96,8 @@ void EnemyManager::SpawnEnemyTest()
 		for (int i = 0; i < startPtrVec.size(); i++)
 		{
 			// if (enemyCountTest > 0) { continue; }
-			Enemy* testEnemyPtr = new TestEnemy();
-			testEnemyPtr->Init(-1,startPtrVec[i]);
+			Enemy* testEnemyPtr = new Leela();
+			testEnemyPtr->Init(mHandleResource[leela], startPtrVec[i]);
 			testEnemyPtr->SetRoute(startPtrVec[i]->GetRoute());
 			enemyPtrVec.push_back(testEnemyPtr);
 			// enemyCountTest++;
@@ -155,9 +156,18 @@ void EnemyManager::InitStart()
 /// csvなどから地形情報を読み取る
 /// </summary>
 /// <param name="day"></param>
-void EnemyManager::Load(int day)
+void EnemyManager::Load(EnemyList name)
 {
-
+	switch (name)
+	{
+	case leela:
+		mHandleResource[leela] = MV1LoadModel("./Resource/Leela.mv1");
+		break;
+	case ALL:
+		break;
+	default:
+		break;
+	}
 }
 
 void EnemyManager::Update()

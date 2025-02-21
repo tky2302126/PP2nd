@@ -14,6 +14,7 @@ public:
 	void Init(const _mapInfo& mapInfo);
 	void UnInit();
 	void Update();
+	void Update(SceneName);
 private:
 	VECTOR position;
 	VECTOR initPos;

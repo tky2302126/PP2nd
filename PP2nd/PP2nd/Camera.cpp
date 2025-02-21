@@ -14,11 +14,13 @@ void Camera::Init()
     //カメラの初期化
 	//マップ中央にしたい
 	position.x = CAMERA_MIN_X;
-	position.y = CAMERA_HEIGHT;
-	position.z = CAMERA_MIN_Z-CAMERA_Z_OFFSET; 
+	position.y = CAMERA_HEIGHT/2;
+	position.z = CAMERA_MIN_Z-CAMERA_Z_OFFSET/2; 
 	
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
+
+	targetPos = VGet(CAMERA_MIN_X, 0, CAMERA_MIN_Z);
 	
 }
 
@@ -166,6 +168,16 @@ void Camera::Update()
 	SetCameraPositionAndTarget_UpVecY(position, targetPos);
 	
 	GameManager::GetInstance().SetCameraPosition(position);
+
+}
+
+/// <summary>
+/// タイトルシーンで使用
+/// シーケンスによってカメラの挙動を変える
+/// </summary>
+/// <param name=""></param>
+void Camera::Update(SceneName sequence)
+{
 
 }
 

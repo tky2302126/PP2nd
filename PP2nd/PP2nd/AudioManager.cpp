@@ -51,7 +51,7 @@ AudioManager& AudioManager::GetInstance()
 {
 	if (Instance == nullptr)
 	{
-		Instance = make_unique<AudioManager>();
+		Instance = std::make_unique<AudioManager>();
 	}
 	return *Instance;
 }
@@ -131,7 +131,7 @@ void AudioManager::PlaySECustom(SEList seName, BGMList bgmName, bool loop)
 		int handle = it->second;
 		auto result = StopSoundMem(handle);
 	}
-	asyncThread = thread(&AudioManager::SurveySEAsync, this, seName);
+	asyncThread = std::thread(&AudioManager::SurveySEAsync, this, seName);
 	asyncThread.join();
 	PlayBGM(bgmName, loop);
 }
@@ -149,7 +149,7 @@ void AudioManager::SurveySEAsync(SEList name)
 		{
 			break;
 		}
-		this_thread::sleep_for(chrono::milliseconds(16));
+		std::this_thread::sleep_for(std::chrono::milliseconds(16));
 	}
 	
 }

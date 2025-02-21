@@ -1,27 +1,25 @@
-ï»¿#include "TestEnemy.h"
-#include "Start.h"
+#include "Leela.h"
 #include "manager.h"
-#include "Cube.h"
 
-TestEnemy::TestEnemy()
+Leela::Leela()
 {
 }
 
-TestEnemy::~TestEnemy()
+Leela::~Leela()
 {
 }
 
-void TestEnemy::Init(int _Mhandle =-1)
+void Leela::Init(int)
 {
 }
 
-void TestEnemy::Init(int, Start* _start = nullptr)
+void Leela::Init(int Mhandle, Start* _start)
 {
-	myStart = _start;
+    myStart = _start;
     auto mapInfo = GameManager::GetInstance().GetMapInfo();
-    /// ãƒ’ãƒ¥ãƒ¼ãƒªã‚¹ãƒ†ã‚£ãƒƒã‚¯å€¤ã‹ã‚‰ä½“åŠ›ã‚’è¨­å®šã™ã‚‹
-    /// ->Startã§è¨ˆç®—ã—ãŸæ–¹ãŒã‚ˆã•ãã†
-    if(myStart!=nullptr)
+    /// ƒqƒ…[ƒŠƒXƒeƒBƒbƒN’l‚©‚ç‘Ì—Í‚ğİ’è‚·‚é
+    /// ->Start‚ÅŒvZ‚µ‚½•û‚ª‚æ‚³‚»‚¤
+    if (myStart != nullptr)
     {
         health = currentHealth = myStart->BaseHealth();
     }
@@ -33,61 +31,50 @@ void TestEnemy::Init(int, Start* _start = nullptr)
     OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
 }
 
-void TestEnemy::Draw() const
+void Leela::Draw() const
 {
-	float height = 50.0f;
-    int color = GetColor(255, 255, 255);
-    if (attack) { color = GetColor(255, 128, 128); }
-	DrawCapsule3D(VGet(position.x, position.y + height, position.z), 
-		VGet(position.x, position.y, position.z), 
-		50.0f, 
-		32,
-		color,
-		color,
-		TRUE);
 
+
+
+#pragma region ‘Ì—ÍƒQ[ƒW
     auto screenPos = GetScreenPos(position);
 
     float healthRate = (float)currentHealth / health;
 
-    Vector2Int start = { screenPos.x - ENEMY_GAUGE_WIDTH/2, screenPos.y - ENEMY_GAUGE_HEIGHT - ENEMY_GAUGE_OFFSET_Y };
+    Vector2Int start = { screenPos.x - ENEMY_GAUGE_WIDTH / 2, screenPos.y - ENEMY_GAUGE_HEIGHT - ENEMY_GAUGE_OFFSET_Y };
     Vector2Int end = { start.x + ENEMY_GAUGE_WIDTH, start.y + ENEMY_GAUGE_HEIGHT };
     Vector2Int inEnd = { start.x + (ENEMY_GAUGE_WIDTH * healthRate) , start.y + ENEMY_GAUGE_HEIGHT };
 
-    DrawExtendGraph(start.x, start.y, end.x,end.y, OutGaugeGH,FALSE);
-    DrawExtendGraph(start.x, start.y, inEnd.x,inEnd.y,InGaugeGH,FALSE);
+    DrawExtendGraph(start.x, start.y, end.x, end.y, OutGaugeGH, FALSE);
+    DrawExtendGraph(start.x, start.y, inEnd.x, inEnd.y, InGaugeGH, FALSE);
+#pragma endregion
 }
 
-void TestEnemy::Move()
+void Leela::Move()
 {
-    /// åŸºåº•ã‚¯ãƒ©ã‚¹ã§å®šç¾©ã™ã‚‹
-    
-	/// è‡ªèº«ã®posã‚’routeã‚’å‚è€ƒã«å‹•ã‹ã™
-	/// !pathFoundãŒtrueã§ãªã„æ™‚ã¯tempRouteã§è¨ˆç®—
-	/// myroute[0]->[1]ã¸ç§»å‹•ã™ã‚‹
-    if(move)
+    if (move)
     {
-	    if(myRoute.size()>=2)
-	    {
-	    	VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
-	    	VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
-	    	VECTOR moveVec = VSub(end, position);
-	    	moveVec = VNorm(moveVec);
+        if (myRoute.size() >= 2)
+        {
+            VECTOR start = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
+            VECTOR end = ArrayPos2WorldPosCenter(myRoute[1].x, myRoute[1].y);
+            VECTOR moveVec = VSub(end, position);
+            moveVec = VNorm(moveVec);
             if (TimeManager::GetInstance().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
             if (TimeManager::GetInstance().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
-	    	moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
+            moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
             auto moveDuration = VSize(moveVec);
             currentHealth -= moveDuration;
-	    	position = VAdd(position, moveVec);
-	    	float distance = sqrt(pow(position.x-end.x, 2) + pow(position.z-end.z, 2));
-	    	if(distance <= ENEMY_MOVE_SPEED)
-	    	{
-	    		myRoute.erase(myRoute.begin());
-	    	}
-	    }
+            position = VAdd(position, moveVec);
+            float distance = sqrt(pow(position.x - end.x, 2) + pow(position.z - end.z, 2));
+            if (distance <= ENEMY_MOVE_SPEED)
+            {
+                myRoute.erase(myRoute.begin());
+            }
+        }
 
         Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
-        /// OnEnterEventã®å®Ÿè¡Œ
+        /// OnEnterEvent‚ÌÀs
         auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
         auto mapInfo = GameManager::GetInstance().GetMapInfo();
         if (!IsValidPosition(currentArrayPos, mapInfo)) return;
@@ -95,17 +82,17 @@ void TestEnemy::Move()
         {
         case TerrainList::Goal:
             GameManager::GetInstance().GameOver();
-            /// è‡ªèº«ã‚’ç ´æ£„
+            /// ©g‚ğ”jŠü
             break;
         case TerrainList::Base:
-            /// ç ´å£Šã™ã‚‹
+            /// ”j‰ó‚·‚é
 
         case TerrainList::CUBE:
-            /// ç ´å£Šã™ã‚‹
+            /// ”j‰ó‚·‚é
             move = false;
             attack = true;
             attackBeginTime = GetNowCount();
-            /// ã“ã“ã«å‡¦ç†ã‚’è¿½åŠ 
+            /// ‚±‚±‚Éˆ—‚ğ’Ç‰Á
 
             break;
 
@@ -116,38 +103,36 @@ void TestEnemy::Move()
     }
 
     Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
-    /// ãƒã‚¹ã®ä½ç½®ãŒæ›´æ–°ã•ã‚ŒãŸã¨ãã€ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã™ã‚‹ (åŸºåº•ã‚¯ãƒ©ã‚¹ã§å®Ÿè£…)
-    if(oldPos != currentArrayPos)
+    /// ƒ}ƒX‚ÌˆÊ’u‚ªXV‚³‚ê‚½‚Æ‚«AƒCƒxƒ“ƒg‚ğÀs‚·‚é (Šî’êƒNƒ‰ƒX‚ÅÀ‘•)
+    if (oldPos != currentArrayPos)
     {
         auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
         auto mapInfo = GameManager::GetInstance().GetMapInfo();
-        /// OnExitEventã®å®Ÿè¡Œ
-        
-        if (IsValidPosition(oldPos, mapInfo)) 
+        /// OnExitEvent‚ÌÀs
+
+        if (IsValidPosition(oldPos, mapInfo))
         {
             switch (terrainInfo[oldPos.y][oldPos.x])
             {
-                /// ã“ã“ã«å‡¦ç†ã‚’è¿½åŠ 
+                /// ‚±‚±‚Éˆ—‚ğ’Ç‰Á
 
 
             default:
                 break;
             }
         }
-        
-        
+
+
         oldPos = currentArrayPos;
     }
 }
 
-/// <summary>
-/// æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å®Ÿè¡Œã™ã‚‹
-/// çµ‚äº†ã—ãŸã‚‰moveã«æˆ»ã‚‹
-/// </summary>
-void TestEnemy::Attack()
+/// UŒ‚‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÀs‚·‚é
+/// I—¹‚µ‚½‚çmove‚É–ß‚é
+void Leela::Attack()
 {
     int currentTime = GetNowCount();
-    if(currentTime - attackBeginTime >= ENEMY_ATTACK_TIME * 1000)
+    if (currentTime - attackBeginTime >= ENEMY_ATTACK_TIME * 1000)
     {
         attack = false;
         move = true;
@@ -155,67 +140,59 @@ void TestEnemy::Attack()
     }
 }
 
-void TestEnemy::Update()
+void Leela::Update()
 {
-    if(currentHealth <=0)
+    if (currentHealth <= 0)
     {
-        /// æ­»äº¡å‡¦ç†
+        /// €–Sˆ—
         EnemyManager::GetInstance().RemoveEnemy(this);
         return;
     }
-	Move();
-	Draw();
+    Move();
+    Draw();
     if (attack) { Attack(); }
 }
 
-void TestEnemy::SetRoute(std::vector<Vector2Int> _route)
+void Leela::SetRoute(std::vector<Vector2Int> _route)
 {
-	myRoute = _route;
-	position = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
+    myRoute = _route;
+    position = ArrayPos2WorldPosCenter(myRoute[0].x, myRoute[0].y);
 }
 
-/// <summary>
-
-/// </summary>
-/// <param name="_route"></param>
-void TestEnemy::CompareRoute(std::vector<Vector2Int> _route)
+void Leela::CompareRoute(std::vector<Vector2Int> _route)
 {
-	auto route = _route;
-	while (true)
-	{
-		/// ãªã‹ã£ãŸå ´åˆã€ãƒ«ãƒ¼ãƒˆã‚’å†è¨­å®šã™ã‚‹
-		if(route.empty())
-		{
-			RecalculateRoute();
-			break;
-		}
-		/// ã‚¹ãƒãƒ¼ãƒ³åœ°ç‚¹ã‹ã‚‰ã®é€²è¡Œãƒ«ãƒ¼ãƒˆã¨è‡ªåˆ†ã®ãƒ«ãƒ¼ãƒˆã‚’æ¯”è¼ƒã™ã‚‹
-		if(route.front() == myRoute.front())
-		{
-			/// æ–°ã—ã„é€²è¡Œãƒ«ãƒ¼ãƒˆã«è‡ªåˆ†ã®ãƒ«ãƒ¼ãƒˆå†…ã®åº§æ¨™ãŒã‚ã£ãŸå ´åˆã€
-			myRoute.clear();
-			myRoute = route; /// ãã®åœ°ç‚¹ã‹ã‚‰ç½®ãæ›ãˆã‚‹
-			break;
-		}
-		else
-		{
-			route.erase(route.begin());
-		}
-	}
+    auto route = _route;
+    while (true)
+    {
+        /// ‚È‚©‚Á‚½ê‡Aƒ‹[ƒg‚ğÄİ’è‚·‚é
+        if (route.empty())
+        {
+            RecalculateRoute();
+            break;
+        }
+        /// ƒXƒ|[ƒ“’n“_‚©‚ç‚Ìisƒ‹[ƒg‚Æ©•ª‚Ìƒ‹[ƒg‚ğ”äŠr‚·‚é
+        if (route.front() == myRoute.front())
+        {
+            /// V‚µ‚¢isƒ‹[ƒg‚É©•ª‚Ìƒ‹[ƒg“à‚ÌÀ•W‚ª‚ ‚Á‚½ê‡A
+            myRoute.clear();
+            myRoute = route; /// ‚»‚Ì’n“_‚©‚ç’u‚«Š·‚¦‚é
+            break;
+        }
+        else
+        {
+            route.erase(route.begin());
+        }
+    }
 }
 
-/// <summary>
-/// ãƒ«ãƒ¼ãƒˆã®å†è¨­å®š
-/// </summary>
-/// <param name="_route"></param>
-void TestEnemy::RecalculateRoute()
+void Leela::RecalculateRoute()
 {
-    /// ãƒ«ãƒ¼ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã€å†è¨ˆç®—ãŒå¿…è¦ã‹è¨ˆç®—ã™ã‚‹
-    /// å¤‰æ›´ç®‡æ‰€ã®ã¿å†è¨ˆç®—ã™ã‚‹ ç¾è¡Œ1ãƒã‚¹ãšã¤å¤‰æ›´ãŒè¡Œã‚ã‚Œã‚‹ãŸã‚ã€
-    /// éšœå®³ç‰©ãŒé™¤ã‹ã‚ŒãŸå ´åˆã¯å†è¨ˆç®—ã®å¿…è¦ãŒã‚ã‚‹
+    /// ƒ‹[ƒg‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡AÄŒvZ‚ª•K—v‚©ŒvZ‚·‚é
+    /// •ÏX‰ÓŠ‚Ì‚İÄŒvZ‚·‚é Œ»s1ƒ}ƒX‚¸‚Â•ÏX‚ªs‚í‚ê‚é‚½‚ßA
+    /// áŠQ•¨‚ªœ‚©‚ê‚½ê‡‚ÍÄŒvZ‚Ì•K—v‚ª‚ ‚é
 
     const std::vector<Vector2Int> directions = { {0, 1},{1, 0},{0,-1},{-1, 0} };
-    /// é…åˆ—åº§æ¨™ã¸å¤‰æ›
+    /// ”z—ñÀ•W‚Ö•ÏŠ·
     Vector2Int goal =
     {
         GameManager::GetInstance().GetMapInfo().goalWidth - 1,
@@ -224,10 +201,10 @@ void TestEnemy::RecalculateRoute()
     ///
     auto map = GameManager::GetInstance().GetMapInfo();
     auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-    std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// æ¢ç´¢äºˆå®šã‚¨ãƒªã‚¢
-    std::unordered_set<Vector2Int, Hash> closedSet; ///æ¢ç´¢æ¸ˆã¿ã‚¨ãƒªã‚¢
-    unmap<Vector2Int, Node*, Hash> nodeMap; // ãƒãƒ¼ãƒ‰ç®¡ç†
-    Vector2Int startPos = { myRoute.front().x -1, myRoute.front().y -1};
+    std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// ’Tõ—\’èƒGƒŠƒA
+    std::unordered_set<Vector2Int, Hash> closedSet; ///’TõÏ‚İƒGƒŠƒA
+    unmap<Vector2Int, Node*, Hash> nodeMap; // ƒm[ƒhŠÇ—
+    Vector2Int startPos = { myRoute.front().x - 1, myRoute.front().y - 1 };
     Node* start = new Node(startPos, 0, GetHeuristic(startPos, goal));
 
     openList.push(start);
@@ -262,8 +239,8 @@ void TestEnemy::RecalculateRoute()
                 continue;
             }
             int cost = current->cost + 1;
-            /// åœ°å½¢æƒ…å ±ã®å€¤ã‚’å‚ç…§
-            ///! é ˜åŸŸå¤–ã‚’æ¤œç´¢ã™ã‚‹ãƒªã‚¹ã‚¯ã‚’å›é¿
+            /// ’nŒ`î•ñ‚Ì’l‚ğQÆ
+            ///! —ÌˆæŠO‚ğŒŸõ‚·‚éƒŠƒXƒN‚ğ‰ñ”ğ
             auto terrain = TerrainList::None;
             if (neighborPos.x >= 0 && neighborPos.y >= 0
                 && neighborPos.x < terrainInfo[0].size() && neighborPos.y < terrainInfo.size())
@@ -283,12 +260,12 @@ void TestEnemy::RecalculateRoute()
                 cost += 99;
                 break;
 
-                /// åœ°å½¢ã‚’å¢—ã‚„ã—ãŸã¨ãã«å‡¦ç†ã‚’è¿½åŠ 
+                /// ’nŒ`‚ğ‘‚â‚µ‚½‚Æ‚«‚Éˆ—‚ğ’Ç‰Á
             default:
                 break;
             }
 
-            /// ã‚ˆã‚Šå„ªã‚ŒãŸçµŒè·¯ãŒã‚ã‚‹ã¨ãã‚¹ã‚­ãƒƒãƒ—
+            /// ‚æ‚è—D‚ê‚½Œo˜H‚ª‚ ‚é‚Æ‚«ƒXƒLƒbƒv
             if (nodeMap.count(neighborPos) && nodeMap[neighborPos]->cost <= cost)
             {
                 continue;
@@ -300,5 +277,5 @@ void TestEnemy::RecalculateRoute()
         }
     }
     for (auto& [_, node] : nodeMap) { delete node; }
-    /// è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã®å‡¦ç†
+    /// Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Ìˆ—
 }
