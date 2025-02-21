@@ -90,11 +90,9 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Trial_Easy.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-=======
     <ClCompile Include="PreLoad.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
@@ -113,7 +111,6 @@
     <ClCompile Include="Animator.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
->>>>>>> newmaster
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -179,11 +176,9 @@
     <ClInclude Include="AudioManager.h">
       <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Trial_Easy.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
-=======
     <ClInclude Include="PreLoad.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
@@ -205,6 +200,5 @@
     <ClInclude Include="Enemies.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
->>>>>>> newmaster
   </ItemGroup>
 </Project>
