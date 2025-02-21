@@ -47,5 +47,6 @@ private:
 	UniquePtr<Animator> animUPtr;
 	int mHandle;
 	float rotation;
+	bool isDead = false;
 };
 

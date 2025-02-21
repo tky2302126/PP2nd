@@ -1,16 +1,15 @@
-#include "Animator.h"
+ï»¿#include "Animator.h"
 
 /// <summary>
-/// ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
-/// Play‚ÅÄ¶
-/// Ä¶’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚ ‚Á‚½ê‡AƒuƒŒƒ“ƒh
-/// –³‚¢‚Æ‚«A•’Ê‚ÉÄ¶
+/// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
+/// Playã§å†ç”Ÿ
+/// å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚ã£ãŸå ´åˆã€ãƒ–ãƒ¬ãƒ³ãƒ‰
+/// ç„¡ã„ã¨ãã€æ™®é€šã«å†ç”Ÿ
 /// </summary>
 
 Animator::Animator()
 {
 	currentState = Anim_Ready;
-	mHandlePtr = nullptr;
 }
 
 Animator::~Animator()
@@ -19,7 +18,7 @@ Animator::~Animator()
 
 void Animator::Init(int MHandle)
 {
-	mHandlePtr = &MHandle;
+	mHandle = MHandle;
 }
 
 void Animator::UnInit()
@@ -28,16 +27,52 @@ void Animator::UnInit()
 
 void Animator::Update()
 {
-	if (mHandlePtr == nullptr) { return; }
+	
+	/// å†ç”Ÿã®çµ‚äº†
+	if(playTime >= totalTime)
+	{
+		if(loop)
+		{
+			playTime = 0;
+			currentState = Anim_Start;
+		}
+		else
+		{
+			attachIndex1 = -1;
+			currentState = Anim_Ready;
+			isPlay = false;
+		}
+	}
+
+	/// ãƒ–ãƒ¬ãƒ³ãƒ‰ã®çµ‚äº†
+	if(blendRate >= 1.0)
+	{
+		attachIndex1 = attachIndex2;
+		totalTime = MV1GetAttachAnimTotalTime(mHandle, attachIndex1);
+		currentState = Anim_Start;
+		blendRate = -1;
+	}
+
 	switch (currentState)
 	{
 	case Anim_Start:
+		MV1SetAttachAnimTime(mHandle, attachIndex1, playTime);
+		currentState = Anim_Play;
 		break;
-	case AnimState::Anim_Play:
+	case Anim_Play:
+		playTime += countDuration;
+		MV1SetAttachAnimTime(mHandle, attachIndex1, playTime);
 		break;
-	case BlendStart:
+	case Blend_Start:
+		blendRate = 0;
+		MV1SetAttachAnimBlendRate(mHandle, attachIndex1, 1.0);
+		MV1SetAttachAnimBlendRate(mHandle, attachIndex2, 0);
+		currentState = BlendPlay;
 		break;
 	case BlendPlay:
+		blendRate += ANIMATION_BLEND_RATE;
+		MV1SetAttachAnimBlendRate(mHandle, attachIndex1, 1.0-blendRate);
+		MV1SetAttachAnimBlendRate(mHandle, attachIndex2, blendRate);
 		break;
 	default:
 		break;
@@ -45,16 +80,32 @@ void Animator::Update()
 }
 
 /// <summary>
-/// Ä¶w¦
+/// å†ç”ŸæŒ‡ç¤º
 /// </summary>
-/// <param name="id">Ä¶‚·‚éƒNƒŠƒbƒv</param>
-/// <param name="duration">Ä¶ŠÔ</param>
-/// <param name="loopFlg">ƒ‹[ƒvƒtƒ‰ƒO</param>
-void Animator::Play(int id, float duration, bool loopFlg = false)
-{
-	if(currentState == Anim_Ready || currentState == Anim_Play)
+/// <param name="id">å†ç”Ÿã™ã‚‹ã‚¯ãƒªãƒƒãƒ—</param>
+/// <param name="duration">å†ç”Ÿæ™‚é–“</param>
+/// <param name="loopFlg">ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°</param>
+void Animator::Play(int id, float duration, bool loopFlg)
+{	/// å†ç”Ÿ
+	if(currentState == Anim_Ready)
 	{
-		totalTime = MV1GetAttachAnimTotalTime(*mHandlePtr, id);
+		attachIndex1 = MV1AttachAnim(mHandle, id);
+		totalTime = MV1GetAttachAnimTotalTime(mHandle, attachIndex1);
+		playTime = 0;
+		countDuration = totalTime / (duration * FRAMERATE);
+		currentState = Anim_Start;
+		loop = loopFlg;
+		isPlay = true;
+	}
 
+	/// ãƒ–ãƒ¬ãƒ³ãƒ‰
+	if(currentState == Anim_Play)
+	{
+		attachIndex2 = MV1AttachAnim(mHandle, id);
+		playTime = 0;
+		float tmpTotalTime = MV1GetAttachAnimTotalTime(mHandle, attachIndex2);
+		countDuration = tmpTotalTime / (duration * FRAMERATE);
+		loop = loopFlg;
+		currentState = Blend_Start;
 	}
 }

@@ -15,7 +15,7 @@ void Leela::Init(int)
 
 void Leela::Init(int MHandle, Start* _start)
 {
-    mHandle = MHandle;
+    mHandle = MV1DuplicateModel(MHandle);
     myStart = _start;
     auto mapInfo = GameManager::GetInstance().GetMapInfo();
     /// ヒューリスティック値から体力を設定する
@@ -47,6 +47,7 @@ void Leela::Draw() const
 
 
 #pragma region 体力ゲージ
+    if (isDead) return;
     auto screenPos = GetScreenPos(position);
 
     float healthRate = (float)currentHealth / health;
@@ -58,8 +59,6 @@ void Leela::Draw() const
     DrawExtendGraph(start.x, start.y, end.x, end.y, OutGaugeGH, FALSE);
     DrawExtendGraph(start.x, start.y, inEnd.x, inEnd.y, InGaugeGH, FALSE);
 #pragma endregion
-
-    DrawFormatString(0, 60, GetColor(255, 255, 255), "rotation : %f", RadtoDeg(rotation));
 }
 
 void Leela::Move()
@@ -155,11 +154,25 @@ void Leela::Attack()
 
 void Leela::Update()
 {
+    if(isDead)
+    {
+        if(!animUPtr->IsPlay())
+        {
+            EnemyManager::GetInstance().RemoveEnemy(this);
+            return;
+        }
+    }
+
     if (currentHealth <= 0)
     {
         /// 死亡処理
-        EnemyManager::GetInstance().RemoveEnemy(this);
-        return;
+        if(!isDead)
+        {
+            animUPtr->Play(LeelaAnimList::Death, 1.0);
+            isDead = true;
+            move = false;
+        }
+        
     }
     Move();
     Draw();

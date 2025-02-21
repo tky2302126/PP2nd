@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 #include "define.h"
 
 enum AnimState
 {
-	Anim_Ready, // Ä¶‘Ò‚¿
-	Anim_Start, // Ä¶ŠJn
-	Anim_Play,  // Ä¶’†
-	BlendStart, // ƒuƒŒƒ“ƒhŠJn
-	BlendPlay   // ƒuƒŒƒ“ƒh’†
+	Anim_Ready, // å†ç”Ÿå¾…ã¡
+	Anim_Start, // å†ç”Ÿé–‹å§‹
+	Anim_Play,  // å†ç”Ÿä¸­
+	Blend_Start, // ãƒ–ãƒ¬ãƒ³ãƒ‰é–‹å§‹
+	BlendPlay   // ãƒ–ãƒ¬ãƒ³ãƒ‰ä¸­
 };
 
 class Animator
@@ -19,15 +19,18 @@ public:
 	void Init(int MHandle);
 	void UnInit();
 	void Update();
-	void Play(int id, float duration, bool loopFlg);
+	void Play(int id, float duration, bool loopFlg = false);
+	bool IsPlay() { return isPlay; }
 private:
 	float playTime = -1;
 	float totalTime = -1;
+	float countDuration = 0;
 	bool loop = false;
 	int attachIndex1 = -1;
 	int attachIndex2 = -1;
 	float blendRate = -1;
-	int* mHandlePtr;
+	int mHandle;
 	AnimState currentState;
+	bool isPlay = false;
 };
 
