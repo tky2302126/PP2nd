@@ -300,8 +300,8 @@ inline Vector2Int GetScreenPos(VECTOR pos)
 	Vector2Int result = Vector2Int();
 
 	VECTOR buff = ConvWorldPosToScreenPos(pos);
-	result.x = buff.x;
-	result.y = buff.y;
+	result.x = static_cast<int>( buff.x);
+	result.y = static_cast<int>( buff.y);
 	return result;
 };
 
@@ -325,8 +325,8 @@ inline Vector2Int WorldPos2ArrayPos(VECTOR pos)
 {
 	Vector2Int result =
 	{
-		floor(pos.x / MAP_UNIT),
-		floor(pos.z / MAP_UNIT)
+		static_cast<int>(floor(pos.x / MAP_UNIT)),
+		static_cast<int>(floor(pos.z / MAP_UNIT))
 	};
 
 	return result;
@@ -349,7 +349,7 @@ inline std::string GetExecutablePath()
 /// <returns></returns>
 inline VECTOR Round(VECTOR vec, int decimal = 0)
 {
-	VECTOR result = VScale(vec, pow(10.0, decimal));
+	VECTOR result = VScale(vec,static_cast<float>(pow(10.0, decimal)));
 
 	result = VGet
 	(
@@ -358,7 +358,7 @@ inline VECTOR Round(VECTOR vec, int decimal = 0)
 		round(result.z)
 	);
 
-	result = VScale(result, pow(0.1, decimal));
+	result = VScale(result, static_cast<float>(pow(0.1, decimal)));
 
 	return result;
 }

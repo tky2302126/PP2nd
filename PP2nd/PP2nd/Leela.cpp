@@ -30,6 +30,10 @@ void Leela::Init(int MHandle, Start* _start)
     InGaugeGH = LoadGraph("./Resource/GaugeIn306x27_HP.png");
     OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
     MV1SetScale(mHandle, VGet(0.6, 0.6, 0.6));
+    
+    animUPtr = std::make_unique<Animator>();
+    animUPtr->Init(mHandle);
+    animUPtr->Play(LeelaAnimList::Walk, 1.0, true);
 }
 
 void Leela::Draw() const
@@ -160,6 +164,7 @@ void Leela::Update()
     Move();
     Draw();
     if (attack) { Attack(); }
+    animUPtr->Update();
 }
 
 void Leela::SetRoute(std::vector<Vector2Int> _route)

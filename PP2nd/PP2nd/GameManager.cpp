@@ -114,8 +114,8 @@ int& GameManager::GetItemNum(TerrainList name)
 	auto it = itemInfo.find(name);
 	if(it == itemInfo.end())
 	{
-		int null = 0;
-		return null;
+		int num = -1;
+		return num;
 	}
 	return it->second;
 }
@@ -163,8 +163,8 @@ _mapInfo GameManager::GetMapInfo() const
 /// <param name="pos"></param>
 void GameManager::AddTerrainInfo(TerrainList name, VECTOR pos)
 {
-	int row = floor(pos.z / MAP_UNIT);
-	int col = floor(pos.x / MAP_UNIT);
+	int row = static_cast<int>(floor(pos.z / MAP_UNIT));
+	int col = static_cast<int>(floor(pos.x / MAP_UNIT)) ;
 
 	terrainInfo[row][col] = name;
 	///更新したら通知する
@@ -187,8 +187,8 @@ void GameManager::AddTerrainInfo(TerrainList name, Vector2Int pos)
 /// <param name="pos"></param>
 void GameManager::RemoveTerrainInfo(VECTOR pos)
 {
-	int row = floor(pos.z / MAP_UNIT);
-	int col = floor(pos.x / MAP_UNIT);
+	int row = static_cast<int>(floor(pos.z / MAP_UNIT));
+	int col = static_cast<int>(floor(pos.x / MAP_UNIT));
 
 	terrainInfo[row][col] = TerrainList::None;
 
