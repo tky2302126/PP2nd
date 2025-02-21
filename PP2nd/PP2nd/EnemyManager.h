@@ -16,7 +16,7 @@ public:
 	void Init();
 	void UnInit();
 	void InitStart();
-	void Load(int day);
+	void Load(EnemyList name);
 	void Update();
 	std::vector<Vector2Int> GetStartPos();
 	void DrawRouteTest();
@@ -43,5 +43,6 @@ private:
 	static UniquePtr<EnemyManager> Instance;
 
 	int enemyCountTest = 0;
+	unmap<EnemyList,int> mHandleResource;
 };
 

@@ -19,5 +19,19 @@ public:
 	virtual void CompareRoute(std::vector<Vector2Int>) = 0;
 	virtual void RecalculateRoute() = 0;
 	virtual Start* GetMyStart() const =0;
+protected:
+	VECTOR position;
+	std::vector<Vector2Int> myRoute;   /// 
+	std::vector<Vector2Int> tempRoute; /// 一時的な経路
+	Start* myStart;
+	Vector2Int oldPos = { -1,-1 };
+	bool pathFound = true; /// ルート探索済みであることを示す
+	bool move = true;
+	bool attack = false;
+	int health;
+	int currentHealth;
+	int InGaugeGH;
+	int OutGaugeGH;
+	int attackBeginTime = -1;
 };
 

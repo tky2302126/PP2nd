@@ -28,7 +28,7 @@
     <Filter Include="ソース ファイル\Manager">
       <UniqueIdentifier>{59c53bd3-9819-46b1-9866-396148451855}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Enemys">
+    <Filter Include="ソース ファイル\Enemies">
       <UniqueIdentifier>{d2f56153-ab43-4459-b198-d4b46fc131bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -79,7 +79,7 @@
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
     <ClCompile Include="TestEnemy.cpp">
-      <Filter>ソース ファイル\Enemys</Filter>
+      <Filter>ソース ファイル\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>ソース ファイル\Base</Filter>
@@ -100,6 +100,12 @@
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="TitleScreen.cpp">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Leela.cpp">
+      <Filter>ソース ファイル\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
   </ItemGroup>
@@ -159,7 +165,7 @@
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
     <ClInclude Include="TestEnemy.h">
-      <Filter>ソース ファイル\Enemys</Filter>
+      <Filter>ソース ファイル\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>ソース ファイル\Manager</Filter>
@@ -178,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="TitleScreen.h">
       <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Leela.h">
+      <Filter>ソース ファイル\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemies.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

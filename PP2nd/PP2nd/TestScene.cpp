@@ -39,7 +39,8 @@ void TestScene::Update() const
 #pragma endregion
 	if(CheckHitKey(KEY_INPUT_E)&& GameManager::GetInstance().CurrentSequence() == Debug)
 	{
-		GameManager::GetInstance().ExportStageInfo("Test.txt");
+		//GameManager::GetInstance().ExportStageInfo("Test.txt");
+		EnemyManager::GetInstance().SpawnEnemyTest();
 	}
 
 }

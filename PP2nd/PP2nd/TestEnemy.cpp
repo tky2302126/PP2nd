@@ -4,7 +4,6 @@
 #include "Cube.h"
 
 TestEnemy::TestEnemy()
-	:myRoute(std::vector<Vector2Int>()),position(VECTOR())
 {
 }
 
@@ -108,6 +107,7 @@ void TestEnemy::Move()
             attackBeginTime = GetNowCount();
             /// ここに処理を追加
 
+            break;
 
         default:
             break;

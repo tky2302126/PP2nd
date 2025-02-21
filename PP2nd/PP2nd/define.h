@@ -169,7 +169,7 @@ enum class Tag :int
 
 enum EnemyList
 {
-	Enemy1,
+	leela,
 	ALL
 };
 
