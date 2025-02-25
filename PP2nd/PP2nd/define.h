@@ -216,8 +216,9 @@ enum class HDKey
 	Check,
 	Cross,
 	Cube =0,
-	Item2,
-	Item3,
+	Decoy,
+	Swamp,
+	Chaff,
 	Enemy1=999,
 	Enemy2,
 };

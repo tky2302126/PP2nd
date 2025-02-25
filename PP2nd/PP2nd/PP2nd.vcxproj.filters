@@ -111,6 +111,9 @@
     <ClCompile Include="Animator.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
+    <ClCompile Include="Decoy.cpp">
+      <Filter>ソース ファイル\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="Enemies.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoy.h">
+      <Filter>ソース ファイル\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
