@@ -290,6 +290,7 @@ void GameManager::LoadStageInfo(const std::string& fileName)
 /// <param name="height"></param>
 void GameManager::InitTerrainInfo(int width, int height)
 {
+	if (!terrainInfo.empty()) { terrainInfo.clear(); }
 	terrainInfo.resize(height, std::vector<TerrainList>(width, TerrainList::None));
 }
 

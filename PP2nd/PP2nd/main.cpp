@@ -58,7 +58,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
 
 		ScreenFlip();
-
 	}
 #pragma region Managerの解放
 	/// スマートポインタの解放がDxlib_endよりも遅いので

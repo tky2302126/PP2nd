@@ -53,6 +53,11 @@ void SceneManager::Load(SceneName name)
 	}
 }
 
+void SceneManager::LoadAsync(SceneName nextScene)
+{
+
+}
+
 /// <summary>
 /// シーン遷移を実行する
 /// ロードシーンをはさんでから遷移するため

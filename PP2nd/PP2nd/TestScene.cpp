@@ -7,11 +7,21 @@
 
 TestScene::TestScene()
 {
-	/// 
-	GameManager::GetInstance().LoadTest();
-	EnemyManager::GetInstance().LoadTest();
-	TimeManager::GetInstance().LoadTest();
-	AudioManager::GetInstance().LoadTest();
+	int startTime = GetNowCount();
+	std::thread loader1([] {GameManager::GetInstance().LoadTest(); });
+	std::thread loader3([] {TimeManager::GetInstance().LoadTest(); });
+	std::thread loader4([] {AudioManager::GetInstance().LoadTest(); });
+
+	loader1.join();
+	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する
+	std::thread loader2([] {EnemyManager::GetInstance().LoadTest(); });
+	loader2.join();
+	loader3.join();
+	loader4.join();
+	
+	int elapsedTime = GetNowCount() - startTime;
+	elapsedTime /= 1000;
+	printfDx("かかった時間 : %d", elapsedTime);
 
 	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
