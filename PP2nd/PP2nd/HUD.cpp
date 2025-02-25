@@ -95,6 +95,12 @@ void HUD::Load()
 				case TerrainList::CUBE:
 					key = HDKey::Cube;
 						break;
+				case TerrainList::DECOY:
+					key = HDKey::Decoy;
+					break;
+				case TerrainList::SWAMP:
+					key = HDKey::Decoy;
+					break;
 				default:
 					
 					break;

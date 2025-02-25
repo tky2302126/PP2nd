@@ -1,6 +1,7 @@
 ﻿#include "Map.h"
 #include "Box.h"
 #include "Cube.h"
+#include "Items.h"
 
 Map::Map()
 	:mapInfo(-1, -1, -1, -1)
@@ -82,6 +83,18 @@ void Map::RegistHoldItem(TerrainList name)
 {
 	holdItemTag = name;
 	holdItem = true;
+	switch (name)
+	{
+	case TerrainList::CUBE:
+		MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+		break;
+	case TerrainList::DECOY:
+		MHandle = GM().GetHandleData(HDKey::Decoy).MHandle;
+		break;
+	case TerrainList::SWAMP:
+		MHandle = GM().GetHandleData(HDKey::Swamp).MHandle;
+		break;
+	}
 }
 
 /// <summary>
@@ -195,6 +208,17 @@ void Map::Draw()
 				break;
 
 				/// アイテムを追加したら更新
+
+			case TerrainList::DECOY:
+				if (!EM().CanPlace(TerrainList::DECOY, terrainPos))
+				{
+					/// 配置不可なダイアログを表示
+
+					break;
+				}
+				itemPtr = new Decoy();
+				itemPtr->Init(MHandle, pos, this);
+				break;
 			case TerrainList::ItemAll:
 				break;
 			

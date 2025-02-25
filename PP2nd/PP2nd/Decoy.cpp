@@ -4,7 +4,8 @@
 Decoy::Decoy()
 	:MHandle(-1),
 	pos(VECTOR()),
-	mapPtr(nullptr)
+	mapPtr(nullptr),
+    oldIsConfirm (false)
 {
 }
 
@@ -146,7 +147,7 @@ void Decoy::Confirm()
 
     /// いったん登録のみ
     if (!isPlaced)
-        GM().AddTerrainInfo(TerrainList::CUBE, pos);
+        GM().AddTerrainInfo(TerrainList::DECOY, pos);
 }
 
 int& Decoy::GetMHandle() const

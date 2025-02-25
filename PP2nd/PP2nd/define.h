@@ -141,6 +141,8 @@ enum class TerrainList
 	Base,
 	None,
 	CUBE,
+	DECOY,
+	SWAMP,
 	ItemAll,
 
 	Invailed =666, // 配置不可

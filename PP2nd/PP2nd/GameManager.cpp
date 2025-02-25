@@ -46,6 +46,15 @@ void GameManager::Load()
 	Item::gHandleCheck = handleDatas[HDKey::Check].GHandle;
 	Item::gHandleCross = handleDatas[HDKey::Cross].GHandle;
 
+	HandleData Decoy;
+	GHandlePath = "./Resource/scarecrow.png";
+	GHandlePathString = GHandlePath.string();
+	MHandlePath = "./Resource/scarecrow.mv1";
+	MHandlePathString = MHandlePath.string();
+	Decoy.GHandle = LoadGraph(GHandlePathString.c_str());
+	Decoy.MHandle = MV1LoadModel(MHandlePathString.c_str());
+	handleDatas[HDKey::Decoy] = Decoy;
+
 #pragma endregion
 
 	for(int i=0;i<(int)TerrainList::ItemAll;i++)
@@ -307,6 +316,10 @@ void GameManager::LoadTest()
 	buff.name = TerrainList::CUBE;
 	buff.num = 20;
 	SetItemInfo(buff);
+	ItemInfo buff2;
+	buff2.name = TerrainList::DECOY;
+	buff2.num = 5;
+	SetItemInfo(buff2);
 }
 
 void GameManager::UseItem(TerrainList name)

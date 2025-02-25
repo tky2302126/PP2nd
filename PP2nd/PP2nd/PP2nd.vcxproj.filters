@@ -206,5 +206,8 @@
     <ClInclude Include="Decoy.h">
       <Filter>ソース ファイル\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

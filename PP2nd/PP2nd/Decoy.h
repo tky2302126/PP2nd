@@ -7,6 +7,7 @@ class Map;
 
 class Decoy :public Item
 {
+public:
 	Decoy();
 	~Decoy();
 
