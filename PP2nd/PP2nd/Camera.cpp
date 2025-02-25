@@ -89,7 +89,7 @@ void Camera::Update()
 #pragma endregion
 	/// マウスの入力でカメラと注視点の座標を移動する
 	/// ! カメラの移動に下限上限を決める
-	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+	MouseInfo currentInput = Input().GetMouseInfo();
 
 	/// マウスがHUDの範囲の時入力を受けない
 	if (currentInput.position.y <= HUD_AREA_TOP || currentInput.position.y>= HUD_AREA_BOTTOM)
@@ -167,7 +167,7 @@ void Camera::Update()
 	// SetCameraPositionAndAngle(position, elevationAngle, 0, 0);
 	SetCameraPositionAndTarget_UpVecY(position, targetPos);
 	
-	GameManager::GetInstance().SetCameraPosition(position);
+	GM().SetCameraPosition(position);
 
 }
 

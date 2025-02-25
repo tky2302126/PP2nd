@@ -42,9 +42,9 @@ void MainScreen::UnInit()
 
 void MainScreen::Draw()
 {
-	if (GameManager::GetInstance().IsGameClear()) 
+	if (GM().IsGameClear())
 	{ DrawExtendGraph(20, WINDOW_HEIGHT / 4, WINDOW_WIDTH - 20, WINDOW_HEIGHT/4*3, stageClearGH, FALSE);}
-	if(GameManager::GetInstance().IsGameOver())
+	if(GM().IsGameOver())
 	{DrawExtendGraph(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, gameOverGH, FALSE);}
 	mapUPtr->Update();
 	int time = TimeManager::GetInstance().RemainTime();

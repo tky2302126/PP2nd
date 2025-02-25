@@ -75,7 +75,7 @@ void SceneManager::Update()
 
 
 	/// マネージャークラスのアップデート
-	InputSystem::GetInstance().Update();
+	Input().Update();
 	EnemyManager::GetInstance().Update();
 
 	if (scenePtr != nullptr) { scenePtr->Update(); }
@@ -83,7 +83,7 @@ void SceneManager::Update()
 	int tookTime = GetNowCount() - startTime;
 	int waitTime = FRAME_TIME_MS - tookTime;
 	if (waitTime > 0) { Sleep(waitTime); }
-	TimeManager::GetInstance().Update(FRAME_TIME_MS);
+	TM().Update(FRAME_TIME_MS);
 }
 
 SceneManager& SceneManager::GetInstance()

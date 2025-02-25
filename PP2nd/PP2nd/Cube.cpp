@@ -65,7 +65,7 @@ void Cube::Update()
     Draw();
 
     /// クリックされたら確認UIを表示
-    auto currentInput = InputSystem::GetInstance().GetMouseInfo();
+    auto currentInput = Input().GetMouseInfo();
 
     Vector2Int screenPos = GetScreenPos(pos); 
 
@@ -106,16 +106,16 @@ void Cube::Update()
                 {
                     isPlaced = true;
                     isConfirm = false;
-                    GameManager::GetInstance().UseItem(TerrainList::CUBE);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
-                    AudioManager::GetInstance().PlaySE(SEList::LOWBON);
+                    GM().UseItem(TerrainList::CUBE);
+                    TM().ChangeGameSpeedSlower(false);
+                    AM().PlaySE(SEList::LOWBON);
                 }
                 else
                 {
                     /// 設置をキャンセル
-                    GameManager::GetInstance().RemoveTerrainInfo(pos);
+                    GM().RemoveTerrainInfo(pos);
                     mapPtr->RemoveItemPtr(this);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    TM().ChangeGameSpeedSlower(false);
                 }
             }
 
@@ -125,14 +125,14 @@ void Cube::Update()
                 /// 削除
                 if (CheckInRect(currentInput.position, crossMinPos, crossMaxPos))
                 {
-                    GameManager::GetInstance().RemoveTerrainInfo(pos);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    GM().RemoveTerrainInfo(pos);
+                    TM().ChangeGameSpeedSlower(false);
                     mapPtr->RemoveItemPtr(this);
                 }
                 /// 削除キャンセル
                 else
                 {
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    TM().ChangeGameSpeedSlower(false);
                     isConfirm = false;
                 }
             }
@@ -154,13 +154,13 @@ void Cube::Confirm()
     /// 自分のPosを渡し、ｘを一致、ｚをCameraOFFSET分離す
         
     isConfirm = true;
-    TimeManager::GetInstance().ChangeGameSpeedSlower(true);
+    TM().ChangeGameSpeedSlower(true);
 
     /// 試しに置いて進行ルートが閉鎖されないか確認
 
     /// いったん登録のみ
     if(!isPlaced)
-    GameManager::GetInstance().AddTerrainInfo(TerrainList::CUBE, pos);
+        GM().AddTerrainInfo(TerrainList::CUBE, pos);
 }
 
 int& Cube::GetMHandle() const

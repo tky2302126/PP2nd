@@ -4,9 +4,9 @@
 Trial_Easy::Trial_Easy()
 {
 	mainScreenUPtr = std::make_unique<MainScreen>();
-	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
+	mainScreenUPtr->Init(GM().GetMapInfo());
 
-	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);
+	AM().PlayBGM(BGMList::SETUP);
 }
 
 Trial_Easy::~Trial_Easy()
@@ -17,7 +17,7 @@ void Trial_Easy::Update() const
 {
 #if _DEBUG
 	DrawFormatString(0, 0, 65535, "“WŽ¦ƒV[ƒ“‚P");
-	EnemyManager::GetInstance().DrawRouteTest();
+	EM().DrawRouteTest();
 #endif
 	mainScreenUPtr->Update();
 }

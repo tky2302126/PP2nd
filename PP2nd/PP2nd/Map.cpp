@@ -17,7 +17,7 @@ Map::~Map()
 /// </summary>
 void Map::Init()
 {
-	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
+	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
 	mapInfo = {25, 25, 0, 0};
 
 }
@@ -30,15 +30,15 @@ void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
 	/// !後で変える
-	MHandle = GameManager::GetInstance().GetHandleData(HDKey::Cube).MHandle;
+	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
 	goalUPtr = std::make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
-	GameManager::GetInstance().InitTerrainInfo(mapInfo.width, mapInfo.height);
+	GM().InitTerrainInfo(mapInfo.width, mapInfo.height);
 	/// terrainListからitemPtrVecをセットアップ
 
 	/// EnemyManagerからスタート位置を受け取る
-	std::vector<Vector2Int> startPos =  EnemyManager::GetInstance().GetStartPos();
+	std::vector<Vector2Int> startPos = EM().GetStartPos();
 
 	for(int i=0;i<startPos.size();i++)
 	{
@@ -60,7 +60,7 @@ void Map::Load(int day)
 /// </summary>
 void Map::Reload()
 {
-	auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+	auto terrainInfo = CGM().GetTerrainInfo();
 
 	for(int i=0;i<itemPtrVec.size();i++)
 	{
@@ -71,7 +71,7 @@ void Map::Reload()
 			RemoveItemPtr(itemPtrVec[i]);
 		}
 	}
-	GameManager::GetInstance().CheckedTerrainInfo();
+	GM().CheckedTerrainInfo();
 
 }
 /// <summary>
@@ -156,7 +156,7 @@ void Map::Draw()
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
 
 	float offset = 60.0f;
-	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+	MouseInfo currentInput = Input().GetMouseInfo();
 	
 	/// canceled ->モデルの描画を終了
 	if(currentInput.state.left == Canceled && holdItem)
@@ -169,7 +169,7 @@ void Map::Draw()
 			/// すでに配置済みならおけないようにする
 			/// terrainInfoで調べる
 			Vector2Int terrainPos = { floor(mouseWorldPos.x / MAP_UNIT), floor(mouseWorldPos.z / MAP_UNIT) };
-			auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+			auto terrainInfo = CGM().GetTerrainInfo();
 			if (terrainInfo[terrainPos.y][terrainPos.x] != TerrainList::None) return;
 
 
@@ -184,7 +184,7 @@ void Map::Draw()
 			
 			case TerrainList::CUBE:
 				/// 配置した時にルートが消えないか調査
-				if (!EnemyManager::GetInstance().CanPlace(TerrainList::CUBE, terrainPos))
+				if (!EM().CanPlace(TerrainList::CUBE, terrainPos))
 				{
 					/// 配置不可なダイアログを表示
 
@@ -211,7 +211,7 @@ void Map::Draw()
 		}
 		else
 		{
-			TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+			TM().ChangeGameSpeedSlower(false);
 		}
 		/// 後でアクティブに
 	 	/// MHandle = -1;
@@ -262,7 +262,7 @@ void Map::Draw(SceneName)
 void Map::Update()
 {
 	Draw();
-	if(GameManager::GetInstance().TerrainInfoChanged())
+	if(GM().TerrainInfoChanged())
 	{
 		Reload();
 	}
@@ -311,10 +311,10 @@ void Map::LoadMapInfo(int)
 
 VECTOR Map::GetMouseWorldPos()
 {
-	MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
+	MouseInfo mouseInfo = Input().GetMouseInfo();
 	VECTOR mouseWorldPos = ConvScreenPosToWorldPos(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.5f));
 	mouseWorldPos = Round(mouseWorldPos);
-	VECTOR rayDir = VNorm(VSub(mouseWorldPos, GameManager::GetInstance().GetCameraPosition()));
+	VECTOR rayDir = VNorm(VSub(mouseWorldPos, GM().GetCameraPosition()));
 	rayDir = Round(rayDir, 2);
 	if (rayDir.y < 0) { rayDir = VScale(rayDir, -1.0); }
 	while(mouseWorldPos.y >=0)

@@ -58,7 +58,7 @@ void ItemPanel::Update()
 	}
 
 	/// InputSystemの監視
-	MouseInfo currentInput = InputSystem::GetInstance().GetMouseInfo();
+	MouseInfo currentInput = Input().GetMouseInfo();
 	/// ホールドしたアイテムがHUDの範囲を抜けたとき、Mapに通知
 	if(selected && currentInput.state.left ==Performed &&currentInput.position.y<start.y)
 	{
@@ -74,20 +74,20 @@ void ItemPanel::Update()
 	if(CheckInRect(currentInput.position,start,end) && !selected)
 	{
 		selected = true;
-		TimeManager::GetInstance().ChangeGameSpeedSlower(true);
+		TM().ChangeGameSpeedSlower(true);
 	}
 
 	/// rect内でクリック&& selected -> !selected
 	else if (CheckInRect(currentInput.position, start, end) && selected)
 	{
 		selected = false;
-		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+		TM().ChangeGameSpeedSlower(false);
 	}
 	/// rect外でクリック&& selected -> !selected
 	else if (!CheckInRect(currentInput.position, start, end) && selected)
 	{
 		selected = false;
-		TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+		TM().ChangeGameSpeedSlower(false);
 	}
 	
 }

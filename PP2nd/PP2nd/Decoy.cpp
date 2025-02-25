@@ -1,4 +1,4 @@
-#include "Decoy.h"
+ï»¿#include "Decoy.h"
 #include "Map.h"
 
 Decoy::Decoy()
@@ -51,15 +51,15 @@ void Decoy::Draw() const
 
 void Decoy::Update()
 {
-    /// ƒJƒƒ‰‚Ì•`‰æ”ÍˆÍ‚È‚çÀs
+    /// ã‚«ãƒ¡ãƒ©ã®æç”»ç¯„å›²ãªã‚‰å®Ÿè¡Œ
     Draw();
 
-    /// ƒNƒŠƒbƒN‚³‚ê‚½‚çŠm”FUI‚ğ•\¦
-    auto currentInput = InputSystem::GetInstance().GetMouseInfo();
+    /// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‚‰ç¢ºèªUIã‚’è¡¨ç¤º
+    auto currentInput = Input().GetMouseInfo();
 
     Vector2Int screenPos = GetScreenPos(pos);
 
-    /// ƒJƒƒ‰‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒNƒŠƒbƒN‚Ì—P—\’l‚ğ•Ï‚¦‚½‚¢
+    /// ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã«ã‚ˆã£ã¦ã‚¯ãƒªãƒƒã‚¯ã®çŒ¶äºˆå€¤ã‚’å¤‰ãˆãŸã„
     if (currentInput.state.left == Started
         && abs(currentInput.position.x - screenPos.x) <= 20
         && abs(currentInput.position.y - screenPos.y) <= 20)
@@ -68,12 +68,12 @@ void Decoy::Update()
         isConfirm = true;
     }
 
-    /// Šm”FUI‚ğ•\¦‚·‚é
+    /// ç¢ºèªUIã‚’è¡¨ç¤ºã™ã‚‹
     if (isConfirm)
     {
-#pragma region UI•`‰æ
-        Vector2Int crossMinPos = { screenPos.x - CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 }; // ¶ã
-        Vector2Int crossMaxPos = { screenPos.x - CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 }; // ‰E‰º
+#pragma region UIæç”»
+        Vector2Int crossMinPos = { screenPos.x - CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 }; // å·¦ä¸Š
+        Vector2Int crossMaxPos = { screenPos.x - CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 }; // å³ä¸‹
         Vector2Int checkMinPos = { screenPos.x + CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET - CONFIRM_PANEL_SIZE / 2 };
         Vector2Int checkMaxPos = { screenPos.x + CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 , screenPos.y - CONFIRM_PANEL_OFFSET + CONFIRM_PANEL_SIZE / 2 };
         if (isPlaced)
@@ -86,43 +86,43 @@ void Decoy::Update()
         }
 #pragma endregion
 
-#pragma region “ü—Í
+#pragma region å…¥åŠ›
         if (currentInput.state.left == Started)
         {
-            /// İ’u‚·‚é‚Æ‚«
+            /// è¨­ç½®ã™ã‚‹ã¨ã
             if (!isPlaced)
             {
                 if (CheckInRect(currentInput.position, checkMinPos, checkMaxPos))
                 {
                     isPlaced = true;
                     isConfirm = false;
-                    GameManager::GetInstance().UseItem(TerrainList::CUBE);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
-                    AudioManager::GetInstance().PlaySE(SEList::LOWBON);
+                    GM().UseItem(TerrainList::CUBE);
+                    TM().ChangeGameSpeedSlower(false);
+                    AM().PlaySE(SEList::LOWBON);
                 }
                 else
                 {
-                    /// İ’u‚ğƒLƒƒƒ“ƒZƒ‹
-                    GameManager::GetInstance().RemoveTerrainInfo(pos);
+                    /// è¨­ç½®ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                    GM().RemoveTerrainInfo(pos);
                     mapPtr->RemoveItemPtr(this);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    TM().ChangeGameSpeedSlower(false);
                 }
             }
 
-            /// íœ‚·‚é‚Æ‚«
+            /// å‰Šé™¤ã™ã‚‹ã¨ã
             else if (oldIsConfirm)
             {
-                /// íœ
+                /// å‰Šé™¤
                 if (CheckInRect(currentInput.position, crossMinPos, crossMaxPos))
                 {
-                    GameManager::GetInstance().RemoveTerrainInfo(pos);
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    GM().RemoveTerrainInfo(pos);
+                    TM().ChangeGameSpeedSlower(false);
                     mapPtr->RemoveItemPtr(this);
                 }
-                /// íœƒLƒƒƒ“ƒZƒ‹
+                /// å‰Šé™¤ã‚­ãƒ£ãƒ³ã‚»ãƒ«
                 else
                 {
-                    TimeManager::GetInstance().ChangeGameSpeedSlower(false);
+                    TM().ChangeGameSpeedSlower(false);
                     isConfirm = false;
                 }
             }
@@ -136,17 +136,17 @@ void Decoy::Update()
 
 void Decoy::Confirm()
 {
-    /// ƒJƒƒ‰‚Ì’†‰›•t‹ß‚É—ˆ‚é‚æ‚¤‚ÉƒJƒƒ‰‚ğ“®‚©‚·(—Dæ‡ˆÊ:’á)
-    /// ©•ª‚ÌPos‚ğ“n‚µA‚˜‚ğˆê’vA‚š‚ğCameraOFFSET•ª—£‚·
+    /// ã‚«ãƒ¡ãƒ©ã®ä¸­å¤®ä»˜è¿‘ã«æ¥ã‚‹ã‚ˆã†ã«ã‚«ãƒ¡ãƒ©ã‚’å‹•ã‹ã™(å„ªå…ˆé †ä½:ä½)
+    /// è‡ªåˆ†ã®Posã‚’æ¸¡ã—ã€ï½˜ã‚’ä¸€è‡´ã€ï½šã‚’CameraOFFSETåˆ†é›¢ã™
 
     isConfirm = true;
-    TimeManager::GetInstance().ChangeGameSpeedSlower(true);
+    TM().ChangeGameSpeedSlower(true);
 
-    /// ‚µ‚É’u‚¢‚Äisƒ‹[ƒg‚ª•Â½‚³‚ê‚È‚¢‚©Šm”F
+    /// è©¦ã—ã«ç½®ã„ã¦é€²è¡Œãƒ«ãƒ¼ãƒˆãŒé–‰é–ã•ã‚Œãªã„ã‹ç¢ºèª
 
-    /// ‚¢‚Á‚½‚ñ“o˜^‚Ì‚İ
+    /// ã„ã£ãŸã‚“ç™»éŒ²ã®ã¿
     if (!isPlaced)
-        GameManager::GetInstance().AddTerrainInfo(TerrainList::CUBE, pos);
+        GM().AddTerrainInfo(TerrainList::CUBE, pos);
 }
 
 int& Decoy::GetMHandle() const

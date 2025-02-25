@@ -18,7 +18,7 @@ void TestEnemy::Init(int _Mhandle =-1)
 void TestEnemy::Init(int, Start* _start = nullptr)
 {
 	myStart = _start;
-    auto mapInfo = GameManager::GetInstance().GetMapInfo();
+    auto mapInfo = CGM().GetMapInfo();
     /// ヒューリスティック値から体力を設定する
     /// ->Startで計算した方がよさそう
     if(myStart!=nullptr)
@@ -88,13 +88,13 @@ void TestEnemy::Move()
 
         Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
         /// OnEnterEventの実行
-        auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-        auto mapInfo = GameManager::GetInstance().GetMapInfo();
+        auto terrainInfo = GM().GetTerrainInfo();
+        auto mapInfo = GM().GetMapInfo();
         if (!IsValidPosition(currentArrayPos, mapInfo)) return;
         switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
         {
         case TerrainList::Goal:
-            GameManager::GetInstance().GameOver();
+            GM().GameOver();
             /// 自身を破棄
             break;
         case TerrainList::Base:
@@ -119,8 +119,8 @@ void TestEnemy::Move()
     /// マスの位置が更新されたとき、イベントを実行する (基底クラスで実装)
     if(oldPos != currentArrayPos)
     {
-        auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
-        auto mapInfo = GameManager::GetInstance().GetMapInfo();
+        auto terrainInfo = GM().GetTerrainInfo();
+        auto mapInfo = GM().GetMapInfo();
         /// OnExitEventの実行
         
         if (IsValidPosition(oldPos, mapInfo)) 
@@ -151,7 +151,7 @@ void TestEnemy::Attack()
     {
         attack = false;
         move = true;
-        GameManager::GetInstance().RemoveTerrainInfo(this->position);
+        GM().RemoveTerrainInfo(this->position);
     }
 }
 
@@ -160,7 +160,7 @@ void TestEnemy::Update()
     if(currentHealth <=0)
     {
         /// 死亡処理
-        EnemyManager::GetInstance().RemoveEnemy(this);
+        EM().RemoveEnemy(this);
         return;
     }
 	Move();
@@ -218,12 +218,12 @@ void TestEnemy::RecalculateRoute()
     /// 配列座標へ変換
     Vector2Int goal =
     {
-        GameManager::GetInstance().GetMapInfo().goalWidth - 1,
-        GameManager::GetInstance().GetMapInfo().goalHeight - 1
+        GM().GetMapInfo().goalWidth - 1,
+        GM().GetMapInfo().goalHeight - 1
     };
     ///
-    auto map = GameManager::GetInstance().GetMapInfo();
-    auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+    auto map = GM().GetMapInfo();
+    auto terrainInfo = GM().GetTerrainInfo();
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
     std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理

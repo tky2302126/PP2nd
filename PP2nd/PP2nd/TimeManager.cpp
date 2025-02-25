@@ -43,22 +43,20 @@ void TimeManager::UnPause()
 void TimeManager::Update(int deltaTime)
 {
 	// リザルト,デバッグ時は更新しない
-	if (GameManager::GetInstance().CurrentSequence() == Result) return;
-	if (GameManager::GetInstance().CurrentSequence() == Debug) return;
+	if (GM().CurrentSequence() == Result) return;
+	if (GM().CurrentSequence() == Debug) return;
 
 	if(remainTime <=0)
 	{
-		if(GameManager::GetInstance().CurrentSequence() == SetUp)
+		if(CGM().CurrentSequence() == SetUp)
 		{
 			SetTimer(100);
-			GameManager::GetInstance().SequenceProceed();
-			AudioManager::GetInstance().PlaySECustom(ALERT, BATTLE1);
-			// AudioManager::GetInstance().PlaySE(SEList::ALERT);
-			// AudioManager::GetInstance().PlayBGM(BGMList::BATTLE1);
+			GM().SequenceProceed();
+			AM().PlaySECustom(ALERT, BATTLE1);
 		}
-		else if(GameManager::GetInstance().CurrentSequence() == Battle)
+		else if(GM().CurrentSequence() == Battle)
 		{
-			GameManager::GetInstance().GameClear();
+			GM().GameClear();
 			return;
 		}
 	}
@@ -68,7 +66,7 @@ void TimeManager::Update(int deltaTime)
 
 	remainTime -= elapsedTime;
 	/// 敵の出現
-	if (GameManager::GetInstance().CurrentSequence() != Battle) return;
+	if (CGM().CurrentSequence() != Battle) return;
 	if(!timeLine.empty())
 	{
 		while (timeLine.top().Time >= remainTime/1000)
@@ -78,7 +76,7 @@ void TimeManager::Update(int deltaTime)
 			/// ここに敵の出現 switch文
 			/// 今はデバッグ対応
 
-			EnemyManager::GetInstance().SpawnEnemyTest();
+			EM().SpawnEnemyTest();
 			if (timeLine.empty()) break;
 		}
 	}

@@ -14,6 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetUseBackCulling(TRUE);
 	SetAlwaysRunFlag(TRUE);
 	SetBackgroundColor(128, 128, 128, 128);
+	SetWaitVSyncFlag(FALSE);
 
 	SetTransColor(255, 0, 255);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);

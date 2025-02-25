@@ -1,5 +1,5 @@
 ﻿#include "Start.h"
-#include "GameManager.h"
+#include "manager.h"
 void Start::Init()
 {
     baseHealth = 600;
@@ -9,10 +9,10 @@ void Start::Init(Vector2Int _pos)
 {
     pos = _pos;
     SearchRoute();
-    auto mapInfo = GameManager::GetInstance().GetMapInfo();
+    auto mapInfo = GM().GetMapInfo();
     Vector2Int goalPos = { mapInfo.goalWidth,mapInfo.goalHeight };
     baseHealth = GetHeuristic(pos, goalPos) * MAP_UNIT;
-    GameManager::GetInstance().AddTerrainInfo(TerrainList::Start, pos);
+    GM().AddTerrainInfo(TerrainList::Start, pos);
 }
 
 void Start::UnInit()
@@ -33,12 +33,12 @@ void Start::SearchRoute()
     /// 配列座標へ変換
     Vector2Int goal =
     {
-        GameManager::GetInstance().GetMapInfo().goalWidth,
-        GameManager::GetInstance().GetMapInfo().goalHeight
+        GM().GetMapInfo().goalWidth,
+        GM().GetMapInfo().goalHeight
     };
     ///
-    auto map = GameManager::GetInstance().GetMapInfo();
-    auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+    auto map = CGM().GetMapInfo();
+    auto terrainInfo = CGM().GetTerrainInfo();
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
     std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
@@ -122,11 +122,11 @@ bool Start::ReachGoal(TerrainList name, Vector2Int pos)
 {
     const std::vector<Vector2Int> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
     Vector2Int goal = {
-        GameManager::GetInstance().GetMapInfo().goalWidth,
-        GameManager::GetInstance().GetMapInfo().goalHeight
+        CGM().GetMapInfo().goalWidth,
+        CGM().GetMapInfo().goalHeight
     };
-    auto map = GameManager::GetInstance().GetMapInfo();
-    auto terrainInfo = GameManager::GetInstance().GetTerrainInfo();
+    auto map = CGM().GetMapInfo();
+    auto terrainInfo = CGM().GetTerrainInfo();
     terrainInfo[pos.y][pos.x] = name;
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList;
     std::unordered_set<Vector2Int, Hash> closedSet;

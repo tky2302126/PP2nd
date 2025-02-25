@@ -79,7 +79,7 @@ void HUD::UnInit()
 /// </summary>
 void HUD::Load()
 {
-	std::unordered_map<TerrainList,int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	std::unordered_map<TerrainList,int> ItemInfoUnMap = CGM().GetItemInfoUnMap();
 	if(!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -99,7 +99,7 @@ void HUD::Load()
 					
 					break;
 				}
-				int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
+				int GH = GM().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;
 				currentInfo.name = (TerrainList)i;
 				currentInfo.num = ItemInfoUnMap[(TerrainList)i];
@@ -119,7 +119,7 @@ void HUD::Load()
 void HUD::ReLoad()
 {
 	/// num==0の場合、破棄
-	std::unordered_map<TerrainList, int> ItemInfoUnMap = GameManager::GetInstance().GetItemInfoUnMap();
+	std::unordered_map<TerrainList, int> ItemInfoUnMap = GM().GetItemInfoUnMap();
 	if (!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -150,7 +150,7 @@ void HUD::ReLoad()
 				/// 追加
 				if(itemPanelMap[(TerrainList)i] == nullptr)
 				{
-					int GH = GameManager::GetInstance().GetHandleData(key).GHandle;
+					int GH = GM().GetHandleData(key).GHandle;
 					ItemInfo currentInfo;
 					currentInfo.name = (TerrainList)i;
 					currentInfo.num = ItemInfoUnMap[(TerrainList)i];
@@ -235,11 +235,11 @@ void HUD::Draw(int _remainTime)
 	DxLib::DrawExtendGraph(optionPos.left,optionPos.top,optionPos.right, optionPos.bottom,optionGH,FALSE);
 
 	/// 再生速度ボタン
-	if(TimeManager::GetInstance().IsSlow())
+	if(TM().IsSlow())
 	{
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right , playPos.bottom, slowGH, FALSE);
 	}
-	else if(TimeManager::GetInstance().IsFast())
+	else if(TM().IsFast())
 	{
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, fastGH, FALSE);
 	}
@@ -248,7 +248,7 @@ void HUD::Draw(int _remainTime)
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, playGH, FALSE);
 	}
 	/// 一時停止、スキップボタン
-	if(GameManager::GetInstance().CurrentSequence() == Sequence::Battle)
+	if(CGM().CurrentSequence() == Sequence::Battle)
 	{
 		DxLib::DrawExtendGraph(skipPos.left, skipPos.top, skipPos.right, skipPos.bottom, pauseGH, FALSE);
 	}
@@ -268,10 +268,10 @@ void HUD::Draw(int _remainTime)
 void HUD::Update()
 {
 	Draw();
-	if (GameManager::GetInstance().ItemInfoChanged()) 
+	if (GM().ItemInfoChanged())
 	{
 		ReLoad();
-		GameManager::GetInstance().CheckedItemInfo();
+		GM().CheckedItemInfo();
 	}
 }
 /// <summary>
@@ -281,14 +281,14 @@ void HUD::Update()
 void HUD::Update(int remainTime)
 {
 	Draw(remainTime);
-	if (GameManager::GetInstance().ItemInfoChanged())
+	if (GM().ItemInfoChanged())
 	{
 		ReLoad();
-		GameManager::GetInstance().CheckedItemInfo();
+		GM().CheckedItemInfo();
 	}
 
 #pragma region 入力
-	auto mouseInfo = InputSystem::GetInstance().GetMouseInfo();
+	auto mouseInfo = Input().GetMouseInfo();
 	if (mouseInfo.state.left != Started) return;
 	/// オプション 
 	if(CheckInRect(mouseInfo.position, optionPos))
@@ -299,13 +299,13 @@ void HUD::Update(int remainTime)
 	if(CheckInRect(mouseInfo.position, playPos))
 	{
 		/// 再生速度の変更
-		if(TimeManager::GetInstance().IsFast())
+		if(TM().IsFast())
 		{
-			TimeManager::GetInstance().ChangeGameSpeedFaster(false);
+			TM().ChangeGameSpeedFaster(false);
 		}
 		else
 		{
-			TimeManager::GetInstance().ChangeGameSpeedFaster(true);
+			TM().ChangeGameSpeedFaster(true);
 		}
 	}
 	/// 一時停止ボタン
@@ -313,14 +313,14 @@ void HUD::Update(int remainTime)
 	{
 		/// シーケンスで分岐
 		/// スキップボタン->シーケンスをスキップ
-		if(GameManager::GetInstance().CurrentSequence() == SetUp)
+		if(CGM().CurrentSequence() == SetUp)
 		{
-			TimeManager::GetInstance().SetTimer(0);
+			TM().SetTimer(0);
 		}
 		/// 停止ボタン->ゲーム内時間を一時停止
-		else if(GameManager::GetInstance().CurrentSequence() == Battle)
+		else if(GM().CurrentSequence() == Battle)
 		{
-			TimeManager::GetInstance().Pause();
+			TM().Pause();
 		}
 	}
 #pragma endregion

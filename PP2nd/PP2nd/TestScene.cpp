@@ -8,13 +8,13 @@
 TestScene::TestScene()
 {
 	int startTime = GetNowCount();
-	std::thread loader1([] {GameManager::GetInstance().LoadTest(); });
-	std::thread loader3([] {TimeManager::GetInstance().LoadTest(); });
-	std::thread loader4([] {AudioManager::GetInstance().LoadTest(); });
+	std::thread loader1([] {GM().LoadTest(); });
+	std::thread loader3([] {TM().LoadTest(); });
+	std::thread loader4([] {AM().LoadTest(); });
 
 	loader1.join();
 	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する
-	std::thread loader2([] {EnemyManager::GetInstance().LoadTest(); });
+	std::thread loader2([] {EM().LoadTest(); });
 	loader2.join();
 	loader3.join();
 	loader4.join();
@@ -24,9 +24,9 @@ TestScene::TestScene()
 	printfDx("かかった時間 : %d", elapsedTime);
 
 	mainScreenUPtr = std::make_unique<MainScreen>();
-	mainScreenUPtr->Init(GameManager::GetInstance().GetMapInfo());
+	mainScreenUPtr->Init(GM().GetMapInfo());
 
-	AudioManager::GetInstance().PlayBGM(BGMList::SETUP);
+	AM().PlayBGM(BGMList::SETUP);
 }
 
 TestScene::~TestScene()
@@ -37,7 +37,7 @@ void TestScene::Update() const
 {
 	DrawFormatString(0, 0, 65535, " テストシーン");
 #pragma region マウス確認
-	/// MouseInfo mouseInfo = InputSystem::GetInstance().GetMouseInfo();
+	/// MouseInfo mouseInfo = Input().GetMouseInfo();
 	/// 
 	/// DrawFormatString(0, 30, GetColor(255, 255, 255), "mouse position( %d, %d)", mouseInfo.position.x, mouseInfo.position.y);
 	/// DrawFormatString(0, 60, GetColor(255, 255, 255), "mouse state( %d , %d)",mouseInfo.state.left,mouseInfo.state.right );
@@ -47,7 +47,7 @@ void TestScene::Update() const
 	mainScreenUPtr->Update();
 	EnemyManager::GetInstance().DrawRouteTest();
 #pragma endregion
-	if(CheckHitKey(KEY_INPUT_E)&& GameManager::GetInstance().CurrentSequence() == Debug)
+	if(CheckHitKey(KEY_INPUT_E)&& CGM().CurrentSequence() == Debug)
 	{
 		//GameManager::GetInstance().ExportStageInfo("Test.txt");
 		EnemyManager::GetInstance().SpawnEnemyTest();
