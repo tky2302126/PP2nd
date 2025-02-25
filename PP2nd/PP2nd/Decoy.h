@@ -34,5 +34,6 @@ private:
 	bool oldIsConfirm;
 	bool isPlaced = false;
 	Map* mapPtr;
+	int Health = 500;
 };
 

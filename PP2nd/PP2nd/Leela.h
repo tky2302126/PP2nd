@@ -46,6 +46,7 @@ public:
 private:
 	UniquePtr<Animator> animUPtr;
 	int mHandle;
+	int attackPower = 100;
 	float rotation;
 	bool isDead = false;
 };

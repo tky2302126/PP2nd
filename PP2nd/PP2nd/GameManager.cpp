@@ -191,6 +191,16 @@ void GameManager::AddTerrainInfo(TerrainList name, Vector2Int pos)
 }
 
 /// <summary>
+/// 地形情報を破壊する
+/// 敵の攻撃で呼ばれる想定
+/// </summary>
+/// <param name="pos"></param>
+/// <param name="damage"></param>
+void GameManager::DamageTerrainInfo(VECTOR pos, int damage = -1)
+{
+}
+
+/// <summary>
 /// 
 /// </summary>
 /// <param name="pos"></param>
