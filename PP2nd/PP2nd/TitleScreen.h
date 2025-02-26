@@ -15,6 +15,7 @@ public:
 	void UnInit();
 	void Draw();
 	void Update();
+	void MoveCamera();
 private:
 	/// 必要なリソース
 	UniquePtr<Camera> cameraUPtr;
@@ -27,5 +28,12 @@ private:
 	int arrowImageGH; /// 配置を促す矢印のイメージソース
 	float holdThreshold = 2.5f;
 	int pressStart = 0;
+
+	// 補間用変数
+	VECTOR startPos, endPos;
+	VECTOR startTarget, endTarget;
+	float moveDuration = 2.5f;
+	float elapsedTime = 0.0f;
+	bool isMoving = false;
 };
 

@@ -35,17 +35,22 @@ void TitleScreen::Draw()
 	if(currentSequence == Title)
 	{
 		DrawFormatString(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4 * 3,GetColor(255, 255, 255),"石を置け");
+		DrawFormatString(WINDOW_WIDTH / 4 * 3, WINDOW_HEIGHT / 6 * 5,GetColor(255, 255, 255),"右クリック長押しでスキップ");
+
 	}
 #pragma endregion
 
 	/// タイトルからメニュー画面に移行する時
 	if (oldSequence == Title && currentSequence == Menu)
 	{
-		
+		MoveCamera(); // カメラ移動指示
 		oldSequence = currentSequence;
 	}
 
 #pragma region メニュー画面のUI描画
+	/// 画面右側にoptionを表示
+	/// ボタンのようにしたいのでrectでホバーを実装
+	/// 左クリックでシーン遷移
 	if(currentSequence == Menu)
 	{
 		
@@ -92,5 +97,42 @@ void TitleScreen::Update()
 	}
 #pragma endregion
 
+	/// カメラ移動
+	/// タイトルロゴ遷移(この後実装)
+	if(isMoving)
+	{
+		elapsedTime += 1.0 / FRAMERATE;
+		float t = elapsedTime / moveDuration;
+		if(t >= 1.0f)
+		{
+			t = 1.0;
+			isMoving = false;
+		}
+
+		VECTOR currentPos = VGet(
+			startPos.x + (endPos.x - startPos.x) * t,
+			startPos.y + (endPos.y - startPos.y) * t,
+			startPos.z + (endPos.z - startPos.z) * t
+		);
+
+		VECTOR currentTarget = VGet(
+			startTarget.x + (endTarget.x - startTarget.x) * t,
+			startTarget.y + (endTarget.y - startTarget.y) * t,
+			startTarget.z + (endTarget.z - startTarget.z) * t
+		);
+
+		cameraUPtr->ManualMove(currentPos, currentTarget);
+	}
 	
+}
+
+void TitleScreen::MoveCamera()
+{
+	startPos = VGet(CAMERA_MIN_X,CAMERA_HEIGHT / 2, CAMERA_MIN_Z - CAMERA_Z_OFFSET / 2);
+	startTarget = VGet(CAMERA_MIN_X, 0, CAMERA_MIN_Z);
+
+	endPos = VGet(25 * MAP_UNIT / 2, CAMERA_HEIGHT * 5, 25 * MAP_UNIT / 2 - CAMERA_Z_OFFSET*10);
+	endTarget = VGet(25 * MAP_UNIT / 2, 0, 25 * MAP_UNIT / 2);
+
+	isMoving = true;
 }

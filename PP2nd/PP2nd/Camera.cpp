@@ -50,6 +50,17 @@ void Camera::UnInit()
 {
 }
 
+/// <summary>
+/// カメラの場所を変更するスクリプト
+/// </summary>
+/// <param name="destination">カメラの位置</param>
+/// <param name="targetPosDestination">注視点</param>
+void Camera::ManualMove(VECTOR destination, VECTOR targetPosDestination)
+{
+	position = destination;
+	targetPos = targetPosDestination;
+}
+
 void Camera::Update()
 {
 #pragma region デバック操作
