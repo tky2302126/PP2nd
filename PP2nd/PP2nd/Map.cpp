@@ -19,7 +19,7 @@ Map::~Map()
 void Map::Init()
 {
 	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
-	mapInfo = {25, 25, 0, 0};
+	mapInfo = {25, 25, -1, -1};
 
 }
 
@@ -103,8 +103,6 @@ void Map::RegistHoldItem(TerrainList name)
 /// </summary>
 void Map::Draw()
 {
-	/// DrawCapsule3D(VGet(320.0f, 100.0f, 0.0f), VGet(320.0f, 300.0f, 0.0f), 40.0f, 8, GetColor(0, 255, 0), GetColor(255, 255, 255), TRUE);
-
 #if _DEBUG
 	/// マップのグリッド線を表示
 	int XAxizcolor = GetColor(255, 128, 255);
@@ -277,8 +275,141 @@ void Map::Draw()
 /// タイトルシーン用の描画
 /// </summary>
 /// <param name=""></param>
-void Map::Draw(SceneName)
+void Map::Draw(SceneName& name)
 {
+	if (name == Option) { return; }
+
+#if _DEBUG
+	/// マップのグリッド線を表示
+	int XAxizcolor = GetColor(255, 128, 255);
+	int ZAxizColor = GetColor(128, 255, 255);
+	/// デバッグ
+	if (mapInfo.height == -1)
+	{
+		for (int z = 0; z <= MAP_UNIT * 10; z += MAP_UNIT)
+		{
+			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT * 10, 0, z), XAxizcolor);
+		}
+
+		for (int x = 0; x <= MAP_UNIT * 10; x += MAP_UNIT)
+		{
+			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT * 10), ZAxizColor);
+		}
+	}
+	else
+	{
+		int outLineColor = GetColor(255, 255, 255);
+		/// 外枠の描画
+		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT + 0, 0, 0), outLineColor);
+		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+
+		//z軸
+		for (int x = 1; x < mapInfo.width; x++)
+		{
+			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
+		}
+
+		//x軸
+		for (int z = 1; z < mapInfo.height; z++)
+		{
+			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, z * MAP_UNIT), XAxizcolor);
+		}
+	}
+#endif
+
+	/// InputSystem監視
+	VECTOR mouseWorldPos = GetMouseWorldPos();
+	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+
+	///マウスの座標がグリッド内なら強調する
+	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
+
+	float offset = 60.0f;
+	MouseInfo currentInput = Input().GetMouseInfo();
+
+	/// canceled ->モデルの描画を終了
+	if (currentInput.state.left == Canceled && holdItem)
+	{
+		holdItem = false;
+		/// canceled && inGrid-> フィールド描画用のクラスを作成
+		if (inGrid)
+		{
+			Item* itemPtr = nullptr;
+			VECTOR pos = VGet(
+				floor(mouseWorldPos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
+				0,
+				floor(mouseWorldPos.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2
+			);
+			switch (holdItemTag)
+			{
+
+
+			case TerrainList::CUBE:
+				/// 配置した時にルートが消えないか調査
+				itemPtr = new Cube();
+				itemPtr->Init(MHandle, pos, this);
+				break;
+
+				/// アイテムを追加したら更新
+
+			case TerrainList::DECOY:
+				itemPtr = new Decoy();
+				itemPtr->Init(MHandle, pos, this);
+				break;
+			case TerrainList::ItemAll:
+				break;
+
+			default:
+				break;
+			}
+
+			/// 配置確認を実行
+			if (itemPtr != nullptr)
+			{
+				itemPtrVec.push_back(itemPtr);
+				/// 初回の配置のみ切り替え
+				if (name == Title) { name = Menu; }
+			}
+		}
+		else
+		{
+			TM().ChangeGameSpeedSlower(false);
+		}
+		/// 後でアクティブに
+		/// MHandle = -1;
+	}
+
+	/// 保持している場合
+	if (holdItem)
+	{
+		/// マスに置こうとしているか調べる
+		CheckInGrid(mouseWorldPos);
+		/// モデルの描画
+		/// inGrid-> 座標を補正する
+		VECTOR drawPos = mouseWorldPos;
+		if (inGrid)
+		{
+			drawPos = VGet(
+				floor(mouseWorldPos.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
+				0,
+				floor(mouseWorldPos.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2
+			);
+		}
+		MV1SetScale(MHandle, VGet(1, 1, 1));
+		MV1SetPosition(MHandle, drawPos);
+		MV1DrawModel(MHandle);
+	}
+
+	if (!itemPtrVec.empty())
+	{
+		for (int i = 0; i < itemPtrVec.size(); i++)
+		{
+			itemPtrVec[i]->Update();
+		}
+	}
+
 }
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする
@@ -292,7 +423,7 @@ void Map::Update()
 	}
 }
 
-void Map::Update(SceneName sequence)
+void Map::Update(SceneName& sequence)
 {
 	Draw(sequence);
 }

@@ -47,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// 提出用にコメントアウト
 // #if _DEBUG
-	sceneMPtr.Load(SceneName::Test);
+	sceneMPtr.Load(SceneName::Title);
 // #endif
 	while (true)
 	{

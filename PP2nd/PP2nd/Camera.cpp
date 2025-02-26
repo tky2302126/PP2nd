@@ -9,10 +9,9 @@ Camera::~Camera()
 {
 }
 
+/// 近いカメラで配置場所を示す
 void Camera::Init()
 {
-    //カメラの初期化
-	//マップ中央にしたい
 	position.x = CAMERA_MIN_X;
 	position.y = CAMERA_HEIGHT/2;
 	position.z = CAMERA_MIN_Z-CAMERA_Z_OFFSET/2; 
@@ -179,5 +178,8 @@ void Camera::Update()
 void Camera::Update(SceneName sequence)
 {
 
+	SetCameraPositionAndTarget_UpVecY(position, targetPos);
+
+	GM().SetCameraPosition(position);
 }
 

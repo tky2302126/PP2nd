@@ -96,7 +96,7 @@
     <ClCompile Include="PreLoad.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp">
+    <ClCompile Include="TitleScene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Trial_Easy.cpp">
@@ -185,7 +185,7 @@
     <ClInclude Include="PreLoad.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h">
+    <ClInclude Include="TitleScene.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Trial_Easy.h">

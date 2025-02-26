@@ -23,7 +23,10 @@ HUD::~HUD()
 	DeleteGraph(skipGH);
 }
 
-void HUD::Init()
+/// <summary>
+/// 
+/// </summary>
+void HUD::Init(SceneName name)
 {
 	SetFontCacheToTextureFlag(TRUE);
 
@@ -59,6 +62,19 @@ void HUD::Init()
 	slowGH = LoadGraph("./Resource/hourglass.png");
 	optionGH = LoadGraph("./Resource/gears.png");
 	skipGH = LoadGraph("./Resource/next-button.png");
+
+	if(name == Title)
+	{
+		ItemPanel* itemPanelPtr = new ItemPanel();
+		HDKey key = HDKey::Cube;
+
+		int GH = GM().GetHandleData(key).GHandle;
+		ItemInfo Cube;
+		Cube.name = TerrainList::CUBE;
+		Cube.num = 99;
+		itemPanelPtr->Init(0, GH, Cube, callback);
+		itemPanelMap[TerrainList::CUBE] = itemPanelPtr;
+	}
 }
 
 
@@ -269,16 +285,11 @@ void HUD::Draw(int _remainTime)
 }
 
 /// <summary>
-/// 未使用
+/// タイトル用のアップデート
 /// </summary>
 void HUD::Update()
 {
 	Draw();
-	if (GM().ItemInfoChanged())
-	{
-		ReLoad();
-		GM().CheckedItemInfo();
-	}
 }
 /// <summary>
 /// 時間の更新を実行するUpdate

@@ -5,11 +5,11 @@
 /// <summary>
 /// 
 /// </summary>
-class Title :public Scene
+class TitleScene :public Scene
 {
 public:
-	Title();
-	~Title();
+	TitleScene();
+	~TitleScene();
 
 	void Update() const override;
 

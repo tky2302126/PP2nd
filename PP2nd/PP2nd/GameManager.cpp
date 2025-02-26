@@ -208,7 +208,7 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 {
 	int row = static_cast<int>(floor(pos.z / MAP_UNIT));
 	int col = static_cast<int>(floor(pos.x / MAP_UNIT));
-
+	if (terrainInfo.empty()) return;
 	terrainInfo[row][col] = TerrainList::None;
 
 	///更新したら通知する

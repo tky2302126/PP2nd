@@ -20,9 +20,9 @@ public:
 	void Reload();
 	void RegistHoldItem(TerrainList name);
 	void Draw();
-	void Draw(SceneName);
+	void Draw(SceneName&);
 	void Update();
-	void Update(SceneName);
+	void Update(SceneName&);
 
 	void AddStart(Vector2Int pos);
 	void AddGoal(Vector2Int pos);

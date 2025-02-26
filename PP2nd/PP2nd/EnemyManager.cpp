@@ -132,15 +132,17 @@ void EnemyManager::RemoveEnemy(Enemy* enemy)
 
 bool EnemyManager::CanPlace(TerrainList name, Vector2Int pos)
 {
-    for(int i=0;i<startPtrVec.size();i++)
+	if(startPtrVec.size()>=1)
 	{
-		if(startPtrVec[i]->ReachGoal(name, pos) == false)
+		for(int i=0;i<startPtrVec.size();i++)
 		{
-			return false;
-			break;
+			if(startPtrVec[i]->ReachGoal(name, pos) == false)
+			{
+				return false;
+				break;
+			}
 		}
 	}
-
 	return true;
 }
 

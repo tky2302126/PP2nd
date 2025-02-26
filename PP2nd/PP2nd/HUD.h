@@ -14,7 +14,7 @@ class HUD
 public:
 	HUD();
 	~HUD();
-	void Init();
+	void Init(SceneName name = Main);
 	void SetCallback(std::function<void(TerrainList)>);
 	void UnInit();
 
