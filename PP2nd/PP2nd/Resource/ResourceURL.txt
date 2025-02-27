@@ -4,3 +4,5 @@ BGM
 https://takedtm.web.fc2.com/Zeroredia.html
 SE
 https://pocket-se.info/
+MapTexture
+https://www.cgbookcase.com/textures/sandy-gravel-01

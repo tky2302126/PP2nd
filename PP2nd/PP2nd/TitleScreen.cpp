@@ -12,11 +12,6 @@ void TitleScreen::Init()
 	cameraUPtr->Init();
 	hudUPtr->Init(Title);
 	mapUPtr->Init();
-
-
-	/// buttonGH = LoadGraph();
-	/// confirmGH = LoadGraph();
-	/// arrowImageGH = LoadGraph();
 	
 	oldSequence = currentSequence;
 	titleLogoGH = LoadGraph("./Resource/titlelogo.png");
@@ -172,6 +167,7 @@ void TitleScreen::Update()
 		DrawExtendGraph(currentLogo.left, currentLogo.top, currentLogo.right, currentLogo.bottom, titleLogoGH, FALSE);
 	}
 
+	/// タイトルロゴ描画
 	if(currentSequence == Menu && !isMoving)
 	{
 		DrawExtendGraph(logoEnd.left, logoEnd.top, logoEnd.right, logoEnd.bottom, titleLogoGH, FALSE);

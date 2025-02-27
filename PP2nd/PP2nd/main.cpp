@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	AudioManager& audioMPtr = AudioManager::GetInstance();
 	audioMPtr.Init();
-#ifdef _DEBUG
+#if _DEBUG
 	enemyMPtr.InitTest();
 
 #endif // _DEBUG
@@ -45,10 +45,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 
-	// 提出用にコメントアウト
-// #if _DEBUG
+	/// デバッグとexeで切り替え
+ #if _DEBUG
+	sceneMPtr.Load(SceneName::Test);
+#else
 	sceneMPtr.Load(SceneName::Title);
-// #endif
+ #endif
 	while (true)
 	{
 		ClearDrawScreen();

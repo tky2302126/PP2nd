@@ -3,6 +3,7 @@
 .vscode/
 .idea/
 Debug/
+Release/
 *.suo
 *.user
 *.userosscache
