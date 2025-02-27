@@ -41,7 +41,10 @@ private:
 	float moveDuration = 2.5f;
 	float elapsedTime = 0.0f;
 	bool isMoving = false;
-
 	std::vector<Button*> menuButtonPtrVec;
+	bool isActive = true;
+	SceneName nextScene = (SceneName) - 1;
+
+	void OnPressTestButton();
 };
 

@@ -15,6 +15,7 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
+	titleScreenUPtr->UnInit();
 }
 
 void TitleScene::Update() const

@@ -16,6 +16,15 @@ void Button::Init(RECTInt& _rect, int& _hoverColor, int& _normalColor, std::stri
 	buttonText = text;
 }
 
+void Button::Init(RECTInt& _rect, int& _hoverColor, int& _normalColor, std::string& text, std::function<void()> cb)
+{
+	rectInfo = _rect;
+	hoverColor = _hoverColor;
+	normalColor = _normalColor;
+	buttonText = text;
+	cbFucntion = cb;
+}
+
 void Button::UnInit()
 {
 }

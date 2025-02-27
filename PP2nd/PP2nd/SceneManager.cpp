@@ -25,12 +25,12 @@ void SceneManager::UnInit()
 
 void SceneManager::Load(SceneName name)
 {
-	if (scenePtr != nullptr) delete scenePtr;
-
+	Scene* newScene = nullptr;
+	
 	switch (name)
 	{
 	case Title:
-		scenePtr = new TitleScene();
+		newScene = new TitleScene();
 		break;
 
 	case Main:
@@ -38,12 +38,15 @@ void SceneManager::Load(SceneName name)
 		break;
 
 	case Test:
-		scenePtr = new TestScene();
+		newScene = new TestScene();
 		break;
 
 	default:
-		break;
+		return;
 	}
+
+	if (scenePtr != nullptr) delete scenePtr;
+	scenePtr = newScene;
 }
 
 void SceneManager::LoadAsync(SceneName nextScene)
@@ -53,12 +56,11 @@ void SceneManager::LoadAsync(SceneName nextScene)
 
 /// <summary>
 /// シーン遷移を実行する
-/// ロードシーンをはさんでから遷移するため
-/// preLoad -> name の順を想定
 /// </summary>
 /// <param name="name"></param>
 void SceneManager::ChangeScene(SceneName name)
 {
+	Load(name);
 }
 
 void SceneManager::Update()
