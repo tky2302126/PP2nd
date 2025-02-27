@@ -79,6 +79,9 @@ const auto COLOR_PURPLE = GetColorU8(255, 0, 255, 0); /// 透過用の色
 const auto COLOR_LIGHTBLUE = GetColorU8(88, 231, 248, 255); /// ゴールの色
 const auto COLOR_RED = GetColorU8(255, 0, 0, 255); /// スタートの色
 
+constexpr auto TITLELOGO_SIZE = 256;
+constexpr auto BUTTON_WIDTH = 128;
+constexpr auto BUTTON_HEIGHT = 32;
 enum SceneName
 {
 	Title,

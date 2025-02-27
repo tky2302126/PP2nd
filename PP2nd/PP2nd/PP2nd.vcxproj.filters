@@ -114,6 +114,9 @@
     <ClCompile Include="Decoy.cpp">
       <Filter>ソース ファイル\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="Items.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

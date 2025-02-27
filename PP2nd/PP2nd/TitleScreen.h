@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "HUD.h"
 #include "Map.h"
+#include "Button.h"
 
 /// <summary>
 /// タイトル画面の描画
@@ -28,6 +29,11 @@ private:
 	int arrowImageGH; /// 配置を促す矢印のイメージソース
 	float holdThreshold = 2.5f;
 	int pressStart = 0;
+	
+	int titleLogoGH;
+	RECTInt logoStart = {-TITLELOGO_SIZE, 0, WINDOW_WIDTH/2 - TITLELOGO_SIZE/2, WINDOW_WIDTH / 2 + TITLELOGO_SIZE / 2 };
+	RECTInt logoEnd = {0, TITLELOGO_SIZE, WINDOW_WIDTH / 2 - TITLELOGO_SIZE / 2, WINDOW_WIDTH / 2 + TITLELOGO_SIZE / 2 };
+
 
 	// 補間用変数
 	VECTOR startPos, endPos;
@@ -35,5 +41,7 @@ private:
 	float moveDuration = 2.5f;
 	float elapsedTime = 0.0f;
 	bool isMoving = false;
+
+	std::vector<Button*> menuButtonPtrVec;
 };
 

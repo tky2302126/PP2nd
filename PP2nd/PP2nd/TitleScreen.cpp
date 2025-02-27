@@ -19,11 +19,27 @@ void TitleScreen::Init()
 	/// arrowImageGH = LoadGraph();
 	
 	oldSequence = currentSequence;
+	titleLogoGH = LoadGraph("./Resource/titlelogo.png");
+
+	Button* stageButton = new Button();
+	RECTInt ButtonPos =
+	{
+		WINDOW_HEIGHT / 2 - BUTTON_HEIGHT / 2,
+		WINDOW_HEIGHT / 2 + BUTTON_HEIGHT / 2,
+		WINDOW_WIDTH / 8 * 7 - BUTTON_WIDTH / 2,
+		WINDOW_WIDTH / 8 * 7 + BUTTON_WIDTH / 2,
+
+	};
+	std::string text = "Test";
+	int hovercolor = GetColor(100, 100, 255);
+	int normalColor = GetColor(0, 0, 0);
+	stageButton->Init(ButtonPos, hovercolor, normalColor, text);
+	menuButtonPtrVec.push_back(stageButton);
 }
 
 void TitleScreen::UnInit()
 {
-
+	DeleteGraph(titleLogoGH);
 }
 
 void TitleScreen::Draw()
@@ -51,9 +67,15 @@ void TitleScreen::Draw()
 	/// 画面右側にoptionを表示
 	/// ボタンのようにしたいのでrectでホバーを実装
 	/// 左クリックでシーン遷移
-	if(currentSequence == Menu)
+	if(currentSequence == Menu && !isMoving)
 	{
-		
+		if(!menuButtonPtrVec.empty())
+		{
+			for(int i=0; i < menuButtonPtrVec.size();i++)
+			{
+				menuButtonPtrVec[i]->Update();
+			}
+		}
 	}
 #pragma endregion
 
@@ -70,9 +92,9 @@ void TitleScreen::Update()
 	Draw();
 	cameraUPtr->Update(currentSequence);
 	auto mouseInfo = Input().GetMouseInfo();
+#if _DEBUG
 	printfDx("タイトルシーン");
 	printfDx("シーケンス : %d", currentSequence);
-#if _DEBUG
 	if(CheckHitKey(KEY_INPUT_C))
 	{
 		currentSequence = Menu;
@@ -121,7 +143,21 @@ void TitleScreen::Update()
 			startTarget.z + (endTarget.z - startTarget.z) * t
 		);
 
+		RECTInt currentLogo =
+		{
+			logoStart.top +(logoEnd.top - logoStart.top) * t,
+			logoStart.bottom + (logoEnd.bottom - logoStart.bottom) * t,
+			logoStart.left,
+			logoStart.right
+		};
+
 		cameraUPtr->ManualMove(currentPos, currentTarget);
+		DrawExtendGraph(currentLogo.left, currentLogo.top, currentLogo.right, currentLogo.bottom, titleLogoGH, FALSE);
+	}
+
+	if(currentSequence == Menu && !isMoving)
+	{
+		DrawExtendGraph(logoEnd.left, logoEnd.top, logoEnd.right, logoEnd.bottom, titleLogoGH, FALSE);
 	}
 	
 }
@@ -131,7 +167,7 @@ void TitleScreen::MoveCamera()
 	startPos = VGet(CAMERA_MIN_X,CAMERA_HEIGHT / 2, CAMERA_MIN_Z - CAMERA_Z_OFFSET / 2);
 	startTarget = VGet(CAMERA_MIN_X, 0, CAMERA_MIN_Z);
 
-	endPos = VGet(25 * MAP_UNIT / 2, CAMERA_HEIGHT * 5, 25 * MAP_UNIT / 2 - CAMERA_Z_OFFSET*10);
+	endPos = VGet(25 * MAP_UNIT / 2, CAMERA_HEIGHT * 4, 25 * MAP_UNIT / 2 - CAMERA_Z_OFFSET* 10);
 	endTarget = VGet(25 * MAP_UNIT / 2, 0, 25 * MAP_UNIT / 2);
 
 	isMoving = true;
