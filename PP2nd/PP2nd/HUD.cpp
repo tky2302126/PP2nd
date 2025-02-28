@@ -57,10 +57,10 @@ void HUD::Init(SceneName name)
 
 	/// HUDパネルの準備
 	playGH = LoadGraph("./Resource/play-button.png");
-	pauseGH = LoadGraph("./Resource/pause-button.png");
+	//pauseGH = LoadGraph("./Resource/pause-button.png");
 	fastGH = LoadGraph("./Resource/fast-forward-button.png");
 	slowGH = LoadGraph("./Resource/hourglass.png");
-	optionGH = LoadGraph("./Resource/gears.png");
+	//optionGH = LoadGraph("./Resource/gears.png");
 	skipGH = LoadGraph("./Resource/next-button.png");
 
 	if(name == Title)
@@ -87,7 +87,12 @@ void HUD::SetCallback(std::function<void(TerrainList)> cb)
 
 void HUD::UnInit()
 {
-
+	DeleteGraph(playGH);
+	DeleteGraph(pauseGH);
+	DeleteGraph(fastGH);
+	DeleteGraph(slowGH);
+	DeleteGraph(optionGH);
+	DeleteGraph(skipGH);
 }
 
 /// <summary>

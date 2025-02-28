@@ -48,6 +48,9 @@ void TitleScreen::UnInit()
 
 		menuButtonPtrVec.clear();
 	}
+	cameraUPtr->UnInit();
+	hudUPtr->UnInit();
+	mapUPtr->UnInit();
 }
 
 void TitleScreen::Draw()
@@ -104,9 +107,9 @@ void TitleScreen::Update()
 	
 	auto mouseInfo = Input().GetMouseInfo();
 #if _DEBUG
-	clsDx();
-	printfDx("タイトルシーン");
-	printfDx("シーケンス : %d", currentSequence);
+	/// clsDx();
+	/// printfDx("タイトルシーン");
+	/// printfDx("シーケンス : %d", currentSequence);
 	if(CheckHitKey(KEY_INPUT_C))
 	{
 		currentSequence = Menu;

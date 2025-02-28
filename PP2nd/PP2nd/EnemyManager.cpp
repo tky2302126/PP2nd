@@ -151,12 +151,10 @@ void EnemyManager::SpawnEnemyTest()
 	{
 		for (int i = 0; i < startPtrVec.size(); i++)
 		{
-			// if (enemyCountTest > 0) { continue; }
 			Enemy* testEnemyPtr = new Leela();
 			testEnemyPtr->Init(mHandleResource[leela], startPtrVec[i]);
 			testEnemyPtr->SetRoute(startPtrVec[i]->GetRoute());
 			enemyPtrVec.push_back(testEnemyPtr);
-			// enemyCountTest++;
 		}
 	}
 }

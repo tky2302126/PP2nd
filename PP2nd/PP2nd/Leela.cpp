@@ -23,7 +23,9 @@ void Leela::Init(int MHandle, Start* _start)
     {
         health = currentHealth = myStart->BaseHealth();
         auto revision = EM().GetRevision();
+        /// ステージによって補正値を与える
         health += revision * MAP_UNIT;
+        currentHealth = health;
     }
     else
     {
