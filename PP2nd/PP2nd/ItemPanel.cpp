@@ -14,7 +14,6 @@ void ItemPanel::Init(int index, int& _GH, int& _num)
 	end.y = WINDOW_HEIGHT;
 
 	GH = _GH;
-	num = _num;
 }
 
 void ItemPanel::Init(int index, int& _GH, ItemInfo& _info)

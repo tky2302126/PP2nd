@@ -19,7 +19,6 @@ public:
 private:
 	int GH;
 	ItemInfo info;
-	int num;
 	bool selected = false; // 選択フラグ
 	bool placed = false;   // 設置フラグ
 	Vector2Int start; // 左上

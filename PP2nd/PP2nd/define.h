@@ -220,7 +220,7 @@ enum class HDKey
 	Fast_Forward,
 	Check,
 	Cross,
-	Cube =0,
+	Cube,
 	Decoy,
 	Swamp,
 	Chaff,

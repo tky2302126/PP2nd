@@ -145,7 +145,7 @@ void HUD::ReLoad()
 	if (!ItemInfoUnMap.empty())
 	{
 		int index = 0;
-		for (int i = 0; i < (int)TerrainList::ItemAll; i++)
+		for (int i = (int)TerrainList::CUBE; i < (int)TerrainList::ItemAll; i++)
 		{
 			auto it = ItemInfoUnMap.find((TerrainList)i);
 			if (it != ItemInfoUnMap.end())
@@ -156,6 +156,10 @@ void HUD::ReLoad()
 				{
 				case TerrainList::CUBE:
 					key = HDKey::Cube;
+					break;
+
+				case TerrainList::DECOY:
+					key = HDKey::Decoy;
 					break;
 				default:
 
@@ -185,6 +189,7 @@ void HUD::ReLoad()
 				{
 					/// 場所を更新
 					itemPanelMap[(TerrainList)i]->SetIndex(index);
+					index++;
 					/// 使用した場合
 					if (itemPanelMap[(TerrainList)i]->GetNum() > ItemInfoUnMap[(TerrainList)i])
 					{
