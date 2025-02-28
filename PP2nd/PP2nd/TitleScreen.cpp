@@ -141,6 +141,7 @@ void TitleScreen::Update()
 		{
 			t = 1.0;
 			isMoving = false;
+			AM().PlayBGM(TITLE);
 		}
 
 		VECTOR currentPos = VGet(

@@ -60,19 +60,45 @@ void AudioManager::Load()
 {
 }
 
-void AudioManager::Load(SceneName)
+void AudioManager::Load(SceneName name)
 {
+	switch (name)
+	{
+	case Title:
+		if(BGMTrack[TITLE] <=0) BGMTrack[TITLE] = LoadSoundMem("./Resource/Sound/desert01.mp3");
+		if (SETrack[LOWBON] <= 0)SETrack[LOWBON] = LoadSoundMem("./Resource/Sound/lowbon.mp3");
+		break;
+	case Menu:
+		break;
+	case Option:
+		break;
+	case Main:
+		if (BGMTrack[SETUP] <= 0)BGMTrack[SETUP] = LoadSoundMem("./Resource/Sound/SetUp.mp3");
+		if (BGMTrack[BATTLE1] <= 0)BGMTrack[BATTLE1] = LoadSoundMem("./Resource/Sound/Battle1.mp3");
+		if (BGMTrack[GAMEOVER] <= 0)BGMTrack[GAMEOVER] = LoadSoundMem("./Resource/Sound/GameOver.mp3");
+		if (BGMTrack[GAMECLEAR] <= 0)BGMTrack[GAMECLEAR] = LoadSoundMem("./Resource/Sound/lobby.mp3");
+		if (SETrack[ALARM] <= 0)SETrack[ALARM] = LoadSoundMem("./Resource/Sound/alarm.mp3");
+		if (SETrack[ALERT] <= 0)SETrack[ALERT] = LoadSoundMem("./Resource/Sound/alert.mp3");
+		if (SETrack[LOWBON] <= 0)SETrack[LOWBON] = LoadSoundMem("./Resource/Sound/lowbon.mp3");
+		break;
+	case PreLoad:
+		break;
+	case Test:
+		break;
+	default:
+		break;
+	}
 }
 
 void AudioManager::LoadTest()
 {
-	BGMTrack[SETUP] = LoadSoundMem("./Resource/Sound/SetUp.mp3");
-	BGMTrack[BATTLE1] = LoadSoundMem("./Resource/Sound/Battle1.mp3");
-	BGMTrack[GAMEOVER] = LoadSoundMem("./Resource/Sound/GameOver.mp3");
-	BGMTrack[GAMECLEAR] = LoadSoundMem("./Resource/Sound/lobby.mp3");
-	SETrack[ALARM] = LoadSoundMem("./Resource/Sound/alarm.mp3");
-	SETrack[ALERT] = LoadSoundMem("./Resource/Sound/alert.mp3");
-	SETrack[LOWBON] = LoadSoundMem("./Resource/Sound/lowbon.mp3");
+	if(BGMTrack[SETUP]<=0)BGMTrack[SETUP] = LoadSoundMem("./Resource/Sound/SetUp.mp3");
+	if(BGMTrack[BATTLE1] <=0)BGMTrack[BATTLE1] = LoadSoundMem("./Resource/Sound/Battle1.mp3");
+	if(BGMTrack[GAMEOVER] <=0)BGMTrack[GAMEOVER] = LoadSoundMem("./Resource/Sound/GameOver.mp3");
+	if(BGMTrack[GAMECLEAR] <=0)BGMTrack[GAMECLEAR] = LoadSoundMem("./Resource/Sound/lobby.mp3");
+	if(SETrack[ALARM] <=0)SETrack[ALARM] = LoadSoundMem("./Resource/Sound/alarm.mp3");
+	if(SETrack[ALERT] <=0)SETrack[ALERT] = LoadSoundMem("./Resource/Sound/alert.mp3");
+	if(SETrack[LOWBON] <=0)SETrack[LOWBON] = LoadSoundMem("./Resource/Sound/lowbon.mp3");
 }
 
 void AudioManager::Release(SEList)

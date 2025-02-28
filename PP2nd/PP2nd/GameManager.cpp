@@ -370,6 +370,12 @@ void GameManager::UseItem(TerrainList name)
 	itemInfoChanged = true;
 }
 
+void GameManager::GameStart()
+{
+	TimeManager::GetInstance().SetTimer(30);
+	currentSequence = SetUp;
+}
+
 /// <summary>
 /// ゲームオーバー処理
 /// </summary>

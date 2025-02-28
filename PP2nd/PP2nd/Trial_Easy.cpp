@@ -4,7 +4,7 @@
 Trial_Easy::Trial_Easy()
 {
 	std::thread loader1([] {GM().Load("Trial_Easy.txt"); });
-	std::thread loader4([] {AM().LoadTest(); });
+	std::thread loader4([] {AM().Load(Main); });
 
 	loader1.join();
 	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する
@@ -16,6 +16,7 @@ Trial_Easy::Trial_Easy()
 	mainScreenUPtr->Init(GM().GetMapInfo());
 
 	AM().PlayBGM(BGMList::SETUP);
+	EM().Setrevision(10);
 	GM().GameStart();
 }
 

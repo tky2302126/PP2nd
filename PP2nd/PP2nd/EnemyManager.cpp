@@ -47,6 +47,15 @@ void EnemyManager::LoadTest()
 }
 
 /// <summary>
+/// 敵体力の補正値をセットする
+/// </summary>
+/// <param name="value"></param>
+void EnemyManager::Setrevision(int value)
+{
+	revision = value;
+}
+
+/// <summary>
 /// マップに描画するスタート位置を取得する
 /// </summary>
 /// <returns></returns>

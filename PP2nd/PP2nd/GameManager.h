@@ -41,7 +41,7 @@ public:
 	void CheckedItemInfo() { itemInfoChanged = false; }
 	bool TerrainInfoChanged() { return terrainInfoChanged; }
 	void CheckedTerrainInfo() { terrainInfoChanged = false; }
-	void GameStart() { currentSequence = SetUp; }
+	void GameStart();
 	void SequenceProceed() { currentSequence = Battle; }
 	void GameOver();
 	void GameClear();

@@ -22,6 +22,8 @@ void Leela::Init(int MHandle, Start* _start)
     if (myStart != nullptr)
     {
         health = currentHealth = myStart->BaseHealth();
+        auto revision = EM().GetRevision();
+        health += revision * MAP_UNIT;
     }
     else
     {

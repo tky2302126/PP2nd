@@ -8,6 +8,8 @@
 
 TitleScene::TitleScene()
 {
+	AM().Load(Title);
+
 	titleScreenUPtr = std::make_unique<TitleScreen>();
 	titleScreenUPtr->Init();
 

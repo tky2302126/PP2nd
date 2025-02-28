@@ -31,6 +31,8 @@ public:
 	void SpawnEnemyTest();
 	void InitTest();
 	void LoadTest();
+	void Setrevision(int);
+	int GetRevision() { return revision; }
 private:
 	
 	/// ゴールまでのルート
@@ -46,6 +48,6 @@ private:
 
 	int enemyCountTest = 0;
 	unmap<EnemyList,int> mHandleResource;
-	int revision;
+	int revision =0;
 };
 

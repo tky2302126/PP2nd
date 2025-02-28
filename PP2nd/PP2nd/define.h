@@ -248,6 +248,7 @@ enum SEList
 
 enum BGMList
 {
+	TITLE,
 	SETUP, // 準備
 	BATTLE1, //戦闘
 	GAMEOVER,

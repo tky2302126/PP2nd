@@ -386,6 +386,7 @@ void Map::Draw(SceneName& name)
 				itemPtr = new Cube();
 				itemPtr->Init(MHandle, pos, this);
 				break;
+				AM().PlaySE(LOWBON);
 
 				/// アイテムを追加したら更新
 
