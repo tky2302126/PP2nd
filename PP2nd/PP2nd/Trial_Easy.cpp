@@ -3,10 +3,20 @@
 
 Trial_Easy::Trial_Easy()
 {
+	std::thread loader1([] {GM().Load("Trial_Easy.txt"); });
+	std::thread loader4([] {AM().LoadTest(); });
+
+	loader1.join();
+	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する
+	std::thread loader2([] {EM().LoadTest(); });
+	loader2.join();
+	loader4.join();
+
 	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GM().GetMapInfo());
 
 	AM().PlayBGM(BGMList::SETUP);
+	GM().GameStart();
 }
 
 Trial_Easy::~Trial_Easy()

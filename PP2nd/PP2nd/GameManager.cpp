@@ -1,6 +1,7 @@
 ﻿#include "GameManager.h"
 #include "EnemyManager.h"
 #include "AudioManager.h"
+#include "TimeManager.h"
 #include "Item.h"
 
 UniquePtr<GameManager> GameManager::Instance = nullptr;
@@ -278,6 +279,9 @@ void GameManager::LoadStageInfo(const std::string& fileName)
 				startVec.push_back({ y, x });
 			}
 		}
+
+		// enemymanagerに渡す
+		EnemyManager::GetInstance().SetStartPos(startVec);
 	}
 
 	// ItemInfoの読み込み
@@ -297,6 +301,26 @@ void GameManager::LoadStageInfo(const std::string& fileName)
 		}
 	}
 
+	if(std::getline(inFile, line) && line == "TimeLine :")
+	{
+		std::vector<TimeLine> timeLineVec;
+		while (std::getline(inFile, line))
+		{
+			if (line.empty()) break;
+			std::istringstream TLStream(line);
+			int time, x, y, type;
+			TLStream >> time >> comma >> x >> comma >> y >> comma >> type;
+			if (TLStream)
+			{
+				TimeLine temp = { time, {x, y},(EnemyList)type };
+				timeLineVec.push_back(temp);
+			}
+		}
+
+		/// timemanagerに渡す
+		TimeManager::GetInstance().SetTimeLine(timeLineVec);
+	}
+
 	// ファイルを閉じる
 	inFile.close();
 	printfDx("ファイルの読み込み完了");
@@ -313,23 +337,31 @@ void GameManager::InitTerrainInfo(int width, int height)
 	terrainInfo.resize(height, std::vector<TerrainList>(width, TerrainList::None));
 }
 
+void GameManager::Load(std::string fileName)
+{
+	LoadStageInfo(fileName);
+}
+
 void GameManager::LoadTest()
 {
-	LoadStageInfo("Test.txt");
+	// LoadStageInfo("Trial_Easy.txt");
 
-	_mapInfo testMap(21, 9, 10, 4);
-	InitTerrainInfo(testMap.width, testMap.height);
-	Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
-	AddTerrainInfo(TerrainList::Goal, goalPoint);
-	mapInfo = testMap;
-	ItemInfo buff;
-	buff.name = TerrainList::CUBE;
-	buff.num = 20;
-	SetItemInfo(buff);
-	ItemInfo buff2;
-	buff2.name = TerrainList::DECOY;
-	buff2.num = 5;
-	SetItemInfo(buff2);
+#pragma region ステージエディット用
+	 _mapInfo testMap(10, 10, 0, 0);
+	 InitTerrainInfo(testMap.width, testMap.height);
+	 Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
+	 AddTerrainInfo(TerrainList::Goal, goalPoint);
+	 mapInfo = testMap;
+	 ItemInfo buff;
+	 buff.name = TerrainList::CUBE;
+	 buff.num = 99;
+	 SetItemInfo(buff);
+	 ItemInfo buff2;
+	 buff2.name = TerrainList::DECOY;
+	 buff2.num = 5;
+	 SetItemInfo(buff2);
+#pragma endregion
+
 }
 
 void GameManager::UseItem(TerrainList name)
@@ -396,7 +428,7 @@ void GameManager::ExportStageInfo(const std::string& fileName)
 	outFile << "startPos :\n";
 	for(int i=0;i<startVec.size();i++)
 	{
-		outFile << startVec[i].y << "," << startVec[i].x << "\n";
+		outFile << startVec[i].x << "," << startVec[i].y << "\n";
 	}
 	outFile << "\n";
 	/// ItemInfoの取得
@@ -406,6 +438,15 @@ void GameManager::ExportStageInfo(const std::string& fileName)
 		outFile << static_cast<int>(key) << "," << value << "\n";
 	}
 	outFile << "\n";
+
+	/// TimeLineの取得
+	outFile << "TimeLine :\n";
+	auto timeLine = TimeManager::GetInstance().GetTimeLine();
+	for(int i=0; i< timeLine.size();i++)
+	{
+		outFile << timeLine[i].Time << "," << timeLine[i].startPos.x << "," << timeLine[i].startPos.y << "," << (int)timeLine[i].enemy << "\n";
+	}
+
 	/// ファイルで書き出す
 	outFile.close();
 	printfDx("ファイルの書き出し完了");

@@ -25,7 +25,7 @@ void TitleScreen::Init()
 		WINDOW_WIDTH / 8 * 7 + BUTTON_WIDTH / 2,
 
 	};
-	std::string text = "Test";
+	std::string text = "Easy";
 	int hovercolor = GetColor(100, 100, 255);
 	int normalColor = GetColor(0, 0, 0);
 	stageButton->Init(ButtonPos, hovercolor, normalColor, text, [&]() {OnPressTestButton(); });
@@ -192,5 +192,5 @@ void TitleScreen::MoveCamera()
 void TitleScreen::OnPressTestButton()
 {
 	isActive = false;
-	nextScene = Test;
+	nextScene = Main;
 }

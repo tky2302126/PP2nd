@@ -187,7 +187,6 @@ struct TimeLine
 	int Time;
 	Vector2Int startPos;
 	EnemyList enemy;
-	int num;
 };
 /// <summary>
 /// TimeLineソート用の比較関数

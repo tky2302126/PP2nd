@@ -19,12 +19,15 @@ public:
 	bool IsFast() const { return isFast; }
 	bool IsSlow() const { return isSlow; }
 	bool IsPause() const { return isPause; }
+	std::vector<TimeLine> GetTimeLine() {return _timeLine;}
+	void SetTimeLine(std::vector<TimeLine> _timeLine);
 private:
 	bool isFast = false;
 	bool isSlow = false;
 	bool isPause = false;
 	int remainTime = 0; /// メインループの制限時間ミリ秒単位で管理
 	std::priority_queue<TimeLine, std::vector<TimeLine>, TimeLineCompare> timeLine;
+	std::vector<TimeLine> _timeLine; /// エディット用に使う配列
 	static UniquePtr<TimeManager> Instance;
 };
 

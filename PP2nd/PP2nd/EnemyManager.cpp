@@ -35,10 +35,14 @@ void EnemyManager::InitTest()
 /// </summary>
 void EnemyManager::LoadTest()
 {
-	Start* startPtr = new Start();
-	Vector2Int startPos = { 20,4 };
-	startPtr->Init(startPos);
-	startPtrVec.push_back(startPtr);
+
+	if(startPtrVec.empty())
+	{
+		Start* startPtr = new Start();
+		Vector2Int startPos = { 0,9 };
+		startPtr->Init(startPos);
+		startPtrVec.push_back(startPtr);
+	}
 	Load(leela);
 }
 
@@ -57,6 +61,20 @@ std::vector<Vector2Int> EnemyManager::GetStartPos()
 		}
 	}
 	return startPosVec;
+}
+
+void EnemyManager::SetStartPos(std::vector<Vector2Int> _startPos)
+{
+	if (!_startPos.empty())
+	{
+		for (int i = 0; i < _startPos.size(); i++)
+		{
+			Start* temp = new Start();
+			Vector2Int startPos = { _startPos[i].x, _startPos[i].y };
+			temp->Init(startPos);
+			startPtrVec.push_back(temp);
+		}
+	}
 }
 
 void EnemyManager::DrawRouteTest()
@@ -85,6 +103,35 @@ void EnemyManager::ReCalculateRoute()
 		for(int i=0; i<enemyPtrVec.size();i++)
 		{
 			enemyPtrVec[i]->CompareRoute(enemyPtrVec[i]->GetMyStart()->GetRoute());
+		}
+	}
+}
+void EnemyManager::SpawnEnemy(Vector2Int pos, EnemyList type)
+{
+	if (!startPtrVec.empty())
+	{
+		for (int i = 0; i < startPtrVec.size(); i++)
+		{
+			if(startPtrVec[i]->GetStartPos() == pos)
+			{
+				Enemy* enemyPtr = nullptr;
+				switch (type)
+				{
+				case leela:
+					enemyPtr = new Leela();
+					enemyPtr->Init(mHandleResource[leela], startPtrVec[i]);
+					break;
+				case ALL:
+					break;
+				default:
+					break;
+				}
+				if(enemyPtr != nullptr)
+				{
+					enemyPtr->SetRoute(startPtrVec[i]->GetRoute());
+					enemyPtrVec.push_back(enemyPtr);
+				}
+			}
 		}
 	}
 }
@@ -145,6 +192,8 @@ bool EnemyManager::CanPlace(TerrainList name, Vector2Int pos)
 	}
 	return true;
 }
+
+
 
 void EnemyManager::UnInit()
 {

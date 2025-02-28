@@ -34,12 +34,14 @@ public:
 	void RemoveTerrainInfo(VECTOR pos);
 	void LoadStageInfo(const std::string& fileName);
 	void InitTerrainInfo(int width, int height);
+	void Load(std::string fileName);
 	void LoadTest();
 	void UseItem(TerrainList name);
 	bool ItemInfoChanged() { return itemInfoChanged; }
 	void CheckedItemInfo() { itemInfoChanged = false; }
 	bool TerrainInfoChanged() { return terrainInfoChanged; }
 	void CheckedTerrainInfo() { terrainInfoChanged = false; }
+	void GameStart() { currentSequence = SetUp; }
 	void SequenceProceed() { currentSequence = Battle; }
 	void GameOver();
 	void GameClear();

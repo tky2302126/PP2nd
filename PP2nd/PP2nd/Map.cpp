@@ -30,13 +30,48 @@ void Map::Init()
 void Map::Init(const _mapInfo& mapInfo)
 {
 	this->mapInfo = mapInfo;
-	/// !後で変える
-	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
 	goalUPtr = std::make_unique<Box>();
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
-	GM().InitTerrainInfo(mapInfo.width, mapInfo.height);
 	/// terrainListからitemPtrVecをセットアップ
+	auto terrainInfo = GM().GetTerrainInfo();
+	if(!terrainInfo.empty())
+	{
+		for(int y=0;y<terrainInfo.size();y++)
+		{
+			for(int x=0;x<terrainInfo[y].size();x++)
+			{
+
+				if(terrainInfo[y][x] == TerrainList::CUBE)
+				{
+					Item* itemPtr = new Cube();
+					MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+					VECTOR pos = VGet(
+						x * MAP_UNIT + MAP_UNIT / 2,
+						0,
+						y * MAP_UNIT + MAP_UNIT / 2
+					);
+					itemPtr->Init(MHandle, pos,this);
+					itemPtrVec.push_back(itemPtr);
+					MHandle = -1;
+				}
+
+				if (terrainInfo[y][x] == TerrainList::DECOY)
+				{
+					Item* itemPtr = new Decoy();
+					MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+					VECTOR pos = VGet(
+						x * MAP_UNIT + MAP_UNIT / 2,
+						0,
+						y * MAP_UNIT + MAP_UNIT / 2
+					);
+					itemPtr->Init(MHandle, pos, this);
+					itemPtrVec.push_back(itemPtr);
+					MHandle = -1;
+				}
+			}
+		}
+	}
 
 	/// EnemyManagerからスタート位置を受け取る
 	std::vector<Vector2Int> startPos = EM().GetStartPos();

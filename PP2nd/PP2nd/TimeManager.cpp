@@ -50,7 +50,7 @@ void TimeManager::Update(int deltaTime)
 	{
 		if(CGM().CurrentSequence() == SetUp)
 		{
-			SetTimer(100);
+			SetTimer(120);
 			GM().SequenceProceed();
 			AM().PlaySECustom(ALERT, BATTLE1);
 		}
@@ -76,7 +76,7 @@ void TimeManager::Update(int deltaTime)
 			/// ここに敵の出現 switch文
 			/// 今はデバッグ対応
 
-			EM().SpawnEnemyTest();
+			EM().SpawnEnemy(tl.startPos,tl.enemy);
 			if (timeLine.empty()) break;
 		}
 	}
@@ -87,13 +87,25 @@ void TimeManager::SetTimer(int _remainTime)
 	remainTime = _remainTime * 1000;
 }
 
+/// <summary>
+/// エディット用のタイムライン読み込み
+/// </summary>
 void TimeManager::LoadTest()
 {
 	SetTimer(30);
-	timeLine.push({ 75,{0,0},{EnemyList::leela},99 });
-	timeLine.push({ 88,{0,0},{EnemyList::leela},99 });
-	timeLine.push({ 54,{0,0},{EnemyList::leela},99 });
-	timeLine.push({ 95,{0,0},{EnemyList::leela},99 });
+	timeLine.push({ 75,{0,9},{EnemyList::leela} });
+	timeLine.push({ 88,{0,9},{EnemyList::leela} });
+	timeLine.push({ 54,{0,9},{EnemyList::leela} });
+	timeLine.push({ 95,{0,9},{EnemyList::leela} });
+	timeLine.push({ 52,{0,9},{EnemyList::leela} });
+	timeLine.push({ 45,{0,9},{EnemyList::leela} });
+
+	_timeLine.push_back({ 75,{0,9},{EnemyList::leela} });
+	_timeLine.push_back({ 88,{0,9},{EnemyList::leela} });
+	_timeLine.push_back({ 54,{0,9},{EnemyList::leela} });
+	_timeLine.push_back({ 95,{0,9},{EnemyList::leela} });
+	_timeLine.push_back({ 52,{0,9},{EnemyList::leela} });
+	_timeLine.push_back({ 45,{0,9},{EnemyList::leela} });
 }
 
 TimeManager& TimeManager::GetInstance()
@@ -103,4 +115,15 @@ TimeManager& TimeManager::GetInstance()
 		Instance = std::make_unique<TimeManager>();
 	}
 	return *Instance;
+}
+
+void TimeManager::SetTimeLine(std::vector<TimeLine> _timeLine)
+{
+	if(!_timeLine.empty())
+	{
+		for(int i=0;i < _timeLine.size(); i++)
+		{
+			timeLine.push(_timeLine[i]);
+		}
+	}
 }

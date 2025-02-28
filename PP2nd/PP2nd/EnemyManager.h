@@ -19,6 +19,7 @@ public:
 	void Load(EnemyList name);
 	void Update();
 	std::vector<Vector2Int> GetStartPos();
+	void SetStartPos(std::vector<Vector2Int> _startPos);
 	void DrawRouteTest();
 	void ReCalculateRoute();
 	void IncreaseTrialCount();
@@ -26,6 +27,7 @@ public:
 	int  GetTrialCount() { return trialCount; }
 	void RemoveEnemy(Enemy* enemy);
 	bool CanPlace(TerrainList name, Vector2Int pos);
+	void SpawnEnemy(Vector2Int pos, EnemyList type);
 	void SpawnEnemyTest();
 	void InitTest();
 	void LoadTest();
@@ -44,5 +46,6 @@ private:
 
 	int enemyCountTest = 0;
 	unmap<EnemyList,int> mHandleResource;
+	int revision;
 };
 

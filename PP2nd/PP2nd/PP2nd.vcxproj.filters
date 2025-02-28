@@ -93,9 +93,6 @@
     <ClCompile Include="Trial_Easy.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="PreLoad.cpp">
-      <Filter>ソース ファイル\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
@@ -183,9 +180,6 @@
       <Filter>ソース ファイル\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Trial_Easy.h">
-      <Filter>ソース ファイル\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="PreLoad.h">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">

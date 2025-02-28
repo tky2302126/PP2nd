@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "TestScene.h"
 #include "TitleScene.h"
+#include "Trial_Easy.h"
 
 std::unique_ptr<SceneManager> SceneManager::Instance = nullptr;
 
@@ -34,7 +35,7 @@ void SceneManager::Load(SceneName name)
 		break;
 
 	case Main:
-
+		newScene = new Trial_Easy();
 		break;
 
 	case Test:
