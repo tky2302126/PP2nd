@@ -46,8 +46,7 @@ private:
 	int trialCount = 0; // 経路探索の試行回数
 	static UniquePtr<EnemyManager> Instance;
 
-	int enemyCountTest = 0;
 	unmap<EnemyList,int> mHandleResource;
-	int revision =0;
+	int revision =0; // ステージごとの敵体力の補正値
 };
 

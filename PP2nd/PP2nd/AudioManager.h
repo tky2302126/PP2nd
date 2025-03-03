@@ -38,8 +38,7 @@ private:
 	int surveyConunt = -1;
 	int oldVolume = -1;
 	std::thread asyncThread;
-
+	std::mutex seMutex;
 	void SurveySEAsync(SEList);
-	void SurveySoundAsync(BGMList);
 };
 

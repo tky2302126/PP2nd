@@ -171,30 +171,26 @@ void EnemyManager::ResetTrialCount()
 
 void EnemyManager::RemoveEnemy(Enemy* enemy)
 {
-	int index = 0;
-	while (true)
+	for(int i=0; i< enemyPtrVec.size(); ++i)
 	{
-		if(enemyPtrVec[index] == enemy)
+		if(enemyPtrVec[i] == enemy)
 		{
-			delete enemyPtrVec[index];
-			enemyPtrVec.erase(enemyPtrVec.begin() + index);
+			delete enemyPtrVec[i];
+			enemyPtrVec.erase(enemyPtrVec.begin() + i);
 			break;
 		}
-		index++;
 	}
 }
 
 bool EnemyManager::CanPlace(TerrainList name, Vector2Int pos)
 {
-	if(startPtrVec.size()>=1)
+	if (startPtrVec.empty()) return true;
+	for(int i=0;i<startPtrVec.size();i++)
 	{
-		for(int i=0;i<startPtrVec.size();i++)
+		if(startPtrVec[i]->ReachGoal(name, pos) == false)
 		{
-			if(startPtrVec[i]->ReachGoal(name, pos) == false)
-			{
-				return false;
-				break;
-			}
+			return false;
+			break;
 		}
 	}
 	return true;
@@ -212,8 +208,9 @@ void EnemyManager::InitStart()
 
 /// <summary>
 /// csvなどから地形情報を読み取る
+/// !mapかunmapの採用を検討
 /// </summary>
-/// <param name="day"></param>
+/// <param name="name"></param>
 void EnemyManager::Load(EnemyList name)
 {
 	switch (name)

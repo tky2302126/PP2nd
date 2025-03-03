@@ -2,10 +2,10 @@
   Camera.cpp
   Cube.cpp
   Decoy.cpp
+  EnemyManager.cpp
   GameManager.cpp
   HUD.cpp
 D:\PP2nd\PP2nd\PP2nd\HUD.cpp(48,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-  Item.cpp
   ItemPanel.cpp
   Leela.cpp
 D:\PP2nd\PP2nd\PP2nd\Leela.cpp(23,31): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
@@ -19,7 +19,7 @@ D:\PP2nd\PP2nd\PP2nd\Leela.cpp(81,28): warning C4244: '初期化中': 'double' �
 D:\PP2nd\PP2nd\PP2nd\Leela.cpp(134,13): warning C4065: switch 文に 'default' はありますが 'case' ラベルがありません。
   MainScreen.cpp
   Map.cpp
-D:\PP2nd\PP2nd\PP2nd\define.h(39,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
+D:\PP2nd\PP2nd\PP2nd\define.h(41,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
   (ソース ファイル 'Map.cpp' をコンパイルしています)
   
 D:\PP2nd\PP2nd\PP2nd\Map.cpp(185,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
@@ -57,8 +57,8 @@ D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(165,21): warning C4244: '初期化中': 'fl
   Trial_Easy.cpp
   main.cpp
   コード生成しています。
-  13 of 3818 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  5 of 4454 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    8 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Release\PP2nd.exe

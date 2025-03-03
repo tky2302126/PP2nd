@@ -17,8 +17,9 @@ AudioManager::~AudioManager()
 
 void AudioManager::Init()
 {
-	BGMVolume = 255 * BGM_VOLUME / 100;
-	SEVolume = 255 * SE_VOLUME / 100;
+	const int maxVolume = 255;
+	BGMVolume = maxVolume * BGM_VOLUME / 100;
+	SEVolume = maxVolume * SE_VOLUME / 100;
 }
 
 void AudioManager::UnInit()
@@ -157,8 +158,8 @@ void AudioManager::PlaySECustom(SEList seName, BGMList bgmName, bool loop)
 		int handle = it->second;
 		auto result = StopSoundMem(handle);
 	}
-	asyncThread = std::thread(&AudioManager::SurveySEAsync, this, seName);
-	asyncThread.join();
+	auto future = std::async(std::launch::async, &AudioManager::SurveySEAsync, this, seName);
+	future.get();
 	PlayBGM(bgmName, loop);
 }
 
@@ -168,6 +169,7 @@ void AudioManager::SetLoop(bool)
 
 void AudioManager::SurveySEAsync(SEList name)
 {
+	std::lock_guard<std::mutex> lock(seMutex);
 	PlaySE(name);
 	while (true)
 	{
@@ -178,8 +180,4 @@ void AudioManager::SurveySEAsync(SEList name)
 		std::this_thread::sleep_for(std::chrono::milliseconds(16));
 	}
 	
-}
-
-void AudioManager::SurveySoundAsync(BGMList)
-{
 }

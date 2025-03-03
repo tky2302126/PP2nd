@@ -16,6 +16,8 @@
 #include <functional>
 #include <cmath>
 #include <unordered_set>
+#include <mutex>
+#include <future>
 
 
 namespace fs = std::filesystem;
