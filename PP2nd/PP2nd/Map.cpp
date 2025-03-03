@@ -175,8 +175,8 @@ void Map::Draw()
 {
 #if _DEBUG
 	/// マップのグリッド線を表示
-	int XAxizcolor = GetColor(255, 128, 255);
-	int ZAxizColor = GetColor(128, 255, 255);
+	int XAxizcolor = GetColor(255, 255, 255);
+	int ZAxizColor = GetColor(255, 255, 255);
 	/// デバッグ
 	if(mapInfo.height == -1)
 	{
@@ -351,47 +351,47 @@ void Map::Draw(SceneName& name)
 
 #if _DEBUG
 	/// マップのグリッド線を表示
-	int XAxizcolor = GetColor(255, 128, 255);
-	int ZAxizColor = GetColor(128, 255, 255);
+	int XAxizcolor = GetColor(255, 255, 255);
+	int ZAxizColor = GetColor(255, 255, 255);
 	/// デバッグ
 	if (mapInfo.height == -1)
 	{
 		for (int z = 0; z <= MAP_UNIT * 10; z += MAP_UNIT)
 		{
-			DrawLine3D(VGet(0, 1, z), VGet(MAP_UNIT * 10, 1, z), XAxizcolor);
+			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT * 10, 0, z), XAxizcolor);
 		}
 
 		for (int x = 0; x <= MAP_UNIT * 10; x += MAP_UNIT)
 		{
-			DrawLine3D(VGet(x, 1, 0), VGet(x, 1, MAP_UNIT * 10), ZAxizColor);
+			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT * 10), ZAxizColor);
 		}
 	}
 	else
 	{
 		int outLineColor = GetColor(255, 255, 255);
 		/// 外枠の描画
-		DrawLine3D(VGet(0, 1, 0), VGet(mapInfo.width * MAP_UNIT + 0, 1, 0), outLineColor);
-		DrawLine3D(VGet(0, 1, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 1, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(0, 1, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 1, 0), VGet(mapInfo.width * MAP_UNIT, 1, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT + 0, 0, 0), outLineColor);
+		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
 
 		//z軸
 		for (int x = 1; x < mapInfo.width; x++)
 		{
-			DrawLine3D(VGet(x * MAP_UNIT, 10, 0), VGet(x * MAP_UNIT, 10, mapInfo.height * MAP_UNIT), ZAxizColor);
+			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
 		}
 
 		//x軸
 		for (int z = 1; z < mapInfo.height; z++)
 		{
-			DrawLine3D(VGet(0, 10, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 10, z * MAP_UNIT), XAxizcolor);
+			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, z * MAP_UNIT), XAxizcolor);
 		}
 	}
 #endif
 
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
-	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+	// DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
