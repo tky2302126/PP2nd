@@ -14,15 +14,9 @@ public:
 	Cube();
 	~Cube();
 
-	void Init();
-	void Init(int Ghandle) override;
-	void Init(int Ghandle,VECTOR pos) override;
 	void Init(int Ghandle,VECTOR pos,Map* mapPtr) override;
-
 	void UnInit();
 
-	void OnEnter() const override;
-	void OnExit() const override;
 	void Draw() const override;
 	void Update() override;
 	void Confirm() override;

@@ -10,12 +10,8 @@ class Map;
 class Item
 {
 public:
-	virtual void Init(int) = 0;
-	virtual void Init(int,VECTOR) = 0;
 	virtual void Init(int,VECTOR,Map*) = 0;
 	virtual ~Item() = default;
-	virtual void OnEnter() const =0;
-	virtual void OnExit() const =0;
 	virtual void Draw() const = 0;
 	virtual void Update() = 0;
 	virtual void Confirm() = 0;

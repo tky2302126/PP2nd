@@ -12,25 +12,6 @@ Cube::~Cube()
 {
 }
 
-void Cube::Init()
-{
-}
-
-void Cube::Init(int _Ghandle) 
-{
-    MHandle = _Ghandle;
-    /// staticメンバーがロードされていない場合、ロードする
-
-}
-
-void Cube::Init(int _Ghandle, VECTOR _pos)
-{
-    MHandle = _Ghandle;
-    pos = _pos;
-    /// 埋まらないようにあげる
-    pos.y += MAP_UNIT / 2;
-}
-
 void Cube::Init(int _Ghandle, VECTOR _pos, Map* _mapPtr)
 {
     MHandle = _Ghandle;
@@ -41,15 +22,6 @@ void Cube::Init(int _Ghandle, VECTOR _pos, Map* _mapPtr)
 }
 
 void Cube::UnInit()
-{
-}
-
-void Cube::OnEnter() const 
-{
-
-}
-
-void Cube::OnExit() const
 {
 }
 

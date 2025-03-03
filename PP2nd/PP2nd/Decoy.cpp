@@ -13,18 +13,6 @@ Decoy::~Decoy()
 {
 }
 
-void Decoy::Init()
-{
-}
-
-void Decoy::Init(int Ghandle)
-{
-}
-
-void Decoy::Init(int Ghandle, VECTOR pos)
-{
-}
-
 void Decoy::Init(int _Mhandle, VECTOR _pos, Map* _mapPtr)
 {
 	MHandle = _Mhandle;
@@ -33,14 +21,6 @@ void Decoy::Init(int _Mhandle, VECTOR _pos, Map* _mapPtr)
 }
 
 void Decoy::UnInit()
-{
-}
-
-void Decoy::OnEnter() const
-{
-}
-
-void Decoy::OnExit() const
 {
 }
 
