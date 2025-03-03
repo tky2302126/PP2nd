@@ -46,7 +46,7 @@ void TimeManager::Update(int deltaTime)
 	if (GM().CurrentSequence() == Result) return;
 	if (GM().CurrentSequence() == Debug) return;
 
-	if(remainTime <=0)
+	if(remainTimeMS <=0)
 	{
 		if(CGM().CurrentSequence() == SetUp)
 		{
@@ -64,12 +64,12 @@ void TimeManager::Update(int deltaTime)
 	if (isFast) { elapsedTime *= 2; }
 	if (isSlow) { elapsedTime /= 2; }
 
-	remainTime -= elapsedTime;
+	remainTimeMS -= elapsedTime;
 	/// 敵の出現
 	if (CGM().CurrentSequence() != Battle) return;
 	if(!timeLine.empty())
 	{
-		while (timeLine.top().Time >= remainTime/1000)
+		while (!timeLine.empty()&&timeLine.top().Time >= remainTimeMS/1000)
 		{
 			auto tl = timeLine.top();
 			timeLine.pop();
@@ -84,7 +84,7 @@ void TimeManager::Update(int deltaTime)
 
 void TimeManager::SetTimer(int _remainTime)
 {
-	remainTime = _remainTime * 1000;
+	remainTimeMS = _remainTime * 1000;
 }
 
 /// <summary>
@@ -93,12 +93,6 @@ void TimeManager::SetTimer(int _remainTime)
 void TimeManager::LoadTest()
 {
 	SetTimer(30);
-	timeLine.push({ 75,{0,9},{EnemyList::leela} });
-	timeLine.push({ 88,{0,9},{EnemyList::leela} });
-	timeLine.push({ 54,{0,9},{EnemyList::leela} });
-	timeLine.push({ 95,{0,9},{EnemyList::leela} });
-	timeLine.push({ 52,{0,9},{EnemyList::leela} });
-	timeLine.push({ 45,{0,9},{EnemyList::leela} });
 
 	_timeLine.push_back({ 75,{0,9},{EnemyList::leela} });
 	_timeLine.push_back({ 88,{0,9},{EnemyList::leela} });
@@ -106,6 +100,8 @@ void TimeManager::LoadTest()
 	_timeLine.push_back({ 95,{0,9},{EnemyList::leela} });
 	_timeLine.push_back({ 52,{0,9},{EnemyList::leela} });
 	_timeLine.push_back({ 45,{0,9},{EnemyList::leela} });
+
+	SetTimeLine(_timeLine);
 }
 
 TimeManager& TimeManager::GetInstance()
@@ -119,11 +115,8 @@ TimeManager& TimeManager::GetInstance()
 
 void TimeManager::SetTimeLine(std::vector<TimeLine> _timeLine)
 {
-	if(!_timeLine.empty())
+	for(const auto& tl :_timeLine)
 	{
-		for(int i=0;i < _timeLine.size(); i++)
-		{
-			timeLine.push(_timeLine[i]);
-		}
+		timeLine.push(tl);
 	}
 }

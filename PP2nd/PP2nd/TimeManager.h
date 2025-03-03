@@ -15,7 +15,7 @@ public:
 	void LoadTest();
 	static TimeManager& GetInstance();
 	
-	int  RemainTime() const { return remainTime / 1000; }
+	int  RemainTime() const { return remainTimeMS / 1000; }
 	bool IsFast() const { return isFast; }
 	bool IsSlow() const { return isSlow; }
 	bool IsPause() const { return isPause; }
@@ -25,7 +25,7 @@ private:
 	bool isFast = false;
 	bool isSlow = false;
 	bool isPause = false;
-	int remainTime = 0; /// メインループの制限時間ミリ秒単位で管理
+	int remainTimeMS = 0; /// メインループの制限時間ミリ秒単位で管理
 	std::priority_queue<TimeLine, std::vector<TimeLine>, TimeLineCompare> timeLine;
 	std::vector<TimeLine> _timeLine; /// エディット用に使う配列
 	static UniquePtr<TimeManager> Instance;

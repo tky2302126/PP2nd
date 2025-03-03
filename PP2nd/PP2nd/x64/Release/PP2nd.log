@@ -2,6 +2,7 @@
   Camera.cpp
   Cube.cpp
   Decoy.cpp
+  GameManager.cpp
   HUD.cpp
 D:\PP2nd\PP2nd\PP2nd\HUD.cpp(48,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   ItemPanel.cpp
@@ -55,8 +56,8 @@ D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(165,21): warning C4244: '初期化中': 'fl
   Trial_Easy.cpp
   main.cpp
   コード生成しています。
-  260 of 4455 functions ( 5.8%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    25 functions had inline decision re-evaluated but remain unchanged
+  0 of 4456 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   PP2nd.vcxproj -> D:\PP2nd\PP2nd\x64\Release\PP2nd.exe
