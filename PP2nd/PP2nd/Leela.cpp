@@ -9,10 +9,6 @@ Leela::~Leela()
 {
 }
 
-void Leela::Init(int)
-{
-}
-
 void Leela::Init(int MHandle, Start* _start)
 {
     mHandle = MV1DuplicateModel(MHandle);
@@ -21,15 +17,15 @@ void Leela::Init(int MHandle, Start* _start)
     /// ヒューリスティック値から体力を設定する
     if (myStart != nullptr)
     {
-        health = currentHealth = myStart->BaseHealth();
+        maxHealth = currentHealth = myStart->BaseHealth();
         auto revision = EM().GetRevision();
         /// ステージによって補正値を与える
-        health += revision * MAP_UNIT;
-        currentHealth = health;
+        maxHealth += revision * MAP_UNIT;
+        currentHealth = maxHealth;
     }
     else
     {
-        health = currentHealth = 600;
+        maxHealth = currentHealth = 600;
     }
     InGaugeGH = LoadGraph("./Resource/GaugeIn306x27_HP.png");
     OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
@@ -54,7 +50,7 @@ void Leela::Draw() const
     if (isDead) return;
     auto screenPos = GetScreenPos(position);
 
-    float healthRate = (float)currentHealth / health;
+    float healthRate = (float)currentHealth / maxHealth;
 
     Vector2Int start = { screenPos.x - ENEMY_GAUGE_WIDTH / 2, screenPos.y - ENEMY_GAUGE_HEIGHT - ENEMY_GAUGE_OFFSET_Y };
     Vector2Int end = { start.x + ENEMY_GAUGE_WIDTH, start.y + ENEMY_GAUGE_HEIGHT };

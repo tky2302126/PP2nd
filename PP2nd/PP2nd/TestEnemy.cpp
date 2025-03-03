@@ -11,10 +11,6 @@ TestEnemy::~TestEnemy()
 {
 }
 
-void TestEnemy::Init(int _Mhandle =-1)
-{
-}
-
 void TestEnemy::Init(int, Start* _start = nullptr)
 {
 	myStart = _start;
@@ -23,11 +19,11 @@ void TestEnemy::Init(int, Start* _start = nullptr)
     /// ->Startで計算した方がよさそう
     if(myStart!=nullptr)
     {
-        health = currentHealth = myStart->BaseHealth();
+        maxHealth = currentHealth = myStart->BaseHealth();
     }
     else
     {
-        health = currentHealth = 600;
+        maxHealth = currentHealth = 600;
     }
     InGaugeGH = LoadGraph("./Resource/GaugeIn306x27_HP.png");
     OutGaugeGH = LoadGraph("./Resource/GaugeOut306x27_002.png");
@@ -48,7 +44,7 @@ void TestEnemy::Draw() const
 
     auto screenPos = GetScreenPos(position);
 
-    float healthRate = (float)currentHealth / health;
+    float healthRate = (float)currentHealth / maxHealth;
 
     Vector2Int start = { screenPos.x - ENEMY_GAUGE_WIDTH/2, screenPos.y - ENEMY_GAUGE_HEIGHT - ENEMY_GAUGE_OFFSET_Y };
     Vector2Int end = { start.x + ENEMY_GAUGE_WIDTH, start.y + ENEMY_GAUGE_HEIGHT };

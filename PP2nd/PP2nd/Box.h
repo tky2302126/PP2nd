@@ -7,7 +7,6 @@
 class Box
 {
 public:
-	void Init();
 	void Init(const VECTOR& pos,const Tag& tag);
 	void UnInit();
 	void Draw();
@@ -24,11 +23,10 @@ public:
 		return pos;
 	}
 private:
-	VERTEX3D Vertex[8];
-	WORD Index[36];
+	VERTEX3D vertex[8];
+	WORD index[36];
 	VECTOR pos;
 	Tag tag;
-	int lineColor;
 };
 
 

@@ -33,7 +33,6 @@ class Leela :public Enemy
 public:
 	Leela();
 	~Leela();
-	void Init(int) override;
 	void Init(int Mhandle, Start*) override;
 	void Draw() const override;
 	void Move() override;

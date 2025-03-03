@@ -1,15 +1,10 @@
 #include "Box.h"
 
-void Box::Init()
-{
-}
-
 void Box::Init(const VECTOR& pos,const Tag& tag)
 {
 	this->pos = pos;
 	this->tag = tag;
 	// 頂点の計算
-	if(tag == Tag::Start)
 	{
 		float MinX;
 		float MinY;
@@ -26,221 +21,103 @@ void Box::Init(const VECTOR& pos,const Tag& tag)
 		MaxY = pos.y + MAP_UNIT / 2;
 		MaxZ = pos.z + MAP_UNIT / 2;
 
-		Vertex[0].pos = VGet(MinX,MinY,MinZ);
-		Vertex[0].norm = VGet(0,0,-1.0);
-		Vertex[0].dif = COLOR_RED;
-		Vertex[0].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[0].u = 0;
-		Vertex[0].v = 0;
-		Vertex[0].su = 0;
-		Vertex[0].sv = 0;
+		vertex[0].pos = VGet(MinX,MinY,MinZ);
+		vertex[0].norm = VGet(0,0,-1.0);
+		vertex[0].spc = GetColorU8(0, 0, 0, 0);
+		vertex[0].u = 0;
+		vertex[0].v = 0;
+		vertex[0].su = 0;
+		vertex[0].sv = 0;
 
-		Vertex[1].pos = VGet(MaxX, MinY, MinZ);
-		Vertex[1].norm = VGet(0, 0, -1.0);
-		Vertex[1].dif = COLOR_RED;
-		Vertex[1].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[1].u = 0;
-		Vertex[1].v = 0;
-		Vertex[1].su = 0;
-		Vertex[1].sv = 0;
+		vertex[1].pos = VGet(MaxX, MinY, MinZ);
+		vertex[1].norm = VGet(0, 0, -1.0);
+		vertex[1].spc = GetColorU8(0, 0, 0, 0);
+		vertex[1].u = 0;
+		vertex[1].v = 0;
+		vertex[1].su = 0;
+		vertex[1].sv = 0;
 
-		Vertex[2].pos = VGet(MaxX,MaxY,MinZ);
-		Vertex[2].norm = VGet(0,0,-1.0);
-		Vertex[2].dif = COLOR_RED;
-		Vertex[2].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[2].u = 0;
-		Vertex[2].v = 0;
-		Vertex[2].su = 0;
-		Vertex[2].sv = 0;
+		vertex[2].pos = VGet(MaxX,MaxY,MinZ);
+		vertex[2].norm = VGet(0,0,-1.0);
+		vertex[2].spc = GetColorU8(0, 0, 0, 0);
+		vertex[2].u = 0;
+		vertex[2].v = 0;
+		vertex[2].su = 0;
+		vertex[2].sv = 0;
 
-		Vertex[3].pos = VGet(MinX,MaxY,MinZ);
-		Vertex[3].norm = VGet(0,0,-1.0);
-		Vertex[3].dif = COLOR_RED;
-		Vertex[3].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[3].u = 0;
-		Vertex[3].v = 0;
-		Vertex[3].su = 0;
-		Vertex[3].sv = 0;
+		vertex[3].pos = VGet(MinX,MaxY,MinZ);
+		vertex[3].norm = VGet(0,0,-1.0);
+		vertex[3].spc = GetColorU8(0, 0, 0, 0);
+		vertex[3].u = 0;
+		vertex[3].v = 0;
+		vertex[3].su = 0;
+		vertex[3].sv = 0;
 
-		Vertex[4].pos = VGet(MinX,MinY,MaxZ);
-		Vertex[4].norm = VGet(0,0,-1.0);
-		Vertex[4].dif = COLOR_RED;
-		Vertex[4].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[4].u = 0;
-		Vertex[4].v = 0;
-		Vertex[4].su = 0;
-		Vertex[4].sv = 0;
+		vertex[4].pos = VGet(MinX,MinY,MaxZ);
+		vertex[4].norm = VGet(0,0,-1.0);
+		vertex[4].spc = GetColorU8(0, 0, 0, 0);
+		vertex[4].u = 0;
+		vertex[4].v = 0;
+		vertex[4].su = 0;
+		vertex[4].sv = 0;
 
-		Vertex[5].pos = VGet(MaxX,MinY,MaxZ);
-		Vertex[5].norm = VGet(0,0,-1.0);
-		Vertex[5].dif = COLOR_RED;
-		Vertex[5].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[5].u = 0;
-		Vertex[5].v = 0;
-		Vertex[5].su = 0;
-		Vertex[5].sv = 0;
+		vertex[5].pos = VGet(MaxX,MinY,MaxZ);
+		vertex[5].norm = VGet(0,0,-1.0);
+		vertex[5].spc = GetColorU8(0, 0, 0, 0);
+		vertex[5].u = 0;
+		vertex[5].v = 0;
+		vertex[5].su = 0;
+		vertex[5].sv = 0;
 
-		Vertex[6].pos = VGet(MaxX,MaxY,MaxZ);
-		Vertex[6].norm = VGet(0,0,-1.0);
-		Vertex[6].dif = COLOR_RED;
-		Vertex[6].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[6].u = 0;
-		Vertex[6].v = 0;
-		Vertex[6].su = 0;
-		Vertex[6].sv = 0;
+		vertex[6].pos = VGet(MaxX,MaxY,MaxZ);
+		vertex[6].norm = VGet(0,0,-1.0);
+		vertex[6].spc = GetColorU8(0, 0, 0, 0);
+		vertex[6].u = 0;
+		vertex[6].v = 0;
+		vertex[6].su = 0;
+		vertex[6].sv = 0;
 
-		Vertex[7].pos = VGet(MinX,MaxY,MaxZ);
-		Vertex[7].norm = VGet(0, 0, -1.0);
-		Vertex[7].dif = COLOR_RED;
-		Vertex[7].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[7].u = 0;
-		Vertex[7].v = 0;
-		Vertex[7].su = 0;
-		Vertex[7].sv = 0;
+		vertex[7].pos = VGet(MinX,MaxY,MaxZ);
+		vertex[7].norm = VGet(0, 0, -1.0);
+		vertex[7].spc = GetColorU8(0, 0, 0, 0);
+		vertex[7].u = 0;
+		vertex[7].v = 0;
+		vertex[7].su = 0;
+		vertex[7].sv = 0;
 	}
 
-	if (tag == Tag::Goal)
+	auto color = (tag == Tag::Start) ? COLOR_RED : COLOR_LIGHTBLUE;
+
+	for(int i=0;i<8;i++)
 	{
-		float MinX;
-		float MinY;
-		float MinZ;
-		float MaxX;
-		float MaxY;
-		float MaxZ;
-
-		MinX = pos.x - MAP_UNIT / 2;
-		MinY = pos.y - MAP_UNIT / 2;
-		MinZ = pos.z - MAP_UNIT / 2;
-
-		MaxX = pos.x + MAP_UNIT / 2;
-		MaxY = pos.y + MAP_UNIT / 2;
-		MaxZ = pos.z + MAP_UNIT / 2;
-
-		Vertex[0].pos = VGet(MinX, MinY, MinZ);
-		Vertex[0].norm = VGet(0, 0, -1.0);
-		Vertex[0].dif = COLOR_LIGHTBLUE;
-		Vertex[0].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[0].u = 0;
-		Vertex[0].v = 0;
-		Vertex[0].su = 0;
-		Vertex[0].sv = 0;
-
-		Vertex[1].pos = VGet(MaxX, MinY, MinZ);
-		Vertex[1].norm = VGet(0, 0, -1.0);
-		Vertex[1].dif = COLOR_LIGHTBLUE;
-		Vertex[1].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[1].u = 0;
-		Vertex[1].v = 0;
-		Vertex[1].su = 0;
-		Vertex[1].sv = 0;
-
-		Vertex[2].pos = VGet(MaxX, MaxY, MinZ);
-		Vertex[2].norm = VGet(0, 0, -1.0);
-		Vertex[2].dif = COLOR_LIGHTBLUE;
-		Vertex[2].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[2].u = 0;
-		Vertex[2].v = 0;
-		Vertex[2].su = 0;
-		Vertex[2].sv = 0;
-
-		Vertex[3].pos = VGet(MinX, MaxY, MinZ);
-		Vertex[3].norm = VGet(0, 0, -1.0);
-		Vertex[3].dif = COLOR_LIGHTBLUE;
-		Vertex[3].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[3].u = 0;
-		Vertex[3].v = 0;
-		Vertex[3].su = 0;
-		Vertex[3].sv = 0;
-
-		Vertex[4].pos = VGet(MinX, MinY, MaxZ);
-		Vertex[4].norm = VGet(0, 0, -1.0);
-		Vertex[4].dif = COLOR_LIGHTBLUE;
-		Vertex[4].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[4].u = 0;
-		Vertex[4].v = 0;
-		Vertex[4].su = 0;
-		Vertex[4].sv = 0;
-
-		Vertex[5].pos = VGet(MaxX, MinY, MaxZ);
-		Vertex[5].norm = VGet(0, 0, -1.0);
-		Vertex[5].dif = COLOR_LIGHTBLUE;
-		Vertex[5].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[5].u = 0;
-		Vertex[5].v = 0;
-		Vertex[5].su = 0;
-		Vertex[5].sv = 0;
-
-		Vertex[6].pos = VGet(MaxX, MaxY, MaxZ);
-		Vertex[6].norm = VGet(0, 0, -1.0);
-		Vertex[6].dif = COLOR_LIGHTBLUE;
-		Vertex[6].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[6].u = 0;
-		Vertex[6].v = 0;
-		Vertex[6].su = 0;
-		Vertex[6].sv = 0;
-
-		Vertex[7].pos = VGet(MinX, MaxY, MaxZ);
-		Vertex[7].norm = VGet(0, 0, -1.0);
-		Vertex[7].dif = COLOR_LIGHTBLUE;
-		Vertex[7].spc = GetColorU8(0, 0, 0, 0);
-		Vertex[7].u = 0;
-		Vertex[7].v = 0;
-		Vertex[7].su = 0;
-		Vertex[7].sv = 0;
+		vertex[i].dif = color;
 	}
 
 	//インデックスの初期化
 	{
-
-		//{
-		//	// 前面
-		//	0, 2, 1, // 三角形 1
-		//		0, 3, 2, // 三角形 2
-
-		//		// 背面
-		//		4, 5, 6, // 三角形 3
-		//		4, 6, 7, // 三角形 4
-
-		//		// 左面
-		//		0, 7, 3, // 三角形 5
-		//		0, 4, 7, // 三角形 6
-
-		//		// 右面
-		//		1, 2, 6, // 三角形 7
-		//		1, 6, 5, // 三角形 8
-
-		//		// 上面
-		//		2, 3, 7, // 三角形 9
-		//		2, 7, 6, // 三角形 10
-
-		//		// 下面
-		//		0, 1, 5, // 三角形 11
-		//		0, 5, 4  // 三角形 12
-		//};
-
 		// 前面
-		Index[0] = 0; Index[1] = 2; Index[2] = 1;
-		Index[3] = 0; Index[4] = 3; Index[5] = 2;
+		index[0] = 0; index[1] = 2; index[2] = 1;
+		index[3] = 0; index[4] = 3; index[5] = 2;
 
 		//背面
-		Index[6] = 4; Index[7] = 5; Index[8] = 6;
-		Index[9] = 4; Index[10] = 6; Index[11] = 7;
+		index[6] = 4; index[7] = 5; index[8] = 6;
+		index[9] = 4; index[10] = 6; index[11] = 7;
 
 		//左面
-		Index[12] = 0; Index[13] = 7; Index[14] = 3;
-		Index[15] = 0; Index[16] = 4; Index[17] = 7;
+		index[12] = 0; index[13] = 7; index[14] = 3;
+		index[15] = 0; index[16] = 4; index[17] = 7;
 
 		//右面
-		Index[18] = 1; Index[19] = 2; Index[20] = 6;
-		Index[21] = 1; Index[22] = 6; Index[23] = 5;
+		index[18] = 1; index[19] = 2; index[20] = 6;
+		index[21] = 1; index[22] = 6; index[23] = 5;
 
 		//上面
-		Index[24] = 2; Index[25] = 3; Index[26] = 7;
-		Index[27] = 2; Index[28] = 7; Index[29] = 6;
+		index[24] = 2; index[25] = 3; index[26] = 7;
+		index[27] = 2; index[28] = 7; index[29] = 6;
 
 		//下面
-		Index[30] = 0; Index[31] = 1; Index[32] = 5;
-		Index[33] = 0; Index[34] = 5; Index[35] = 4;
+		index[30] = 0; index[31] = 1; index[32] = 5;
+		index[33] = 0; index[34] = 5; index[35] = 4;
 	}
 }
 
@@ -251,24 +128,25 @@ void Box::UnInit()
 void Box::Draw()
 {
 	
-	DrawPolygonIndexed3D(Vertex, 8, Index, 12, DX_NONE_GRAPH, false);
+	DrawPolygonIndexed3D(vertex, 8, index, 12, DX_NONE_GRAPH, false);
 
-	//if(tag == Tag::Goal)
 	{
 		int white = GetColor(255, 255, 255);
+		DrawLine3D(vertex[1].pos,vertex[2].pos,white);
+		DrawLine3D(vertex[2].pos,vertex[3].pos,white);
+		DrawLine3D(vertex[3].pos,vertex[0].pos,white);
+								 		  
+	    DrawLine3D(vertex[5].pos,vertex[6].pos,white);
+	    DrawLine3D(vertex[6].pos,vertex[7].pos,white);
+	    DrawLine3D(vertex[7].pos,vertex[4].pos,white);
+								 		  
+	    DrawLine3D(vertex[2].pos,vertex[6].pos,white);
+	    DrawLine3D(vertex[3].pos,vertex[7].pos,white);
+		
+		/// 下部分4辺は描画しない
 		// DrawLine3D(Vertex[0].pos,Vertex[1].pos,white);
-		DrawLine3D(Vertex[1].pos,Vertex[2].pos,white);
-		DrawLine3D(Vertex[2].pos,Vertex[3].pos,white);
-		DrawLine3D(Vertex[3].pos,Vertex[0].pos,white);
-								 		  
-	    // DrawLine3D(Vertex[4].pos,Vertex[5].pos,white);
-	    DrawLine3D(Vertex[5].pos,Vertex[6].pos,white);
-	    DrawLine3D(Vertex[6].pos,Vertex[7].pos,white);
-	    DrawLine3D(Vertex[7].pos,Vertex[4].pos,white);
-								 		  
-	    // DrawLine3D(Vertex[0].pos,Vertex[4].pos,white);
 	    // DrawLine3D(Vertex[1].pos,Vertex[5].pos,white);
-	    DrawLine3D(Vertex[2].pos,Vertex[6].pos,white);
-	    DrawLine3D(Vertex[3].pos,Vertex[7].pos,white);
+	    // DrawLine3D(Vertex[0].pos,Vertex[4].pos,white);
+	    // DrawLine3D(Vertex[4].pos,Vertex[5].pos,white);
 	}
 }
