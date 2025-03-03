@@ -392,6 +392,7 @@ void GameManager::GameOver()
 void GameManager::GameClear()
 {
 	isGameClear = true;
+	// 敵をすべて破壊する
 	currentSequence = Result;
 	AudioManager::GetInstance().PlayBGM(BGMList::GAMECLEAR, false);
 }

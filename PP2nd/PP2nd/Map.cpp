@@ -20,7 +20,14 @@ void Map::Init()
 {
 	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
 	mapInfo = {25, 25, -1, -1};
+	//mapTexture = LoadGraph("./Resource/MapSample.jpeg");
+	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
 
+	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
+	//baseTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
+	//normalTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_Normal.png");
+	//aoTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_AO.png");
+	//roughnessTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_Roughness.png");
 }
 
 /// <summary>
@@ -81,6 +88,14 @@ void Map::Init(const _mapInfo& mapInfo)
 		AddStart(startPos[i]);
 	}
 
+	//mapTexture = LoadGraph("./Resource/MapSample.jpeg");
+	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
+
+	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
+	//baseTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
+	//normalTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_Normal.png");
+	//aoTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_AO.png");
+	//roughnessTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_Roughness.png");
 }
 
 void Map::UnInit()
@@ -98,6 +113,13 @@ void Map::UnInit()
 	}
 
 	itemPtrVec.clear();
+
+	DeleteGraph(mapTexture);
+
+	DeleteGraph(baseTex);
+	DeleteGraph(normalTex);
+	DeleteGraph(aoTex);
+	DeleteGraph(roughnessTex);
 }
 
 void Map::Load(int day)
@@ -316,7 +338,7 @@ void Map::Draw()
 		}
 	}
 
-
+	DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
 }
 
 /// <summary>
@@ -336,33 +358,33 @@ void Map::Draw(SceneName& name)
 	{
 		for (int z = 0; z <= MAP_UNIT * 10; z += MAP_UNIT)
 		{
-			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT * 10, 0, z), XAxizcolor);
+			DrawLine3D(VGet(0, 1, z), VGet(MAP_UNIT * 10, 1, z), XAxizcolor);
 		}
 
 		for (int x = 0; x <= MAP_UNIT * 10; x += MAP_UNIT)
 		{
-			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT * 10), ZAxizColor);
+			DrawLine3D(VGet(x, 1, 0), VGet(x, 1, MAP_UNIT * 10), ZAxizColor);
 		}
 	}
 	else
 	{
 		int outLineColor = GetColor(255, 255, 255);
 		/// 外枠の描画
-		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT + 0, 0, 0), outLineColor);
-		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 1, 0), VGet(mapInfo.width * MAP_UNIT + 0, 1, 0), outLineColor);
+		DrawLine3D(VGet(0, 1, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 1, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 1, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 1, 0), VGet(mapInfo.width * MAP_UNIT, 1, mapInfo.height * MAP_UNIT), outLineColor);
 
 		//z軸
 		for (int x = 1; x < mapInfo.width; x++)
 		{
-			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
+			DrawLine3D(VGet(x * MAP_UNIT, 10, 0), VGet(x * MAP_UNIT, 10, mapInfo.height * MAP_UNIT), ZAxizColor);
 		}
 
 		//x軸
 		for (int z = 1; z < mapInfo.height; z++)
 		{
-			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, z * MAP_UNIT), XAxizcolor);
+			DrawLine3D(VGet(0, 10, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 10, z * MAP_UNIT), XAxizcolor);
 		}
 	}
 #endif
@@ -459,6 +481,7 @@ void Map::Draw(SceneName& name)
 		}
 	}
 
+	DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
 }
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする

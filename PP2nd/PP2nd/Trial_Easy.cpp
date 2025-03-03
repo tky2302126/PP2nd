@@ -1,4 +1,4 @@
-#include "Trial_Easy.h"
+ï»¿#include "Trial_Easy.h"
 #include "MainScreen.h"
 
 Trial_Easy::Trial_Easy()
@@ -7,7 +7,7 @@ Trial_Easy::Trial_Easy()
 	std::thread loader4([] {AM().Load(Main); });
 
 	loader1.join();
-	/// EnemyManager‚ÅGameManager‚Ìƒf[ƒ^‚ÉƒAƒNƒZƒX‚·‚é‚½‚ßA‘Ò‹@‚·‚é
+	/// EnemyManagerã§GameManagerã®ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã€å¾…æ©Ÿã™ã‚‹
 	std::thread loader2([] {EM().LoadTest(); });
 	loader2.join();
 	loader4.join();
@@ -27,7 +27,7 @@ Trial_Easy::~Trial_Easy()
 void Trial_Easy::Update() const
 {
 #if _DEBUG
-	DrawFormatString(0, 0, 65535, "“WŽ¦ƒV[ƒ“‚P");
+	// DrawFormatString(0, 0, 65535, "å±•ç¤ºã‚·ãƒ¼ãƒ³ï¼‘");
 	EM().DrawRouteTest();
 #endif
 	mainScreenUPtr->Update();
