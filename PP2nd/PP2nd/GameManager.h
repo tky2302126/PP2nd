@@ -8,7 +8,6 @@
 /// todo マップ情報を読み取り、保存する
 /// </summary>
 
-
 class GameManager
 {
 public:

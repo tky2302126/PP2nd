@@ -32,39 +32,39 @@ void InputSystem::Update()
     /// Canceled && !Input -> None
     
 #pragma region left
-    if ((currentInfo.state.left == None || currentInfo.state.left == Canceled) && MouseInputLeft())
+    if ((currentInfo.state.left == None || currentInfo.state.left == Canceled) && IsMouseLeftButtonPressed())
     {
         currentInfo.state.left = Started;
     }
-    else if ((currentInfo.state.left == Started) && MouseInputLeft())
+    else if ((currentInfo.state.left == Started) && IsMouseLeftButtonPressed())
     {
         currentInfo.state.left = Performed;
     }
-    else if ((currentInfo.state.left == Performed || currentInfo.state.left == Started) && !MouseInputLeft())
+    else if ((currentInfo.state.left == Performed || currentInfo.state.left == Started) && !IsMouseLeftButtonPressed())
     {
         currentInfo.state.left = Canceled;
     }
-    else if ((currentInfo.state.left == Canceled) && !MouseInputLeft())
+    else if ((currentInfo.state.left == Canceled) && !IsMouseLeftButtonPressed())
     {
         currentInfo.state.left = None;
     }
 #pragma endregion
 
 #pragma region right
-    if ((currentInfo.state.right == None || currentInfo.state.right == Canceled) && MouseInputRight())
+    if ((currentInfo.state.right == None || currentInfo.state.right == Canceled) && IsMouseRightButtonPressed())
     {
         currentInfo.state.right = Started;
     }
   
-    else if ((currentInfo.state.right == Started) && MouseInputRight())
+    else if ((currentInfo.state.right == Started) && IsMouseRightButtonPressed())
     {
         currentInfo.state.right = Performed;
     }
-    else if ((currentInfo.state.right == Performed || currentInfo.state.right == Started) && !MouseInputRight())
+    else if ((currentInfo.state.right == Performed || currentInfo.state.right == Started) && !IsMouseRightButtonPressed())
     {
         currentInfo.state.right = Canceled;
     }
-    else if ((currentInfo.state.right == Canceled) && !MouseInputRight())
+    else if ((currentInfo.state.right == Canceled) && !IsMouseRightButtonPressed())
     {
         currentInfo.state.right = None;
     }
@@ -96,12 +96,12 @@ InputSystem& InputSystem::GetInstance()
     return *Instance;
 }
 #pragma region ヘルパー関数
-bool InputSystem::MouseInputLeft()
+bool InputSystem::IsMouseLeftButtonPressed()
 {
     return GetMouseInput() & MOUSE_INPUT_LEFT;
 }
 
-bool InputSystem::MouseInputRight()
+bool InputSystem::IsMouseRightButtonPressed()
 {
     return GetMouseInput() & MOUSE_INPUT_RIGHT;
 }

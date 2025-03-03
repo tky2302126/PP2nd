@@ -15,9 +15,6 @@ public:
 	void UnInit();
 
 	void Update();
-
-	void Enable();
-	void Disable();
 	
 	Vector2Int GetMousePosition();
 	MouseState GetMouseState();
@@ -30,9 +27,7 @@ private:
 
 	static std::unique_ptr<InputSystem> Instance;
 
-	bool MouseInputLeft();
-	bool MouseInputRight();
-	
-
+	bool IsMouseLeftButtonPressed();
+	bool IsMouseRightButtonPressed();
 };
 
