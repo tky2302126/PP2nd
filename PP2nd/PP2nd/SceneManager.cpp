@@ -22,6 +22,7 @@ void SceneManager::Init()
 
 void SceneManager::UnInit()
 {
+	scenePtr->~Scene();
 }
 
 void SceneManager::Load(SceneName name)
@@ -50,11 +51,6 @@ void SceneManager::Load(SceneName name)
 	scenePtr = newScene;
 }
 
-void SceneManager::LoadAsync(SceneName nextScene)
-{
-
-}
-
 /// <summary>
 /// シーン遷移を実行する
 /// </summary>
@@ -72,13 +68,13 @@ void SceneManager::Update()
 
 	/// マネージャークラスのアップデート
 	Input().Update();
-	EnemyManager::GetInstance().Update();
+	EM().Update();
 
-	if (scenePtr != nullptr) { scenePtr->Update(); }
+	if (scenePtr) { scenePtr->Update(); }
 
 	int tookTime = GetNowCount() - startTime;
 	int waitTime = FRAME_TIME_MS - tookTime;
-	if (waitTime > 0) { Sleep(waitTime); }
+	if (waitTime > 0) { std::this_thread::sleep_for(std::chrono::milliseconds(waitTime)); }
 	TM().Update(FRAME_TIME_MS);
 }
 

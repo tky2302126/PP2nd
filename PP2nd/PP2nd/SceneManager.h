@@ -17,7 +17,6 @@ public:
 	void Init();
 	void UnInit();
 	void Load(SceneName name);
-	void LoadAsync(SceneName nextScene);
 	void ChangeScene(SceneName name);
 	void Update();
 	static SceneManager& GetInstance();
