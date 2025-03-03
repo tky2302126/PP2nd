@@ -1,6 +1,7 @@
 #include "Button.h"
 
 Button::Button()
+	:hoverColor(-1),normalColor(0),cbFunction(nullptr)
 {
 }
 
@@ -8,31 +9,20 @@ Button::~Button()
 {
 }
 
-void Button::Init(RECTInt& _rect, int& _hoverColor, int& _normalColor, std::string& text)
+void Button::Init(const RECTInt& _rect, const int& _hoverColor, const int& _normalColor, const std::string& text, const std::function<void()> cb)
 {
 	rectInfo = _rect;
 	hoverColor = _hoverColor;
 	normalColor = _normalColor;
 	buttonText = text;
-}
-
-void Button::Init(RECTInt& _rect, int& _hoverColor, int& _normalColor, std::string& text, std::function<void()> cb)
-{
-	rectInfo = _rect;
-	hoverColor = _hoverColor;
-	normalColor = _normalColor;
-	buttonText = text;
-	cbFucntion = cb;
-}
-
-void Button::UnInit()
-{
+	cbFunction = cb;
 }
 
 void Button::Update()
 {
 	/// 入力
 	auto mouseInfo = Input().GetMouseInfo();
+	/// 描画
 	/// ホバー
 	if(CheckInRect(mouseInfo.position, rectInfo))
 	{
@@ -42,9 +32,9 @@ void Button::Update()
 		/// クリック
 		if(mouseInfo.state.left == Canceled)
 		{
-			if(cbFucntion)
+			if(cbFunction)
 			{
-				cbFucntion();
+				cbFunction();
 			}
 		}
 	}
@@ -53,7 +43,4 @@ void Button::Update()
 		DrawBox(rectInfo.left, rectInfo.top, rectInfo.right, rectInfo.bottom, normalColor, TRUE);
 		DrawFormatString(rectInfo.left, rectInfo.top, GetColor(255, 255, 255), buttonText.c_str());
 	}
-
-	/// 描画
-	
 }

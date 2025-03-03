@@ -13,7 +13,7 @@ public:
 	void Init();
 	void Init(const _mapInfo& mapInfo);
 	void UnInit();
-	void ManualMove(VECTOR destination, VECTOR targetPosDestination);
+	void ManualMove(const VECTOR destination, const VECTOR targetPosDestination);
 	void Update();
 	void Update(SceneName);
 private:
