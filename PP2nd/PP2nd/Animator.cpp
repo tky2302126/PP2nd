@@ -23,6 +23,17 @@ void Animator::Init(int MHandle)
 
 void Animator::UnInit()
 {
+	if(attachIndex1 != -1)
+	{
+		MV1DetachAnim(mHandle, attachIndex1);
+		attachIndex1 = - 1;
+	}
+
+	if(attachIndex2 != -1)
+	{
+		MV1DetachAnim(mHandle, attachIndex2);
+		attachIndex2 = -1;
+	}
 }
 
 void Animator::Update()
@@ -40,7 +51,6 @@ void Animator::Update()
 		{
 			attachIndex1 = -1;
 			currentState = Anim_Ready;
-			isPlay = false;
 		}
 	}
 
@@ -95,14 +105,12 @@ void Animator::Play(int id, float duration, bool loopFlg)
 		countDuration = totalTime / (duration * FRAMERATE);
 		currentState = Anim_Start;
 		loop = loopFlg;
-		isPlay = true;
 	}
 
 	/// ブレンド
 	if(currentState == Anim_Play)
 	{
 		attachIndex2 = MV1AttachAnim(mHandle, id);
-		playTime = 0;
 		float tmpTotalTime = MV1GetAttachAnimTotalTime(mHandle, attachIndex2);
 		countDuration = tmpTotalTime / (duration * FRAMERATE);
 		loop = loopFlg;

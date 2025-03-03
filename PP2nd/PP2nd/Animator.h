@@ -20,7 +20,7 @@ public:
 	void UnInit();
 	void Update();
 	void Play(int id, float duration, bool loopFlg = false);
-	bool IsPlay() { return isPlay; }
+	bool IsPlay() { return currentState != Anim_Ready; }
 private:
 	float playTime = -1;
 	float totalTime = -1;
@@ -29,8 +29,7 @@ private:
 	int attachIndex1 = -1;
 	int attachIndex2 = -1;
 	float blendRate = -1;
-	int mHandle;
+	int mHandle =-1;
 	AnimState currentState;
-	bool isPlay = false;
 };
 
