@@ -8,7 +8,7 @@
 
 TitleScene::TitleScene()
 {
-	AM().Load(Title);
+	AudioM().Load(Title);
 
 	titleScreenUPtr = std::make_unique<TitleScreen>();
 	titleScreenUPtr->Init();

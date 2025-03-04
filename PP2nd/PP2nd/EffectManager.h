@@ -6,6 +6,8 @@ class EffectManager
 public:
 	EffectManager();
 	~EffectManager();
+
+	static EffectManager& GetInstance();
 	void Init();
 	void UnInit();
 	void Load(EffectList name);
@@ -14,6 +16,11 @@ public:
 	void Draw();
 
 private:
+	void SurveyHandle();
+
+private:
 	unmap<EffectList, int> effectResource;
+	static UniquePtr<EffectManager> Instance;
+	std::vector<int> effectHandle;
 };
 

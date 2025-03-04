@@ -68,14 +68,15 @@ void SceneManager::Update()
 
 	/// マネージャークラスのアップデート
 	Input().Update();
-	EM().Update();
+	EnemyM().Update();
+	EffectM().Update();
 
 	if (scenePtr) { scenePtr->Update(); }
 
 	int tookTime = GetNowCount() - startTime;
 	int waitTime = FRAME_TIME_MS - tookTime;
 	if (waitTime > 0) { std::this_thread::sleep_for(std::chrono::milliseconds(waitTime)); }
-	TM().Update(FRAME_TIME_MS);
+	TimeM().Update(FRAME_TIME_MS);
 }
 
 SceneManager& SceneManager::GetInstance()

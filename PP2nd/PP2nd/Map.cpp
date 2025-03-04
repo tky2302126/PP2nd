@@ -18,7 +18,7 @@ Map::~Map()
 /// </summary>
 void Map::Init()
 {
-	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+	MHandle = GameM().GetHandleData(HDKey::Cube).MHandle;
 	mapInfo = {25, 25, -1, -1};
 	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
 
@@ -40,7 +40,7 @@ void Map::Init(const _mapInfo& mapInfo)
 	VECTOR pos = goalUPtr->GetBoxCenterPos(mapInfo.goalHeight, mapInfo.goalWidth);
 	goalUPtr->Init(pos, Tag::Goal);
 	/// terrainListからitemPtrVecをセットアップ
-	auto terrainInfo = GM().GetTerrainInfo();
+	auto terrainInfo = GameM().GetTerrainInfo();
 	if(!terrainInfo.empty())
 	{
 		for(int y=0;y<terrainInfo.size();y++)
@@ -51,7 +51,7 @@ void Map::Init(const _mapInfo& mapInfo)
 				if(terrainInfo[y][x] == TerrainList::CUBE)
 				{
 					Item* itemPtr = new Cube();
-					MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+					MHandle = GameM().GetHandleData(HDKey::Cube).MHandle;
 					VECTOR pos = VGet(
 						x * MAP_UNIT + MAP_UNIT / 2,
 						0,
@@ -65,7 +65,7 @@ void Map::Init(const _mapInfo& mapInfo)
 				if (terrainInfo[y][x] == TerrainList::DECOY)
 				{
 					Item* itemPtr = new Decoy();
-					MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+					MHandle = GameM().GetHandleData(HDKey::Cube).MHandle;
 					VECTOR pos = VGet(
 						x * MAP_UNIT + MAP_UNIT / 2,
 						0,
@@ -80,7 +80,7 @@ void Map::Init(const _mapInfo& mapInfo)
 	}
 
 	/// EnemyManagerからスタート位置を受け取る
-	std::vector<Vector2Int> startPos = EM().GetStartPos();
+	std::vector<Vector2Int> startPos = EnemyM().GetStartPos();
 
 	for(int i=0;i<startPos.size();i++)
 	{
@@ -130,7 +130,7 @@ void Map::Load(int day)
 /// </summary>
 void Map::Reload()
 {
-	auto terrainInfo = CGM().GetTerrainInfo();
+	auto terrainInfo = CGameM().GetTerrainInfo();
 
 	for (auto it = itemPtrVec.begin(); it != itemPtrVec.end();) 
 	{
@@ -145,7 +145,7 @@ void Map::Reload()
 			++it;
 		}
 	}
-	GM().CheckedTerrainInfo();
+	GameM().CheckedTerrainInfo();
 
 }
 /// <summary>
@@ -159,13 +159,13 @@ void Map::RegistHoldItem(TerrainList name)
 	switch (name)
 	{
 	case TerrainList::CUBE:
-		MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
+		MHandle = GameM().GetHandleData(HDKey::Cube).MHandle;
 		break;
 	case TerrainList::DECOY:
-		MHandle = GM().GetHandleData(HDKey::Decoy).MHandle;
+		MHandle = GameM().GetHandleData(HDKey::Decoy).MHandle;
 		break;
 	case TerrainList::SWAMP:
-		MHandle = GM().GetHandleData(HDKey::Swamp).MHandle;
+		MHandle = GameM().GetHandleData(HDKey::Swamp).MHandle;
 		break;
 	}
 }
@@ -217,7 +217,7 @@ void Map::Draw()
 			/// すでに配置済みならおけないようにする
 			/// terrainInfoで調べる
 			Vector2Int terrainPos = { floor(mouseWorldPos.x / MAP_UNIT), floor(mouseWorldPos.z / MAP_UNIT) };
-			auto terrainInfo = CGM().GetTerrainInfo();
+			auto terrainInfo = CGameM().GetTerrainInfo();
 			if (terrainInfo[terrainPos.y][terrainPos.x] != TerrainList::None) return;
 
 
@@ -232,7 +232,7 @@ void Map::Draw()
 			
 			case TerrainList::CUBE:
 				/// 配置した時にルートが消えないか調査
-				if (!EM().CanPlace(TerrainList::CUBE, terrainPos))
+				if (!EnemyM().CanPlace(TerrainList::CUBE, terrainPos))
 				{
 					/// 配置不可なダイアログを表示
 
@@ -245,7 +245,7 @@ void Map::Draw()
 				/// アイテムを追加したら更新
 
 			case TerrainList::DECOY:
-				if (!EM().CanPlace(TerrainList::DECOY, terrainPos))
+				if (!EnemyM().CanPlace(TerrainList::DECOY, terrainPos))
 				{
 					/// 配置不可なダイアログを表示
 
@@ -270,7 +270,7 @@ void Map::Draw()
 		}
 		else
 		{
-			TM().ChangeGameSpeedSlower(false);
+			TimeM().ChangeGameSpeedSlower(false);
 		}
 		/// 後でアクティブに
 	 	/// MHandle = -1;
@@ -352,7 +352,7 @@ void Map::Draw(SceneName& name)
 				itemPtr = new Cube();
 				itemPtr->Init(MHandle, pos, this);
 				break;
-				AM().PlaySE(LOWBON);
+				AudioM().PlaySE(LOWBON);
 
 				/// アイテムを追加したら更新
 
@@ -377,7 +377,7 @@ void Map::Draw(SceneName& name)
 		}
 		else
 		{
-			TM().ChangeGameSpeedSlower(false);
+			TimeM().ChangeGameSpeedSlower(false);
 		}
 		/// 後でアクティブに
 		/// MHandle = -1;
@@ -420,7 +420,7 @@ void Map::Draw(SceneName& name)
 void Map::Update()
 {
 	Draw();
-	if(GM().TerrainInfoChanged())
+	if(GameM().TerrainInfoChanged())
 	{
 		Reload();
 	}
@@ -472,7 +472,7 @@ VECTOR Map::GetMouseWorldPos()
 	MouseInfo mouseInfo = Input().GetMouseInfo();
 	VECTOR mouseWorldPos = ConvScreenPosToWorldPos(VGet(mouseInfo.position.x, mouseInfo.position.y, 0.5f));
 	mouseWorldPos = Round(mouseWorldPos);
-	VECTOR rayDir = VNorm(VSub(mouseWorldPos, GM().GetCameraPosition()));
+	VECTOR rayDir = VNorm(VSub(mouseWorldPos, GameM().GetCameraPosition()));
 	rayDir = Round(rayDir, 2);
 	if (rayDir.y < 0) { rayDir = VScale(rayDir, -1.0); }
 	while(mouseWorldPos.y >=0)

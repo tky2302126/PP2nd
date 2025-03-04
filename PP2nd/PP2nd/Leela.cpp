@@ -13,12 +13,12 @@ void Leela::Init(int MHandle, Start* _start)
 {
     mHandle = MV1DuplicateModel(MHandle);
     myStart = _start;
-    auto mapInfo = CGM().GetMapInfo();
+    auto mapInfo = CGameM().GetMapInfo();
     /// ヒューリスティック値から体力を設定する
     if (myStart != nullptr)
     {
         maxHealth = currentHealth = myStart->BaseHealth();
-        auto revision = EM().GetRevision();
+        auto revision = EnemyM().GetRevision();
         /// ステージによって補正値を与える
         maxHealth += revision * MAP_UNIT;
         currentHealth = maxHealth;
@@ -72,8 +72,8 @@ void Leela::Move()
             VECTOR moveVec = VSub(end, position);
             moveVec = VNorm(moveVec);
             rotation = -(atan2f(moveVec.z, moveVec.x) + DX_PI_F / 2); /// dxライブラリの回転に合わせる
-            if (TM().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
-            if (TM().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
+            if (TimeM().IsFast()) { moveVec = VScale(moveVec, GAMESPEED_FASTRATE); }
+            if (TimeM().IsSlow()) { moveVec = VScale(moveVec, GAMESPEED_SLOWRATE); }
             moveVec = VScale(moveVec, ENEMY_MOVE_SPEED);
             auto moveDuration = VSize(moveVec);
             currentHealth -= moveDuration;
@@ -87,13 +87,13 @@ void Leela::Move()
 
         Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
         /// OnEnterEventの実行
-        auto terrainInfo = GM().GetTerrainInfo();
-        auto mapInfo = GM().GetMapInfo();
+        auto terrainInfo = GameM().GetTerrainInfo();
+        auto mapInfo = GameM().GetMapInfo();
         if (!IsValidPosition(currentArrayPos, mapInfo)) return;
         switch (terrainInfo[currentArrayPos.y][currentArrayPos.x])
         {
         case TerrainList::Goal:
-            GM().GameOver();
+            GameM().GameOver();
             /// 自身を破棄
             break;
         case TerrainList::Base:
@@ -118,8 +118,8 @@ void Leela::Move()
     /// マスの位置が更新されたとき、イベントを実行する (基底クラスで実装)
     if (oldPos != currentArrayPos)
     {
-        auto terrainInfo = GM().GetTerrainInfo();
-        auto mapInfo = GM().GetMapInfo();
+        auto terrainInfo = GameM().GetTerrainInfo();
+        auto mapInfo = GameM().GetMapInfo();
         /// OnExitEventの実行
 
         if (IsValidPosition(oldPos, mapInfo))
@@ -148,7 +148,7 @@ void Leela::Attack()
     {
         attack = false;
         move = true;
-        GM().RemoveTerrainInfo(this->position);
+        GameM().RemoveTerrainInfo(this->position);
     }
 }
 
@@ -158,7 +158,7 @@ void Leela::Update()
     {
         if(!animUPtr->IsPlay())
         {
-            EM().RemoveEnemy(this);
+            EnemyM().RemoveEnemy(this);
             return;
         }
     }
@@ -222,12 +222,12 @@ void Leela::RecalculateRoute()
     /// 配列座標へ変換
     Vector2Int goal =
     {
-        CGM().GetMapInfo().goalWidth - 1,
-        CGM().GetMapInfo().goalHeight - 1
+        CGameM().GetMapInfo().goalWidth - 1,
+        CGameM().GetMapInfo().goalHeight - 1
     };
     ///
-    auto map = CGM().GetMapInfo();
-    auto terrainInfo = CGM().GetTerrainInfo();
+    auto map = CGameM().GetMapInfo();
+    auto terrainInfo = CGameM().GetTerrainInfo();
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
     std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理

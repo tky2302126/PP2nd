@@ -137,7 +137,7 @@ void Camera::Update()
 	// SetCameraPositionAndAngle(position, elevationAngle, 0, 0);
 	SetCameraPositionAndTarget_UpVecY(position, targetPos);
 	
-	GM().SetCameraPosition(position);
+	GameM().SetCameraPosition(position);
 
 }
 
@@ -150,6 +150,6 @@ void Camera::Update(SceneName sequence)
 
 	SetCameraPositionAndTarget_UpVecY(position, targetPos);
 
-	GM().SetCameraPosition(position);
+	GameM().SetCameraPosition(position);
 }
 

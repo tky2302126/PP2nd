@@ -68,7 +68,7 @@ void HUD::Init(SceneName name)
 		ItemPanel* itemPanelPtr = new ItemPanel();
 		HDKey key = HDKey::Cube;
 
-		int GH = GM().GetHandleData(key).GHandle;
+		int GH = GameM().GetHandleData(key).GHandle;
 		ItemInfo Cube;
 		Cube.name = TerrainList::CUBE;
 		Cube.num = 99;
@@ -106,7 +106,7 @@ void HUD::UnInit()
 /// </summary>
 void HUD::Load()
 {
-	std::unordered_map<TerrainList,int> ItemInfoUnMap = CGM().GetItemInfoUnMap();
+	std::unordered_map<TerrainList,int> ItemInfoUnMap = CGameM().GetItemInfoUnMap();
 	if(!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -132,7 +132,7 @@ void HUD::Load()
 					
 					break;
 				}
-				int GH = GM().GetHandleData(key).GHandle;
+				int GH = GameM().GetHandleData(key).GHandle;
 				ItemInfo currentInfo;
 				currentInfo.name = (TerrainList)i;
 				currentInfo.num = ItemInfoUnMap[(TerrainList)i];
@@ -152,7 +152,7 @@ void HUD::Load()
 void HUD::ReLoad()
 {
 	/// num==0の場合、破棄
-	std::unordered_map<TerrainList, int> ItemInfoUnMap = GM().GetItemInfoUnMap();
+	std::unordered_map<TerrainList, int> ItemInfoUnMap = GameM().GetItemInfoUnMap();
 	if (!ItemInfoUnMap.empty())
 	{
 		int index = 0;
@@ -188,7 +188,7 @@ void HUD::ReLoad()
 				/// 追加
 				if(itemPanelMap[(TerrainList)i] == nullptr)
 				{
-					int GH = GM().GetHandleData(key).GHandle;
+					int GH = GameM().GetHandleData(key).GHandle;
 					ItemInfo currentInfo;
 					currentInfo.name = (TerrainList)i;
 					currentInfo.num = ItemInfoUnMap[(TerrainList)i];
@@ -274,11 +274,11 @@ void HUD::Draw(int _remainTime)
 	DxLib::DrawExtendGraph(optionPos.left,optionPos.top,optionPos.right, optionPos.bottom,optionGH,FALSE);
 
 	/// 再生速度ボタン
-	if(TM().IsSlow())
+	if(TimeM().IsSlow())
 	{
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right , playPos.bottom, slowGH, FALSE);
 	}
-	else if(TM().IsFast())
+	else if(TimeM().IsFast())
 	{
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, fastGH, FALSE);
 	}
@@ -287,7 +287,7 @@ void HUD::Draw(int _remainTime)
 		DxLib::DrawExtendGraph(playPos.left, playPos.top, playPos.right, playPos.bottom, playGH, FALSE);
 	}
 	/// 一時停止、スキップボタン
-	if(CGM().CurrentSequence() == Sequence::Battle)
+	if(CGameM().CurrentSequence() == Sequence::Battle)
 	{
 		DxLib::DrawExtendGraph(skipPos.left, skipPos.top, skipPos.right, skipPos.bottom, pauseGH, FALSE);
 	}
@@ -315,10 +315,10 @@ void HUD::Update()
 void HUD::Update(int remainTime)
 {
 	Draw(remainTime);
-	if (GM().ItemInfoChanged())
+	if (GameM().ItemInfoChanged())
 	{
 		ReLoad();
-		GM().CheckedItemInfo();
+		GameM().CheckedItemInfo();
 	}
 
 #pragma region 入力
@@ -333,13 +333,13 @@ void HUD::Update(int remainTime)
 	if(CheckInRect(mouseInfo.position, playPos))
 	{
 		/// 再生速度の変更
-		if(TM().IsFast())
+		if(TimeM().IsFast())
 		{
-			TM().ChangeGameSpeedFaster(false);
+			TimeM().ChangeGameSpeedFaster(false);
 		}
 		else
 		{
-			TM().ChangeGameSpeedFaster(true);
+			TimeM().ChangeGameSpeedFaster(true);
 		}
 	}
 	/// 一時停止ボタン
@@ -347,14 +347,14 @@ void HUD::Update(int remainTime)
 	{
 		/// シーケンスで分岐
 		/// スキップボタン->シーケンスをスキップ
-		if(CGM().CurrentSequence() == SetUp)
+		if(CGameM().CurrentSequence() == SetUp)
 		{
-			TM().SetTimer(0);
+			TimeM().SetTimer(0);
 		}
 		/// 停止ボタン->ゲーム内時間を一時停止
-		else if(GM().CurrentSequence() == Battle)
+		else if(GameM().CurrentSequence() == Battle)
 		{
-			TM().Pause();
+			TimeM().Pause();
 		}
 	}
 #pragma endregion

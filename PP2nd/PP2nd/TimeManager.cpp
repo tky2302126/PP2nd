@@ -43,20 +43,20 @@ void TimeManager::UnPause()
 void TimeManager::Update(int deltaTime)
 {
 	// リザルト,デバッグ時は更新しない
-	if (GM().CurrentSequence() == Result) return;
-	if (GM().CurrentSequence() == Debug) return;
+	if (GameM().CurrentSequence() == Result) return;
+	if (GameM().CurrentSequence() == Debug) return;
 
 	if(remainTimeMS <=0)
 	{
-		if(CGM().CurrentSequence() == SetUp)
+		if(CGameM().CurrentSequence() == SetUp)
 		{
 			SetTimer(120);
-			GM().SequenceProceed();
-			AM().PlaySECustom(ALERT, BATTLE1);
+			GameM().SequenceProceed();
+			AudioM().PlaySECustom(ALERT, BATTLE1);
 		}
-		else if(GM().CurrentSequence() == Battle)
+		else if(GameM().CurrentSequence() == Battle)
 		{
-			GM().GameClear();
+			GameM().GameClear();
 			return;
 		}
 	}
@@ -66,7 +66,7 @@ void TimeManager::Update(int deltaTime)
 
 	remainTimeMS -= elapsedTime;
 	/// 敵の出現
-	if (CGM().CurrentSequence() != Battle) return;
+	if (CGameM().CurrentSequence() != Battle) return;
 	if(!timeLine.empty())
 	{
 		while (!timeLine.empty()&&timeLine.top().Time >= remainTimeMS/1000)
@@ -76,7 +76,7 @@ void TimeManager::Update(int deltaTime)
 			/// ここに敵の出現 switch文
 			/// 今はデバッグ対応
 
-			EM().SpawnEnemy(tl.startPos,tl.enemy);
+			EnemyM().SpawnEnemy(tl.startPos,tl.enemy);
 			if (timeLine.empty()) break;
 		}
 	}

@@ -5,10 +5,10 @@ void Start::Init(Vector2Int _pos)
 {
     pos = _pos;
     SearchRoute();
-    auto mapInfo = GM().GetMapInfo();
+    auto mapInfo = GameM().GetMapInfo();
     Vector2Int goalPos = { mapInfo.goalWidth,mapInfo.goalHeight };
     baseHealth = GetHeuristic(pos, goalPos) * MAP_UNIT;
-    GM().AddTerrainInfo(TerrainList::Start, pos);
+    GameM().AddTerrainInfo(TerrainList::Start, pos);
 }
 
 /// <summary>
@@ -25,12 +25,12 @@ void Start::SearchRoute()
     /// 配列座標へ変換
     Vector2Int goal =
     {
-        GM().GetMapInfo().goalWidth,
-        GM().GetMapInfo().goalHeight
+        GameM().GetMapInfo().goalWidth,
+        GameM().GetMapInfo().goalHeight
     };
     ///
-    auto map = CGM().GetMapInfo();
-    auto terrainInfo = CGM().GetTerrainInfo();
+    auto map = CGameM().GetMapInfo();
+    auto terrainInfo = CGameM().GetTerrainInfo();
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList; /// 探索予定エリア
     std::unordered_set<Vector2Int, Hash> closedSet; ///探索済みエリア
     unmap<Vector2Int, Node*, Hash> nodeMap; // ノード管理
@@ -115,11 +115,11 @@ bool Start::ReachGoal(TerrainList name, Vector2Int pos)
 {
     const std::vector<Vector2Int> directions = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
     Vector2Int goal = {
-        CGM().GetMapInfo().goalWidth,
-        CGM().GetMapInfo().goalHeight
+        CGameM().GetMapInfo().goalWidth,
+        CGameM().GetMapInfo().goalHeight
     };
-    auto map = CGM().GetMapInfo();
-    auto terrainInfo = CGM().GetTerrainInfo();
+    auto map = CGameM().GetMapInfo();
+    auto terrainInfo = CGameM().GetTerrainInfo();
     terrainInfo[pos.y][pos.x] = name;
     std::priority_queue<Node*, std::vector<Node*>, Compare> openList;
     std::unordered_set<Vector2Int, Hash> closedSet;

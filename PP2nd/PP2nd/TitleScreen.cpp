@@ -99,7 +99,7 @@ void TitleScreen::Update()
 	if (!isActive)
 	{
 		UnInit();
-		SM().ChangeScene(nextScene);
+		SceneM().ChangeScene(nextScene);
 		return;
 	}
 	cameraUPtr->Update(currentSequence);
@@ -144,7 +144,7 @@ void TitleScreen::Update()
 		{
 			t = 1.0;
 			isMoving = false;
-			AM().PlayBGM(TITLE);
+			AudioM().PlayBGM(TITLE);
 		}
 
 		VECTOR currentPos = VGet(

@@ -77,16 +77,16 @@ void Decoy::Update()
                 {
                     isPlaced = true;
                     isConfirm = false;
-                    GM().UseItem(TerrainList::CUBE);
-                    TM().ChangeGameSpeedSlower(false);
-                    AM().PlaySE(SEList::LOWBON);
+                    GameM().UseItem(TerrainList::CUBE);
+                    TimeM().ChangeGameSpeedSlower(false);
+                    AudioM().PlaySE(SEList::LOWBON);
                 }
                 else
                 {
                     /// 設置をキャンセル
-                    GM().RemoveTerrainInfo(pos);
+                    GameM().RemoveTerrainInfo(pos);
                     mapPtr->RemoveItemPtr(this);
-                    TM().ChangeGameSpeedSlower(false);
+                    TimeM().ChangeGameSpeedSlower(false);
                 }
             }
 
@@ -96,14 +96,14 @@ void Decoy::Update()
                 /// 削除
                 if (CheckInRect(currentInput.position, crossMinPos, crossMaxPos))
                 {
-                    GM().RemoveTerrainInfo(pos);
-                    TM().ChangeGameSpeedSlower(false);
+                    GameM().RemoveTerrainInfo(pos);
+                    TimeM().ChangeGameSpeedSlower(false);
                     mapPtr->RemoveItemPtr(this);
                 }
                 /// 削除キャンセル
                 else
                 {
-                    TM().ChangeGameSpeedSlower(false);
+                    TimeM().ChangeGameSpeedSlower(false);
                     isConfirm = false;
                 }
             }
@@ -121,13 +121,13 @@ void Decoy::Confirm()
     /// 自分のPosを渡し、ｘを一致、ｚをCameraOFFSET分離す
 
     isConfirm = true;
-    TM().ChangeGameSpeedSlower(true);
+    TimeM().ChangeGameSpeedSlower(true);
 
     /// 試しに置いて進行ルートが閉鎖されないか確認
 
     /// いったん登録のみ
     if (!isPlaced)
-        GM().AddTerrainInfo(TerrainList::DECOY, pos);
+        GameM().AddTerrainInfo(TerrainList::DECOY, pos);
 }
 
 int& Decoy::GetMHandle() const

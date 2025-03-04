@@ -1,11 +1,22 @@
 #include "EffectManager.h"
 
+UniquePtr<EffectManager> EffectManager::Instance = nullptr;
+
 EffectManager::EffectManager()
 {
 }
 
 EffectManager::~EffectManager()
 {
+}
+
+EffectManager& EffectManager::GetInstance()
+{
+	if(Instance == nullptr)
+	{
+		Instance = std::make_unique<EffectManager>();
+	}
+	return *Instance;
 }
 
 void EffectManager::Init()
@@ -23,7 +34,7 @@ void EffectManager::Load(EffectList name)
 	switch (name)
 	{
 	case Down:
-		effectResource[name] = LoadEffekseerEffect("");
+		effectResource[name] = LoadEffekseerEffect("./Resource/down.efk");
 		break;
 	case EffectAll:
 		break;
@@ -40,12 +51,23 @@ void EffectManager::Load(EffectList name)
 /// <param name="duration">ŽžŠÔ</param>
 void EffectManager::Play(EffectList name, VECTOR pos, float duration)
 {
+
 }
 
 void EffectManager::Update()
 {
+	Effekseer_Sync3DSetting();
+
+	UpdateEffekseer3D();
+
 }
 
 void EffectManager::Draw()
 {
+	DrawEffekseer3D();
+}
+
+void EffectManager::SurveyHandle()
+{
+
 }

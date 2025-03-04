@@ -89,6 +89,8 @@ const auto COLOR_RED = GetColorU8(255, 0, 0, 255); /// スタートの色
 constexpr auto TITLELOGO_SIZE = 256;
 constexpr auto BUTTON_WIDTH = 128;
 constexpr auto BUTTON_HEIGHT = 32;
+
+constexpr auto PARTICLE_MAX = 2000;
 enum SceneName
 {
 	Title,

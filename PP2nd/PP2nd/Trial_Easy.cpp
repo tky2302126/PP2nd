@@ -3,21 +3,21 @@
 
 Trial_Easy::Trial_Easy()
 {
-	std::thread loader1([] {GM().Load("Trial_Easy.txt"); });
-	std::thread loader4([] {AM().Load(Main); });
+	std::thread loader1([] {GameM().Load("Trial_Easy.txt"); });
+	std::thread loader4([] {AudioM().Load(Main); });
 
 	loader1.join();
 	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する
-	std::thread loader2([] {EM().LoadTest(); });
+	std::thread loader2([] {EnemyM().LoadTest(); });
 	loader2.join();
 	loader4.join();
 
 	mainScreenUPtr = std::make_unique<MainScreen>();
-	mainScreenUPtr->Init(GM().GetMapInfo());
+	mainScreenUPtr->Init(GameM().GetMapInfo());
 
-	AM().PlayBGM(BGMList::SETUP);
-	EM().Setrevision(10);
-	GM().GameStart();
+	AudioM().PlayBGM(BGMList::SETUP);
+	EnemyM().Setrevision(10);
+	GameM().GameStart();
 }
 
 Trial_Easy::~Trial_Easy()
@@ -28,7 +28,7 @@ void Trial_Easy::Update() const
 {
 #if _DEBUG
 	// DrawFormatString(0, 0, 65535, "展示シーン１");
-	EM().DrawRouteTest();
+	EnemyM().DrawRouteTest();
 #endif
 	mainScreenUPtr->Update();
 }

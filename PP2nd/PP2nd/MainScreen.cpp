@@ -29,10 +29,10 @@ void MainScreen::UnInit()
 void MainScreen::Draw()
 {
 	// ゲームクリア時のスプライト
-	if (GM().IsGameClear())
+	if (GameM().IsGameClear())
 	{ DrawExtendGraph(20, WINDOW_HEIGHT / 4, WINDOW_WIDTH - 20, WINDOW_HEIGHT/4*3, stageClearGH, FALSE);}
 	// ゲームオーバー時のスプライト
-	if(GM().IsGameOver())
+	if(GameM().IsGameOver())
 	{DrawExtendGraph(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, gameOverGH, FALSE);}
 	
 }

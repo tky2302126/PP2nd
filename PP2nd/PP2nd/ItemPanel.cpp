@@ -49,20 +49,20 @@ void ItemPanel::Update()
 	if(isInside && !selected)
 	{
 		selected = true;
-		TM().ChangeGameSpeedSlower(true);
+		TimeM().ChangeGameSpeedSlower(true);
 	}
 
 	/// rect内でクリック&& selected -> !selected
 	else if (isInside && selected)
 	{
 		selected = false;
-		TM().ChangeGameSpeedSlower(false);
+		TimeM().ChangeGameSpeedSlower(false);
 	}
 	/// rect外でクリック&& selected -> !selected
 	else if (!isInside && selected)
 	{
 		selected = false;
-		TM().ChangeGameSpeedSlower(false);
+		TimeM().ChangeGameSpeedSlower(false);
 	}
 	
 }

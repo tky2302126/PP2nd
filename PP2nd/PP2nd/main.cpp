@@ -4,7 +4,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	if (DxLib_Init() == -1)	{ return -1; }
-	if (Effekseer_Init(2000) == -1) { DxLib_End(); return -1; }
+	if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
 
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
@@ -38,10 +38,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	AudioManager& audioMPtr = AudioManager::GetInstance();
 	audioMPtr.Init();
-#if _DEBUG
-	enemyMPtr.InitTest();
 
-#endif // _DEBUG
+	EffectManager& effectMPtr = EffectManager::GetInstance();
+	effectMPtr.Init();
 
 #pragma endregion
 
@@ -49,8 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/// デバッグとexeで切り替え
  #if _DEBUG
-	//sceneMPtr.Load(SceneName::Test);
-	sceneMPtr.Load(SceneName::Title);
+	sceneMPtr.Load(SceneName::Test);
+	//sceneMPtr.Load(SceneName::Title);
 #else
 	sceneMPtr.Load(SceneName::Title);
  #endif
@@ -75,9 +74,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	inputSystemPtr.UnInit();
 	sceneMPtr.UnInit();
 	timeMPtr.UnInit();
-
+	effectMPtr.UnInit();
 #pragma endregion
 
+	// Effkseer_End()でエラーが起こる(同じ領域を２回削除しようとしている)
 	Effkseer_End();
 	DxLib_End();
 
