@@ -8,9 +8,7 @@
 class ItemPanel
 {
 public:
-	void Init(int index,int& GH, int& num);
-	void Init(int _index,int& _GH, ItemInfo& _info);
-	void Init(int _index,int& _GH, ItemInfo& _info, std::function<void(TerrainList name)>& cbfunction);
+	void Init(int _index,int _GH, ItemInfo& _info, std::function<void(TerrainList name)>& cbfunction);
 	void UnInit();
 	void Update();
 	void Decrease();

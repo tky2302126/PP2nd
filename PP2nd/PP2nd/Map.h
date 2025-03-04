@@ -32,6 +32,7 @@ private:
 	void LoadMapInfo(int);
 	VECTOR GetMouseWorldPos();
 	void CheckInGrid(VECTOR& mousePos);
+	void DrawDebugGrid();
 private:
 	TerrainList holdItemTag = TerrainList::None;
 	std::vector<Item*> itemPtrVec;

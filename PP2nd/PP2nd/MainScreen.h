@@ -12,7 +12,6 @@ class MainScreen
 {
 public:
 	void Init(const _mapInfo& mapInfo);
-	void Init(const int day);
 	void UnInit();
 	void Draw();
 	void Update();

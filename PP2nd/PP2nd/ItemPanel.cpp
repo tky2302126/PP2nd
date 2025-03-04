@@ -1,33 +1,6 @@
 ﻿#include "ItemPanel.h"
 
-/// <summary>
-/// 
-/// </summary>
-/// <param name="index"></param>
-/// <param name="GH"></param>
-/// <param name="num"></param>
-void ItemPanel::Init(int index, int& _GH, int& _num)
-{
-	start.x = index * HUD_ITEM_SIZE;
-	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
-	end.x = start.x + HUD_ITEM_SIZE + 1;
-	end.y = WINDOW_HEIGHT;
-
-	GH = _GH;
-}
-
-void ItemPanel::Init(int index, int& _GH, ItemInfo& _info)
-{
-	start.x = index * HUD_ITEM_SIZE;
-	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
-	end.x = start.x + HUD_ITEM_SIZE + 1;
-	end.y = WINDOW_HEIGHT;
-
-	GH = _GH;
-	info = _info;
-}
-
-void ItemPanel::Init(int index, int& _GH, ItemInfo& _info, std::function<void(TerrainList name)>& function)
+void ItemPanel::Init(int index, int _GH, ItemInfo& _info, std::function<void(TerrainList name)>& function)
 {
 	start.x = index * HUD_ITEM_SIZE;
 	start.y = WINDOW_HEIGHT - HUD_ITEM_SIZE;
@@ -41,6 +14,7 @@ void ItemPanel::Init(int index, int& _GH, ItemInfo& _info, std::function<void(Te
 
 void ItemPanel::UnInit()
 {
+	cbFunction = nullptr;
 }
 
 void ItemPanel::Update()
@@ -69,21 +43,23 @@ void ItemPanel::Update()
 	}
 
 	if (currentInput.state.left != Started) { return; }
+
+	bool isInside = CheckInRect(currentInput.position, start, end);
 	/// rect内でクリック&&!selected -> selected
-	if(CheckInRect(currentInput.position,start,end) && !selected)
+	if(isInside && !selected)
 	{
 		selected = true;
 		TM().ChangeGameSpeedSlower(true);
 	}
 
 	/// rect内でクリック&& selected -> !selected
-	else if (CheckInRect(currentInput.position, start, end) && selected)
+	else if (isInside && selected)
 	{
 		selected = false;
 		TM().ChangeGameSpeedSlower(false);
 	}
 	/// rect外でクリック&& selected -> !selected
-	else if (!CheckInRect(currentInput.position, start, end) && selected)
+	else if (!isInside && selected)
 	{
 		selected = false;
 		TM().ChangeGameSpeedSlower(false);

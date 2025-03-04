@@ -20,7 +20,6 @@ void Map::Init()
 {
 	MHandle = GM().GetHandleData(HDKey::Cube).MHandle;
 	mapInfo = {25, 25, -1, -1};
-	//mapTexture = LoadGraph("./Resource/MapSample.jpeg");
 	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
 
 	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
@@ -133,13 +132,17 @@ void Map::Reload()
 {
 	auto terrainInfo = CGM().GetTerrainInfo();
 
-	for(int i=0;i<itemPtrVec.size();i++)
+	for (auto it = itemPtrVec.begin(); it != itemPtrVec.end();) 
 	{
-		auto itemPos = itemPtrVec[i]->GetPosition();
+		auto itemPos = (*it)->GetPosition();
 		auto arrayPos = WorldPos2ArrayPos(itemPos);
-		if(terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
+		if (terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
 		{
-			RemoveItemPtr(itemPtrVec[i]);
+			it = itemPtrVec.erase(it);
+		}
+		else
+		{
+			++it;
 		}
 	}
 	GM().CheckedTerrainInfo();
@@ -174,43 +177,7 @@ void Map::RegistHoldItem(TerrainList name)
 void Map::Draw()
 {
 #if _DEBUG
-	/// マップのグリッド線を表示
-	int XAxizcolor = GetColor(255, 255, 255);
-	int ZAxizColor = GetColor(255, 255, 255);
-	/// デバッグ
-	if(mapInfo.height == -1)
-	{
-		for (int z = 0; z <= MAP_UNIT*10 ; z += MAP_UNIT)
-		{
-			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT*10, 0, z), XAxizcolor);
-		}
-
-		for (int x = 0; x <= MAP_UNIT*10; x += MAP_UNIT)
-		{
-			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT*10), ZAxizColor);
-		}
-	}
-	else
-	{
-		int outLineColor = GetColor(255, 255, 255);
-		/// 外枠の描画
-		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT+0, 0, 0), outLineColor);
-		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height*MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height*MAP_UNIT), outLineColor);
-
-		//z軸
-		for(int x = 1; x<mapInfo.width;x++)
-		{
-			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
-		}
-
-		//x軸
-		for(int z =1;z<mapInfo.height;z++)
-		{
-			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width*MAP_UNIT,0,z*MAP_UNIT), XAxizcolor);
-		}
-	}
+	DrawDebugGrid();
 #endif
 
 	
@@ -350,43 +317,7 @@ void Map::Draw(SceneName& name)
 	if (name == Option) { return; }
 
 #if _DEBUG
-	/// マップのグリッド線を表示
-	int XAxizcolor = GetColor(255, 255, 255);
-	int ZAxizColor = GetColor(255, 255, 255);
-	/// デバッグ
-	if (mapInfo.height == -1)
-	{
-		for (int z = 0; z <= MAP_UNIT * 10; z += MAP_UNIT)
-		{
-			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT * 10, 0, z), XAxizcolor);
-		}
-
-		for (int x = 0; x <= MAP_UNIT * 10; x += MAP_UNIT)
-		{
-			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT * 10), ZAxizColor);
-		}
-	}
-	else
-	{
-		int outLineColor = GetColor(255, 255, 255);
-		/// 外枠の描画
-		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT + 0, 0, 0), outLineColor);
-		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
-		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
-
-		//z軸
-		for (int x = 1; x < mapInfo.width; x++)
-		{
-			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
-		}
-
-		//x軸
-		for (int z = 1; z < mapInfo.height; z++)
-		{
-			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, z * MAP_UNIT), XAxizcolor);
-		}
-	}
+	DrawDebugGrid();
 #endif
 
 	/// InputSystem監視
@@ -578,4 +509,45 @@ void Map::CheckInGrid(VECTOR& mousePos)
 		false;
 	}
 
+}
+
+void Map::DrawDebugGrid()
+{
+	/// マップのグリッド線を表示
+	int XAxizcolor = GetColor(255, 255, 255);
+	int ZAxizColor = GetColor(255, 255, 255);
+	/// デバッグ
+	if (mapInfo.height == -1)
+	{
+		for (int z = 0; z <= MAP_UNIT * 10; z += MAP_UNIT)
+		{
+			DrawLine3D(VGet(0, 0, z), VGet(MAP_UNIT * 10, 0, z), XAxizcolor);
+		}
+
+		for (int x = 0; x <= MAP_UNIT * 10; x += MAP_UNIT)
+		{
+			DrawLine3D(VGet(x, 0, 0), VGet(x, 0, MAP_UNIT * 10), ZAxizColor);
+		}
+	}
+	else
+	{
+		int outLineColor = GetColor(255, 255, 255);
+		/// 外枠の描画
+		DrawLine3D(VGet(0, 0, 0), VGet(mapInfo.width * MAP_UNIT + 0, 0, 0), outLineColor);
+		DrawLine3D(VGet(0, 0, mapInfo.height * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(0, 0, 0), VGet(0, 0, mapInfo.height * MAP_UNIT), outLineColor);
+		DrawLine3D(VGet(mapInfo.width * MAP_UNIT, 0, 0), VGet(mapInfo.width * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), outLineColor);
+
+		//z軸
+		for (int x = 1; x < mapInfo.width; x++)
+		{
+			DrawLine3D(VGet(x * MAP_UNIT, 0, 0), VGet(x * MAP_UNIT, 0, mapInfo.height * MAP_UNIT), ZAxizColor);
+		}
+
+		//x軸
+		for (int z = 1; z < mapInfo.height; z++)
+		{
+			DrawLine3D(VGet(0, 0, z * MAP_UNIT), VGet(mapInfo.width * MAP_UNIT, 0, z * MAP_UNIT), XAxizcolor);
+		}
+	}
 }

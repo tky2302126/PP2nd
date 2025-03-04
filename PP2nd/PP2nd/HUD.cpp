@@ -93,6 +93,12 @@ void HUD::UnInit()
 	DeleteGraph(slowGH);
 	DeleteGraph(optionGH);
 	DeleteGraph(skipGH);
+
+	for(auto& pair : itemPanelMap)
+	{
+		delete pair.second;
+	}
+	itemPanelMap.clear();
 }
 
 /// <summary>
@@ -175,6 +181,7 @@ void HUD::ReLoad()
 				if(ItemInfoUnMap[(TerrainList)i] ==0)
 				{
 					delete itemPanelMap[(TerrainList)i];
+					itemPanelMap[(TerrainList)i] = nullptr;
 					continue;
 				}
 
