@@ -3,9 +3,7 @@
 class Start
 {
 public:
-	void Init();
 	void Init(Vector2Int pos);
-	void UnInit();
 	void SearchRoute();
 	bool ReachGoal(TerrainList name, Vector2Int pos);
 	Vector2Int& GetStartPos() { return pos; }

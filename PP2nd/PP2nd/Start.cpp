@@ -1,9 +1,5 @@
 ﻿#include "Start.h"
 #include "manager.h"
-void Start::Init()
-{
-    baseHealth = 600;
-}
 
 void Start::Init(Vector2Int _pos)
 {
@@ -13,10 +9,6 @@ void Start::Init(Vector2Int _pos)
     Vector2Int goalPos = { mapInfo.goalWidth,mapInfo.goalHeight };
     baseHealth = GetHeuristic(pos, goalPos) * MAP_UNIT;
     GM().AddTerrainInfo(TerrainList::Start, pos);
-}
-
-void Start::UnInit()
-{
 }
 
 /// <summary>
@@ -104,6 +96,7 @@ void Start::SearchRoute()
             }
 
             /// より優れた経路があるときスキップ
+            /// 要再検証
             if (nodeMap.count(neighborPos)&& nodeMap[neighborPos]->cost <= cost)
             {
                 continue;
@@ -206,7 +199,7 @@ bool Start::ReachGoal(TerrainList name, Vector2Int pos)
 void Start::DrawRouteTest()
 {
     if (route.empty()) return;
-    for(int i=0;i<route.size()-1;i++)
+    for(size_t i=0;i<route.size()-1;i++)
     {
         DrawLine3D(VGet(route[i].x*MAP_UNIT+MAP_UNIT/2,0,route[i].y*MAP_UNIT+MAP_UNIT/2), VGet(route[i+1].x * MAP_UNIT + MAP_UNIT / 2, 0, route[i+1].y * MAP_UNIT + MAP_UNIT / 2), GetColor(255, 64, 64));
     }

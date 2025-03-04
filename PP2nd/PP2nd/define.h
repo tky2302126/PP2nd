@@ -49,6 +49,10 @@ constexpr auto CAMERA_VROTATE = 60.0f; //カメラの水平角
 constexpr auto CAMERA_MIN_Z = CAMERA_HEIGHT / 2;
 constexpr auto CAMERA_MIN_X = CAMERA_MIN_Z / 9 * 16;
 constexpr auto CAMERA_RADIUS = 2000.f;
+constexpr VECTOR CAMERA_START_POS = { CAMERA_MIN_X,CAMERA_HEIGHT / 2, CAMERA_MIN_Z - CAMERA_Z_OFFSET / 2 };
+constexpr VECTOR CAMERA_START_TARGET = { CAMERA_MIN_X, 0, CAMERA_MIN_Z };
+constexpr VECTOR CAMERA_END_POS = { 25 * MAP_UNIT / 2, CAMERA_HEIGHT * 4, 25 * MAP_UNIT / 2 - CAMERA_Z_OFFSET * 10 };
+constexpr VECTOR CAMERA_END_TARGET = { 25 * MAP_UNIT / 2, 0, 25 * MAP_UNIT / 2 };
 
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
 constexpr auto HUD_UI_SIZE = WINDOW_WIDTH / 20;

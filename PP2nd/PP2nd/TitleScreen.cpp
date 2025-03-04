@@ -28,7 +28,7 @@ void TitleScreen::Init()
 	std::string text = "Easy";
 	int hovercolor = GetColor(100, 100, 255);
 	int normalColor = GetColor(0, 0, 0);
-	stageButton->Init(ButtonPos, hovercolor, normalColor, text, [&]() {OnPressTestButton(); });
+	stageButton->Init(ButtonPos, hovercolor, normalColor, text, [&]() {OnPressStageButton(); });
 	menuButtonPtrVec.push_back(stageButton);
 }
 
@@ -181,11 +181,11 @@ void TitleScreen::Update()
 
 void TitleScreen::MoveCamera()
 {
-	startPos = VGet(CAMERA_MIN_X,CAMERA_HEIGHT / 2, CAMERA_MIN_Z - CAMERA_Z_OFFSET / 2);
-	startTarget = VGet(CAMERA_MIN_X, 0, CAMERA_MIN_Z);
+	startPos = CAMERA_START_POS;
+	startTarget = CAMERA_START_TARGET;
 
-	endPos = VGet(25 * MAP_UNIT / 2, CAMERA_HEIGHT * 4, 25 * MAP_UNIT / 2 - CAMERA_Z_OFFSET* 10);
-	endTarget = VGet(25 * MAP_UNIT / 2, 0, 25 * MAP_UNIT / 2);
+	endPos = CAMERA_END_POS;
+	endTarget = CAMERA_END_TARGET;
 
 	isMoving = true;
 }
@@ -193,7 +193,7 @@ void TitleScreen::MoveCamera()
 /// <summary>
 /// シーン遷移予約処理
 /// </summary>
-void TitleScreen::OnPressTestButton()
+void TitleScreen::OnPressStageButton()
 {
 	isActive = false;
 	nextScene = Main;
