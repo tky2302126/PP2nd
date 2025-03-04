@@ -153,6 +153,8 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Decoy.cpp" />
     <ClCompile Include="DrawPixel.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -181,6 +183,8 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Decoy.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />

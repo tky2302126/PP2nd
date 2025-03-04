@@ -114,6 +114,12 @@
     <ClCompile Include="Button.cpp">
       <Filter>ソース ファイル\Module</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -207,6 +213,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
+      <Filter>ソース ファイル\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
       <Filter>ソース ファイル\Module</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	if (DxLib_Init() == -1)	{ return -1; }
+	if (Effekseer_Init(2000) == -1) { DxLib_End(); return -1; }
 
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
@@ -15,6 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetAlwaysRunFlag(TRUE);
 	SetBackgroundColor(128, 128, 128, 128);
 	SetWaitVSyncFlag(FALSE);
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
 
 	SetTransColor(255, 0, 255);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
@@ -76,7 +78,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 #pragma endregion
 
-
+	Effkseer_End();
 	DxLib_End();
 
 	return 0;

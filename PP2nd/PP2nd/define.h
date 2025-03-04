@@ -18,6 +18,7 @@
 #include <unordered_set>
 #include <mutex>
 #include <future>
+#include "EffekseerForDxlib.h"
 
 
 namespace fs = std::filesystem;
@@ -262,6 +263,16 @@ enum BGMList
 	BGM_ALL
 };
 #pragma endregion
+
+#pragma region EffectManager
+enum EffectList
+{
+	Down,
+
+	EffectAll
+};
+#pragma endregion
+
 
 #pragma region 経路探索
 /// <summary>

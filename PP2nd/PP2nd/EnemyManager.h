@@ -48,5 +48,6 @@ private:
 
 	unmap<EnemyList,int> mHandleResource;
 	int revision =0; // ステージごとの敵体力の補正値
+	int deathEffectHandle = 0;
 };
 

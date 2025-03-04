@@ -21,6 +21,7 @@ EnemyManager& EnemyManager::GetInstance()
 
 void EnemyManager::Init()
 {
+	// deathEffectHandle = 
 }
 
 /// <summary>
