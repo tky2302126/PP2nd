@@ -198,7 +198,7 @@ void Map::Draw()
 	
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
-	// DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する
@@ -439,10 +439,6 @@ void Map::AddStart(Vector2Int pos)
 	startPtrVec.push_back(startPtr); //! スマートポインタの場合は所有権を移動させる
 }
 
-void Map::AddGoal(Vector2Int pos)
-{
-
-}
 
 void Map::RemoveItemPtr(Item* target)
 {
@@ -454,14 +450,6 @@ void Map::RemoveItemPtr(Item* target)
 	}
 }
 
-void Map::LoadTerrainInfo(int)
-{
-
-}
-
-void Map::LoadMapInfo(int)
-{
-}
 /// マウスのワールド座標取得
 /// ワールド座標のyは0とする
 ///VECTOR ConvScreenPosToWorldPos_ZLinear()

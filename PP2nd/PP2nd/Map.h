@@ -25,11 +25,8 @@ public:
 	void Update(SceneName&);
 
 	void AddStart(Vector2Int pos);
-	void AddGoal(Vector2Int pos);
 	void RemoveItemPtr(Item* _item);
 private:
-	void LoadTerrainInfo(int);
-	void LoadMapInfo(int);
 	VECTOR GetMouseWorldPos();
 	void CheckInGrid(VECTOR& mousePos);
 	void DrawDebugGrid();

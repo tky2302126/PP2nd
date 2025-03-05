@@ -4,7 +4,8 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	if (DxLib_Init() == -1)	{ return -1; }
-	if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+    if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
 
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
@@ -16,10 +17,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetAlwaysRunFlag(TRUE);
 	SetBackgroundColor(128, 128, 128, 128);
 	SetWaitVSyncFlag(FALSE);
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
+	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+	Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+	SetUseZBuffer3D(TRUE);
+	SetWriteZBuffer3D(TRUE);
 
-	SetTransColor(255, 0, 255);
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+	// SetTransColor(255, 0, 255);
+	// SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 #pragma region Managerの準備
 	SceneManager& sceneMPtr = SceneManager::GetInstance();
@@ -78,7 +82,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #pragma endregion
 
 	// Effkseer_End()でエラーが起こる(同じ領域を２回削除しようとしている)
-	Effkseer_End();
+	// Effkseer_End();
 	DxLib_End();
 
 	return 0;

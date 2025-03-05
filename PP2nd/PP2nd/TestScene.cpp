@@ -23,7 +23,7 @@ TestScene::TestScene()
 	
 	int elapsedTime = GetNowCount() - startTime;
 	elapsedTime /= 1000;
-	printfDx("かかった時間 : %d", elapsedTime);
+	// printfDx("かかった時間 : %d", elapsedTime);
 
 	mainScreenUPtr = std::make_unique<MainScreen>();
 	mainScreenUPtr->Init(GameM().GetMapInfo());
@@ -39,9 +39,10 @@ void TestScene::Update() const
 {
 	DrawFormatString(0, 0, 65535, " テストシーン");
 #pragma region マウス確認
-	/// MouseInfo mouseInfo = Input().GetMouseInfo();
+	MouseInfo mouseInfo = Input().GetMouseInfo();
+	 
 	/// 
-	/// DrawFormatString(0, 30, GetColor(255, 255, 255), "mouse position( %d, %d)", mouseInfo.position.x, mouseInfo.position.y);
+	DrawFormatString(0, 30, GetColor(255, 255, 255), "mouse position( %d, %d)", mouseInfo.position.x, mouseInfo.position.y);
 	/// DrawFormatString(0, 60, GetColor(255, 255, 255), "mouse state( %d , %d)",mouseInfo.state.left,mouseInfo.state.right );
 #pragma endregion
 
@@ -53,7 +54,7 @@ void TestScene::Update() const
 	{
 		//GameManager::GetInstance().ExportStageInfo("Test.txt");
 		// EnemyManager::GetInstance().SpawnEnemyTest();
-		EffectM().Play(Down, VGet(0, 0, 0), 1.0);
+		EffectM().Play(Down, VGet(400, 20, 400), 1.0);
 	}
 
 }
