@@ -21,10 +21,12 @@ EffectManager& EffectManager::GetInstance()
 
 void EffectManager::Init()
 {
+	graphHandle = LoadGraph("./Resource/scarecrow.png");
 }
 
 void EffectManager::UnInit()
 {
+	DeleteGraph(graphHandle);
 }
 
 void EffectManager::Load(EffectList name)
@@ -33,7 +35,7 @@ void EffectManager::Load(EffectList name)
  	switch (name)
 	{
 	case Down:
-		effectResource[name] = LoadEffekseerEffect("./Resource/down.efk",100);
+		effectResource[name] = LoadEffekseerEffect("./Resource/magma.efk",1);
 		break;
 	case EffectAll:
 		break;
@@ -72,6 +74,8 @@ void EffectManager::Update()
 
 void EffectManager::Draw()
 {
+	DrawGraph(-2000, -2000, graphHandle, true);
+
 	DrawEffekseer3D();
 }
 

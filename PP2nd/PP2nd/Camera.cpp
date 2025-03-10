@@ -40,6 +40,7 @@ void Camera::Init(const _mapInfo& mapInfo)
 	oldMousePos.y = 0;
 	azimuthAngle = DegtoRad(-90.f);
 	SetupCamera_Perspective((float)DX_PI/2);
+	SetCameraNearFar(10.0f,5000.0f);
 }
 
 void Camera::UnInit()

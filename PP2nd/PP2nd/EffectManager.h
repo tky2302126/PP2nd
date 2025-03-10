@@ -22,5 +22,6 @@ private:
 	unmap<EffectList, int> effectResource;
 	static UniquePtr<EffectManager> Instance;
 	std::vector<int> playingEffectHandle;
+	int graphHandle;
 };
 
