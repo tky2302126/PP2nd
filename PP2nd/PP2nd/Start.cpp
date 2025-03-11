@@ -82,6 +82,11 @@ void Start::SearchRoute()
             case TerrainList::CUBE:
                 cost += 99;
                 break;
+
+            case TerrainList::DECOY:
+                cost = 0;
+                break;
+
             case TerrainList::ItemAll:
                 break;
             case TerrainList::Invailed:

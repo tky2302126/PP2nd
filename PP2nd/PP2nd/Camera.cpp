@@ -136,12 +136,10 @@ void Camera::Update()
 	}
 
 	SetCameraPositionAndTarget_UpVecY(position, targetPos);
-	
-	// エフェクト用の同期
-	Effekseer_Sync3DSetting();
-	
+		
 	GameM().SetCameraPosition(position);
 
+	Effekseer_Sync3DSetting();
 }
 
 /// <summary>

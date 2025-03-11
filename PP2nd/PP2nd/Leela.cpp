@@ -108,6 +108,12 @@ void Leela::Move()
 
             break;
 
+        case TerrainList::DECOY:
+            /// 破壊する
+            move = false;
+            attack = true;
+            attackBeginTime = GetNowCount();
+
         default:
             break;
         }
@@ -169,6 +175,9 @@ void Leela::Update()
         if(!isDead)
         {
             animUPtr->Play(LeelaAnimList::Death, 1.0);
+            auto effectPos = position;
+            effectPos.y += 20;
+            EffectM().Play(Down, effectPos,1.0);
             isDead = true;
             move = false;
         }
@@ -279,6 +288,10 @@ void Leela::RecalculateRoute()
             case TerrainList::CUBE:
                 cost += 99;
                 break;
+            case TerrainList::DECOY:
+                cost = 0;
+                break;
+
             case TerrainList::ItemAll:
                 break;
             case TerrainList::Invailed:

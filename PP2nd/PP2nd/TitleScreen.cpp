@@ -14,7 +14,7 @@ void TitleScreen::Init()
 	mapUPtr->Init();
 	
 	oldSequence = currentSequence;
-	titleLogoGH = LoadGraph("./Resource/titlelogo.png");
+	titleLogoGH = LoadGraph("./Resource/titlelogo_new_jimakuiri.png");
 
 	Button* stageButton = new Button();
 	RECTInt ButtonPos =
@@ -62,6 +62,7 @@ void TitleScreen::Draw()
 #pragma region タイトル画面の操作説明
 	if(currentSequence == Title)
 	{
+		DrawFormatString(0, WINDOW_HEIGHT - HUD_ITEM_SIZE - 20, GetColor(255, 255, 255), "パネルをドラッグ＆ドロップで配置");
 		DrawFormatString(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4 * 3,GetColor(255, 255, 255),"石を置け");
 		DrawFormatString(WINDOW_WIDTH / 4 * 3, WINDOW_HEIGHT / 6 * 5,GetColor(255, 255, 255),"右クリック長押しでスキップ");
 

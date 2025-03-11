@@ -23,6 +23,10 @@ EffectManager& EffectManager::GetInstance()
 void EffectManager::Init()
 {
 	graphHandle = LoadGraph("./Resource/Background.png");
+	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+	Effekseer_SetGraphicsDeviceLostCallbackFunctions();
+	SetUseZBuffer3D(TRUE);
+	SetWriteZBuffer3D(TRUE);
 }
 
 void EffectManager::UnInit()
@@ -42,10 +46,10 @@ void EffectManager::Load(EffectList name)
  	switch (name)
 	{
 	case Down:
-		effectResource[name] = LoadEffekseerEffect(_T("./Resource/Effect/hit_hanmado_0409.efkefc"),10);
+		effectResource[name] = LoadEffekseerEffect(_T("./Resource/Effect/hit_hanmado_0409.efkefc"),30);
 		break;
 	case Magma:
-		// effectResource[name] = LoadEffekseerEffect(_T("./Resource/001_magma_effect/aura.efkproj"), 10);
+		
 		break;
 	case EffectAll:
 		break;
@@ -80,9 +84,9 @@ void EffectManager::Update()
 	Draw();
 
 #if _DEBUG
-	clsDx();
-	
-	printfDx("再生中のエフェクト: %d", playingEffectHandle.size());
+	// clsDx();
+	// 
+	// printfDx("再生中のエフェクト: %d", playingEffectHandle.size());
 #endif
 }
 

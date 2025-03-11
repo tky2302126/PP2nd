@@ -177,7 +177,7 @@ void Map::RegistHoldItem(TerrainList name)
 void Map::Draw()
 {
 #if _DEBUG
-	DrawDebugGrid();
+	// DrawDebugGrid();
 #endif
 
 	
@@ -279,6 +279,7 @@ void Map::Draw()
 	/// 保持している場合
 	if(holdItem)
 	{
+		DrawDebugGrid();
 		/// マスに置こうとしているか調べる
 		CheckInGrid(mouseWorldPos);
 		/// モデルの描画
@@ -315,10 +316,6 @@ void Map::Draw()
 void Map::Draw(SceneName& name)
 {
 	if (name == Option) { return; }
-
-#if _DEBUG
-	DrawDebugGrid();
-#endif
 
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
@@ -386,6 +383,7 @@ void Map::Draw(SceneName& name)
 	/// 保持している場合
 	if (holdItem)
 	{
+		DrawDebugGrid();
 		/// マスに置こうとしているか調べる
 		CheckInGrid(mouseWorldPos);
 		/// モデルの描画

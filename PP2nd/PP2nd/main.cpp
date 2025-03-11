@@ -3,12 +3,14 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	if (DxLib_Init() == -1)	{ return -1; }
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
-    if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
-
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
+	SetWaitVSyncFlag(FALSE);
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+	if (DxLib_Init() == -1)	{ return -1; }
+    if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
+
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetMouseDispFlag(TRUE);
 	SetUseZBufferFlag(TRUE);
@@ -16,11 +18,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetUseBackCulling(TRUE);
 	SetAlwaysRunFlag(TRUE);
 	SetBackgroundColor(128, 128, 128, 128);
-	SetWaitVSyncFlag(FALSE);
-	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
-	Effekseer_SetGraphicsDeviceLostCallbackFunctions();
-	SetUseZBuffer3D(TRUE);
-	SetWriteZBuffer3D(TRUE);
 
 	// SetTransColor(255, 0, 255);
 	// SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
@@ -52,8 +49,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/// デバッグとexeで切り替え
  #if _DEBUG
-	sceneMPtr.Load(SceneName::Test);
-	//sceneMPtr.Load(SceneName::Title);
+	// sceneMPtr.Load(SceneName::Test);
+	 sceneMPtr.Load(SceneName::Title);
 #else
 	sceneMPtr.Load(SceneName::Title);
  #endif
@@ -82,7 +79,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #pragma endregion
 
 	// Effkseer_End()でエラーが起こる(同じ領域を２回削除しようとしている)
-	// Effkseer_End();
+	Effkseer_End();
 	DxLib_End();
 
 	return 0;
