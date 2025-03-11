@@ -11,7 +11,7 @@ TestScene::TestScene()
 	std::thread loader1([] {GameM().LoadTest(); });
 	std::thread loader3([] {TimeM().LoadTest(); });
 	std::thread loader4([] {AudioM().LoadTest(); });
-	std::thread loader5([] {EffectM().Load(Down); });
+	std::thread loader5([] {EffectM().Load(Down); EffectM().Load(Magma); });
 
 	loader1.join();
 	/// EnemyManagerでGameManagerのデータにアクセスするため、待機する

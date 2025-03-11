@@ -4,6 +4,7 @@ UniquePtr<EffectManager> EffectManager::Instance = nullptr;
 
 EffectManager::EffectManager()
 {
+	Init();
 }
 
 EffectManager::~EffectManager()
@@ -21,12 +22,18 @@ EffectManager& EffectManager::GetInstance()
 
 void EffectManager::Init()
 {
-	graphHandle = LoadGraph("./Resource/scarecrow.png");
+	graphHandle = LoadGraph("./Resource/Background.png");
 }
 
 void EffectManager::UnInit()
 {
 	DeleteGraph(graphHandle);
+
+	for(auto& [key, effectResource] : effectResource)
+	{
+		DeleteEffekseerEffect(effectResource);
+	}
+	effectResource.clear();
 }
 
 void EffectManager::Load(EffectList name)
@@ -35,7 +42,10 @@ void EffectManager::Load(EffectList name)
  	switch (name)
 	{
 	case Down:
-		effectResource[name] = LoadEffekseerEffect("./Resource/magma.efk",1);
+		effectResource[name] = LoadEffekseerEffect(_T("./Resource/Effect/hit_hanmado_0409.efkefc"),10);
+		break;
+	case Magma:
+		// effectResource[name] = LoadEffekseerEffect(_T("./Resource/001_magma_effect/aura.efkproj"), 10);
 		break;
 	case EffectAll:
 		break;
@@ -59,22 +69,25 @@ void EffectManager::Play(EffectList name, VECTOR pos, float duration)
 
 void EffectManager::Update()
 {
-	clsDx();
+	DrawGraph(-2000, -2000, graphHandle, true);
 
 	SurveyHandle();
 
-	Effekseer_Sync3DSetting();
+	// Effekseer_Sync3DSetting();
 
 	UpdateEffekseer3D();
 
 	Draw();
 
+#if _DEBUG
+	clsDx();
+	
 	printfDx("再生中のエフェクト: %d", playingEffectHandle.size());
+#endif
 }
 
 void EffectManager::Draw()
 {
-	DrawGraph(-2000, -2000, graphHandle, true);
 
 	DrawEffekseer3D();
 }

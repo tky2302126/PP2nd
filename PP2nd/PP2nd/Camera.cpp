@@ -135,10 +135,10 @@ void Camera::Update()
 		azimuthAngle = 0.0f;
 	}
 
+	SetCameraPositionAndTarget_UpVecY(position, targetPos);
+	
 	// エフェクト用の同期
 	Effekseer_Sync3DSetting();
-
-	SetCameraPositionAndTarget_UpVecY(position, targetPos);
 	
 	GameM().SetCameraPosition(position);
 

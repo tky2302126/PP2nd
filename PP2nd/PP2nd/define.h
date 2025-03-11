@@ -270,7 +270,7 @@ enum BGMList
 enum EffectList
 {
 	Down,
-
+	Magma,
 	EffectAll
 };
 #pragma endregion

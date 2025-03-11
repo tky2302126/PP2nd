@@ -69,9 +69,9 @@ void SceneManager::Update()
 	/// マネージャークラスのアップデート
 	Input().Update();
 	EnemyM().Update();
-	EffectM().Update();
 
 	if (scenePtr) { scenePtr->Update(); }
+	EffectM().Update();
 
 	int tookTime = GetNowCount() - startTime;
 	int waitTime = FRAME_TIME_MS - tookTime;
