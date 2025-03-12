@@ -28,5 +28,6 @@ private:
 	bool rotate = false;
 	float moveSpeed = 2.0f;
 	float rotateSpeed = 1.0f;
+	int dirLightHandle = -1;
 };
 

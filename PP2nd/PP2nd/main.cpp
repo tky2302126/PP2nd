@@ -8,7 +8,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
 	SetWaitVSyncFlag(FALSE);
-	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
+	SetUseDirect3DVersion(DX_DIRECT3D_9EX); // 開発環境の関係で現在9EXに設定中
 
 	if (DxLib_Init() == -1)	{ return -1; }
     if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }

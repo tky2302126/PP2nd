@@ -36,6 +36,10 @@ void Camera::Init(const _mapInfo& mapInfo)
 					 mapInfo.height * MAP_UNIT / 2);
 	initTargetPos = targetPos;
 
+	VECTOR lightDirection = VSub(position, targetPos);
+	lightDirection = VNorm(lightDirection);
+	dirLightHandle = CreateDirLightHandle(lightDirection);
+	SetLightPositionHandle(dirLightHandle, position);
 	oldMousePos.x = 0;
 	oldMousePos.y = 0;
 	azimuthAngle = DegtoRad(-90.f);
@@ -140,6 +144,15 @@ void Camera::Update()
 	GameM().SetCameraPosition(position);
 
 	Effekseer_Sync3DSetting();
+
+	/// カメラ方向にライトを設定
+	VECTOR lightDirection = VSub(targetPos, position);
+	lightDirection = VNorm(lightDirection);
+	SetLightPositionHandle(dirLightHandle, position);
+	SetLightDirectionHandle(dirLightHandle,lightDirection);
+	SetLightDifColorHandle(dirLightHandle, GetColorF(0.3f, 0.3f, 0.3f, 0.5));
+	SetLightAmbColorHandle(dirLightHandle, GetColorF(0.3, 0.3, 0.3, 1.0));
+	SetLightSpcColorHandle(dirLightHandle, GetColorF(0.5, 0.5, 0.5, 1.0));
 }
 
 /// <summary>
