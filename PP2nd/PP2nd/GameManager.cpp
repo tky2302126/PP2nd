@@ -362,7 +362,7 @@ void GameManager::LoadTest()
 	 SetItemInfo(buff);
 	 ItemInfo buff2;
 	 buff2.name = TerrainList::DECOY;
-	 buff2.num = 5;
+	 buff2.num = 20;
 	 SetItemInfo(buff2);
 #pragma endregion
 
@@ -385,6 +385,7 @@ void GameManager::GameStart()
 /// </summary>
 void GameManager::GameOver()
 {
+	if (currentSequence == Debug) return;
 	isGameOver = true;
 	currentSequence = Result;
 	AudioManager::GetInstance().PlayBGM(BGMList::GAMEOVER, false);
@@ -395,6 +396,7 @@ void GameManager::GameOver()
 /// </summary>
 void GameManager::GameClear()
 {
+	if (currentSequence == Debug) return;
 	isGameClear = true;
 	// 敵をすべて破壊する
 	currentSequence = Result;

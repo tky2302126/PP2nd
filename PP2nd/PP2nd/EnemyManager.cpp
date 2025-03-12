@@ -36,13 +36,27 @@ void EnemyManager::InitTest()
 /// </summary>
 void EnemyManager::LoadTest()
 {
-
 	if(startPtrVec.empty())
 	{
 		Start* startPtr = new Start();
-		Vector2Int startPos = { 0,9 };
+		Vector2Int startPos = { 0,0 };
 		startPtr->Init(startPos);
 		startPtrVec.push_back(startPtr);
+
+		Start* startPtr2 = new Start();
+		Vector2Int startPos2 = { 0,24 };
+		startPtr2->Init(startPos2);
+		startPtrVec.push_back(startPtr2);
+
+		Start* startPtr3 = new Start();
+		Vector2Int startPos3 = { 24,0 };
+		startPtr3->Init(startPos3);
+		startPtrVec.push_back(startPtr3);
+
+		Start* startPtr4 = new Start();
+		Vector2Int startPos4 = { 24,24 };
+		startPtr4->Init(startPos4);
+		startPtrVec.push_back(startPtr4);
 	}
 	Load(leela);
 }
@@ -100,20 +114,28 @@ void EnemyManager::DrawRouteTest()
 
 void EnemyManager::ReCalculateRoute()
 {
-	if(!startPtrVec.empty())
+	// clsDx();
+	std::vector<std::thread> threads;
+	for(auto& startPtr: startPtrVec)
 	{
-		for(int i=0;i<startPtrVec.size();i++)
-		{
-			startPtrVec[i]->SearchRoute();
-		}
+		threads.emplace_back([&]() {startPtr->SearchRoute(); });
 	}
 
-	if(!enemyPtrVec.empty())
+	for(auto& t: threads)
 	{
-		for(int i=0; i<enemyPtrVec.size();i++)
-		{
-			enemyPtrVec[i]->CompareRoute(enemyPtrVec[i]->GetMyStart()->GetRoute());
-		}
+		if (t.joinable())t.join();
+	}
+
+	threads.clear();
+	for(auto& enemyPtr: enemyPtrVec)
+	{
+		threads.emplace_back([&]() {
+			enemyPtr->CompareRoute(enemyPtr->GetMyStart()->GetRoute()); 
+			});
+	}
+	for(auto& t: threads)
+	{
+		if (t.joinable())t.join();
 	}
 }
 void EnemyManager::SpawnEnemy(Vector2Int pos, EnemyList type)

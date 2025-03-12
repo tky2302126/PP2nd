@@ -130,13 +130,15 @@ void Decoy::Confirm()
         GameM().AddTerrainInfo(TerrainList::DECOY, pos);
 }
 
-void Decoy::TakeDamege(int damage)
+bool Decoy::TakeDamege(int damage)
 {
     Health -= damage;
     if(Health <0)
     {
         GameM().RemoveTerrainInfo(pos);
+        return true;
     }
+    return false;
 }
 
 int& Decoy::GetMHandle() const

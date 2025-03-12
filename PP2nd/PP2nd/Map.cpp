@@ -140,20 +140,18 @@ void Map::Reload()
 		auto itemPos = (*it)->GetPosition();
 		for(auto& [pos, damage]: damageInfo)
 		{
-			if(CompareVECTOR(itemPos, pos))
+			if(itemPos.x == pos.x && itemPos.z == pos.z)
 			{
-				(*it)->TakeDamege(damage);
+				if((*it)->TakeDamege(damage))
+				{
+					it = itemPtrVec.erase(it);
+				}
+				else
+				{
+					it++;
+				}
 			}
-		}
-		auto arrayPos = WorldPos2ArrayPos(itemPos);
-		/// 破壊処理
-		if (terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
-		{
-			it = itemPtrVec.erase(it);
-		}
-		else
-		{
-			++it;
+			break;
 		}
 	}
 	damageInfo.clear();
@@ -210,7 +208,7 @@ void Map::Draw()
 	
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
-	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+	/// DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する

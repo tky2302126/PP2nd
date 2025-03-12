@@ -141,7 +141,13 @@ int& Cube::GetMHandle() const
     return MHandle;
 }
 
-void Cube::TakeDamege(int damage)
+/// <summary>
+/// 
+/// </summary>
+/// <param name="damage"></param>
+/// <returns>破壊されるかどうか trueなら破壊</returns>
+bool Cube::TakeDamege(int damage)
 {
     GameM().RemoveTerrainInfo(pos);
+    return true;
 }

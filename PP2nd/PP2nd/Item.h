@@ -17,7 +17,12 @@ public:
 	virtual void Confirm() = 0;
 	virtual int& GetMHandle() const = 0;
 	virtual VECTOR GetPosition() const = 0;
-	virtual void TakeDamege(int damage) =0;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="damage">ƒ_ƒ[ƒW—Ê</param>
+	/// <returns>”j‰ó‚³‚ê‚é‚©‚Ç‚¤‚© true‚È‚ç”j‰ó</returns>
+	virtual bool TakeDamege(int damage) =0;
 	static int gHandleCheck;
 	static int gHandleCross;
 };

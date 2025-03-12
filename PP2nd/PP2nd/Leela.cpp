@@ -154,7 +154,10 @@ void Leela::Attack()
     {
         attack = false;
         move = true;
-        GameM().DamageTerrainInfo(this->position, 25);
+        VECTOR damagePos = { floor(position.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
+                0,
+                floor(position.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2 };
+        GameM().DamageTerrainInfo(damagePos, 25);
     }
 }
 
@@ -286,10 +289,10 @@ void Leela::RecalculateRoute()
             switch (terrain)
             {
             case TerrainList::CUBE:
-                cost += 99;
+                cost += 4;
                 break;
             case TerrainList::DECOY:
-                cost = 0;
+                cost -= 5;
                 break;
 
             case TerrainList::ItemAll:
@@ -314,6 +317,7 @@ void Leela::RecalculateRoute()
 
             /// デコイの処理
             const int range = 4;
+            int minDistance = range + 1;
             for (int dy = -range; dy <= range; dy++)
             {
                 for (int dx = -range; dx <= range; dx++)
@@ -323,10 +327,20 @@ void Leela::RecalculateRoute()
                     {
                         if (terrainInfo[checkPos.y][checkPos.x] == TerrainList::DECOY)
                         {
-                            h = 0;
+                            int distance = abs(dx) + abs(dy);
+                            if (distance < minDistance)
+                            {
+                                minDistance = distance;
+                            }
                         }
                     }
                 }
+            }
+
+            if (minDistance <= range)
+            {
+                h -= 2;
+                if (h < 0) { h = 0; }
             }
 
             Node* neighbor = new Node(neighborPos, cost, h, current);

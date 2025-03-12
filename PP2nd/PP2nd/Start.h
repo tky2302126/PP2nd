@@ -14,5 +14,6 @@ private:
 	Vector2Int pos;
 	std::vector<Vector2Int> route;
 	int baseHealth;
+	static int searchNum;
 };
 

@@ -1,6 +1,8 @@
 ﻿#include "Start.h"
 #include "manager.h"
 
+int Start::searchNum = 0;
+
 void Start::Init(Vector2Int _pos)
 {
     pos = _pos;
@@ -17,6 +19,7 @@ void Start::Init(Vector2Int _pos)
 /// </summary>
 void Start::SearchRoute()
 {
+    searchNum = 0;
     /// ルートが設定されていた場合、再計算が必要か計算する
     /// 変更箇所のみ再計算する 現行1マスずつ変更が行われるため、
     /// 障害物が除かれた場合は再計算の必要がある
@@ -44,7 +47,7 @@ void Start::SearchRoute()
     {
         Node* current = openList.top();
         openList.pop();
-
+        searchNum++;
         if (current->pos == goal)
         {
 
@@ -76,7 +79,7 @@ void Start::SearchRoute()
             switch (terrain)
             {
             case TerrainList::CUBE:
-                cost += 99;
+                cost += 4; // 大きくしすぎると試行回数が増えるので注意
                 break;
 
             case TerrainList::DECOY:
@@ -138,6 +141,7 @@ void Start::SearchRoute()
         }
     }
     for (auto& [_, node] : nodeMap) { delete node; }
+    // printfDx("探索回数: %d\n", searchNum);
     /// 見つからなかった場合の処理
 }
 
