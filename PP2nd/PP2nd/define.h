@@ -223,6 +223,12 @@ struct ItemInfo
 	int num;
 };
 
+struct DamageInfo
+{
+	VECTOR pos;
+	int damage;
+};
+
 enum class HDKey 
 {
 	Play,
@@ -421,5 +427,10 @@ inline float RadtoDeg(float radian)
 inline float DegtoRad(float degree)
 {
 	return degree * DX_PI_F / 180.0f;
+}
+
+inline bool CompareVECTOR(VECTOR& a, VECTOR& b)
+{
+	return (a.x == b.x) && (a.y == b.y) && (a.z == b.z);
 }
 #pragma endregion

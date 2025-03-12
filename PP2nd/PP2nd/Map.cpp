@@ -132,10 +132,21 @@ void Map::Reload()
 {
 	auto terrainInfo = CGameM().GetTerrainInfo();
 
+	/// ダメージ処理
+	auto damageInfo = GameM().GetDamegeInfo();
+	
 	for (auto it = itemPtrVec.begin(); it != itemPtrVec.end();) 
 	{
 		auto itemPos = (*it)->GetPosition();
+		for(auto& [pos, damage]: damageInfo)
+		{
+			if(CompareVECTOR(itemPos, pos))
+			{
+				(*it)->TakeDamege(damage);
+			}
+		}
 		auto arrayPos = WorldPos2ArrayPos(itemPos);
+		/// 破壊処理
 		if (terrainInfo[arrayPos.y][arrayPos.x] == TerrainList::None)
 		{
 			it = itemPtrVec.erase(it);
@@ -145,6 +156,7 @@ void Map::Reload()
 			++it;
 		}
 	}
+	damageInfo.clear();
 	GameM().CheckedTerrainInfo();
 
 }

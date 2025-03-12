@@ -197,8 +197,13 @@ void GameManager::AddTerrainInfo(TerrainList name, Vector2Int pos)
 /// </summary>
 /// <param name="pos"></param>
 /// <param name="damage"></param>
-void GameManager::DamageTerrainInfo(VECTOR pos, int damage = -1)
+void GameManager::DamageTerrainInfo(VECTOR pos, int damage = 0)
 {
+	if (terrainInfo.empty()) return;
+	DamageInfo DI = {pos, damage};
+	damageVec.push_back(DI);
+
+	terrainInfoChanged = true;
 }
 
 /// <summary>
@@ -215,7 +220,6 @@ void GameManager::RemoveTerrainInfo(VECTOR pos)
 	///更新したら通知する
 	EnemyManager::GetInstance().ReCalculateRoute();
 	terrainInfoChanged = true;
-
 }
 
 /// <summary>

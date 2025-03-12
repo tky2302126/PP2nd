@@ -20,6 +20,7 @@ public:
 	void Draw() const override;
 	void Update() override;
 	void Confirm() override;
+	void TakeDamege(int damage) override;
 
 	int& GetMHandle() const override;
 	VECTOR GetPosition() const override { return pos; };

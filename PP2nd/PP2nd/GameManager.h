@@ -30,6 +30,7 @@ public:
 	void AddTerrainInfo(TerrainList name, VECTOR pos);
 	void AddTerrainInfo(TerrainList name, Vector2Int pos);
 	void DamageTerrainInfo(VECTOR pos, int damage);
+	std::vector<DamageInfo>& GetDamegeInfo() { return damageVec; }
 	void RemoveTerrainInfo(VECTOR pos);
 	void LoadStageInfo(const std::string& fileName);
 	void InitTerrainInfo(int width, int height);
@@ -62,5 +63,6 @@ private:
 	bool isGameOver = false;
 	bool isGameClear = false;
 	Sequence currentSequence = Debug; /// シーケンス デバッグは製品では使わない
+	std::vector<DamageInfo> damageVec; 
 };
 

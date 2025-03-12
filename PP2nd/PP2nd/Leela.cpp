@@ -154,7 +154,7 @@ void Leela::Attack()
     {
         attack = false;
         move = true;
-        GameM().RemoveTerrainInfo(this->position);
+        GameM().DamageTerrainInfo(this->position, 25);
     }
 }
 

@@ -140,3 +140,8 @@ int& Cube::GetMHandle() const
     int MHandle = -1;
     return MHandle;
 }
+
+void Cube::TakeDamege(int damage)
+{
+    GameM().RemoveTerrainInfo(pos);
+}
