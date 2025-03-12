@@ -48,6 +48,30 @@ private:
 		{VGet(MAP_UNIT *  30, -10, MAP_UNIT * -30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 1.0f, 0.0f, 0.0f}  // 右下
 	};
 
+	VERTEX3D vertices2[4] =
+	{
+		{VGet(MAP_UNIT * -30, -10, MAP_UNIT * 90), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 0.0f, 0.0f,0.0f}, // 左上
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * 90), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 0.0f, 0.0f, 0.0f}, // 右上
+		{VGet(MAP_UNIT * -30, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 1.0f, 0.0f, 0.0f}, // 左下
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 1.0f, 0.0f, 0.0f}  // 右下
+	};
+
+	VERTEX3D vertices3[4] =
+	{
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 0.0f, 0.0f,0.0f}, // 左上
+		{VGet(MAP_UNIT * 90, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 0.0f, 0.0f, 0.0f}, // 右上
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * -30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 1.0f, 0.0f, 0.0f}, // 左下
+		{VGet(MAP_UNIT * 90, -10, MAP_UNIT * -30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 1.0f, 0.0f, 0.0f}  // 右下
+	};
+
+	VERTEX3D vertices4[4] =
+	{
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * 90), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 0.0f, 0.0f,0.0f}, // 左上
+		{VGet(MAP_UNIT * 90, -10, MAP_UNIT * 90), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 0.0f, 0.0f, 0.0f}, // 右上
+		{VGet(MAP_UNIT * 30, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 0.0f, 1.0f, 0.0f, 0.0f}, // 左下
+		{VGet(MAP_UNIT * 90, -10, MAP_UNIT * 30), VGet(0, 1, 0),GetColorU8(255, 255, 255, 255), GetColorU8(0, 0, 0,0), 1.0f, 1.0f, 0.0f, 0.0f}  // 右下
+	};
+
 	WORD index[6] = { 0, 1, 2, 1, 3, 2 };
 
 	int baseTex;

@@ -285,7 +285,7 @@ void Map::Draw()
 			TimeM().ChangeGameSpeedSlower(false);
 		}
 		/// 後でアクティブに
-	 	/// MHandle = -1;
+	 	MHandle = -1;
 	}
 
 	/// 保持している場合
@@ -319,6 +319,9 @@ void Map::Draw()
 	}
 
 	DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
+	DrawPolygonIndexed3D(vertices2, 4, index, 2, mapTexture, TRUE);
+	DrawPolygonIndexed3D(vertices3, 4, index, 2, mapTexture, TRUE);
+	DrawPolygonIndexed3D(vertices4, 4, index, 2, mapTexture, TRUE);
 }
 
 /// <summary>

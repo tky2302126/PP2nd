@@ -80,6 +80,7 @@ void Start::SearchRoute()
                 break;
 
             case TerrainList::DECOY:
+                cost -= 5;
                 break;
 
             case TerrainList::ItemAll:
@@ -106,6 +107,7 @@ void Start::SearchRoute()
 
             /// デコイの処理
             const int range = 4;
+            int minDistance = range + 1;
             for(int dy = -range; dy<= range;dy++)
             {
                 for(int dx = -range; dx <= range; dx++)
@@ -115,10 +117,20 @@ void Start::SearchRoute()
                     {
                         if(terrainInfo[checkPos.y][checkPos.x] == TerrainList::DECOY)
                         {
-                            h = 0;
+                            int distance = abs(dx) + abs(dy);
+                            if(distance < minDistance)
+                            {
+                                minDistance = distance;
+                            }
                         }
                     }
                 }
+            }
+
+            if(minDistance <= range)
+            {
+                h -= 2;
+                if (h < 0) { h = 0; }
             }
             Node* neighbor = new Node(neighborPos, cost, h, current);
             openList.push(neighbor);

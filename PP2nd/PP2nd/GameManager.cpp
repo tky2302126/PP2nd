@@ -351,7 +351,7 @@ void GameManager::LoadTest()
 	// LoadStageInfo("Trial_Easy.txt");
 
 #pragma region ステージエディット用
-	 _mapInfo testMap(10, 10, 0, 0);
+	 _mapInfo testMap(25, 25, 12, 12);
 	 InitTerrainInfo(testMap.width, testMap.height);
 	 Vector2Int goalPoint = { testMap.goalWidth,testMap.goalHeight };
 	 AddTerrainInfo(TerrainList::Goal, goalPoint);
