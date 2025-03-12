@@ -169,6 +169,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Start.cpp" />
+    <ClCompile Include="stringBuilder.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TimeManager.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Start.h" />
+    <ClInclude Include="stringBuilder.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TimeManager.h" />

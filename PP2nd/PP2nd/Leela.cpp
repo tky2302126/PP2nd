@@ -200,7 +200,7 @@ void Leela::CompareRoute(std::vector<Vector2Int> _route)
     auto route = _route;
     while (true)
     {
-        /// なかった場合、ルートを再設定する
+        /// 自身の座標がなかった場合、ルートを再設定する
         if (route.empty())
         {
             RecalculateRoute();
@@ -209,7 +209,7 @@ void Leela::CompareRoute(std::vector<Vector2Int> _route)
         /// スポーン地点からの進行ルートと自分のルートを比較する
         if (route.front() == myRoute.front())
         {
-            /// 新しい進行ルートに自分のルート内の座標があった場合、
+            /// 新しい進行ルートに自分の座標があった場合、
             myRoute.clear();
             myRoute = route; /// その地点から置き換える
             break;
@@ -310,8 +310,26 @@ void Leela::RecalculateRoute()
             {
                 continue;
             }
+            int h = GetHeuristic(neighborPos, goal);
 
-            Node* neighbor = new Node(neighborPos, cost, GetHeuristic(neighborPos, goal), current);
+            /// デコイの処理
+            const int range = 4;
+            for (int dy = -range; dy <= range; dy++)
+            {
+                for (int dx = -range; dx <= range; dx++)
+                {
+                    Vector2Int checkPos = { current->pos.x + dx, current->pos.y + dy };
+                    if (IsValidPosition(checkPos, map))
+                    {
+                        if (terrainInfo[checkPos.y][checkPos.x] == TerrainList::DECOY)
+                        {
+                            h = 0;
+                        }
+                    }
+                }
+            }
+
+            Node* neighbor = new Node(neighborPos, cost, h, current);
             openList.push(neighbor);
             nodeMap[neighborPos] = neighbor;
         }

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "define.h"
 #include "manager.h"
+#include "stringBuilder.h"
 
 /// <summary>
 /// HUDに表示するアイテムパネル
@@ -14,6 +15,9 @@ public:
 	void Decrease();
 	void SetIndex(int index);
 	int GetNum() { return info.num; }
+
+private:
+	void ShowSummary();
 private:
 	int GH;
 	ItemInfo info;
@@ -22,5 +26,6 @@ private:
 	Vector2Int start; // 左上
 	Vector2Int end;	  // 右下
 	std::function<void(TerrainList name)> cbFunction; // コールバック関数
+	std::string summaryText;
 };
 

@@ -58,6 +58,8 @@ constexpr VECTOR CAMERA_END_TARGET = { 25 * MAP_UNIT / 2, 0, 25 * MAP_UNIT / 2 }
 constexpr auto HUD_ITEM_SIZE = WINDOW_WIDTH / 10;
 constexpr auto HUD_UI_SIZE = WINDOW_WIDTH / 20;
 constexpr auto HUD_UI_MARGIN = 20;
+constexpr auto ITEM_SUMMARY_WIDTH = 128;
+constexpr auto ITEM_SUMMARY_HEIGHT = 72;
 
 constexpr auto HUD_AREA_TOP = 50;
 constexpr auto HUD_AREA_BOTTOM = WINDOW_HEIGHT- HUD_ITEM_SIZE;
