@@ -104,7 +104,7 @@ void Leela::Move()
             move = false;
             attack = true;
             attackBeginTime = GetNowCount();
-            /// ここに処理を追加
+            animUPtr->Play(LeelaAnimList::Kick, 0.3,true);
 
             break;
 
@@ -113,7 +113,8 @@ void Leela::Move()
             move = false;
             attack = true;
             attackBeginTime = GetNowCount();
-
+            animUPtr->Play(LeelaAnimList::Kick, 0.3, true);
+            break;
         default:
             break;
         }
@@ -152,9 +153,10 @@ void Leela::Attack()
     int currentTime = GetNowCount();
     if (currentTime - attackBeginTime >= ENEMY_ATTACK_TIME * 1000)
     {
+        GameM().RemoveTerrainInfo(this->position);
         attack = false;
         move = true;
-        GameM().RemoveTerrainInfo(this->position);
+        animUPtr->Play(LeelaAnimList::Run, 1.0, true);
     }
 }
 
@@ -289,7 +291,7 @@ void Leela::RecalculateRoute()
                 cost += 99;
                 break;
             case TerrainList::DECOY:
-                cost = 0;
+                cost -= 2;
                 break;
 
             case TerrainList::ItemAll:

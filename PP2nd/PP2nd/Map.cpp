@@ -198,7 +198,7 @@ void Map::Draw()
 	
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
-	DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
+	// DrawFormatString(0, 90, GetColor(255, 255, 255), "mouseWorldPos(%.2f, %.2f, %.2f)", mouseWorldPos.x, mouseWorldPos.y, mouseWorldPos.z);
 
 	///マウスの座標がグリッド内なら強調する
 	/// グリッドの中央の一定範囲の矩形内なら、板ポリゴンを表示する

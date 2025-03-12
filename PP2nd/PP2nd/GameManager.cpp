@@ -323,7 +323,7 @@ void GameManager::LoadStageInfo(const std::string& fileName)
 
 	// ファイルを閉じる
 	inFile.close();
-	printfDx("ファイルの読み込み完了");
+	// printfDx("ファイルの読み込み完了");
 }
 
 /// <summary>

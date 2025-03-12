@@ -80,6 +80,7 @@ void Start::SearchRoute()
                 break;
 
             case TerrainList::DECOY:
+                cost -= 5;
                 break;
 
             case TerrainList::ItemAll:
