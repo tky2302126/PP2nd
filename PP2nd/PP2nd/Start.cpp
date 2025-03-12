@@ -79,7 +79,7 @@ void Start::SearchRoute()
             switch (terrain)
             {
             case TerrainList::CUBE:
-                cost += 4; // 大きくしすぎると試行回数が増えるので注意
+                cost += 99; // 石の数、フィールドの広さに応じて辺の重みを変えたい
                 break;
 
             case TerrainList::DECOY:
@@ -109,7 +109,7 @@ void Start::SearchRoute()
             int h = GetHeuristic(neighborPos, goal);
 
             /// デコイの処理
-            const int range = 4;
+            const int range = 2;
             int minDistance = range + 1;
             for(int dy = -range; dy<= range;dy++)
             {

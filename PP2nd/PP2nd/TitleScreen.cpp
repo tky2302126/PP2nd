@@ -136,7 +136,6 @@ void TitleScreen::Update()
 #pragma endregion
 
 	/// カメラ移動
-	/// タイトルロゴ遷移(この後実装)
 	if(isMoving && isActive)
 	{
 		elapsedTime += 1.0 / FRAMERATE;

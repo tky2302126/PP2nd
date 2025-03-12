@@ -44,17 +44,17 @@ void EnemyManager::LoadTest()
 		startPtrVec.push_back(startPtr);
 
 		Start* startPtr2 = new Start();
-		Vector2Int startPos2 = { 0,24 };
+		Vector2Int startPos2 = { 0,14 };
 		startPtr2->Init(startPos2);
 		startPtrVec.push_back(startPtr2);
 
 		Start* startPtr3 = new Start();
-		Vector2Int startPos3 = { 24,0 };
+		Vector2Int startPos3 = { 14,0 };
 		startPtr3->Init(startPos3);
 		startPtrVec.push_back(startPtr3);
 
 		Start* startPtr4 = new Start();
-		Vector2Int startPos4 = { 24,24 };
+		Vector2Int startPos4 = { 14,14 };
 		startPtr4->Init(startPos4);
 		startPtrVec.push_back(startPtr4);
 	}

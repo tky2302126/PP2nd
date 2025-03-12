@@ -62,7 +62,7 @@ private:
 	bool terrainInfoChanged = false; /// 地形情報の更新を管理
 	bool isGameOver = false;
 	bool isGameClear = false;
-	Sequence currentSequence = Debug; /// シーケンス デバッグは製品では使わない
+	Sequence currentSequence = Sequence::Debug; /// シーケンス デバッグは製品では使わない
 	std::vector<DamageInfo> damageVec; 
 };
 

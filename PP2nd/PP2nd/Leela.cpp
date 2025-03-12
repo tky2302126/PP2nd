@@ -104,6 +104,7 @@ void Leela::Move()
             move = false;
             attack = true;
             attackBeginTime = GetNowCount();
+            animUPtr->Play(LeelaAnimList::Kick, 0.3,true);
             /// ここに処理を追加
 
             break;
@@ -113,7 +114,8 @@ void Leela::Move()
             move = false;
             attack = true;
             attackBeginTime = GetNowCount();
-
+            animUPtr->Play(LeelaAnimList::Kick, 0.3,true);
+            break;
         default:
             break;
         }
@@ -152,12 +154,25 @@ void Leela::Attack()
     int currentTime = GetNowCount();
     if (currentTime - attackBeginTime >= ENEMY_ATTACK_TIME * 1000)
     {
-        attack = false;
-        move = true;
         VECTOR damagePos = { floor(position.x / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2,
                 0,
                 floor(position.z / MAP_UNIT) * MAP_UNIT + MAP_UNIT / 2 };
         GameM().DamageTerrainInfo(damagePos, 25);
+        Vector2Int currentArrayPos = WorldPos2ArrayPos(position);
+        /// OnEnterEventの実行
+        auto terrainInfo = GameM().GetTerrainInfo();
+        auto mapInfo = GameM().GetMapInfo();
+        if (!IsValidPosition(currentArrayPos, mapInfo)) return;
+        if(terrainInfo[currentArrayPos.y][currentArrayPos.x] == TerrainList::None)
+        {
+            attack = false;
+            move = true;
+            animUPtr->Play(LeelaAnimList::Run, 1.0, true);
+        }
+        else
+        {
+            attackBeginTime = GetNowCount();
+        }
     }
 }
 
@@ -289,7 +304,7 @@ void Leela::RecalculateRoute()
             switch (terrain)
             {
             case TerrainList::CUBE:
-                cost += 4;
+                cost += 99;
                 break;
             case TerrainList::DECOY:
                 cost -= 5;
@@ -316,7 +331,7 @@ void Leela::RecalculateRoute()
             int h = GetHeuristic(neighborPos, goal);
 
             /// デコイの処理
-            const int range = 4;
+            const int range = 1;
             int minDistance = range + 1;
             for (int dy = -range; dy <= range; dy++)
             {
