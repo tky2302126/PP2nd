@@ -3,10 +3,12 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	/// ! Effekseer用のセッティング　
+	/// ! 必ず先に呼ぶ
 	ChangeWindowMode(TRUE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
 	SetWaitVSyncFlag(FALSE);
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
+	SetUseDirect3DVersion(DX_DIRECT3D_9EX);
 
 	if (DxLib_Init() == -1)	{ return -1; }
     if (Effekseer_Init(PARTICLE_MAX) == -1) { DxLib_End(); return -1; }
@@ -49,8 +51,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/// デバッグとexeで切り替え
  #if _DEBUG
-	// sceneMPtr.Load(SceneName::Test);
-	 sceneMPtr.Load(SceneName::Title);
+	 sceneMPtr.Load(SceneName::Test);
+	// sceneMPtr.Load(SceneName::Title);
 #else
 	sceneMPtr.Load(SceneName::Title);
  #endif

@@ -72,11 +72,7 @@ void Start::SearchRoute()
             int cost = current->cost + 1;
             /// 地形情報の値を参照
             auto terrain = TerrainList::None;
-            if(neighborPos.x>=0 && neighborPos.y >= 0
-               && neighborPos.x<terrainInfo[0].size()&& neighborPos.y <terrainInfo.size())
-            {
-                terrain = terrainInfo[neighborPos.y][neighborPos.x];
-            }
+            terrain = terrainInfo[neighborPos.y][neighborPos.x];
             switch (terrain)
             {
             case TerrainList::CUBE:
@@ -102,12 +98,30 @@ void Start::SearchRoute()
 
             /// より優れた経路があるときスキップ
             /// 要再検証
-            if (nodeMap.count(neighborPos)&& nodeMap[neighborPos]->cost <= cost)
+            if (nodeMap.count(neighborPos)&& nodeMap[neighborPos]->cost < cost)
             {
                 continue;
             }
 
-            Node* neighbor = new Node(neighborPos, cost, GetHeuristic(neighborPos, goal), current);
+            int h = GetHeuristic(neighborPos, goal);
+
+            /// デコイの処理
+            const int range = 4;
+            for(int dy = -range; dy<= range;dy++)
+            {
+                for(int dx = -range; dx <= range; dx++)
+                {
+                    Vector2Int checkPos = { current->pos.x + dx, current->pos.y + dy };
+                    if(IsValidPosition(checkPos,map))
+                    {
+                        if(terrainInfo[checkPos.y][checkPos.x] == TerrainList::DECOY)
+                        {
+                            h = 0;
+                        }
+                    }
+                }
+            }
+            Node* neighbor = new Node(neighborPos, cost, h, current);
             openList.push(neighbor);
             nodeMap[neighborPos] = neighbor;
         }

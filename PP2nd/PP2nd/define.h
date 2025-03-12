@@ -306,9 +306,9 @@ struct Compare
 	bool operator()(const Node* a, const Node* b) { return a->Evaluate() > b->Evaluate(); }
 };
 
-inline int GetHeuristic(const Vector2Int& a, const Vector2Int& b)
+inline int GetHeuristic(const Vector2Int& current, const Vector2Int& goal)
 {
-	return abs(a.x - b.x) + abs(a.y - b.y);
+	return abs(current.x - goal.x) + abs(current.y - goal.y);
 }
 
 inline bool IsValidPosition(Vector2Int& pos, _mapInfo& mapInfo )

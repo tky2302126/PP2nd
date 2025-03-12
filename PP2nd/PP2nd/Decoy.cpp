@@ -77,7 +77,7 @@ void Decoy::Update()
                 {
                     isPlaced = true;
                     isConfirm = false;
-                    GameM().UseItem(TerrainList::CUBE);
+                    GameM().UseItem(TerrainList::DECOY);
                     TimeM().ChangeGameSpeedSlower(false);
                     AudioM().PlaySE(SEList::LOWBON);
                 }
