@@ -1,79 +1,14 @@
-﻿  Animator.cpp
-D:\PP2nd\PP2nd\PP2nd\Animator.cpp(84,55): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
-  AudioManager.cpp
-  Box.cpp
-  Button.cpp
-  Camera.cpp
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(154,61): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(154,56): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Camera.cpp(154,51): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-  Cube.cpp
-  Decoy.cpp
-  DrawPixel.cpp
-  Effect.cpp
-  EffectManager.cpp
-  EnemyManager.cpp
-  GameManager.cpp
-  HUD.cpp
-D:\PP2nd\PP2nd\PP2nd\HUD.cpp(48,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-  InputSystem.cpp
-  Item.cpp
-  ItemPanel.cpp
-  Leela.cpp
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(23,31): warning C4244: '+=': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(32,41): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(32,36): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(32,31): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(57,34): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(57,34): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(79,30): warning C4244: '-=': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(81,28): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(107,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(116,49): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-D:\PP2nd\PP2nd\PP2nd\Leela.cpp(141,13): warning C4065: switch 文に 'default' はありますが 'case' ラベルがありません。
-  main.cpp
-  MainScreen.cpp
-  Map.cpp
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(219,35): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(219,35): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(219,70): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(219,70): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(459,94): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(459,72): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\define.h(42,25): warning C4244: '+=': 'const float' から 'int' への変換です。データが失われる可能性があります。
-  (ソース ファイル 'Map.cpp' をコンパイルしています)
-  
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(510,26): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(510,53): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(515,20): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\Map.cpp(515,35): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  コンパイル中...
-  SceneManager.cpp
-  Start.cpp
-D:\PP2nd\PP2nd\PP2nd\Start.cpp(10,45): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
-  stringBuilder.cpp
-  TestEnemy.cpp
-D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(51,34): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
-D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(51,34): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(76,30): warning C4244: '-=': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(78,22): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-D:\PP2nd\PP2nd\PP2nd\TestEnemy.cpp(131,13): warning C4065: switch 文に 'default' はありますが 'case' ラベルがありません。
-  TestScene.cpp
-  TimeManager.cpp
-  TitleScene.cpp
-  TitleScreen.cpp
+﻿  TitleScreen.cpp
 D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(143,11): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
 D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(165,18): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
 D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(165,18): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
 D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(166,21): warning C4838: 'float' から 'int' への変換には縮小変換が必要です
 D:\PP2nd\PP2nd\PP2nd\TitleScreen.cpp(166,21): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Trial_Easy.cpp
 EffekseerForDXLib_vs2019_x64_d.lib(EffekseerForDXLib.obj) : warning LNK4075: /EDITANDCONTINUE は /OPT:ICF の指定によって無視されます。
   コード生成しています。
-  Previous IPDB not found, fall back to full compilation.
-D:\PP2nd\PP2nd\PP2nd\Decoy.cpp(136): warning C4172: ローカル変数またはテンポラリのアドレスを返します: MHandle
-D:\PP2nd\PP2nd\PP2nd\Cube.cpp(141): warning C4172: ローカル変数またはテンポラリのアドレスを返します: MHandle
-  All 4798 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 4798 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
 EffekseerForDXLib_vs2019_x64_d.lib(EffekseerForDXLib.obj) : warning LNK4099: PDB '' が 'EffekseerForDXLib_vs2019_x64_d.lib(EffekseerForDXLib.obj)' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 Effekseer_vs2019_x64_d.lib(Effekseer.Vector3D.obj) : warning LNK4099: PDB '' が 'Effekseer_vs2019_x64_d.lib(Effekseer.Vector3D.obj)' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。

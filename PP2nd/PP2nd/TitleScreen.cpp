@@ -169,13 +169,13 @@ void TitleScreen::Update()
 		};
 
 		cameraUPtr->ManualMove(currentPos, currentTarget);
-		DrawExtendGraph(currentLogo.left, currentLogo.top, currentLogo.right, currentLogo.bottom, titleLogoGH, FALSE);
+		DrawExtendGraph(currentLogo.left, currentLogo.top, currentLogo.right, currentLogo.bottom, titleLogoGH, TRUE);
 	}
 
 	/// タイトルロゴ描画
 	if(currentSequence == Menu && !isMoving)
 	{
-		DrawExtendGraph(logoEnd.left, logoEnd.top, logoEnd.right, logoEnd.bottom, titleLogoGH, FALSE);
+		DrawExtendGraph(logoEnd.left, logoEnd.top, logoEnd.right, logoEnd.bottom, titleLogoGH, TRUE);
 	}
 	
 }
