@@ -105,8 +105,6 @@ void Leela::Move()
             attack = true;
             attackBeginTime = GetNowCount();
             animUPtr->Play(LeelaAnimList::Kick, 0.3,true);
-            /// ここに処理を追加
-
             break;
 
         case TerrainList::DECOY:
@@ -173,6 +171,10 @@ void Leela::Attack()
         {
             attackBeginTime = GetNowCount();
         }
+        GameM().RemoveTerrainInfo(this->position);
+        attack = false;
+        move = true;
+        animUPtr->Play(LeelaAnimList::Run, 1.0, true);
     }
 }
 
@@ -307,7 +309,7 @@ void Leela::RecalculateRoute()
                 cost += 99;
                 break;
             case TerrainList::DECOY:
-                cost -= 5;
+                cost -= 2;
                 break;
 
             case TerrainList::ItemAll:

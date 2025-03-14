@@ -51,7 +51,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	/// デバッグとexeで切り替え
  #if _DEBUG
-	// sceneMPtr.Load(SceneName::Test);
+
+	 // sceneMPtr.Load(SceneName::Test);
 	sceneMPtr.Load(SceneName::Title);
 #else
 	sceneMPtr.Load(SceneName::Title);
