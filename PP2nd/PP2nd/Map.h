@@ -39,6 +39,7 @@ private:
 	bool holdItem= false;
 	bool inGrid = false;
 	int MHandle = -1;
+	int skyDomeMHandle = -1;
 	int mapTexture = -1;
 	VERTEX3D vertices[4] =
 	{

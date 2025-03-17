@@ -18,6 +18,8 @@ void Camera::Init()
 	oldMousePos = { 0, 0 };
 
 	targetPos = VGet(CAMERA_MIN_X, 0, CAMERA_MIN_Z);
+
+	SetCameraNearFar(10.0f, 50000.0f);
 	
 }
 

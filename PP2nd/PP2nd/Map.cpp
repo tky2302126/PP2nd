@@ -21,6 +21,8 @@ void Map::Init()
 	MHandle = GameM().GetHandleData(HDKey::Cube).MHandle;
 	mapInfo = {25, 25, -1, -1};
 	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
+	skyDomeMHandle = MV1LoadModel("./Resource/Skydome.mv1");
+	MV1SetScale(skyDomeMHandle, VGet(10, 10, 10));
 
 	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
 	//baseTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
@@ -87,8 +89,8 @@ void Map::Init(const _mapInfo& mapInfo)
 		AddStart(startPos[i]);
 	}
 
-	//mapTexture = LoadGraph("./Resource/MapSample.jpeg");
 	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
+	skyDomeMHandle = MV1LoadModel("./Resource/Skydome.mv1");
 
 	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
 	//baseTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
@@ -114,11 +116,12 @@ void Map::UnInit()
 	itemPtrVec.clear();
 
 	DeleteGraph(mapTexture);
+	MV1DeleteModel(skyDomeMHandle);
 
-	DeleteGraph(baseTex);
-	DeleteGraph(normalTex);
-	DeleteGraph(aoTex);
-	DeleteGraph(roughnessTex);
+	// DeleteGraph(baseTex);
+	// DeleteGraph(normalTex);
+	// DeleteGraph(aoTex);
+	// DeleteGraph(roughnessTex);
 }
 
 void Map::Load(int day)
@@ -190,7 +193,12 @@ void Map::Draw()
 	// DrawDebugGrid();
 #endif
 
-	
+	// スカイドーム
+	auto domeCenter = GameM().GetCameraPosition();
+	domeCenter.y = 0;
+	MV1SetPosition(skyDomeMHandle, domeCenter);
+	MV1DrawModel(skyDomeMHandle);
+
 	/// ゴールポイントの描画
 	if(mapInfo.goalHeight !=-1)
 	{
@@ -316,10 +324,10 @@ void Map::Draw()
 		}
 	}
 
-	DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
-	DrawPolygonIndexed3D(vertices2, 4, index, 2, mapTexture, TRUE);
-	DrawPolygonIndexed3D(vertices3, 4, index, 2, mapTexture, TRUE);
-	DrawPolygonIndexed3D(vertices4, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices2, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices3, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices4, 4, index, 2, mapTexture, TRUE);
 }
 
 /// <summary>
@@ -329,6 +337,10 @@ void Map::Draw()
 void Map::Draw(SceneName& name)
 {
 	if (name == Option) { return; }
+	auto domeCenter = GameM().GetCameraPosition();
+	domeCenter.y = 0;
+	MV1SetPosition(skyDomeMHandle, domeCenter);
+	MV1DrawModel(skyDomeMHandle);
 
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();
@@ -423,7 +435,10 @@ void Map::Draw(SceneName& name)
 		}
 	}
 
-	DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices2, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices3, 4, index, 2, mapTexture, TRUE);
+	DxLib::DrawPolygonIndexed3D(vertices4, 4, index, 2, mapTexture, TRUE);
 }
 /// <summary>
 /// カメラの移動に応じて描画範囲を変更できるようにする

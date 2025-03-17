@@ -44,9 +44,9 @@ void MainScreen::Update()
 {
 	Draw();
 	cameraUPtr->Update();
-	mapUPtr->Update();
 	int time = TimeManager::GetInstance().RemainTime();
 	hudUPtr->Update(time);
+	mapUPtr->Update();
 #pragma region カメラ確認
 	// VECTOR cameraPos = cameraUPtr->GetPosition();
 	// DrawFormatString(0, 30, GetColor(255, 255, 255), "camera position( %f, %f, %f)",cameraPos.x , cameraPos.y , cameraPos.z);
