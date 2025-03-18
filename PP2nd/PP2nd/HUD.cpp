@@ -249,6 +249,18 @@ void HUD::Draw(int _remainTime)
 	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);
 #pragma endregion
 
+#pragma region 準備フェイズ表示UI
+	if(GameM().CurrentSequence() ==SetUp )
+	{
+		float r = (float)_remainTime / maxCount;
+
+		DrawBox(standbyGauge.left, standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(0, 0, 0), TRUE);
+		DrawBox(standbyGauge.left + (standbyGauge.right - standbyGauge.left) * (1 - r), standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(255, 255, 0), TRUE);
+
+	}
+#pragma endregion
+
+
 #pragma region 下部アイテムパネル
 	/// アイテムの表示
 	if (!itemPanelMap.empty())

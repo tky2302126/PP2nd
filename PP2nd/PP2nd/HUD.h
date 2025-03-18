@@ -37,6 +37,18 @@ private:
 #pragma region 残敵数
 
 #pragma endregion
+#pragma region 準備フェイズ表示UI
+
+	const int maxCount =30;
+	RECTInt standbyGauge = 
+	{
+		60,
+		120,
+		170,
+		WINDOW_WIDTH-170
+	};
+#pragma endregion
+
 
 
 	bool fast;

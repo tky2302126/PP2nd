@@ -20,6 +20,7 @@ Trial_Easy::Trial_Easy()
 	AudioM().PlayBGM(BGMList::SETUP);
 	EnemyM().Setrevision(10);
 	GameM().GameStart();
+	TimeM().ChangeGameSpeedSlower(false);
 }
 
 Trial_Easy::~Trial_Easy()
