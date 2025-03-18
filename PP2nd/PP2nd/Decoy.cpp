@@ -130,6 +130,12 @@ void Decoy::Confirm()
         GameM().AddTerrainInfo(TerrainList::DECOY, pos);
 }
 
+void Decoy::SetUp()
+{
+    isPlaced = true;
+    oldIsConfirm = true;
+}
+
 bool Decoy::TakeDamege(int damage)
 {
     Health -= damage;

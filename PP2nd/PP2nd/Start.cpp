@@ -2,6 +2,8 @@
 #include "manager.h"
 
 int Start::searchNum = 0;
+bool Start::decoySearched = false;
+std::vector<Vector2Int> Start::decoyPositionVec = std::vector<Vector2Int>();
 
 void Start::Init(Vector2Int _pos)
 {
@@ -20,6 +22,10 @@ void Start::Init(Vector2Int _pos)
 void Start::SearchRoute()
 {
     searchNum = 0;
+    if(!decoySearched)
+    {
+        SearchDecoy();
+    }
     /// ルートが設定されていた場合、再計算が必要か計算する
     /// 変更箇所のみ再計算する 現行1マスずつ変更が行われるため、
     /// 障害物が除かれた場合は再計算の必要がある
@@ -109,32 +115,27 @@ void Start::SearchRoute()
             int h = GetHeuristic(neighborPos, goal);
 
             /// デコイの処理
-            const int range = 2;
-            int minDistance = range + 1;
-            for(int dy = -range; dy<= range;dy++)
+            if(decoyPositionVec.size())
             {
-                for(int dx = -range; dx <= range; dx++)
-                {
-                    Vector2Int checkPos = { current->pos.x + dx, current->pos.y + dy };
-                    if(IsValidPosition(checkPos,map))
+                const int range = 2;
+                int minDistance = range + 1;
+               for(const auto& decoyPos : decoyPositionVec)
+               {
+                    int distance = abs(decoyPos.x - neighborPos.x) + abs(decoyPos.y - neighborPos.y);
+                    if (distance < minDistance)
                     {
-                        if(terrainInfo[checkPos.y][checkPos.x] == TerrainList::DECOY)
-                        {
-                            int distance = abs(dx) + abs(dy);
-                            if(distance < minDistance)
-                            {
-                                minDistance = distance;
-                            }
-                        }
-                    }
-                }
-            }
+                        minDistance = distance;
+                    }         
 
-            if(minDistance <= range)
-            {
-                h -= 2;
-                if (h < 0) { h = 0; }
+                    if (minDistance <= range)
+                    {
+                        h -= 2;
+                        if (h < 0) { h = 0; }
+                    }
+               }
             }
+            
+            
             Node* neighbor = new Node(neighborPos, cost, h, current);
             openList.push(neighbor);
             nodeMap[neighborPos] = neighbor;
@@ -237,6 +238,24 @@ void Start::DrawRouteTest()
     {
         DrawLine3D(VGet(route[i].x*MAP_UNIT+MAP_UNIT/2,0,route[i].y*MAP_UNIT+MAP_UNIT/2), VGet(route[i+1].x * MAP_UNIT + MAP_UNIT / 2, 0, route[i+1].y * MAP_UNIT + MAP_UNIT / 2), GetColor(255, 64, 64));
     }
+}
+
+void Start::SearchDecoy()
+{
+    auto mapInfo = GameM().GetMapInfo();
+    auto terrainInfo = GameM().GetTerrainInfo();
+    for(int y = 0; y<mapInfo.height;++y)
+    {
+        for(int x =0; x<mapInfo.width;++x)
+        {
+            if (terrainInfo[y][x] == TerrainList::DECOY)
+            {
+                Vector2Int buff = { x,y };
+                decoyPositionVec.push_back(buff);
+            }
+        }
+    }
+    decoySearched = true;
 }
 
 

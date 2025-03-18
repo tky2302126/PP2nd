@@ -115,6 +115,7 @@ void EnemyManager::DrawRouteTest()
 void EnemyManager::ReCalculateRoute()
 {
 	// clsDx();
+	if (startPtrVec.size()) { startPtrVec[0]->InitDecoySearch(); }
 	std::vector<std::thread> threads;
 	for(auto& startPtr: startPtrVec)
 	{

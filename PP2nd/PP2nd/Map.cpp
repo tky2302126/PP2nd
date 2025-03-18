@@ -60,6 +60,7 @@ void Map::Init(const _mapInfo& mapInfo)
 						y * MAP_UNIT + MAP_UNIT / 2
 					);
 					itemPtr->Init(MHandle, pos,this);
+					itemPtr->SetUp();
 					itemPtrVec.push_back(itemPtr);
 					MHandle = -1;
 				}
@@ -74,6 +75,7 @@ void Map::Init(const _mapInfo& mapInfo)
 						y * MAP_UNIT + MAP_UNIT / 2
 					);
 					itemPtr->Init(MHandle, pos, this);
+					itemPtr->SetUp();
 					itemPtrVec.push_back(itemPtr);
 					MHandle = -1;
 				}
@@ -90,7 +92,6 @@ void Map::Init(const _mapInfo& mapInfo)
 	}
 
 	mapTexture = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
-	skyDomeMHandle = MV1LoadModel("./Resource/Skydome.mv1");
 
 	/// シェーダーの準備 vsoとpsoファイルの準備が必要？要調査
 	//baseTex = LoadGraph("./Resource/SandyGravel01_MR_2K/SandyGravel01_2K_BaseColor.png");
@@ -116,7 +117,7 @@ void Map::UnInit()
 	itemPtrVec.clear();
 
 	DeleteGraph(mapTexture);
-	MV1DeleteModel(skyDomeMHandle);
+	if(skyDomeMHandle>0) MV1DeleteModel(skyDomeMHandle);
 
 	// DeleteGraph(baseTex);
 	// DeleteGraph(normalTex);
@@ -133,6 +134,7 @@ void Map::Load(int day)
 /// </summary>
 void Map::Reload()
 {
+	auto currentTime = GetNowCount();
 	auto terrainInfo = CGameM().GetTerrainInfo();
 
 	/// ダメージ処理
@@ -141,6 +143,7 @@ void Map::Reload()
 	for (auto it = itemPtrVec.begin(); it != itemPtrVec.end();) 
 	{
 		auto itemPos = (*it)->GetPosition();
+		if (!damageInfo.size()) { it++; continue; }
 		for(auto& [pos, damage]: damageInfo)
 		{
 			if(itemPos.x == pos.x && itemPos.z == pos.z)
@@ -149,16 +152,20 @@ void Map::Reload()
 				{
 					it = itemPtrVec.erase(it);
 				}
-				else
-				{
-					it++;
-				}
+				
+			}
+			else
+			{
+				it++;
 			}
 			break;
 		}
 	}
 	damageInfo.clear();
 	GameM().CheckedTerrainInfo();
+
+	auto elapsedTime = GetNowCount() - currentTime;
+	//printfDx("かかった時間: %d s\n", elapsedTime / 1000);
 
 }
 /// <summary>
@@ -194,10 +201,10 @@ void Map::Draw()
 #endif
 
 	// スカイドーム
-	auto domeCenter = GameM().GetCameraPosition();
-	domeCenter.y = 0;
-	MV1SetPosition(skyDomeMHandle, domeCenter);
-	MV1DrawModel(skyDomeMHandle);
+	// auto domeCenter = GameM().GetCameraPosition();
+	// domeCenter.y = 0;
+	// MV1SetPosition(skyDomeMHandle, domeCenter);
+	// MV1DrawModel(skyDomeMHandle);
 
 	/// ゴールポイントの描画
 	if(mapInfo.goalHeight !=-1)
@@ -337,10 +344,11 @@ void Map::Draw()
 void Map::Draw(SceneName& name)
 {
 	if (name == Option) { return; }
-	auto domeCenter = GameM().GetCameraPosition();
-	domeCenter.y = 0;
-	MV1SetPosition(skyDomeMHandle, domeCenter);
-	MV1DrawModel(skyDomeMHandle);
+	
+	// auto domeCenter = GameM().GetCameraPosition();
+	// domeCenter.y = 0;
+	// MV1SetPosition(skyDomeMHandle, domeCenter);
+	// MV1DrawModel(skyDomeMHandle);
 
 	/// InputSystem監視
 	VECTOR mouseWorldPos = GetMouseWorldPos();

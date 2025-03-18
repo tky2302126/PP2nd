@@ -15,6 +15,7 @@ public:
 	virtual void Draw() const = 0;
 	virtual void Update() = 0;
 	virtual void Confirm() = 0;
+	virtual void SetUp() = 0;
 	virtual int& GetMHandle() const = 0;
 	virtual VECTOR GetPosition() const = 0;
 	/// <summary>

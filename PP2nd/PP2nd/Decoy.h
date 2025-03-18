@@ -17,6 +17,7 @@ public:
 	void Draw() const override;
 	void Update() override;
 	void Confirm() override;
+	void SetUp() override;
 	bool TakeDamege(int damage)override;
 
 	int& GetMHandle() const override;

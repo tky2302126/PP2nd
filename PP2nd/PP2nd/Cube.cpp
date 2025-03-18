@@ -12,9 +12,9 @@ Cube::~Cube()
 {
 }
 
-void Cube::Init(int _Ghandle, VECTOR _pos, Map* _mapPtr)
+void Cube::Init(int _Mhandle, VECTOR _pos, Map* _mapPtr)
 {
-    MHandle = _Ghandle;
+    MHandle = _Mhandle;
     pos = _pos;
     /// 埋まらないようにあげる
     pos.y += MAP_UNIT / 2;
@@ -122,7 +122,7 @@ void Cube::Update()
 /// </summary>
 void Cube::Confirm()
 {
-    /// カメラの中央付近に来るようにカメラを動かす(優先順位:低)
+    /// todo カメラの中央付近に来るようにカメラを動かす(優先順位:低)
     /// 自分のPosを渡し、ｘを一致、ｚをCameraOFFSET分離す
         
     isConfirm = true;
@@ -133,6 +133,12 @@ void Cube::Confirm()
     /// いったん登録のみ
     if(!isPlaced)
         GameM().AddTerrainInfo(TerrainList::CUBE, pos);
+}
+
+void Cube::SetUp()
+{
+    isPlaced = true;
+    oldIsConfirm = true;
 }
 
 int& Cube::GetMHandle() const
