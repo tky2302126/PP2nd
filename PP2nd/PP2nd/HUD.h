@@ -29,7 +29,7 @@ public:
 private:
 #pragma region 上部タイマー
 	int centerPos;
-	int fontHandle;
+	int timerFontHandle;
 	int textWidth;
 	int	textHeight;
 	RECTInt timerPanelRect;
