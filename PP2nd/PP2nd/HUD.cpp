@@ -1,7 +1,7 @@
 ﻿#include "HUD.h"
 
 HUD::HUD()
-	:centerPos(0),fontHandle(-1),timerPanelRect(),playGH(-1),pauseGH(-1)
+	:centerPos(0),timerFontHandle(-1),timerPanelRect(),playGH(-1),pauseGH(-1)
 	,fastGH(-1),optionGH(-1),textHeight(0),textWidth(0),fast(false),skipGH(-1)
 	,slowGH(-1)
 {
@@ -9,7 +9,7 @@ HUD::HUD()
 
 HUD::~HUD()
 {
-	DeleteFontToHandle(fontHandle);
+	DeleteFontToHandle(timerFontHandle);
 	fs::path basePath = fs::current_path();
 	/// OSによって読み込まない？　未検証
 	fs::path relativePath = "Resource/GAGAGAGA-FREE.otf";
@@ -43,9 +43,9 @@ void HUD::Init(SceneName name)
 
 
 	/// 時間の表示
-	fontHandle = CreateFontToHandle("GAGAGAGA FREE", 48, 3, DX_FONTTYPE_ANTIALIASING);
+	timerFontHandle = CreateFontToHandle("GAGAGAGA FREE", 48, 3, DX_FONTTYPE_ANTIALIASING);
 	const char* text = "000";
-	GetDrawStringSizeToHandle(&textWidth, &textHeight, NULL, text, strlen(text), fontHandle);
+	GetDrawStringSizeToHandle(&textWidth, &textHeight, NULL, text, strlen(text), timerFontHandle);
 	centerPos = (WINDOW_WIDTH - textWidth) / 2;
 	timerPanelRect.left = centerPos;
 	timerPanelRect.top = 0;
@@ -54,6 +54,8 @@ void HUD::Init(SceneName name)
 	
 
 
+
+	summaryFontHandle = CreateFontToHandle(NULL, 40, 3);
 
 	/// HUDパネルの準備
 	playGH = LoadGraph("./Resource/play-button.png");
@@ -246,18 +248,29 @@ void HUD::Draw(int _remainTime)
 	std::string remainTime = std::to_string(_remainTime);
 	if (_remainTime < 100) { remainTime = '0' + remainTime; }
 
-	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), fontHandle);
+	DrawStringToHandle(centerPos, 0, remainTime.c_str(), GetColor(255, 255, 255), timerFontHandle);
 #pragma endregion
 
 #pragma region 準備フェイズ表示UI
-	if(GameM().CurrentSequence() ==SetUp )
+	if(GameM().CurrentSequence() == SetUp )
 	{
-		float r = (float)_remainTime / maxCount;
+		// float r = (float)_remainTime / maxCount;
+		// 
+		// DrawBox(standbyGauge.left, standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(0, 0, 0), TRUE);
+		// DrawBox(standbyGauge.left + (standbyGauge.right - standbyGauge.left) * (1 - r), standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(255, 255, 0), TRUE);
 
-		DrawBox(standbyGauge.left, standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(0, 0, 0), TRUE);
-		DrawBox(standbyGauge.left + (standbyGauge.right - standbyGauge.left) * (1 - r), standbyGauge.top, standbyGauge.right, standbyGauge.bottom, GetColor(255, 255, 0), TRUE);
-
+		DrawStringToHandle(0, 60, "目標 : 敵の進路を長くしろ",GetColor(0,0,0), summaryFontHandle);
 	}
+
+#pragma endregion
+
+
+#pragma region 戦闘フェイズ表示UI
+	if(GameM().CurrentSequence() == Battle)
+	{
+		DrawStringToHandle(0, 60, "目標 : 拠点を守れ", GetColor(0, 0, 0), summaryFontHandle);
+	}
+
 #pragma endregion
 
 

@@ -47,6 +47,8 @@ private:
 		170,
 		WINDOW_WIDTH-170
 	};
+
+	int summaryFontHandle;
 #pragma endregion
 
 
