@@ -34,6 +34,10 @@ private:
 	RECTInt logoStart = {-TITLELOGO_SIZE, 0, WINDOW_WIDTH/2 - TITLELOGO_SIZE/2, WINDOW_WIDTH / 2 + TITLELOGO_SIZE / 2 };
 	RECTInt logoEnd = {0, TITLELOGO_SIZE, WINDOW_WIDTH / 2 - TITLELOGO_SIZE / 2, WINDOW_WIDTH / 2 + TITLELOGO_SIZE / 2 };
 
+	int backgroundGH;
+	VERTEX3D BGVert[4];
+	WORD index[6] = {0, 1, 2, 1, 3, 2};
+	const float BGZOffset = MAP_UNIT * 60;
 
 	// 補間用変数
 	VECTOR startPos, endPos;

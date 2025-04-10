@@ -15,6 +15,28 @@ void TitleScreen::Init()
 	
 	oldSequence = currentSequence;
 	titleLogoGH = LoadGraph("./Resource/titlelogo_new_jimakuiri.png");
+	backgroundGH = LoadGraph("./Resource/background_sky.png");
+
+	BGVert[0].pos = VGet(-100000.0f, 10000.0f, BGZOffset); // 左上
+	BGVert[1].pos = VGet(100000.0f, 10000.0f, BGZOffset); // 右上
+	BGVert[2].pos = VGet(-100000.0f, -10000.0f, BGZOffset); // 左下
+	BGVert[3].pos = VGet(100000.0f, -10000.0f, BGZOffset); // 右下
+
+	// テクスチャ座標
+	BGVert[0].u = 0.0f; BGVert[0].v = 0.0f;
+	BGVert[1].u = 1.0f; BGVert[1].v = 0.0f;
+	BGVert[2].u = 0.0f; BGVert[2].v = 1.0f;
+	BGVert[3].u = 1.0f; BGVert[3].v = 1.0f;
+
+	// 色とその他の設定
+	for (int i = 0; i < 4; ++i) 
+	{
+		
+		BGVert[i].dif = GetColorU8(255, 255, 255, 255); // 明るさ
+		BGVert[i].spc = GetColorU8(255, 255, 255, 255);
+		BGVert[i].norm = VGet(0.0f, 0.0f, -1.0f); // 法線
+		BGVert[i].su = 0.0f; BGVert[i].sv = 0.0f;
+	}
 
 	Button* stageButton = new Button();
 	RECTInt ButtonPos =
@@ -56,6 +78,7 @@ void TitleScreen::UnInit()
 void TitleScreen::Draw()
 {
 	if (!isActive) return;
+	DrawPolygonIndexed3D(BGVert, 4, index, 2, backgroundGH, TRUE);
 	hudUPtr->Update();
 	mapUPtr->Update(currentSequence);
 

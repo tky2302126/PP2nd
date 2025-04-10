@@ -60,7 +60,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (true)
 	{
 		ClearDrawScreen();
-
+		
 		sceneMPtr.Update();
 
 		if (ProcessMessage() == -1) break;
